@@ -9,6 +9,8 @@ var last_movement_beat: String = ""
 var last_step_time: float = -INF
 var last_step_processed: float = -INF
 var last_step_evaluated: float = -INF
+var latest_horizontal: String = "right"
+var pending_move: int = 0
 var queued: int = 0
 var input_feedback: String = "READY"
 var step_feedback: String = "No step yet"
@@ -21,6 +23,8 @@ func reset() -> void:
  last_step_time = -INF
  last_step_processed = -INF
  last_step_evaluated = -INF
+ latest_horizontal = "right"
+ pending_move = 0
  queued = 0
  input_feedback = "READY"
  step_feedback = "No step yet"
@@ -38,9 +42,11 @@ func direction(at: float, facing: int) -> int:
  return choice
 
 func movement() -> int:
- var left: bool = held.get("left", false)
- var right: bool = held.get("right", false)
- queued = int(right) - int(left)
+ var held_direction := 0
+ for action in ["left", "right"]:
+  if held.get(action, false):held_direction = -1 if action == "left" else 1
+ if held.get(latest_horizontal, false):held_direction = -1 if latest_horizontal == "left" else 1
+ queued = pending_move if pending_move != 0 else held_direction
  return queued
 
 func feed(action: String, pressed: bool, at: float, facing: int, allow_combinations: bool = true) -> Dictionary:
@@ -50,16 +56,17 @@ func feed(action: String, pressed: bool, at: float, facing: int, allow_combinati
  if not pressed:
   movement()
   if action in ["left", "right"]:
-   input_feedback = "CANCEL released before beat" if float(pressed_at.get(action, -INF)) > last_step_evaluated else "RELEASED movement"
+   input_feedback = "RELEASE tap retained" if pending_move != 0 else "RELEASED movement"
   return {}
  pressed_at[action] = at
+ if action in ["left", "right"]:latest_horizontal = action
+ if action in ["left", "right"] and allow_combinations:
+  pending_move = -1 if action == "left" else 1
  if action == "execute" and allow_combinations:
   pending_execute = at
  movement()
  if action in ["left", "right"]:
   input_feedback = "ACCEPT queued " + action
-  if held.get("left", false) and held.get("right", false):
-   input_feedback = "REJECT opposing directions"
  elif action == "execute":
   input_feedback = "WAIT direction + execute"
  else:
@@ -89,10 +96,11 @@ func step(beat: int, phrase: int) -> int:
   return 0
  last_movement_beat = identity
  var direction_value := movement()
+ pending_move = 0
+ movement()
  if direction_value != 0:
   step_feedback = "ACCEPT step beat%d" % beat
- elif held.get("left", false) or held.get("right", false):
-  step_feedback = "REJECT opposing directions"
+
  else:
-  step_feedback = "NO STEP direction not held"
+  step_feedback = "NO STEP no pending/held direction"
  return direction_value

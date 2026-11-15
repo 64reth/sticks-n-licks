@@ -129,8 +129,8 @@ func run() -> void:
     time = d*0.15
     await key(action,false)
     advance(d)
-    check(game.bout.positions[player] == (100.0 if player==0 else 220.0),"Short tap released before beat still cancels by existing rule")
-    check(game.controls[player].input_feedback.begins_with("CANCEL"),"Cancelled tap explains why it did not move")
+    check(game.bout.positions[player] == (100.0 if player==0 else 220.0)+sign_value*Bout.STEP,"Short released tap executes at boundary")
+    check(game.controls[player].input_feedback.contains("retained"),"Released tap explains pending acceptance")
     await reset_game(bpm)
     x = game.bout.positions[player]
     time = d*0.1
@@ -247,7 +247,7 @@ func run() -> void:
  await key("p1_right",false)
  advance(0.5)
  game.refresh()
- check(game.input_feedback_label.text.contains("CANCEL"),"F3 displays cancellation reason")
+ check(game.input_feedback_label.text.contains("retained"),"F3 displays retained tap acceptance")
  await capture("feedback_cancel")
  # Focus loss clears held state and explains rejection.
  game._notification(NOTIFICATION_APPLICATION_FOCUS_OUT)

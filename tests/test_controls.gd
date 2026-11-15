@@ -79,12 +79,12 @@ func run() -> void:
    time = 10.0 + d * 0.8
    key(prefix + forward, false)
    advance(10.0 + d)
-   check(game.bout.positions[player] == start, "Release before beat cancels queued step")
-   # Both keys held are neutral, with no undocumented last-key priority.
+   check(game.bout.positions[player] == start + sign_value * Bout.STEP, "Released tap survives until boundary")
+   # Latest horizontal press replaces the pending direction.
    key(prefix + "left")
    key(prefix + "right")
    advance(10.0 + d * 2.0)
-   check(game.bout.positions[player] == start, "Opposing horizontal directions hold position")
+   check(game.bout.positions[player] == start + sign_value * Bout.STEP + Bout.STEP, "Latest direction wins with both keys held")
   for height in range(3):
    reset_game()
    advance(11.3)

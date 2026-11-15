@@ -39,3 +39,9 @@ if [[ -x .venv/bin/python ]]; then
 else
   echo 'Optional Python asset checks skipped: install tools/requirements.txt in .venv.'
 fi
+
+# Slow real-clock lifecycle regression: no phase, position or clock overrides.
+"$GODOT" --headless --path . --log-file output/live-movement.log --script tests/test_live_movement.gd --max-fps 120 >output/live-movement.stdout 2>&1
+cat output/live-movement.stdout
+if rg -n 'SCRIPT ERROR|Parse Error|Failed to load|Assertion failed' output/live-movement.stdout; then exit 1; fi
+if ! rg -q 'LIVE MOVEMENT: [0-9]+ checks, 0 failures' output/live-movement.stdout; then exit 1; fi

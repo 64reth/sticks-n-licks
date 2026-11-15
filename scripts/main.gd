@@ -35,6 +35,42 @@ var click_player := AudioStreamPlayer.new()
 var click_stream: AudioStreamWAV
 var metronome_enabled: bool = true
 
+# Bounded development trace. _input observes delivery before GUI/unhandled routing.
+var movement_trace: Array[Dictionary] = []
+var last_keys: Array[String] = ["none", "none"]
+var accepted_until: Array[float] = [0.0, 0.0]
+var rendered_step_time: Array[float] = [-INF, -INF]
+var raw_event_count: int = 0
+var handled_event_count: int = 0
+
+func trace_movement(stage: String, player: int, extra: Dictionary = {}) -> void:
+ var row := {"stage":stage, "player":player+1, "time":conductor.now(),
+  "phase":mode, "beat":conductor.beat, "phrase":conductor.phrase,
+  "permitted":mode=="combat", "pending":controls[player].pending_move,
+  "queued":controls[player].queued, "logical_x":bout.positions[player],
+  "rendered_x":fighters[player].position.x if fighters.size()>player else 0.0,
+  "feedback":controls[player].input_feedback, "step":controls[player].step_feedback}
+ row.merge(extra,true)
+ movement_trace.append(row)
+ if movement_trace.size()>2048:movement_trace.pop_front()
+
+func _input(event: InputEvent) -> void:
+ if not event is InputEventKey:return
+ for player in range(2):
+  for action in ["left", "right"]:
+   if event.is_action("p%d_%s" % [player+1,action]):
+    raw_event_count += 1
+    last_keys[player] = "%s %s" % [OS.get_keycode_string(event.physical_keycode),"down" if event.pressed else "up"]
+    trace_movement("raw",player,{"event_id":event.get_instance_id(),"keycode":event.keycode,
+     "physical_keycode":event.physical_keycode,"pressed":event.pressed,"echo":event.echo,
+     "action":"p%d_%s" % [player+1,action], "window_focused":DisplayServer.window_is_focused(),
+     "gui_focus":str(get_viewport().gui_get_focus_owner())})
+
+func _exit_tree() -> void:
+ if "--movement-trace" in OS.get_cmdline_user_args():
+  var file := FileAccess.open("res://output/movement-trace.json",FileAccess.WRITE)
+  if file:file.store_string(JSON.stringify(movement_trace,"  "))
+
 func _ready() -> void:
  Bindings.install()
  var config := FileAccess.open("res://data/combat/settings.json", FileAccess.READ)
@@ -126,7 +162,7 @@ func _begin_round() -> void:
   for action in ["left", "right", "high", "low"]:
    if Input.is_action_pressed("p%d_%s" % [player+1, action]):
     controls[player].feed(action, true, conductor.now(), facing(player), false)
-    controls[player].input_feedback = "ACCEPT held; wait combat"
+    controls[player].input_feedback = "REJECT movement phase; held tracked"
  pose_until_by_player = [0.0, 0.0]
  last_error = [INF, INF]
  conductor.start()
@@ -188,6 +224,9 @@ func _process(delta: float) -> void:
    if mode == "race":
     fighters[player].set_pose("running")
   fighters[player].position = fighters[player].position.lerp(Vector2(target_x, 150), minf(1.0, delta * 16))
+  if controls[player].last_step_time != rendered_step_time[player] and absf(fighters[player].position.x-bout.positions[player])<1.0:
+   rendered_step_time[player] = controls[player].last_step_time
+   trace_movement("rendered",player,{"execution_time":controls[player].last_step_time})
   fighters[player].sync_hurtbox(Vector2(bout.positions[player], Bout.GROUND_Y))
   if mode == "combat" and at > pose_until_by_player[player]:
    fighters[player].set_pose("combat_idle")
@@ -225,7 +264,7 @@ func on_beat(beat: int, _phrase: int) -> void:
  elif mode == "combat":
   click_player.pitch_scale = 1.5 if beat == 4 else 1.0
   play_click()
-  # Deterministic boundary order: held movement, collision limits, then beat-four snapshot.
+  # Deterministic boundary order: queued/held movement, collision limits, then beat-four snapshot.
   exchange_phrase = _phrase
   var before := bout.positions.duplicate()
   var requested: Array[int] = [0,0]
@@ -243,6 +282,7 @@ func on_beat(beat: int, _phrase: int) -> void:
     pose_until_by_player[player] = conductor.now()+conductor.duration()*0.85
    elif requested[player]!=0:
     controls[player].step_feedback = "REJECT arena/separation"
+   trace_movement("boundary",player,{"logical_before":before[player],"requested":requested[player],"execution_time":conductor.beat_time})
   if beat == 4:
    bout.capture_impact(_phrase,conductor.beat_time)
    for player in range(2):
@@ -345,9 +385,14 @@ func _unhandled_input(event: InputEvent) -> void:
     continue
    var pressed := event.is_action_pressed(prefix + action)
    var combination := controls[player].feed(action, pressed, at, facing(player), mode == "combat")
+   if action in ["left", "right"]:
+    handled_event_count += 1
+    if mode != "combat":controls[player].input_feedback = "REJECT movement phase " + mode
+    elif pressed:accepted_until[player] = conductor.now()+0.18
+    trace_movement("unhandled",player,{"event_id":event.get_instance_id(),"action":prefix+action,"pressed":pressed,"accepted":mode=="combat"})
    if mode != "combat":
     if pressed and action in ["left", "right", "high", "low"]:
-     controls[player].input_feedback = "ACCEPT held; wait combat"
+     controls[player].input_feedback = "REJECT movement phase; held tracked"
     elif pressed and action == "execute":
      controls[player].input_feedback = ("REJECT false start" if bout.false_starts[player] else "ACCEPT race reaction") if mode in ["standoff", "race"] else "REJECT execute outside combat"
     continue
@@ -378,10 +423,12 @@ func refresh() -> void:
  label.visible = debug_visible
  detail.visible = debug_visible
  input_feedback_label.visible = debug_visible
- input_feedback_label.text = "P1 %s / %s\nP2 %s / %s" % [controls[0].input_feedback,controls[0].step_feedback,controls[1].input_feedback,controls[1].step_feedback]
+ input_feedback_label.text = ""
+ for player in range(2):
+  input_feedback_label.text += "P%d %s q%d X%.0f/%.0f %s\n%s b%d %s / %s\n" % [player+1,last_keys[player],controls[player].queued,bout.positions[player],fighters[player].position.x,mode,controls[player].input_feedback,conductor.beat,controls[player].step_feedback,"raw%d routed%d" % [raw_event_count,handled_event_count]]
  label.text = "STICKS N LICKS     %d BPM" % conductor.bpm
  if help_visible:
-  detail.text = "P1: A/D move · W high · S low · F execute\nP2: arrows move/high/low · RShift execute\nForward + execute = MID (facing-relative)\nHold to step on beats 1-4; combat on beat 4\nPerfect ±70ms · valid ±140ms · combo 100ms\nH help · F3 debug · Esc menu"
+  detail.text = "P1: A/D move · W high · S low · F execute\nP2: arrows move/high/low · RShift execute\nForward + execute = MID (facing-relative)\nTap/hold on beats 1-4; combat on beat 4\nPerfect ±70ms · valid ±140ms · combo 100ms\nH help · F3 debug · Esc menu"
  elif mode == "menu":
   detail.text = "LOCAL VERSUS · Enter to start · H controls
 C cue style: %s · F3 rhythm overlay" % cue_style
@@ -420,6 +467,9 @@ func _draw() -> void:
  draw_rect(Rect2(0, 0, 320, 180), Color("151e29"))
  draw_rect(Rect2(0, 150, 320, 30), Color("343b39"))
  draw_line(Vector2(16, 150), Vector2(304, 150), Color("aeaa7a"), 1)
+ for player in range(fighters.size()):
+  if conductor.now()<accepted_until[player]:
+   draw_line(fighters[player].position+Vector2(-3,2),fighters[player].position+Vector2(3,2),Color.GREEN,2)
  for n in range(4):
   if debug_visible or help_visible or not str(hud.state.get("footer", "")).is_empty():
    continue
