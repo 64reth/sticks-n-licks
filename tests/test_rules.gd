@@ -36,11 +36,11 @@ func _initialize() -> void:
  c.start(0.0)
  c.update(4.0)
  check(count[0] == 9, "Catch up all nine boundaries after stalled frame")
- for error in [-60.0, 0.0, 60.0]:
+ for error in [-70.0, 0.0, 70.0]:
   check(c.grade(error) == "perfect", "Perfect window inclusive")
- for error in [-130.0, -61.0, 61.0, 130.0]:
+ for error in [-140.0, -71.0, 71.0, 140.0]:
   check(c.grade(error) == "good", "Good window inclusive")
- check(c.grade(130.1) == "miss", "Miss outside window")
+ check(c.grade(140.1) == "miss", "Miss outside window")
  c.latency_ms = 45
  check(is_equal_approx(c.timestamp(1.0), 0.955), "Input latency compensation")
  var b := Bout.new()
@@ -74,7 +74,7 @@ func _initialize() -> void:
  b.resolve(c)
  check(b.hits == [1,0], "Incorrect block scores")
  b.selections = [0, 0]
- b.errors = [131.0, 0.0]
+ b.errors = [141.0, 0.0]
  b.resolve(c)
  check(b.hits == [1,0] and b.initiative == 1, "Missed attack passes initiative")
  b = Bout.new()
@@ -102,8 +102,8 @@ func _initialize() -> void:
   b.resolve(c)
  check(c.pending_bpm == 140 and c.bpm == 120, "Defensive streak schedules escalation")
  Bindings.install()
- var low = InputMap.action_get_events("p2_low")[0]
- check(low.location == KEY_LOCATION_RIGHT, "Only right Shift selects low")
+ var low = InputMap.action_get_events("p2_execute")[0]
+ check(low.location == KEY_LOCATION_RIGHT, "Only right Shift executes")
  b.positions = [30.0,70.0]
  b.movements = [-1,-1]
  b.move()
@@ -114,7 +114,7 @@ func _initialize() -> void:
  check(b.positions[1] <= 290.0 and b.positions[1] - b.positions[0] >= Bout.GAP, "Coupled movement at right wall")
  b = Bout.new()
  b.selections = [1,1]
- b.errors = [0.0,131.0]
+ b.errors = [0.0,141.0]
  b.resolve(c)
  check(b.hits == [1,0], "Mistimed matching block permits hit")
  check(b.defensive_streak == 0, "Hit does not add defensive streak")

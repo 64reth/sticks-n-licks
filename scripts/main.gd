@@ -18,20 +18,24 @@ var label := Label.new()
 var detail := Label.new()
 var previous_bpm: int = 120
 var settings: Dictionary = {}
-var selected: Array[int] = [1, 1]
+var selected: Array[int] = [-1, -1]
+var controls: Array[CombatInput] = [CombatInput.new(), CombatInput.new()]
 var tie_priority: int = 0
 var last_error: Array[float] = [INF, INF]
 var pose_until: float = 0.0
 var click_player := AudioStreamPlayer.new()
 var click_stream: AudioStreamWAV
+var metronome_enabled: bool = true
 
 func _ready() -> void:
  Bindings.install()
  var config := FileAccess.open("res://data/combat/settings.json", FileAccess.READ)
  if config:
   settings = JSON.parse_string(config.get_as_text())
- conductor.perfect_ms = float(settings.get("perfect_ms", 60.0))
- conductor.good_ms = float(settings.get("good_ms", 130.0))
+ conductor.perfect_ms = float(settings.get("perfect_ms", 70.0))
+ conductor.good_ms = float(settings.get("good_ms", 140.0))
+ for control in controls:
+  control.combination_ms = float(settings.get("combination_ms", 100.0))
  conductor.latency_ms = float(settings.get("latency_ms", 0.0))
  max_anticipation_phrases = int(settings.get("max_anticipation_phrases", 3))
  race_timeout = float(settings.get("race_timeout_seconds", 2.0))
@@ -67,14 +71,16 @@ func _ready() -> void:
  refresh()
 
 func play_click() -> void:
- if DisplayServer.get_name() != "headless":
+ if metronome_enabled and DisplayServer.get_name() != "headless":
   click_player.play()
 
 func begin() -> void:
  bout = Bout.new()
  bout.escalation_threshold = int(settings.get("escalation_threshold", 3))
  bout.tie_priority = tie_priority
- selected = [1, 1]
+ selected = [-1, -1]
+ for control in controls:
+  control.reset()
  last_error = [INF, INF]
  conductor.start()
  anticipation_phrases = randi_range(1, max_anticipation_phrases)
@@ -123,9 +129,10 @@ func _process(delta: float) -> void:
   mode = "combat"
   audio.play_track("120", conductor.epoch)
   conductor.update(at)
- if mode == "combat" and not phrase_resolved and at > conductor.action_time() + conductor.good_ms / 1000.0:
+ if mode == "combat" and not phrase_resolved and at > conductor.action_time() + (conductor.good_ms + controls[0].combination_ms + maxf(0.0, conductor.latency_ms)) / 1000.0:
   resolve_exchange()
  for player in range(2):
+  fighters[player].sprite.flip_h = facing(player) < 0
   var target_x := bout.positions[player]
   if mode == "pickup" or (mode == "race" and bout.reactions[player] >= 0):
    target_x = 138.0 if player == 0 else 182.0
@@ -149,6 +156,9 @@ func on_phrase(_phrase: int) -> void:
  if not phrase_resolved:
   resolve_exchange()
  phrase_resolved = false
+ selected = [-1, -1]
+ for control in controls:
+  control.pending_execute = -INF
  if previous_bpm != conductor.bpm:
   audio.play_track(str(conductor.bpm), conductor.phrase_start)
   previous_bpm = conductor.bpm
@@ -162,17 +172,34 @@ func on_beat(beat: int, _phrase: int) -> void:
   click_player.pitch_scale = 1.5 if beat == 4 else 1.0
   play_click()
   if beat <= 3:
+   var before := bout.positions.duplicate()
    for player in range(2):
+    bout.movements[player] = controls[player].step(beat, _phrase)
     if bout.movements[player] != 0:
-     fighters[player].set_pose("forward_step" if bout.movements[player] == (1 if player == 0 else -1) else "backward_step")
+     fighters[player].set_pose("forward_step" if bout.movements[player] == facing(player) else "backward_step")
    bout.move()
+   for player in range(2):
+    if not is_equal_approx(before[player], bout.positions[player]):
+     controls[player].last_step_time = conductor.beat_time
+     controls[player].last_step_processed = game_time()
    pose_until = conductor.now() + 0.16
+  else:
+   bout.movements = [0, 0]
+
+func facing(player: int) -> int:
+ return 1 if bout.positions[1 - player] > bout.positions[player] else -1
+
+func _notification(what: int) -> void:
+ if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+  for control in controls:
+   control.reset()
+  bout.movements = [0, 0]
 
 func resolve_exchange() -> void:
  phrase_resolved = true
  var attack := bout.initiative
  var defense := 1 - attack
- var direction := selected[attack]
+ var direction := maxi(0, selected[attack])
  var height: String = ["high", "mid", "low"][direction]
  status = bout.resolve(conductor)
  pose_until = conductor.now() + 0.35
@@ -227,28 +254,31 @@ func _unhandled_input(event: InputEvent) -> void:
     status = "P%d false start: forfeits initiative" % (player + 1)
   if mode != "combat":
    continue
-  for height in range(3):
-   if conductor.beat <= 3 and event.is_action_pressed(prefix + ["high", "mid", "low"][height]):
-    selected[player] = height
-  if conductor.beat <= 3:
-   if event.is_action_pressed(prefix + "left"):
-    bout.movements[player] = -1
-   if event.is_action_pressed(prefix + "right"):
-    bout.movements[player] = 1
-  if event.is_action_pressed(prefix + "execute") and not phrase_resolved and is_inf(bout.errors[player]):
-   var error := (conductor.timestamp(game_time()) - conductor.action_time()) * 1000.0
+  # Advance old held state through crossed beats BEFORE applying this event.
+  # A press between frames cannot be applied retroactively to an earlier beat.
+  var at := game_time()
+  conductor.update(at)
+  if mode != "combat":
+   continue
+  for action in ["left", "right", "high", "low", "execute"]:
+   if not event.is_action(prefix + action):
+    continue
+   var combination := controls[player].feed(action, event.is_action_pressed(prefix + action), at, facing(player))
+   if combination.is_empty() or phrase_resolved or not is_inf(bout.errors[player]):
+    continue
+   var error := (conductor.timestamp(combination["execute_at"]) - conductor.action_time()) * 1000.0
    bout.errors[player] = error
-   bout.selections[player] = selected[player]
+   bout.selections[player] = combination["height"]
+   selected[player] = combination["height"]
    last_error[player] = error
+   if conductor.grade(error) != "miss":
+    controls[player].suppress_movement()
+    bout.movements[player] = 0
 
 func refresh() -> void:
  label.text = "STICKS N LICKS     %d BPM" % conductor.bpm
  if help_visible:
-  detail.text = "P1: A/D move  W/S/X high/mid/low  F execute
-P2: arrows move/high/mid  RShift low  Enter execute
-Beats 1-3: move/select. Beat 4: execute.
-Perfect ±60ms parries; good ±130ms blocks.
-First to 3 hits. H help · F3 debug · Esc menu"
+  detail.text = "P1: A/D move · W high · S low · F execute\nP2: arrows move/high/low · RShift execute\nForward + execute = MID (facing-relative)\nHold to step on beats 1-3; beat 4 = combat\nPerfect ±70ms · valid ±140ms · combo 100ms\nH help · F3 debug · Esc menu"
  elif mode == "menu":
   detail.text = "LOCAL VERSUS · Enter to start · H controls
 C cue style: %s · F3 rhythm overlay" % cue_style
@@ -260,9 +290,13 @@ P1 %d/3 hits   P2 %d/3 hits
    detail.text += "
 Enter rematch · Esc menu"
  if debug_visible:
-  detail.text += "
-Phrase %d · errors %s · select %s
-Audio offset %sms · FPS %d · %s" % [conductor.phrase, "[%+.0f,%+.0f]" % last_error, str(selected), str(audio.offsets.get(audio.active, 0)), Engine.get_frames_per_second(), bout.outcome]
+  detail.text += "\nPhrase %d err %s sel %s" % [conductor.phrase, "[%+.0f,%+.0f]" % last_error, str(selected)]
+  detail.text += "\nQueue %s beat %d · step grid/actual:" % [str([controls[0].movement(), controls[1].movement()]), conductor.beat]
+  for player in range(2):
+   var control := controls[player]
+   var stamp := "--/--" if is_inf(control.last_step_time) else "%.3f/%.3fs" % [control.last_step_time, control.last_step_processed]
+   detail.text += "\nP%d %s" % [player + 1, stamp]
+  detail.text += "\nAudio %sms · FPS %d" % [str(audio.offsets.get(audio.active, 0)), Engine.get_frames_per_second()]
 
 func _draw() -> void:
  draw_rect(Rect2(0, 0, 320, 180), Color("151e29"))

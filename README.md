@@ -9,7 +9,7 @@ cd /Users/garethwallen/Projects/sticks-n-licks
 /Applications/Godot.app/Contents/MacOS/Godot --editor --path .
 ```
 
-Press **F6** with `scenes/main/main.tscn` open, or **F5** to run the project. Direct launch:
+Press **F5** to launch the playable prototype from any open scene. The root `project.godot` sets `res://scenes/main/main.tscn` as the main scene. **F6** runs only the currently open scene. Develop in this repository directly; do not create a nested project or separate working copy. Direct launch:
 
 ```sh
 /Applications/Godot.app/Contents/MacOS/Godot --path .
@@ -17,14 +17,22 @@ Press **F6** with `scenes/main/main.tscn` open, or **F5** to run the project. Di
 
 Enter starts Local Versus. H toggles help; F3 toggles the developer overlay; Escape returns to the menu. C on the menu switches the race cue between an accented click and drum cutoff. Enter rematches after victory.
 
-| Player | Move left/right | High / Mid / Low | Race / execute |
-|---|---|---|---|
-| P1 | A / D | W / S / X | F |
-| P2 | Left / Right | Up / Down / Right Shift | Enter |
+| Player | Move left/right | High / Low | MID | Race / execute |
+|---|---|---|---|---|
+| P1 | A / D | W / S | Forward + F | F |
+| P2 | Left / Right | Up / Down | Forward + Right Shift | Right Shift |
+
+Forward is facing-relative: initially D for P1 and Left for P2. If facing reverses, the other horizontal key becomes forward. X, standalone MID actions and Enter for P2 combat/race are removed; Enter still starts the menu/rematch.
 
 Wait through the three-count patterns for GO. Early execution forfeits race initiative. Both fighters get sticks; winning the race awards no hit. Reactions within 5 ms tie; tie priority alternates across tied races, starting with P1. A two-second reaction timeout resolves one valid reaction; no reactions or two false starts restart the count. Keyboard hardware may limit simultaneous keys.
 
-Queue movement and choose high/mid/low on beats 1–3. The queued step lands on the next movement beat. Tap execute near beat 4, once per exchange. ±60 ms is perfect; ±130 ms is good. A matching perfect block steals initiative, a good block retains the attacker, an incorrect/missing block loses one hit if the attack succeeds. A missed attack passes initiative. Three clean hits win. An exchange resolves after the late timing window, so late valid input is accepted. Strikes beyond 140 logical pixels miss and pass initiative; movement cannot overlap fighters.
+Movement is strictly beat-locked: hold left/right to queue a step for the next eligible beat (1, 2 or 3). Releasing before that boundary cancels it. A held direction steps once per eligible beat; opposite directions together hold position. Key events never directly move the authoritative position. Rendering interpolates toward each beat position. Beat 4 never begins a movement step.
+
+Combat requires **direction + execute**, with a 100 ms combination buffer in either order and support for a direction held longer. Up/high or down/low chooses that height; the facing-relative forward key chooses MID. Execute alone never defaults to MID. The execute timestamp determines timing even if its direction arrives later within the combination buffer. ±70 ms is perfect; ±140 ms is valid. A correct perfect block steals initiative; a correct valid block retains the attacker. Incorrect/missing/mistimed defence permits a successful attack to score. A missed attack passes initiative. Three clean hits win.
+
+Combat takes priority over movement: a valid combination suppresses held horizontal movement until release/repress, including the next phrase's first beat. Holding forward to select MID cannot add an accidental step after the action. One combat execution is accepted per phrase. Resolution waits until the late timing window plus the 100 ms combination buffer closes, so a valid late execute can still receive its direction. Strikes beyond 140 logical pixels miss; arena boundaries and separation remain enforced.
+
+F3 shows current beat/phrase, timing errors, selections, queued movement and each player's last movement grid time/actual processing time (seconds on the shared clock). Render catch-up may process a scheduled boundary late; no input is applied retroactively to a past boundary. Losing application focus clears held keys and queued movement.
 
 Three consecutive defended exchanges schedule the next tempo: 120 → 140 → 160 BPM. Hits reset that streak rather than accelerating the music. Values and latency are configurable in `data/combat/settings.json`. Bindings are editable in Project Settings → Input Map.
 

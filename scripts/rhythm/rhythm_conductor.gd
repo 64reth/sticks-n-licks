@@ -6,11 +6,12 @@ var bpm: int = 120
 var pending_bpm: int = 120
 var phrase: int = 0
 var beat: int = 0
+var beat_time: float = 0.0
 var epoch: float = 0.0
 var phrase_start: float = 0.0
 var latency_ms: float = 0.0
-var perfect_ms: float = 60.0
-var good_ms: float = 130.0
+var perfect_ms: float = 70.0
+var good_ms: float = 140.0
 var started: bool = false
 var clock_override: Callable
 
@@ -26,6 +27,7 @@ func start(at: float = -1.0) -> void:
  beat = 0
  epoch = now() if at < 0 else at
  phrase_start = epoch
+ beat_time = epoch
  started = true
 
 func duration() -> float:
@@ -41,6 +43,7 @@ func update(at: float) -> void:
  # Emit every crossed boundary in order, even after a slow render frame.
  if beat == 0:
   beat = 1
+  beat_time = phrase_start
   beat_changed.emit(beat, phrase)
  while true:
   var boundary := phrase_start + duration() * beat
@@ -54,6 +57,7 @@ func update(at: float) -> void:
    phrase_changed.emit(phrase)
   else:
    beat += 1
+  beat_time = boundary
   beat_changed.emit(beat, phrase)
 
 func action_time() -> float:
@@ -63,8 +67,8 @@ func timestamp(at: float) -> float:
  return at - latency_ms / 1000.0
 
 func grade(error_ms: float) -> String:
- if abs(error_ms) <= perfect_ms:
+ if abs(error_ms) <= perfect_ms + 0.000001:
   return "perfect"
- if abs(error_ms) <= good_ms:
+ if abs(error_ms) <= good_ms + 0.000001:
   return "good"
  return "miss"

@@ -13,10 +13,10 @@ func _ready() -> void:
  debug_visible = true
  begin()
 
-func press(action: String) -> void:
+func press(action: String, down: bool = true) -> void:
  var event := InputEventAction.new()
  event.action = action
- event.pressed = true
+ event.pressed = down
  _unhandled_input(event)
 
 func _process(delta: float) -> void:
@@ -25,8 +25,10 @@ func _process(delta: float) -> void:
  if mode == "race":
   if demo_time >= cue + 0.08:
    press("p1_execute")
+   press("p1_execute", false)
   if demo_time >= cue + 0.12:
    press("p2_execute")
+   press("p2_execute", false)
  if mode == "combat":
   if moving_phrase != conductor.phrase and conductor.beat == 1:
    press("p1_right")
@@ -34,10 +36,13 @@ func _process(delta: float) -> void:
    moving_phrase = conductor.phrase
   if conductor.beat <= 3:
    press("p1_high")
-   press("p2_high" if exchanges < 3 else "p2_low")
+   press("p2_high", exchanges < 3)
+   press("p2_low", exchanges >= 3)
   if conductor.beat == 4 and acted_phrase != conductor.phrase:
    press("p1_execute")
    press("p2_execute")
+   press("p1_execute", false)
+   press("p2_execute", false)
    acted_phrase = conductor.phrase
    exchanges += 1
  if mode == "victory" and not victory_seen:

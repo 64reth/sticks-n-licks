@@ -17,7 +17,9 @@ The kit is a TypeScript toolkit. It contains no Godot support, image API integra
 
 ## Project conventions
 
-Godot 4.6+, GDScript, 320×180 viewport, nearest-neighbour textures, 96×96 transparent RGBA sprite cells. Use Godot InputMap; preserve the right-Shift-only binding. Combat rules are in `scripts/combat/bout.gd`, the clock in `scripts/rhythm/rhythm_conductor.gd`, orchestration in `scripts/main.gd`. Production musical time is monotonic microseconds or the audio playback clock, never accumulated frame delta. The injected clock in the scripted demo is test-only.
+Develop directly in `/Users/garethwallen/Projects/sticks-n-licks`. Keep `project.godot` at the repository root and `run/main_scene` pointing to the playable `res://scenes/main/main.tscn`. Do not create a nested Godot project or a separate working copy. Preserve a working F5 launch throughout development.
+
+Godot 4.6+, GDScript, 320×180 viewport, nearest-neighbour textures, 96×96 transparent RGBA sprite cells. Use Godot InputMap; Right Shift is P2 execute/race, Down is P2 low, S is P1 low. Forward (derived from current facing) + execute is MID. Keep 100 ms bidirectional combination buffering, held-direction support, and inclusive ±70/±140 ms timing. Movement state lives in `CombatInput`: only conductor beats 1–3 may step; require the direction to remain held, cancel on release, and suppress horizontal movement after valid combat until release/repress. Combat rules are in `scripts/combat/bout.gd`, the clock in `scripts/rhythm/rhythm_conductor.gd`, orchestration in `scripts/main.gd`. Production musical time is monotonic microseconds or the audio playback clock, never accumulated frame delta. The injected clock in the scripted demo is test-only.
 
 Keep timing windows, input latency, race configuration and escalation thresholds in `data/combat/settings.json`; resource paths and beat-zero offsets in `data/audio.json`. Tempo transitions happen only at phrase boundaries. A race win or parry never awards a hit. Missing production assets must not block launching.
 
