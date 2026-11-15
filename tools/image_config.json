@@ -1,0 +1,11 @@
+{
+ "model": "gpt-image-1.5",
+ "size": "1024x1024",
+ "quality": "medium",
+ "max_requests": 1,
+ "budget_usd": 0.10,
+ "reserve_per_request_usd": 0.10,
+ "max_prompt_chars": 2000,
+ "max_reference_bytes": 4194304,
+ "approved_references": {}
+}

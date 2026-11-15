@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+if [[ -z "${GODOT:-}" ]]; then
+  if command -v godot >/dev/null; then GODOT=godot
+  else GODOT=/Applications/Godot.app/Contents/MacOS/Godot; fi
+fi
+mkdir -p output
+# Prevent generated captures and dependency trees from entering Godot's asset scan.
+touch output/.gdignore .venv/.gdignore 2>/dev/null || true
+"$GODOT" --headless --path . --log-file output/import.log --editor --import --quit >output/import.stdout 2>&1
+"$GODOT" --headless --path . --log-file output/rules.log --script tests/test_rules.gd >output/rules.stdout 2>&1
+cat output/rules.stdout
+"$GODOT" --headless --path . --log-file output/smoke.log --quit-after 10 >output/smoke.stdout 2>&1
+"$GODOT" --headless --path . --log-file output/demo.log --fixed-fps 60 --scene scenes/tests/demo.tscn --quit-after 2400 -- --verify-demo >output/demo.stdout 2>&1
+cat output/demo.stdout
+# Godot can return zero on script parse failures; scan the output as well.
+if rg -n 'SCRIPT ERROR|Parse Error|Failed to load|Assertion failed' output/{import,rules,smoke,demo}.stdout; then exit 1; fi
+if ! rg -q '51 checks, 0 failures' output/rules.stdout; then exit 1; fi
+if ! rg -q 'DEMO: rematch reset' output/demo.stdout; then exit 1; fi
+if [[ -x .venv/bin/python ]]; then
+  .venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v
+else
+  echo 'Optional Python asset checks skipped: install tools/requirements.txt in .venv.'
+fi

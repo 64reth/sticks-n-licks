@@ -1,0 +1,9 @@
+{
+ "perfect_ms":60.0,
+ "good_ms":130.0,
+ "latency_ms":0.0,
+ "escalation_threshold":3,
+ "max_anticipation_phrases":3,
+ "cue_style":"snare",
+ "race_timeout_seconds":2.0
+}

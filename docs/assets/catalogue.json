@@ -1,0 +1,592 @@
+{
+  "originals_policy": "Never overwrite sources or supplied references",
+  "assets": [
+    {
+      "path": "assets/characters/fighter_01/frames/placeholder_idle/idle_000.png",
+      "sha256": "8ab591b34757004e737960399edd80e005179bc7717aa1c9d52bbf5fb36df0ef",
+      "bytes": 318,
+      "dimensions": [
+        96,
+        96
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "approval": "placeholder",
+      "validation": {
+        "status": "passed",
+        "errors": [],
+        "dimensions": [
+          96,
+          96
+        ],
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 1,
+        "palette_colors": 2,
+        "frame_bounds": [
+          [
+            37,
+            18,
+            85,
+            78
+          ]
+        ],
+        "identity_review": "required",
+        "sha256": "8ab591b34757004e737960399edd80e005179bc7717aa1c9d52bbf5fb36df0ef"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/placeholder_idle/idle_001.png",
+      "sha256": "0207370380342cdc632b8d2bb0d7fc6a8d8692d5d79f75de7758b3c4e4ad56bb",
+      "bytes": 316,
+      "dimensions": [
+        96,
+        96
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "approval": "placeholder",
+      "validation": {
+        "status": "passed",
+        "errors": [],
+        "dimensions": [
+          96,
+          96
+        ],
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 1,
+        "palette_colors": 2,
+        "frame_bounds": [
+          [
+            37,
+            19,
+            85,
+            78
+          ]
+        ],
+        "identity_review": "required",
+        "sha256": "0207370380342cdc632b8d2bb0d7fc6a8d8692d5d79f75de7758b3c4e4ad56bb"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/source/placeholder_idle.png",
+      "sha256": "bfd5da7b3f9b1d0297eb0d6f86ffadaa57d897ce17496e2790504b2e19eabb5d",
+      "bytes": 399,
+      "dimensions": [
+        192,
+        96
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "approval": "placeholder",
+      "validation": {
+        "status": "passed",
+        "errors": [],
+        "dimensions": [
+          192,
+          96
+        ],
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 2,
+        "palette_colors": 2,
+        "frame_bounds": [
+          [
+            37,
+            18,
+            85,
+            78
+          ],
+          [
+            37,
+            19,
+            85,
+            78
+          ]
+        ],
+        "identity_review": "required",
+        "sha256": "bfd5da7b3f9b1d0297eb0d6f86ffadaa57d897ce17496e2790504b2e19eabb5d"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/placeholder_idle/idle_000.png",
+      "sha256": "65a4641c807e3c83d6d7cfd93c82b130370492bcbd71904edac16880e448362f",
+      "bytes": 307,
+      "dimensions": [
+        96,
+        96
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "approval": "placeholder",
+      "validation": {
+        "status": "passed",
+        "errors": [],
+        "dimensions": [
+          96,
+          96
+        ],
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 1,
+        "palette_colors": 2,
+        "frame_bounds": [
+          [
+            37,
+            18,
+            85,
+            78
+          ]
+        ],
+        "identity_review": "required",
+        "sha256": "65a4641c807e3c83d6d7cfd93c82b130370492bcbd71904edac16880e448362f"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/placeholder_idle/idle_001.png",
+      "sha256": "f80a184d2d0dcfc62753b1b64c64d5b01a3ecf2850281228d4827024550cb224",
+      "bytes": 304,
+      "dimensions": [
+        96,
+        96
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "approval": "placeholder",
+      "validation": {
+        "status": "passed",
+        "errors": [],
+        "dimensions": [
+          96,
+          96
+        ],
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 1,
+        "palette_colors": 2,
+        "frame_bounds": [
+          [
+            37,
+            19,
+            85,
+            78
+          ]
+        ],
+        "identity_review": "required",
+        "sha256": "f80a184d2d0dcfc62753b1b64c64d5b01a3ecf2850281228d4827024550cb224"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/source/placeholder_idle.png",
+      "sha256": "52892886355e67b2deb0b1aba066eaed5d5fedc5923be14d6586aec9c9426d00",
+      "bytes": 385,
+      "dimensions": [
+        192,
+        96
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "approval": "placeholder",
+      "validation": {
+        "status": "passed",
+        "errors": [],
+        "dimensions": [
+          192,
+          96
+        ],
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 2,
+        "palette_colors": 2,
+        "frame_bounds": [
+          [
+            37,
+            18,
+            85,
+            78
+          ],
+          [
+            37,
+            19,
+            85,
+            78
+          ]
+        ],
+        "identity_review": "required",
+        "sha256": "52892886355e67b2deb0b1aba066eaed5d5fedc5923be14d6586aec9c9426d00"
+      }
+    },
+    {
+      "path": "references/OpenAI Playground 2026-11-15 at 13.48.11.png",
+      "sha256": "34bc0d686725a6ff4cfe5f2caece324173a23c09f218421c06bfa3f296e7746e",
+      "bytes": 742665,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "approval": "unapproved_reference",
+      "validation": {
+        "status": "failed",
+        "errors": [
+          "Sheet dimensions are not exact multiples of frame cells",
+          "Expected 13 frames, found 154",
+          "Frame 0 has non-pixel-art partial alpha",
+          "Frame 1 touches a cell boundary",
+          "Frame 1 has non-pixel-art partial alpha",
+          "Frame 2 touches a cell boundary",
+          "Frame 2 has non-pixel-art partial alpha",
+          "Frame 3 touches a cell boundary",
+          "Frame 3 has non-pixel-art partial alpha",
+          "Frame 4 touches a cell boundary",
+          "Frame 4 has non-pixel-art partial alpha",
+          "Frame 5 touches a cell boundary",
+          "Frame 5 has non-pixel-art partial alpha",
+          "Frame 6 touches a cell boundary",
+          "Frame 6 has non-pixel-art partial alpha",
+          "Frame 7 touches a cell boundary",
+          "Frame 7 has non-pixel-art partial alpha",
+          "Frame 8 touches a cell boundary",
+          "Frame 8 has non-pixel-art partial alpha",
+          "Frame 9 touches a cell boundary",
+          "Frame 9 has non-pixel-art partial alpha",
+          "Frame 10 touches a cell boundary",
+          "Frame 10 has non-pixel-art partial alpha",
+          "Frame 11 touches a cell boundary",
+          "Frame 11 has non-pixel-art partial alpha",
+          "Frame 12 touches a cell boundary",
+          "Frame 12 has non-pixel-art partial alpha",
+          "Frame 13 touches a cell boundary",
+          "Frame 13 has non-pixel-art partial alpha",
+          "Frame 14 touches a cell boundary",
+          "Frame 14 has non-pixel-art partial alpha",
+          "Frame 15 touches a cell boundary",
+          "Frame 15 has non-pixel-art partial alpha",
+          "Frame 16 touches a cell boundary",
+          "Frame 16 has non-pixel-art partial alpha",
+          "Frame 17 touches a cell boundary",
+          "Frame 17 has non-pixel-art partial alpha",
+          "Frame 18 touches a cell boundary",
+          "Frame 18 has non-pixel-art partial alpha",
+          "Frame 19 touches a cell boundary",
+          "Frame 19 has non-pixel-art partial alpha",
+          "Frame 20 touches a cell boundary",
+          "Frame 20 has non-pixel-art partial alpha",
+          "Frame 21 touches a cell boundary",
+          "Frame 21 has non-pixel-art partial alpha",
+          "Frame 22 touches a cell boundary",
+          "Frame 22 has non-pixel-art partial alpha",
+          "Frame 23 touches a cell boundary",
+          "Frame 23 has non-pixel-art partial alpha",
+          "Frame 24 touches a cell boundary",
+          "Frame 24 has non-pixel-art partial alpha",
+          "Frame 25 touches a cell boundary",
+          "Frame 25 has non-pixel-art partial alpha",
+          "Frame 26 touches a cell boundary",
+          "Frame 26 has non-pixel-art partial alpha",
+          "Frame 27 touches a cell boundary",
+          "Frame 27 has non-pixel-art partial alpha",
+          "Frame 28 touches a cell boundary",
+          "Frame 28 has non-pixel-art partial alpha",
+          "Frame 29 touches a cell boundary",
+          "Frame 29 has non-pixel-art partial alpha",
+          "Frame 30 touches a cell boundary",
+          "Frame 30 has non-pixel-art partial alpha",
+          "Frame 31 touches a cell boundary",
+          "Frame 31 has non-pixel-art partial alpha",
+          "Frame 32 touches a cell boundary",
+          "Frame 32 has non-pixel-art partial alpha",
+          "Frame 33 touches a cell boundary",
+          "Frame 33 has non-pixel-art partial alpha",
+          "Frame 34 touches a cell boundary",
+          "Frame 34 has non-pixel-art partial alpha",
+          "Frame 35 touches a cell boundary",
+          "Frame 35 has non-pixel-art partial alpha",
+          "Frame 36 touches a cell boundary",
+          "Frame 36 has non-pixel-art partial alpha",
+          "Frame 37 touches a cell boundary",
+          "Frame 37 has non-pixel-art partial alpha",
+          "Frame 38 touches a cell boundary",
+          "Frame 38 has non-pixel-art partial alpha",
+          "Frame 39 touches a cell boundary",
+          "Frame 39 has non-pixel-art partial alpha",
+          "Frame 40 touches a cell boundary",
+          "Frame 40 has non-pixel-art partial alpha",
+          "Frame 41 touches a cell boundary",
+          "Frame 41 has non-pixel-art partial alpha",
+          "Frame 42 touches a cell boundary",
+          "Frame 42 has non-pixel-art partial alpha",
+          "Frame 43 touches a cell boundary",
+          "Frame 43 has non-pixel-art partial alpha",
+          "Frame 44 touches a cell boundary",
+          "Frame 44 has non-pixel-art partial alpha",
+          "Frame 45 touches a cell boundary",
+          "Frame 45 has non-pixel-art partial alpha",
+          "Frame 46 touches a cell boundary",
+          "Frame 46 has non-pixel-art partial alpha",
+          "Frame 47 touches a cell boundary",
+          "Frame 47 has non-pixel-art partial alpha",
+          "Frame 48 touches a cell boundary",
+          "Frame 48 has non-pixel-art partial alpha",
+          "Frame 49 touches a cell boundary",
+          "Frame 49 has non-pixel-art partial alpha",
+          "Frame 50 touches a cell boundary",
+          "Frame 50 has non-pixel-art partial alpha",
+          "Frame 51 touches a cell boundary",
+          "Frame 51 has non-pixel-art partial alpha",
+          "Frame 52 touches a cell boundary",
+          "Frame 52 has non-pixel-art partial alpha",
+          "Frame 53 touches a cell boundary",
+          "Frame 53 has non-pixel-art partial alpha",
+          "Frame 54 touches a cell boundary",
+          "Frame 54 has non-pixel-art partial alpha",
+          "Frame 55 touches a cell boundary",
+          "Frame 55 has non-pixel-art partial alpha",
+          "Frame 56 touches a cell boundary",
+          "Frame 56 has non-pixel-art partial alpha",
+          "Frame 57 touches a cell boundary",
+          "Frame 57 has non-pixel-art partial alpha",
+          "Frame 58 touches a cell boundary",
+          "Frame 58 has non-pixel-art partial alpha",
+          "Frame 59 touches a cell boundary",
+          "Frame 59 has non-pixel-art partial alpha",
+          "Frame 60 touches a cell boundary",
+          "Frame 60 has non-pixel-art partial alpha",
+          "Frame 61 touches a cell boundary",
+          "Frame 61 has non-pixel-art partial alpha",
+          "Frame 62 touches a cell boundary",
+          "Frame 62 has non-pixel-art partial alpha",
+          "Frame 63 touches a cell boundary",
+          "Frame 63 has non-pixel-art partial alpha",
+          "Frame 64 touches a cell boundary",
+          "Frame 64 has non-pixel-art partial alpha",
+          "Frame 65 touches a cell boundary",
+          "Frame 65 has non-pixel-art partial alpha",
+          "Frame 66 touches a cell boundary",
+          "Frame 66 has non-pixel-art partial alpha",
+          "Frame 67 touches a cell boundary",
+          "Frame 67 has non-pixel-art partial alpha",
+          "Frame 68 touches a cell boundary",
+          "Frame 68 has non-pixel-art partial alpha",
+          "Frame 69 touches a cell boundary",
+          "Frame 69 has non-pixel-art partial alpha",
+          "Frame 70 touches a cell boundary",
+          "Frame 70 has non-pixel-art partial alpha",
+          "Frame 71 touches a cell boundary",
+          "Frame 71 has non-pixel-art partial alpha",
+          "Frame 72 touches a cell boundary",
+          "Frame 72 has non-pixel-art partial alpha",
+          "Frame 73 touches a cell boundary",
+          "Frame 73 has non-pixel-art partial alpha",
+          "Frame 74 touches a cell boundary",
+          "Frame 74 has non-pixel-art partial alpha",
+          "Frame 75 touches a cell boundary",
+          "Frame 75 has non-pixel-art partial alpha",
+          "Frame 76 touches a cell boundary",
+          "Frame 76 has non-pixel-art partial alpha",
+          "Frame 77 touches a cell boundary",
+          "Frame 77 has non-pixel-art partial alpha",
+          "Frame 78 touches a cell boundary",
+          "Frame 78 has non-pixel-art partial alpha",
+          "Frame 79 touches a cell boundary",
+          "Frame 79 has non-pixel-art partial alpha",
+          "Frame 80 touches a cell boundary",
+          "Frame 80 has non-pixel-art partial alpha",
+          "Frame 81 touches a cell boundary",
+          "Frame 81 has non-pixel-art partial alpha",
+          "Frame 82 touches a cell boundary",
+          "Frame 82 has non-pixel-art partial alpha",
+          "Frame 83 touches a cell boundary",
+          "Frame 83 has non-pixel-art partial alpha",
+          "Frame 84 touches a cell boundary",
+          "Frame 84 has non-pixel-art partial alpha",
+          "Frame 85 touches a cell boundary",
+          "Frame 85 has non-pixel-art partial alpha",
+          "Frame 86 touches a cell boundary",
+          "Frame 86 has non-pixel-art partial alpha",
+          "Frame 87 touches a cell boundary",
+          "Frame 87 has non-pixel-art partial alpha",
+          "Frame 88 touches a cell boundary",
+          "Frame 88 has non-pixel-art partial alpha",
+          "Frame 89 touches a cell boundary",
+          "Frame 89 has non-pixel-art partial alpha",
+          "Frame 90 touches a cell boundary",
+          "Frame 90 has non-pixel-art partial alpha",
+          "Frame 91 touches a cell boundary",
+          "Frame 91 has non-pixel-art partial alpha",
+          "Frame 92 touches a cell boundary",
+          "Frame 92 has non-pixel-art partial alpha",
+          "Frame 93 touches a cell boundary",
+          "Frame 93 has non-pixel-art partial alpha",
+          "Frame 94 touches a cell boundary",
+          "Frame 94 has non-pixel-art partial alpha",
+          "Frame 95 touches a cell boundary",
+          "Frame 95 has non-pixel-art partial alpha",
+          "Frame 96 touches a cell boundary",
+          "Frame 96 has non-pixel-art partial alpha",
+          "Frame 97 touches a cell boundary",
+          "Frame 97 has non-pixel-art partial alpha",
+          "Frame 98 touches a cell boundary",
+          "Frame 98 has non-pixel-art partial alpha",
+          "Frame 99 touches a cell boundary",
+          "Frame 99 has non-pixel-art partial alpha",
+          "Frame 100 touches a cell boundary",
+          "Frame 100 has non-pixel-art partial alpha",
+          "Frame 101 touches a cell boundary",
+          "Frame 101 has non-pixel-art partial alpha",
+          "Frame 102 touches a cell boundary",
+          "Frame 102 has non-pixel-art partial alpha",
+          "Frame 103 touches a cell boundary",
+          "Frame 103 has non-pixel-art partial alpha",
+          "Frame 104 touches a cell boundary",
+          "Frame 104 has non-pixel-art partial alpha",
+          "Frame 105 touches a cell boundary",
+          "Frame 105 has non-pixel-art partial alpha",
+          "Frame 106 touches a cell boundary",
+          "Frame 106 has non-pixel-art partial alpha",
+          "Frame 107 touches a cell boundary",
+          "Frame 107 has non-pixel-art partial alpha",
+          "Frame 108 touches a cell boundary",
+          "Frame 108 has non-pixel-art partial alpha",
+          "Frame 109 touches a cell boundary",
+          "Frame 109 has non-pixel-art partial alpha",
+          "Frame 110 touches a cell boundary",
+          "Frame 110 has non-pixel-art partial alpha",
+          "Frame 111 touches a cell boundary",
+          "Frame 111 has non-pixel-art partial alpha",
+          "Frame 112 touches a cell boundary",
+          "Frame 112 has non-pixel-art partial alpha",
+          "Frame 113 touches a cell boundary",
+          "Frame 113 has non-pixel-art partial alpha",
+          "Frame 114 touches a cell boundary",
+          "Frame 114 has non-pixel-art partial alpha",
+          "Frame 115 touches a cell boundary",
+          "Frame 115 has non-pixel-art partial alpha",
+          "Frame 116 touches a cell boundary",
+          "Frame 116 has non-pixel-art partial alpha",
+          "Frame 117 touches a cell boundary",
+          "Frame 117 has non-pixel-art partial alpha",
+          "Frame 118 touches a cell boundary",
+          "Frame 118 has non-pixel-art partial alpha",
+          "Frame 119 touches a cell boundary",
+          "Frame 119 has non-pixel-art partial alpha",
+          "Frame 120 touches a cell boundary",
+          "Frame 120 has non-pixel-art partial alpha",
+          "Frame 121 touches a cell boundary",
+          "Frame 121 has non-pixel-art partial alpha",
+          "Frame 122 touches a cell boundary",
+          "Frame 122 has non-pixel-art partial alpha",
+          "Frame 123 touches a cell boundary",
+          "Frame 123 has non-pixel-art partial alpha",
+          "Frame 124 touches a cell boundary",
+          "Frame 124 has non-pixel-art partial alpha",
+          "Frame 125 touches a cell boundary",
+          "Frame 125 has non-pixel-art partial alpha",
+          "Frame 126 touches a cell boundary",
+          "Frame 126 has non-pixel-art partial alpha",
+          "Frame 127 touches a cell boundary",
+          "Frame 127 has non-pixel-art partial alpha",
+          "Frame 128 touches a cell boundary",
+          "Frame 128 has non-pixel-art partial alpha",
+          "Frame 129 touches a cell boundary",
+          "Frame 129 has non-pixel-art partial alpha",
+          "Frame 130 touches a cell boundary",
+          "Frame 130 has non-pixel-art partial alpha",
+          "Frame 131 touches a cell boundary",
+          "Frame 131 has non-pixel-art partial alpha",
+          "Frame 132 touches a cell boundary",
+          "Frame 132 has non-pixel-art partial alpha",
+          "Frame 133 touches a cell boundary",
+          "Frame 133 has non-pixel-art partial alpha",
+          "Frame 134 touches a cell boundary",
+          "Frame 134 has non-pixel-art partial alpha",
+          "Frame 135 touches a cell boundary",
+          "Frame 135 has non-pixel-art partial alpha",
+          "Frame 136 touches a cell boundary",
+          "Frame 136 has non-pixel-art partial alpha",
+          "Frame 137 touches a cell boundary",
+          "Frame 137 has non-pixel-art partial alpha",
+          "Frame 138 touches a cell boundary",
+          "Frame 138 has non-pixel-art partial alpha",
+          "Frame 139 touches a cell boundary",
+          "Frame 139 has non-pixel-art partial alpha",
+          "Frame 140 touches a cell boundary",
+          "Frame 140 has non-pixel-art partial alpha",
+          "Frame 141 touches a cell boundary",
+          "Frame 141 has non-pixel-art partial alpha",
+          "Frame 142 touches a cell boundary",
+          "Frame 142 has non-pixel-art partial alpha",
+          "Frame 143 touches a cell boundary",
+          "Frame 143 has non-pixel-art partial alpha",
+          "Frame 144 touches a cell boundary",
+          "Frame 144 has non-pixel-art partial alpha",
+          "Frame 145 touches a cell boundary",
+          "Frame 145 has non-pixel-art partial alpha",
+          "Frame 146 touches a cell boundary",
+          "Frame 146 has non-pixel-art partial alpha",
+          "Frame 147 touches a cell boundary",
+          "Frame 147 has non-pixel-art partial alpha",
+          "Frame 148 touches a cell boundary",
+          "Frame 148 has non-pixel-art partial alpha",
+          "Frame 149 touches a cell boundary",
+          "Frame 149 has non-pixel-art partial alpha",
+          "Frame 150 touches a cell boundary",
+          "Frame 150 has non-pixel-art partial alpha",
+          "Frame 151 has non-pixel-art partial alpha",
+          "Frame 152 has non-pixel-art partial alpha",
+          "Frame 153 touches a cell boundary",
+          "Frame 153 has non-pixel-art partial alpha",
+          "Frame silhouette size drift exceeds limit; review consistency"
+        ],
+        "dimensions": [
+          2172,
+          724
+        ],
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 154,
+        "palette_colors": 0,
+        "identity_review": "required",
+        "sha256": "34bc0d686725a6ff4cfe5f2caece324173a23c09f218421c06bfa3f296e7746e"
+      },
+      "notes": "Visually 13 poses, not an exact 96px cell grid. Original unchanged; no animation mapping inferred."
+    }
+  ]
+}

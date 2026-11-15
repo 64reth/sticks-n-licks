@@ -1,0 +1,8 @@
+.godot/
+.venv/
+__pycache__/
+.env
+.env.*
+!.env.example
+.DS_Store
+output/

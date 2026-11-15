@@ -1,0 +1,43 @@
+{
+  "animation": "idle",
+  "expected_frames": 2,
+  "source": "assets/characters/fighter_02/source/placeholder_idle.png",
+  "source_sha256": "52892886355e67b2deb0b1aba066eaed5d5fedc5923be14d6586aec9c9426d00",
+  "source_reference": "original procedural prototype placeholder",
+  "generated_files": [
+    "assets/characters/fighter_02/frames/placeholder_idle/idle_000.png",
+    "assets/characters/fighter_02/frames/placeholder_idle/idle_001.png"
+  ],
+  "validation": {
+    "status": "passed",
+    "errors": [],
+    "dimensions": [
+      192,
+      96
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "frames": 2,
+    "palette_colors": 2,
+    "frame_bounds": [
+      [
+        37,
+        18,
+        85,
+        78
+      ],
+      [
+        37,
+        19,
+        85,
+        78
+      ]
+    ],
+    "identity_review": "required",
+    "sha256": "52892886355e67b2deb0b1aba066eaed5d5fedc5923be14d6586aec9c9426d00"
+  },
+  "visual_approved": false,
+  "godot_resource": "assets/characters/fighter_02/frames/placeholder_idle/idle.tres"
+}
