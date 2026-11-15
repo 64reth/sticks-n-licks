@@ -255,13 +255,13 @@ func run() -> void:
     advance(game.conductor.phrase_start+game.conductor.duration()*4)
   check(game.mode == "finishing" and game.bout.winner == winner, "Either player reaches three-hit victory")
   await create_timer(0.95).timeout
-  check(game.mode == "victory", "Victory animation sequence completes independently of scoring")
+  check(game.mode == "round_win", "Round victory sequence completes independently of scoring")
   await capture("winner_p%d" % (winner+1))
   var enter := InputEventKey.new()
   enter.keycode = KEY_ENTER
   enter.pressed = true
   game._unhandled_input(enter)
-  check(game.mode == "standoff" and game.bout.hits == [0,0] and game.bout.winner == -1 and game.conductor.bpm == 120, "Enter rematch resets complete bout")
+  check(game.mode == "standoff" and game.bout.hits == [0,0] and game.bout.winner == -1 and game.conductor.bpm == 120, "Enter next round resets bout energy")
  print("LAUNCH/RANGE TESTS: %d checks, %d failures" % [checks,failures])
  game.conductor.clock_override = Callable()
  game.queue_free()

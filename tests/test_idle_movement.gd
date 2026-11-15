@@ -90,23 +90,23 @@ func run() -> void:
   check(abs(ground)<0.001,"Every idle pose retains the ground anchor")
   await capture("blue_frame_%d" % index)
  blue.sprite.play()
- # Movement presses at many points throughout beats 1-3, not near attack timing.
+ # Movement presses at many points throughout beats 1-4, not near attack timing.
  for bpm in [120,140,160]:
   var d := 60.0/float(bpm)
   for player in range(2):
    for direction in ["left","right"]:
     var sign_value := -1.0 if direction=="left" else 1.0
     var action := "p%d_%s" % [player+1,direction]
-    for beat in range(1,4):
+    for beat in range(1,5):
      for fraction in [0.05,0.4,0.8]:
       await reset_game(bpm)
       var x: float = game.bout.positions[player]
       time = (beat-1+float(fraction))*d
       await key(action)
       check(game.controls[player].held.get(direction,false),"Real engine event reaches held-direction state")
-      check(game.controls[player].input_feedback.begins_with("ACCEPT"),"Movement accepted throughout beats 1-3")
+      check(game.controls[player].input_feedback.begins_with("ACCEPT"),"Movement accepted throughout beats 1-4")
       check(game.bout.positions[player] == x,"No displacement from a key event")
-      var next: float = d*beat if beat<3 else d*4
+      var next: float = d*beat
       advance(next-0.001)
       check(game.bout.positions[player] == x,"Movement remains queued until eligible boundary")
       advance(next)
@@ -138,9 +138,9 @@ func run() -> void:
     advance(d)
     advance(d*2)
     advance(d*3)
-    check(game.bout.positions[player] == x+sign_value*Bout.STEP*2,"Held key steps at beats 2/3 and never beat 4")
+    check(game.bout.positions[player] == x+sign_value*Bout.STEP*3,"Held key steps on beats 2/3/4")
     advance(d*4)
-    check(game.bout.positions[player] == x+sign_value*Bout.STEP*3,"Held key resumes once on next beat 1")
+    check(game.bout.positions[player] == x+sign_value*Bout.STEP*4,"Held key resumes once on next beat 1")
  # Holds survive standoff/pickup and OS-repeat events; execute does not auto-fire.
  for phase in ["menu","standoff","pickup"]:
   await reset_game()

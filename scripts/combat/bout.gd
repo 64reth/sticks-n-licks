@@ -20,6 +20,7 @@ var impact_positions: Array[float] = []
 var impact_time: float = 0.0
 var resolved_phrase: int = -1
 var last_event: Dictionary = {}
+const ENERGY_SEGMENTS := 3
 const GROUND_Y := 150.0
 const HURTBOX := Rect2(-9, -64, 18, 64)
 const ATTACK_BAND := 12.0
@@ -27,6 +28,10 @@ const MIN_X := 30.0
 const MAX_X := 290.0
 const GAP := 40.0
 const STEP := 16.0
+
+func energy_remaining(player: int) -> int:
+ # Hits belong to the scoring attacker; the opposite player's energy is reduced.
+ return clampi(ENERGY_SEGMENTS - hits[1-player], 0, ENERGY_SEGMENTS)
 
 func race_press(player: int, at: float, cue: float) -> void:
  if reactions[player] >= 0 or false_starts[player]:
@@ -136,7 +141,7 @@ func resolve(conductor: RhythmConductor, phrase_id: int = -1) -> String:
   defensive_streak = 0
   outcome = "Clean hit for P%d" % (attacker + 1)
   last_event["kind"] = "HIT"
-  if hits[attacker] >= 3:
+  if hits[attacker] >= ENERGY_SEGMENTS:
    winner = attacker
    outcome = "P%d WINS" % (attacker + 1)
  if defensive_streak >= escalation_threshold:

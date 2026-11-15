@@ -11,7 +11,7 @@ func _ready() -> void:
  conductor.clock_override = func(): return demo_time
  super._ready()
  max_anticipation_phrases = 1
- debug_visible = not OS.get_cmdline_user_args().has("--capture-combat")
+ debug_visible = OS.get_cmdline_user_args().has("--debug-demo")
  begin()
 
 func press(action: String, down: bool = true) -> void:
@@ -56,9 +56,18 @@ func _process(delta: float) -> void:
    if not captured_combat and OS.get_cmdline_user_args().has("--capture-combat"):
     captured_combat = true
     capture_combat.call_deferred()
- if mode == "victory" and not victory_seen:
+ if mode == "round_win" and not victory_seen:
   victory_seen = true
-  print("DEMO: reached three-hit victory; exchanges=", exchanges, "; BPM=", conductor.bpm)
+  print("DEMO: round won; score=",match_progress.round_wins)
+  await get_tree().create_timer(0.25).timeout
+  next_round()
+  exchanges = 0
+  acted_phrase = -1
+  moving_phrase = -1
+  victory_seen = false
+ if mode == "match_win" and not victory_seen:
+  victory_seen = true
+  print("DEMO: match champion; rounds=",match_progress.round_wins,"; BPM=",conductor.bpm)
   refresh()
   if DisplayServer.get_name() != "headless":
    get_viewport().get_texture().get_image().save_png("res://output/victory.png")

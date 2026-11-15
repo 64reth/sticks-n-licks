@@ -1,5 +1,8 @@
 # Playable-scene launch rendering and stick-range correction
 
+Historical implementation record. [Milestone 003](milestone-003.md) supersedes earlier movement restrictions: beats 1–4 permit movement; beat-four movement/collision resolution precedes the combat position snapshot. Combat chords do not suppress movement. Match scoring is now best-of-three.
+
+
 ## Root causes, reproduced in the actual main scene
 
 The configured entry remains the repository-root `project.godot` → `scenes/main/main.tscn`. No nested project, working copy or camera changes were needed. The viewport remains 320×180 with nearest-neighbour sprite filtering, and both fighter Node2D roots have unit scale.

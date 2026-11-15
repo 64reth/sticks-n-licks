@@ -2,6 +2,10 @@ extends Node2D
 var conductor := RhythmConductor.new()
 var bout := Bout.new()
 var audio := AudioDirector.new()
+var match_progress := MatchProgress.new()
+var hud_layer := CanvasLayer.new()
+var hud := ArcadeHUD.new()
+var outcome_until: float = -INF
 var fighters: Array[Fighter] = []
 var combat_debug := CombatDebugOverlay.new()
 var mode: String = "menu"
@@ -36,6 +40,7 @@ func _ready() -> void:
  var config := FileAccess.open("res://data/combat/settings.json", FileAccess.READ)
  if config:
   settings = JSON.parse_string(config.get_as_text())
+ match_progress.reset(int(settings.get("match_best_of",3)))
  bout.stick_reach = float(settings.get("stick_reach", 44.0))
  conductor.perfect_ms = float(settings.get("perfect_ms", 70.0))
  conductor.good_ms = float(settings.get("good_ms", 140.0))
@@ -84,6 +89,9 @@ func _ready() -> void:
  combat_debug.z_index = 100
  combat_debug.visible = debug_visible
  add_child(combat_debug)
+ hud_layer.layer = 10
+ add_child(hud_layer)
+ hud_layer.add_child(hud)
  conductor.beat_changed.connect(on_beat)
  conductor.phrase_changed.connect(on_phrase)
  audio.play_track("menu", conductor.now())
@@ -94,6 +102,17 @@ func play_click(force: bool = false) -> void:
   click_player.play()
 
 func begin() -> void:
+ match_progress.reset(int(settings.get("match_best_of",3)))
+ _begin_round()
+
+func next_round() -> void:
+ if match_progress.next_round():
+  _begin_round()
+
+func _begin_round() -> void:
+ phrase_resolved = false
+ exchange_phrase = 0
+ outcome_until = -INF
  bout = Bout.new()
  bout.stick_reach = float(settings.get("stick_reach", 44.0))
  exchange_phrase = 0
@@ -120,6 +139,7 @@ func begin() -> void:
  audio.play_track("standoff", conductor.epoch, true)
  for fighter in fighters:
   fighter.set_pose("standoff_anticipation")
+ refresh()
 
 func _process(delta: float) -> void:
  var at := game_time()
@@ -144,7 +164,7 @@ func _process(delta: float) -> void:
    var result := bout.resolve_race()
    tie_priority = bout.tie_priority
    if result < 0:
-    begin()
+    _begin_round()
     status = "No valid race: new three-count. Wait for GO."
    else:
     mode = "pickup"
@@ -205,30 +225,26 @@ func on_beat(beat: int, _phrase: int) -> void:
  elif mode == "combat":
   click_player.pitch_scale = 1.5 if beat == 4 else 1.0
   play_click()
-  if beat <= 3:
-   exchange_phrase = _phrase
-   var before := bout.positions.duplicate()
-   var requested: Array[int] = [0, 0]
-   for player in range(2):
-    controls[player].last_step_evaluated = conductor.beat_time
-    requested[player] = controls[player].step(beat, _phrase)
-    bout.movements[player] = requested[player]
-   bout.move()
-   for player in range(2):
-    fighters[player].sync_hurtbox(Vector2(bout.positions[player], Bout.GROUND_Y))
-    if not is_equal_approx(before[player], bout.positions[player]):
-     controls[player].last_step_time = conductor.beat_time
-     controls[player].last_step_processed = game_time()
-     fighters[player].rhythmic_pose("forward_step" if requested[player] == facing(player) else "backward_step", conductor.duration())
-     pose_until_by_player[player] = conductor.now() + conductor.duration() * 0.85
-    elif requested[player] != 0:
-     controls[player].step_feedback = "REJECT arena/separation"
-
-  else:
-   for control in controls:
-    control.step_feedback = "REJECT beat4; queued for beat1"
-   bout.capture_impact(_phrase, conductor.beat_time)
-   bout.movements = [0, 0]
+  # Deterministic boundary order: held movement, collision limits, then beat-four snapshot.
+  exchange_phrase = _phrase
+  var before := bout.positions.duplicate()
+  var requested: Array[int] = [0,0]
+  for player in range(2):
+   controls[player].last_step_evaluated = conductor.beat_time
+   requested[player] = controls[player].step(beat,_phrase)
+   bout.movements[player] = requested[player]
+  bout.move()
+  for player in range(2):
+   fighters[player].sync_hurtbox(Vector2(bout.positions[player],Bout.GROUND_Y))
+   if not is_equal_approx(before[player],bout.positions[player]):
+    controls[player].last_step_time = conductor.beat_time
+    controls[player].last_step_processed = game_time()
+    fighters[player].rhythmic_pose("forward_step" if requested[player]==facing(player) else "backward_step",conductor.duration())
+    pose_until_by_player[player] = conductor.now()+conductor.duration()*0.85
+   elif requested[player]!=0:
+    controls[player].step_feedback = "REJECT arena/separation"
+  if beat == 4:
+   bout.capture_impact(_phrase,conductor.beat_time)
    for player in range(2):
     present_combat(player)
 
@@ -258,6 +274,7 @@ func resolve_exchange() -> void:
  var direction := maxi(0, selected[attack])
  var height: String = ["high", "mid", "low"][direction]
  status = bout.resolve(conductor, exchange_phrase)
+ outcome_until = game_time() + 0.6
  pose_until = conductor.now() + 0.35
  pose_until_by_player = [pose_until, pose_until]
  if bout.last_event.get("kind") == "WHIFF" and int(bout.last_event.get("height", -1)) >= 0:
@@ -272,17 +289,23 @@ func resolve_exchange() -> void:
   fighters[defense].hit_feedback()
   audio.sound("hit")
  if bout.winner >= 0:
+  match_progress.award_round(bout.winner)
   mode = "finishing"
   audio.schedule_track("victory", conductor.phrase_start + conductor.duration() * 4.0)
-  finish_victory(bout.winner)
+  finish_victory(bout.winner,bout)
+ refresh()
 
-func finish_victory(player: int) -> void:
+func finish_victory(player: int,completed_bout: Bout) -> void:
  await get_tree().create_timer(0.45).timeout
+ if bout != completed_bout:
+  return
  fighters[1 - player].set_pose("knockdown")
  await get_tree().create_timer(0.45).timeout
+ if bout != completed_bout:
+  return
  fighters[player].set_pose("victory")
  fighters[1 - player].set_pose("defeat")
- mode = "victory"
+ mode = "match_win" if match_progress.winner >= 0 else "round_win"
 
 func _unhandled_input(event: InputEvent) -> void:
  if event is InputEventKey and event.echo:
@@ -300,8 +323,11 @@ func _unhandled_input(event: InputEvent) -> void:
    return
   if event.keycode == KEY_C and mode == "menu":
    cue_style = "cutoff" if cue_style == "snare" else "snare"
-  if event.keycode == KEY_ENTER and mode in ["menu", "victory"]:
+  if event.keycode == KEY_ENTER and mode in ["menu", "match_win"]:
    begin()
+   return
+  if event.keycode == KEY_ENTER and mode == "round_win":
+   next_round()
    return
  for player in range(2):
   var prefix := "p%d_" % (player + 1)
@@ -336,8 +362,7 @@ func _unhandled_input(event: InputEvent) -> void:
    selected[player] = combination["height"]
    last_error[player] = error
    if conductor.grade(error) != "miss":
-    controls[player].suppress_movement()
-    bout.movements[player] = 0
+    controls[player].input_feedback = "ACCEPT combat + movement queued"
     if at >= conductor.action_time():
      present_combat(player)
     else:
@@ -348,11 +373,15 @@ func _unhandled_input(event: InputEvent) -> void:
     controls[player].input_feedback = "REJECT action timing; movement independent"
 
 func refresh() -> void:
+ hud.visible = not debug_visible
+ hud.present(HUDPresenter.snapshot(self,game_time()))
+ label.visible = debug_visible
+ detail.visible = debug_visible
  input_feedback_label.visible = debug_visible
  input_feedback_label.text = "P1 %s / %s\nP2 %s / %s" % [controls[0].input_feedback,controls[0].step_feedback,controls[1].input_feedback,controls[1].step_feedback]
  label.text = "STICKS N LICKS     %d BPM" % conductor.bpm
  if help_visible:
-  detail.text = "P1: A/D move · W high · S low · F execute\nP2: arrows move/high/low · RShift execute\nForward + execute = MID (facing-relative)\nHold to step on beats 1-3; beat 4 = combat\nPerfect ±70ms · valid ±140ms · combo 100ms\nH help · F3 debug · Esc menu"
+  detail.text = "P1: A/D move · W high · S low · F execute\nP2: arrows move/high/low · RShift execute\nForward + execute = MID (facing-relative)\nHold to step on beats 1-4; combat on beat 4\nPerfect ±70ms · valid ±140ms · combo 100ms\nH help · F3 debug · Esc menu"
  elif mode == "menu":
   detail.text = "LOCAL VERSUS · Enter to start · H controls
 C cue style: %s · F3 rhythm overlay" % cue_style
@@ -360,7 +389,7 @@ C cue style: %s · F3 rhythm overlay" % cue_style
   detail.text = "%s · Beat %d · P%d attacks
 P1 %d/3 hits   P2 %d/3 hits
 %s" % [mode.to_upper(), conductor.beat, bout.initiative + 1, bout.hits[0], bout.hits[1], status]
-  if mode == "victory":
+  if mode in ["round_win", "match_win"]:
    detail.text += "
 Enter rematch · Esc menu"
  if debug_visible and not help_visible:
@@ -391,12 +420,8 @@ func _draw() -> void:
  draw_rect(Rect2(0, 0, 320, 180), Color("151e29"))
  draw_rect(Rect2(0, 150, 320, 30), Color("343b39"))
  draw_line(Vector2(16, 150), Vector2(304, 150), Color("aeaa7a"), 1)
- for player in range(2):
-  for hit in range(3):
-   var x := 27 + player * 238 + hit * 9
-   draw_rect(Rect2(x, 80, 5, 5), Color("f3ba55") if hit < bout.hits[player] else Color("596066"))
  for n in range(4):
-  if debug_visible:
+  if debug_visible or help_visible or not str(hud.state.get("footer", "")).is_empty():
    continue
   draw_circle(Vector2(139 + n * 14, 172), 3, Color("f3ba55") if conductor.beat == n + 1 else Color("596066"))
  if mode in ["standoff", "race", "menu"]:

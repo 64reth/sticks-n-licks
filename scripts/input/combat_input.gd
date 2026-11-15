@@ -5,7 +5,6 @@ var combination_ms: float = 100.0
 var held: Dictionary = {}
 var pressed_at: Dictionary = {}
 var pending_execute: float = -INF
-var suppressed: Dictionary = {}
 var last_movement_beat: String = ""
 var last_step_time: float = -INF
 var last_step_processed: float = -INF
@@ -18,7 +17,6 @@ func reset() -> void:
  held.clear()
  pressed_at.clear()
  pending_execute = -INF
- suppressed.clear()
  last_movement_beat = ""
  last_step_time = -INF
  last_step_processed = -INF
@@ -40,24 +38,16 @@ func direction(at: float, facing: int) -> int:
  return choice
 
 func movement() -> int:
- var left: bool = held.get("left", false) and not suppressed.get("left", false)
- var right: bool = held.get("right", false) and not suppressed.get("right", false)
+ var left: bool = held.get("left", false)
+ var right: bool = held.get("right", false)
  queued = int(right) - int(left)
  return queued
-
-func suppress_movement() -> void:
- for key in ["left", "right"]:
-  if held.get(key, false):
-   suppressed[key] = true
- movement()
- input_feedback = "ACCEPT combat; movement locked until release"
 
 func feed(action: String, pressed: bool, at: float, facing: int, allow_combinations: bool = true) -> Dictionary:
  if pressed == bool(held.get(action, false)):
   return {}
  held[action] = pressed
  if not pressed:
-  suppressed.erase(action)
   movement()
   if action in ["left", "right"]:
    input_feedback = "CANCEL released before beat" if float(pressed_at.get(action, -INF)) > last_step_evaluated else "RELEASED movement"
@@ -88,10 +78,10 @@ func feed(action: String, pressed: bool, at: float, facing: int, allow_combinati
  return result
 
 func step(beat: int, phrase: int) -> int:
- # Called only from the conductor boundary signal; defensively reject beat 4/repeats.
- if beat < 1 or beat > 3:
+ # Called only from the conductor boundary signal; accept all four boundaries, reject invalid/repeated beats.
+ if beat < 1 or beat > 4:
   queued = 0
-  step_feedback = "REJECT beat 4 reserved"
+  step_feedback = "REJECT invalid beat"
   return 0
  var identity := "%d:%d" % [phrase, beat]
  if identity == last_movement_beat:
@@ -102,7 +92,7 @@ func step(beat: int, phrase: int) -> int:
  if direction_value != 0:
   step_feedback = "ACCEPT step beat%d" % beat
  elif held.get("left", false) or held.get("right", false):
-  step_feedback = "REJECT combat hold; release" if not suppressed.is_empty() else "REJECT opposing directions"
+  step_feedback = "REJECT opposing directions"
  else:
   step_feedback = "NO STEP direction not held"
  return direction_value

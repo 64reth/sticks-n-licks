@@ -15,7 +15,7 @@ Press **F5** to launch the playable prototype from any open scene. The root `pro
 /Applications/Godot.app/Contents/MacOS/Godot --path .
 ```
 
-Enter starts Local Versus. H toggles help; F3 toggles the developer overlay; Escape returns to the menu. C on the menu switches the race cue between an accented click and drum cutoff. Enter rematches after victory.
+Enter starts Local Versus. H toggles help; F3 toggles the developer overlay; Escape returns to the menu. C on the menu switches the race cue between an accented click and drum cutoff. Enter starts the next round after ROUND WON, or a new match after CHAMPION. Match wins remain visible until rematch/menu.
 
 | Player | Move left/right | High / Low | MID | Race / execute |
 |---|---|---|---|---|
@@ -26,13 +26,13 @@ Forward is facing-relative: initially D for P1 and Left for P2. If facing revers
 
 Wait through the three-count patterns for GO. Early execution forfeits race initiative. Both fighters get sticks; winning the race awards no hit. Reactions within 5 ms tie; tie priority alternates across tied races, starting with P1. A two-second reaction timeout resolves one valid reaction; no reactions or two false starts restart the count. Keyboard hardware may limit simultaneous keys.
 
-Movement is strictly beat-locked: hold left/right to queue a step for the next eligible beat (1, 2 or 3). Releasing before that boundary cancels it. A short tap spanning a boundary steps once; a tap ending earlier is cancelled, with the reason visible in F3. Directions held during countdown/pickup are retained for the first combat beat. A held direction steps once per eligible beat; opposite directions together hold position. Key events never directly move the authoritative position. Rendering interpolates toward each beat position. Beat 4 never begins a movement step.
+Movement is beat-locked on **all four beats (1–4)**. Hold left/right to queue a step for the next boundary; release before that boundary to cancel. A short tap spanning a boundary steps once, while opposing held directions hold position. Countdown/pickup-held directions are retained into combat. Movement uses no ±70/±140 ms precision window and never directly changes positions between boundaries.
 
-Combat requires **direction + execute**, with a 100 ms combination buffer in either order and support for a direction held longer. Up/high or down/low chooses that height; the facing-relative forward key chooses MID. Execute alone never defaults to MID. The execute timestamp determines timing even if its direction arrives later within the combination buffer. ±70 ms is perfect; ±140 ms is valid. A correct perfect block steals initiative; a correct valid block retains the attacker. Incorrect/missing/mistimed defence permits a successful attack to score. A missed attack passes initiative. Three clean hits win.
+Combat requires **direction + execute**, with a 100 ms combination buffer in either order and support for a direction held longer. Up/high or down/low chooses that height; the facing-relative forward key chooses MID. Execute alone never defaults to MID. The execute timestamp determines timing even if its direction arrives later within the combination buffer. ±70 ms is perfect; ±140 ms is valid. A correct perfect block steals initiative; a correct valid block retains the attacker. Incorrect/missing/mistimed defence permits a successful attack to score. A missed attack passes initiative. Three clean hits win a round. Two round wins secure the default best-of-three match.
 
-Combat takes priority over movement: a valid combination suppresses held horizontal movement until release/repress, including the next phrase's first beat. Holding forward to select MID cannot add an accidental step after the action. One combat execution is accepted per phrase. Resolution waits until the late timing window plus the 100 ms combination buffer closes, so a valid late execute can still receive its direction. Strikes require beat-four attack-region/hurtbox overlap. Shared `stick_reach` is 44 logical pixels from anchor to tip for high/mid/low; including the opponent’s 9-pixel half-width, the default centre-gap limit is 53 pixels. Distant attacks whiff and pass initiative; distant guards cannot block/parry. Arena boundaries and separation remain enforced.
+At beat four the deterministic order is **both held movement steps → collision limits → frozen positions → attack/block adjudication**. A direction+execute combination does not lock movement. Inputs arriving after the boundary cannot add a retroactive step or alter the range snapshot. One combat execution per player per phrase is accepted. Resolution waits for the valid late-input window plus the 100 ms combination allowance. Shared `stick_reach` remains 44 logical pixels to the tip (53-pixel maximum centre gap including the opposing hurtbox). Out-of-range attacks always miss.
 
-F3 draws cyan hurtboxes, orange active attack regions and the last HIT/BLOCK/PARRY/WHIFF outcome above the fighters. It shows current beat/phrase, timing errors, selections, queued movement and each player's last movement grid time/actual processing time (seconds on the shared clock). Render catch-up may process a scheduled boundary late; no input is applied retroactively to a past boundary. F3 also reports ACCEPT/CANCEL/REJECT decisions per player, including precombat holds, released taps, beat-4 deferral, blocked steps and post-combat release requirements. Losing application focus clears held keys and queued movement.
+The arcade HUD shows RED/BLUE cards, three energy segments, round-win markers, round number, BPM and initiative. Energy is derived from authoritative scored hits against that player. Countdown **3 → 2 → 1 → GO!** follows the final standoff beats; GO is the existing race cue and false starts still forfeit initiative. Temporary player-facing outcomes include HIGH/MID/LOW HIT, BLOCK, PERFECT PARRY and MISS. No raw diagnostic text appears during normal play. H shows controls; F3 switches to input/audio/collision diagnostics.
 
 Three consecutive defended exchanges schedule the next tempo: 120 → 140 → 160 BPM. Hits reset that streak rather than accelerating the music. Values and latency are configurable in `data/combat/settings.json`. Bindings are editable in Project Settings → Input Map.
 
@@ -55,10 +55,10 @@ Open `scenes/tests/rhythm_test.tscn` and press F6 for an interactive rhythm test
 ```sh
 /Applications/Godot.app/Contents/MacOS/Godot --path . \
   --scene scenes/tests/demo.tscn --fixed-fps 60 \
-  --write-movie output/gameplay.avi --quit-after 1500 -- --verify-demo
+  --write-movie output/gameplay.avi --quit-after 3000 -- --verify-demo
 ```
 
-Create `output/` first. The demo injects a simulation clock and artificial player inputs; it is not a recording of human play. It demonstrates parries, tempo escalation, three-hit victory and rematch.
+Create `output/` first. The demo injects a simulation clock and artificial player inputs; it is not a recording of human play. It demonstrates parries, tempo escalation, two-round match victory and rematch.
 
 ## Assets and development
 
@@ -73,3 +73,5 @@ Open `scenes/tests/animation_preview.tscn` and press F6: Left/Right cycles state
 The [launch/rendering and stick-range fix](docs/design/rendering-and-stick-range-fix.md) documents the initial-idle transform bug, shared range geometry and actual playable-scene regression evidence. Configure reach in `data/combat/settings.json`; changing artwork or animation callbacks never changes contact rules.
 
 The supplied [Blue idle and movement repair](docs/design/blue-idle-and-movement-repair.md) adds a four-frame looping Blue idle (2172×724 source, native left-facing) for launch and post-action recovery. The new idle source duplicates the existing Blue mid-block sheet; no artwork was regenerated. Run `bash tools/check.sh` for actual engine-event movement regressions as well as existing combat/asset checks.
+
+See [Milestone 003](docs/design/milestone-003.md) for HUD/countdown, best-of-three scoring and the corrected four-beat movement contract. [Actual Godot screenshots](docs/screenshots/milestone-003) are included for review. Historical milestone notes describing beat-four lockout or post-combat movement suppression are superseded.

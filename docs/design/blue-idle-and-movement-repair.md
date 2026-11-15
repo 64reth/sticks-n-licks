@@ -1,5 +1,8 @@
 # Fighter 02 idle and movement input repair
 
+Historical implementation record. [Milestone 003](milestone-003.md) supersedes earlier movement restrictions: beats 1–4 permit movement; beat-four movement/collision resolution precedes the combat position snapshot. Combat chords do not suppress movement. Match scoring is now best-of-three.
+
+
 ## Supplied Blue idle
 
 Located `assets/characters/fighter_02/spritesheets/fighter_02_idle.png`: **2172×724 RGBA**, alpha range **0–255**, **four left-to-right poses**, natively facing left. Its SHA256 is `641ab06949a8a837b09e3d2fea543b722317cb3256e2ba1a73a53b5b31b0cc72`. The supplied file is byte-identical to `fighter_02_mid_block.png`; that duplication is recorded rather than interpreted as new artwork.

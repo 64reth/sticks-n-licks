@@ -8,5 +8,6 @@
   "cue_style": "snare",
   "race_timeout_seconds": 2.0,
   "audio_latency_ms": 0.0,
-  "stick_reach": 44.0
+  "stick_reach": 44.0,
+  "match_best_of": 3
 }

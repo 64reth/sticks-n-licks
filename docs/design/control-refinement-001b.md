@@ -1,5 +1,8 @@
 # Control refinement 001B and movement timing
 
+Historical implementation record. [Milestone 003](milestone-003.md) supersedes earlier movement restrictions: beats 1–4 permit movement; beat-four movement/collision resolution precedes the combat position snapshot. Combat chords do not suppress movement. Match scoring is now best-of-three.
+
+
 This updates the existing root Godot project; `application/run/main_scene` remains `res://scenes/main/main.tscn`. No nested project or separate checkout is used.
 
 P1: A/D move, W high, S low, F execute/race. P2: Left/Right move, Up high, Down low, Right Shift execute/race. Enter is menu/rematch only. MID uses the horizontal direction toward the other fighter plus execute, derived from logical positions rather than a fixed player-specific key. Sprites mirror from the same facing calculation. The current arena still prevents fighters crossing.

@@ -67,11 +67,11 @@ func run() -> void:
    advance(10.0 + d * 2.0)
    check(game.bout.positions[player] == start + sign_value * Bout.STEP * 2, "Held key repeats at beat 3")
    advance(10.0 + d * 3.0)
-   check(game.bout.positions[player] == start + sign_value * Bout.STEP * 2, "No movement on beat 4")
+   check(game.bout.positions[player] == start + sign_value * Bout.STEP * 3, "Held movement executes on beat 4")
    advance(10.0 + d * 3.5)
-   check(game.bout.positions[player] == start + sign_value * Bout.STEP * 2, "No movement during beat 4")
+   check(game.bout.positions[player] == start + sign_value * Bout.STEP * 3, "No off-boundary movement during beat 4")
    advance(10.0 + d * 4.0)
-   check(game.bout.positions[player] == start + sign_value * Bout.STEP * 3, "Held key repeats at next beat 1")
+   check(game.bout.positions[player] == start + sign_value * Bout.STEP * 4, "Held key repeats at next beat 1")
    reset_game(bpm)
    start = game.bout.positions[player]
    time = 10.0 + d * 0.1
@@ -96,7 +96,7 @@ func run() -> void:
    check(game.conductor.grade(game.bout.errors[player]) == "perfect", "Held direction + execute preserves timestamp")
    var position: float = game.bout.positions[player]
    advance(12.0)
-   check(game.bout.positions[player] == position, "Valid combat chord suppresses next movement until release")
+   check(game.bout.positions[player] == position + (sign_value * Bout.STEP if height == 1 else 0.0), "Combat combo does not lock held movement")
   # Execute first, direction within 100 ms: grade EXECUTE, not late direction.
   reset_game()
   advance(11.5)
@@ -159,7 +159,7 @@ func run() -> void:
   time = 12.1
   key(prefix + forward)
   advance(12.5)
-  check(game.bout.positions[player] == position + sign_value * Bout.STEP, "Release/repress re-arms movement after combat")
+  check(game.bout.positions[player] == position + sign_value * Bout.STEP, "Release/repress remains valid with combined combat movement")
  # Race uses the same physical execute buttons, without requiring a direction.
  reset_game()
  game.mode = "standoff"
@@ -175,11 +175,11 @@ func run() -> void:
  time = 10.1
  key("p1_right")
  advance(12.1)
- check(game.bout.positions[0] == 148.0, "Catch-up steps once at each crossed eligible beat")
+ check(game.bout.positions[0] == 164.0, "Catch-up steps once at each crossed eligible beat")
  check(game.controls[0].last_step_time == 12.0 and game.controls[0].last_step_processed == 12.1, "Overlay distinguishes grid timestamp from delayed processing")
  game._notification(NOTIFICATION_APPLICATION_FOCUS_OUT)
  advance(12.5)
- check(game.bout.positions[0] == 148.0, "Focus loss cancels held movement")
+ check(game.bout.positions[0] == 164.0, "Focus loss cancels held movement")
  # Right Shift only, obsolete controls removed, valid main scene retained.
  check(not InputMap.has_action("p1_mid") and not InputMap.has_action("p2_mid"), "No obsolete MID actions")
  var right_shift := InputEventKey.new()
