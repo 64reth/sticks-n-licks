@@ -3,6 +3,7 @@ var conductor := RhythmConductor.new()
 var bout := Bout.new()
 var audio := AudioDirector.new()
 var fighters: Array[Fighter] = []
+var combat_debug := CombatDebugOverlay.new()
 var mode: String = "menu"
 var cue: float = 0.0
 var race_deadline: float = 0.0
@@ -11,6 +12,7 @@ var max_anticipation_phrases: int = 3
 var cue_style: String = "snare"
 var race_timeout: float = 2.0
 var phrase_resolved: bool = false
+var exchange_phrase: int = 0
 var debug_visible: bool = false
 var help_visible: bool = false
 var status: String = ""
@@ -32,6 +34,7 @@ func _ready() -> void:
  var config := FileAccess.open("res://data/combat/settings.json", FileAccess.READ)
  if config:
   settings = JSON.parse_string(config.get_as_text())
+ bout.stick_reach = float(settings.get("stick_reach", 44.0))
  conductor.perfect_ms = float(settings.get("perfect_ms", 70.0))
  conductor.good_ms = float(settings.get("good_ms", 140.0))
  for control in controls:
@@ -70,6 +73,10 @@ func _ready() -> void:
  detail.position = Vector2(8, 23)
  detail.add_theme_font_size_override("font_size", 8)
  add_child(detail)
+ combat_debug.game = self
+ combat_debug.z_index = 100
+ combat_debug.visible = debug_visible
+ add_child(combat_debug)
  conductor.beat_changed.connect(on_beat)
  conductor.phrase_changed.connect(on_phrase)
  audio.play_track("menu", conductor.now())
@@ -81,6 +88,8 @@ func play_click(force: bool = false) -> void:
 
 func begin() -> void:
  bout = Bout.new()
+ bout.stick_reach = float(settings.get("stick_reach", 44.0))
+ exchange_phrase = 0
  bout.escalation_threshold = int(settings.get("escalation_threshold", 3))
  bout.tie_priority = tie_priority
  selected = [-1, -1]
@@ -145,8 +154,11 @@ func _process(delta: float) -> void:
    if mode == "race":
     fighters[player].set_pose("running")
   fighters[player].position = fighters[player].position.lerp(Vector2(target_x, 150), minf(1.0, delta * 16))
+  fighters[player].sync_hurtbox(Vector2(bout.positions[player], Bout.GROUND_Y))
   if mode == "combat" and at > pose_until:
    fighters[player].set_pose("combat_idle")
+ combat_debug.visible = debug_visible
+ combat_debug.queue_redraw()
  refresh()
  queue_redraw()
 
@@ -161,6 +173,8 @@ func on_phrase(_phrase: int) -> void:
  # Resolve an overdue exchange before clearing it if rendering stalled.
  if not phrase_resolved:
   resolve_exchange()
+ if mode != "combat":
+  return
  phrase_resolved = false
  selected = [-1, -1]
  for control in controls:
@@ -178,6 +192,7 @@ func on_beat(beat: int, _phrase: int) -> void:
   click_player.pitch_scale = 1.5 if beat == 4 else 1.0
   play_click()
   if beat <= 3:
+   exchange_phrase = _phrase
    var before := bout.positions.duplicate()
    for player in range(2):
     bout.movements[player] = controls[player].step(beat, _phrase)
@@ -185,11 +200,13 @@ func on_beat(beat: int, _phrase: int) -> void:
      fighters[player].rhythmic_pose("forward_step" if bout.movements[player] == facing(player) else "backward_step", conductor.duration())
    bout.move()
    for player in range(2):
+    fighters[player].sync_hurtbox(Vector2(bout.positions[player], Bout.GROUND_Y))
     if not is_equal_approx(before[player], bout.positions[player]):
      controls[player].last_step_time = conductor.beat_time
      controls[player].last_step_processed = game_time()
    pose_until = conductor.now() + conductor.duration() * 0.85
   else:
+   bout.capture_impact(_phrase, conductor.beat_time)
    bout.movements = [0, 0]
    for player in range(2):
     present_combat(player)
@@ -211,14 +228,18 @@ func _notification(what: int) -> void:
   bout.movements = [0, 0]
 
 func resolve_exchange() -> void:
+ if phrase_resolved:
+  return
  phrase_resolved = true
  var attack := bout.initiative
  var defense := 1 - attack
  var direction := maxi(0, selected[attack])
  var height: String = ["high", "mid", "low"][direction]
- status = bout.resolve(conductor)
+ status = bout.resolve(conductor, exchange_phrase)
  pose_until = conductor.now() + 0.35
- if status.begins_with("Perfect"):
+ if bout.last_event.get("kind") == "WHIFF" and int(bout.last_event.get("height", -1)) >= 0:
+  fighters[attack].whiff(height, 0.35)
+ elif status.begins_with("Perfect"):
   fighters[defense].parry(height, conductor.duration() * 0.5)
   audio.sound("parry")
  elif status.begins_with("Blocked"):
@@ -309,14 +330,29 @@ P1 %d/3 hits   P2 %d/3 hits
   if mode == "victory":
    detail.text += "
 Enter rematch · Esc menu"
- if debug_visible:
-  detail.text += "\nPhrase %d err %s sel %s" % [conductor.phrase, "[%+.0f,%+.0f]" % last_error, str(selected)]
-  detail.text += "\nQueue %s beat %d · step grid/actual:" % [str([controls[0].movement(), controls[1].movement()]), conductor.beat]
-  for player in range(2):
-   var control := controls[player]
-   var stamp := "--/--" if is_inf(control.last_step_time) else "%.3f/%.3fs" % [control.last_step_time, control.last_step_processed]
-   detail.text += "\nP%d %s" % [player + 1, stamp]
-  detail.text += "\n%s\nBeat %d phase %s · next BPM %d" % [audio.diagnostic(), conductor.beat, mode, conductor.pending_bpm]
+ if debug_visible and not help_visible:
+  var event: Dictionary = bout.last_event
+  var result := "READY" if event.is_empty() else str(event["kind"]) + " " + str(event["reason"])
+  var stamps: Array[String] = []
+  for control in controls:
+   stamps.append("--" if is_inf(control.last_step_time) else "%.3f/%.3f" % [control.last_step_time, control.last_step_processed])
+  var item: Dictionary = audio.entries.get(audio.active, {})
+  var file := str(item.get("path", "none")).get_file()
+  detail.text = "%s beat%d phrase%d atkP%d hits%d:%d" % [mode, conductor.beat, conductor.phrase, bout.initiative+1, bout.hits[0], bout.hits[1]]
+  detail.text += "\nerr%s sel%s q%s" % ["[%+.0f,%+.0f]" % last_error, str(selected), str([controls[0].movement(),controls[1].movement()])]
+  detail.text += "\nStep grid/actual P1 %s P2 %s" % [stamps[0],stamps[1]]
+  detail.text += "\n%s off %ss" % [file,str(item.get("beat_zero_seconds","?"))]
+  detail.text += "\nLatency in/out %.0f/%.0fms next%d BPM" % [conductor.latency_ms,audio.latency_ms,conductor.pending_bpm]
+  detail.text += "\nLAST %s · reach %.0f" % [result,bout.stick_reach]
+
+func active_attack_region() -> Rect2:
+ # The shared beat-four active window, not sprite callbacks, gates attack geometry.
+ if mode != "combat" or conductor.beat != 4 or phrase_resolved:
+  return Rect2()
+ var player := bout.initiative
+ if bout.selections[player] < 0 or conductor.grade(bout.errors[player]) == "miss":
+  return Rect2()
+ return bout.attack_region(player, bout.selections[player], bout.impact_positions)
 
 func _draw() -> void:
  draw_rect(Rect2(0, 0, 320, 180), Color("151e29"))

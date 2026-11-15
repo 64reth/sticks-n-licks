@@ -13,6 +13,16 @@ var errors: Array[float] = [INF, INF]
 var positions: Array[float] = [100.0, 220.0]
 var movements: Array[int] = [0, 0]
 var outcome: String = ""
+# Reach measures logical pixels from the fighter anchor to the stick tip.
+var stick_reach: float = 44.0
+var impact_phrase: int = -1
+var impact_positions: Array[float] = []
+var impact_time: float = 0.0
+var resolved_phrase: int = -1
+var last_event: Dictionary = {}
+const GROUND_Y := 150.0
+const HURTBOX := Rect2(-9, -64, 18, 64)
+const ATTACK_BAND := 12.0
 const MIN_X := 30.0
 const MAX_X := 290.0
 const GAP := 40.0
@@ -58,32 +68,74 @@ func move() -> void:
  positions = [left, right]
  movements = [0, 0]
 
-func resolve(conductor: RhythmConductor) -> String:
- if winner >= 0:
+func hurt_region(player: int, at_positions: Array[float] = []) -> Rect2:
+ var points := positions if at_positions.is_empty() else at_positions
+ return Rect2(Vector2(points[player], GROUND_Y) + HURTBOX.position, HURTBOX.size)
+
+func attack_region(player: int, height: int, at_positions: Array[float] = []) -> Rect2:
+ if height < 0 or height > 2 or stick_reach <= HURTBOX.size.x / 2.0:
+  return Rect2()
+ var points := positions if at_positions.is_empty() else at_positions
+ var direction := 1 if points[1 - player] > points[player] else -1
+ var front := HURTBOX.size.x / 2.0
+ var left := points[player] + (front if direction > 0 else -stick_reach)
+ var y: float = [-52.0, -32.0, -12.0][height]
+ return Rect2(left, GROUND_Y + y - ATTACK_BAND / 2.0, stick_reach - front, ATTACK_BAND)
+
+func capture_impact(phrase: int, at: float) -> void:
+ if impact_phrase == phrase:
+  return
+ impact_phrase = phrase
+ impact_positions = positions.duplicate()
+ impact_time = at
+
+func in_reach(player: int, height: int, at_positions: Array[float] = []) -> bool:
+ var region := attack_region(player, height, at_positions)
+ return region.has_area() and region.intersects(hurt_region(1 - player, at_positions), true)
+
+func resolve(conductor: RhythmConductor, phrase_id: int = -1) -> String:
+ var exchange := conductor.phrase if phrase_id < 0 else phrase_id
+ if winner >= 0 or resolved_phrase == exchange:
   return outcome
+ resolved_phrase = exchange
+ if impact_phrase != exchange:
+  capture_impact(exchange, conductor.action_time())
  var attacker := initiative
  var defender := 1 - attacker
  var attack_grade := conductor.grade(errors[attacker])
  var block_grade := conductor.grade(errors[defender])
- if selections[attacker] < 0 or attack_grade == "miss":
+ var height := selections[attacker]
+ var region := attack_region(attacker, height, impact_positions)
+ var overlap := in_reach(attacker, height, impact_positions)
+ last_event = {"kind": "WHIFF", "reason": "", "phrase": exchange,
+  "attacker": attacker, "defender": defender, "height": height,
+  "attack_region": region, "hurt_region": hurt_region(defender, impact_positions),
+  "overlap": overlap, "distance": abs(impact_positions[1] - impact_positions[0]),
+  "stick_reach": stick_reach, "impact_time": impact_time}
+ if height < 0 or attack_grade == "miss":
   initiative = defender
   outcome = "Miss: initiative reversed"
+  last_event["reason"] = "no action" if height < 0 else "timing"
   defensive_streak = 0
- elif positions[1] - positions[0] > 140.0:
+ elif not overlap:
   initiative = defender
-  outcome = "Out of reach: initiative reversed"
+  outcome = "WHIFF: out of stick reach; initiative reversed"
+  last_event["reason"] = "out of range"
   defensive_streak = 0
- elif selections[attacker] == selections[defender] and block_grade != "miss":
+ elif height == selections[defender] and block_grade != "miss":
   defensive_streak += 1
   if block_grade == "perfect":
    initiative = defender
    outcome = "Perfect parry: initiative reversed"
+   last_event["kind"] = "PARRY"
   else:
    outcome = "Blocked: attacker retains initiative"
+   last_event["kind"] = "BLOCK"
  else:
   hits[attacker] += 1
   defensive_streak = 0
   outcome = "Clean hit for P%d" % (attacker + 1)
+  last_event["kind"] = "HIT"
   if hits[attacker] >= 3:
    winner = attacker
    outcome = "P%d WINS" % (attacker + 1)

@@ -31,7 +31,9 @@ func _process(delta: float) -> void:
    press("p2_execute")
    press("p2_execute", false)
  if mode == "combat":
-  if moving_phrase != conductor.phrase and conductor.beat == 1:
+  if moving_phrase != conductor.phrase and conductor.beat == 1 and not bout.in_reach(bout.initiative, 0):
+   press("p1_right", false)
+   press("p2_left", false)
    press("p1_right")
    press("p2_left")
    moving_phrase = conductor.phrase
@@ -39,7 +41,12 @@ func _process(delta: float) -> void:
    press("p1_high")
    press("p2_high", exchanges < 3)
    press("p2_low", exchanges >= 3)
-  if conductor.beat == 4 and acted_phrase != conductor.phrase:
+  if conductor.beat == 4 and acted_phrase != conductor.phrase and bout.in_reach(bout.initiative, 0):
+   press("p1_high", false)
+   press("p1_high")
+   var defense_height := "p2_high" if exchanges < 3 else "p2_low"
+   press(defense_height, false)
+   press(defense_height)
    press("p1_execute")
    press("p2_execute")
    press("p1_execute", false)

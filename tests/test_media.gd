@@ -41,6 +41,7 @@ func run() -> void:
  root.add_child(game)
  game.set_process(false)
  game.conductor.start(0)
+ game.bout.positions.assign([140.0, 180.0])
  game.mode = "combat"
  game.conductor.update(0)
  time = 1.49

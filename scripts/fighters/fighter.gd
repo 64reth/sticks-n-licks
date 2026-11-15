@@ -8,6 +8,9 @@ var native_facing: int = 1
 var looking: int = 1
 var spark_time: float = 0.0
 var flash_time: float = 0.0
+var hurtbox := Area2D.new()
+var hurtbox_shape := CollisionShape2D.new()
+var whiff_time: float = 0.0
 var color := Color("f3ba55")
 const STATES := ["idle", "standoff_anticipation", "false_start", "race_launch", "running", "stick_pickup", "combat_idle", "forward_step", "backward_step", "high_attack", "mid_attack", "low_attack", "high_block", "mid_block", "low_block", "high_parry", "mid_parry", "low_parry", "high_hit", "mid_hit", "low_hit", "stagger", "knockdown", "victory", "defeat"]
 
@@ -45,15 +48,21 @@ func _ready() -> void:
       frames.set_animation_loop(state, authored.get_animation_loop(state))
  sprite.sprite_frames = frames
  set_pose("idle")
- # Geometry is independent of the transparent image.
- var body := Area2D.new()
- var collision := CollisionShape2D.new()
+ # This visible/inspectable hurtbox mirrors the same gameplay geometry used by Bout.
+ hurtbox.name = "Hurtbox"
+ hurtbox.collision_layer = 2
+ hurtbox.collision_mask = 0
+ hurtbox.monitoring = false
  var shape := RectangleShape2D.new()
- shape.size = Vector2(18, 42)
- collision.shape = shape
- collision.position.y = -21
- body.add_child(collision)
- add_child(body)
+ shape.size = Bout.HURTBOX.size
+ hurtbox_shape.shape = shape
+ hurtbox.add_child(hurtbox_shape)
+ add_child(hurtbox)
+ hurtbox.position = Bout.HURTBOX.get_center()
+
+func sync_hurtbox(logical_ground: Vector2) -> void:
+ # Visual interpolation must not move the authoritative receiving region off its grid position.
+ hurtbox.global_position = logical_ground + Bout.HURTBOX.get_center()
 
 func placeholder(state: String, frame: int) -> ImageTexture:
  var img := Image.create(96, 96, false, Image.FORMAT_RGBA8)
@@ -84,15 +93,21 @@ func face(direction: int) -> void:
  sprite.flip_h = direction != native_facing
 
 func set_pose(value: String) -> void:
- if pose == value and sprite.animation == value:
+ if sprite.sprite_frames == null or not sprite.sprite_frames.has_animation(value):
   return
+ # SpriteFrames can auto-select idle when assigned. Always apply its metadata,
+ # even if this animation is already selected; only playback restart is conditional.
+ if animation_meta.has(value):
+  var meta: Dictionary = animation_meta[value]
+  var factor := float(meta["scale"])
+  sprite.scale = Vector2.ONE * factor
+  sprite.position = Vector2(0, (float(meta["canvas"][1]) / 2.0 - float(meta["ground_pixel"])) * factor)
+ else:
+  sprite.scale = Vector2.ONE
+  sprite.position = Vector2(0, -30)
+ var changed := pose != value or sprite.animation != value
  pose = value
- if sprite.sprite_frames and sprite.sprite_frames.has_animation(value):
-  if animation_meta.has(value):
-   var meta: Dictionary = animation_meta[value]
-   var factor := float(meta["scale"])
-   sprite.scale = Vector2.ONE * factor
-   sprite.position = Vector2(0, (float(meta["canvas"][1]) / 2.0 - float(meta["ground_pixel"])) * factor)
+ if changed:
   sprite.speed_scale = 1.0
   sprite.play(value)
 
@@ -120,13 +135,21 @@ func parry(height: String, seconds: float) -> void:
  impact(height + "_parry", seconds)
  spark_time = 0.18
 
+func whiff(height: String, seconds: float) -> void:
+ # Reuse the supplied attack recovery, with the same duration at every height.
+ set_pose(height + "_attack")
+ sprite.frame = sprite.sprite_frames.get_frame_count(sprite.animation) - 1
+ sprite.play()
+ whiff_time = seconds
+
 func hit_feedback() -> void:
  flash_time = 0.2
 
 func _process(delta: float) -> void:
  spark_time = maxf(0, spark_time - delta)
  flash_time = maxf(0, flash_time - delta)
- sprite.modulate = Color(1, 0.45, 0.45) if flash_time > 0 else Color.WHITE
+ whiff_time = maxf(0, whiff_time - delta)
+ sprite.modulate = Color(1, 0.45, 0.45) if flash_time > 0 else (Color(0.7, 0.7, 0.7) if whiff_time > 0 else Color.WHITE)
  queue_redraw()
 
 func _draw() -> void:
