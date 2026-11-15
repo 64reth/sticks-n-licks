@@ -1,6 +1,6 @@
 # Sticks n Licks
 
-Original local two-player Caribbean stick-fighting rhythm prototype. Godot 4.6+, GDScript, 320×180. No API key, Python installation, final artwork or soundtrack is required to play.
+Original local two-player Caribbean stick-fighting rhythm prototype. Godot 4.6+, GDScript, 320×180. The supplied Red/Blue artwork and original soundtrack are integrated. No API key or Python installation is required to play; optional missing assets have fallbacks.
 
 ## Launch on this Mac
 
@@ -64,4 +64,8 @@ Create `output/` first. The demo injects a simulation clock and artificial playe
 
 See [design](docs/design/milestone-001.md), [asset catalogue](docs/assets/catalogue.json), [audio handoff](docs/assets/audio.md), [optional image pipeline](docs/assets/image-pipeline.md), and [verification](docs/verification.md). Studio toolkit scope and workflow adaptations are documented in [AGENTS.md](AGENTS.md).
 
-Temporary procedural pixel fighters provide all named animation states. The included two-frame PNG idle samples also demonstrate the lossless PNG → frames → Godot SpriteFrames pipeline. These are placeholders, not approved production art. The supplied character reference is preserved unmodified and is not assigned to gameplay.
+Milestone 002 uses 19 supplied sheets / 113 extracted native-resolution frames. Originals are preserved; Red and Blue retain their costume colours and native facing. Missing authored hit/outcome states reuse real character poses with feedback. Red's pickup-labelled sheet depicts race poses and is not used as pickup animation. See [Milestone 002 asset report](docs/assets/milestone-002.md).
+
+Eight original WAVs are connected to menu/standoff/combat/victory and developer previews. The owner confirmed beat 1 at sample zero and full-file loop boundaries. These settings are recorded explicitly; output latency and perceptual synchronisation still require listening review.
+
+Open `scenes/tests/animation_preview.tscn` and press F6: Left/Right cycles states, Space pauses, comma/period steps frames, brackets change speed. Open `scenes/tests/audio_test.tscn` and press F6: 1/2/3 independently tests 120/140/160 BPM; Q/W/E/V/D previews menu/standoff/intro/victory/defeat at phrase boundaries. Brackets adjust preview offsets and minus/equals adjusts output compensation (not saved). F5 continues to run the playable root main scene.

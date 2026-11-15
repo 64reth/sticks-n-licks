@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0c3bxd8rlc0e"
-path="res://.godot/imported/OpenAI Playground 2026-11-15 at 13.48.11.png-bec153646a84aab414c1076195dea0e4.ctex"
+uid="uid://dmoparryfkb0p"
+path="res://.godot/imported/002.png-db945ac490869d2fc2e599ac067eab0f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://references/OpenAI Playground 2026-11-15 at 13.48.11.png"
-dest_files=["res://.godot/imported/OpenAI Playground 2026-11-15 at 13.48.11.png-bec153646a84aab414c1076195dea0e4.ctex"]
+source_file="res://assets/characters/fighter_01/frames/milestone_002/low_block/002.png"
+dest_files=["res://.godot/imported/002.png-db945ac490869d2fc2e599ac067eab0f.ctex"]
 
 [params]
 

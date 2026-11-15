@@ -1,0 +1,2225 @@
+{
+  "fighter": 1,
+  "sources": [
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_high_attack_sheet.png",
+      "sha256": "dfd0d1cf9dc23f5b05214c91ef82df2568c73ba3b4e205dbcb4677d517f36bdc",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 5,
+      "frames": [
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/high_attack/000.png",
+          "source_rect": [
+            60,
+            140,
+            340,
+            576
+          ],
+          "translation": [
+            254,
+            318
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            190,
+            566
+          ],
+          "sha256": "5aeaedf1a68e92e042f1069129012e0d719fc8e3278c9d209b050477d8bee881",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 206,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/high_attack/001.png",
+          "source_rect": [
+            492,
+            140,
+            772,
+            580
+          ],
+          "translation": [
+            245,
+            316
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            631,
+            568
+          ],
+          "sha256": "ae8ac73d56dbffd8ef22ade92c5dc50bd8760959e646a90745fba297075a4e20",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 60,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/high_attack/002.png",
+          "source_rect": [
+            920,
+            76,
+            1208,
+            580
+          ],
+          "translation": [
+            239,
+            252
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1065,
+            568
+          ],
+          "sha256": "7ee0e4aeba5806338121e1953d5271dce85cfb5ef1be9f67750df83c795f598d",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 220,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/high_attack/003.png",
+          "source_rect": [
+            1300,
+            168,
+            1720,
+            580
+          ],
+          "translation": [
+            237,
+            343
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1447,
+            569
+          ],
+          "sha256": "eeb3774a7a671121d88c8aadb8b5947e909e0163146c280b5348dccebb7c798d",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 312,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/high_attack/004.png",
+          "source_rect": [
+            1800,
+            144,
+            2088,
+            580
+          ],
+          "translation": [
+            247,
+            319
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1937,
+            569
+          ],
+          "sha256": "9c4e889710aa3d8b466b7546d7994e29cae304f3d59ead3d153c3ba5547c5263",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 280,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        }
+      ],
+      "scale": 0.1553398058252427,
+      "native_facing": "right",
+      "warnings": [
+        "Original antialiased alpha and nonuniform pixel lattice retained; not strict NES pixel cells."
+      ]
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_high_block.png",
+      "sha256": "4afc4dd65ba90ba4883ac15319dfb75363f58e1eddfb77349f0440367c0680c9",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 4,
+      "frames": [
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/high_block/000.png",
+          "source_rect": [
+            96,
+            132,
+            404,
+            636
+          ],
+          "translation": [
+            233,
+            250
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            247,
+            626
+          ],
+          "sha256": "4baeb107f72604111bfc2b3a47550f3fa29f90d6e9b2d3f38c24f034b1c1efbc",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 220,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/high_block/001.png",
+          "source_rect": [
+            628,
+            132,
+            956,
+            636
+          ],
+          "translation": [
+            225,
+            250
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            787,
+            626
+          ],
+          "sha256": "0adbd9ca520afd86fb55b9cdea57e6ec3a6a7900144851fc7872f7a4d6419d07",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 206,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/high_block/002.png",
+          "source_rect": [
+            1156,
+            80,
+            1516,
+            636
+          ],
+          "translation": [
+            211,
+            198
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1329,
+            626
+          ],
+          "sha256": "7360a4dd7fae1a83fe17aa6a9f1dd96e99e83b9f49bd58b050622df99bbe85c1",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 339,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/high_block/003.png",
+          "source_rect": [
+            1724,
+            132,
+            2032,
+            636
+          ],
+          "translation": [
+            231,
+            250
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1877,
+            626
+          ],
+          "sha256": "d94786c54fd5fb7498dfe168927f6319b906d1a33306c4c7b5939d2362b2661d",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 171,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        }
+      ],
+      "scale": 0.13333333333333333,
+      "native_facing": "right",
+      "warnings": [
+        "Original antialiased alpha and nonuniform pixel lattice retained; not strict NES pixel cells."
+      ]
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_idle.png",
+      "sha256": "10640d61ca9db5eb37db8639054705ab2eab044a8e76e0fc6471bead6cf95d00",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 4,
+      "frames": [
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/idle/000.png",
+          "source_rect": [
+            104,
+            84,
+            444,
+            636
+          ],
+          "translation": [
+            221,
+            203
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            267,
+            625
+          ],
+          "sha256": "43f9f8ecbcf449487a67da153cbb66b0ac5274514913fe7c0aff5be9a8fcca84",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1493,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/idle/001.png",
+          "source_rect": [
+            648,
+            116,
+            988,
+            636
+          ],
+          "translation": [
+            222,
+            235
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            810,
+            625
+          ],
+          "sha256": "d7ca0e965858afa927799a8ad7c88d32601fac10b686a2ecb792acbc7f36d52f",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1786,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/idle/002.png",
+          "source_rect": [
+            1192,
+            84,
+            1532,
+            636
+          ],
+          "translation": [
+            223,
+            203
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1353,
+            625
+          ],
+          "sha256": "13935ba502cec96dc3d9a6a4f44d3dc3980b2aa0c5d262517c3141cd4b204ecf",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1552,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/idle/003.png",
+          "source_rect": [
+            1736,
+            84,
+            2076,
+            636
+          ],
+          "translation": [
+            224,
+            203
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1896,
+            625
+          ],
+          "sha256": "f4d1d5d9f7702c4b258ca6fd2ae04b63ae744ff82ea053179345127764bda89a",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1915,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        }
+      ],
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "warnings": [
+        "Original antialiased alpha and nonuniform pixel lattice retained; not strict NES pixel cells."
+      ]
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_low_attack.png",
+      "sha256": "923b2b317d3e5bd54e7deb33e25bd491b784cb803ceadeaab5c15302a44c53d0",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 5,
+      "frames": [
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/low_attack/000.png",
+          "source_rect": [
+            60,
+            136,
+            340,
+            580
+          ],
+          "translation": [
+            254,
+            313
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            190,
+            567
+          ],
+          "sha256": "83e1557fa5296d306eb24a48e75dba297550f5da3fba5908cf6cfa3a47db0aca",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1189,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/low_attack/001.png",
+          "source_rect": [
+            472,
+            176,
+            768,
+            580
+          ],
+          "translation": [
+            242,
+            353
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            614,
+            567
+          ],
+          "sha256": "8eb0089cb7aec9d6d3ec175663593f317711ee89606b7605a50ca6f29cc1e959",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 643,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/low_attack/002.png",
+          "source_rect": [
+            856,
+            184,
+            1196,
+            580
+          ],
+          "translation": [
+            195,
+            361
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1045,
+            567
+          ],
+          "sha256": "61e8cdd34774687bdf78fbb85aeb6a6c9745c402634c226834172556d3a1bb38",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 755,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/low_attack/003.png",
+          "source_rect": [
+            1288,
+            208,
+            1764,
+            576
+          ],
+          "translation": [
+            227,
+            385
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1445,
+            567
+          ],
+          "sha256": "c9142c51403a9f3169104c9366f6bf4f4c03555ff8e11470ffd7bbc70ee93c26",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 2062,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/low_attack/004.png",
+          "source_rect": [
+            1812,
+            144,
+            2104,
+            580
+          ],
+          "translation": [
+            250,
+            321
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1946,
+            567
+          ],
+          "sha256": "e4919fa7acb05386220fe9b3171b248c3d589940079a05158bd9e8e1808cf38a",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 743,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        }
+      ],
+      "scale": 0.1523809523809524,
+      "native_facing": "right",
+      "warnings": [
+        "Original antialiased alpha and nonuniform pixel lattice retained; not strict NES pixel cells."
+      ]
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_low_block.png",
+      "sha256": "caebc5b9b73d7b7cead14622d0586ef6ebbd8efc00a5b62cd52ab3ba0622470a",
+      "dimensions": [
+        2176,
+        723
+      ],
+      "frame_count": 4,
+      "frames": [
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/low_block/000.png",
+          "source_rect": [
+            104,
+            104,
+            404,
+            604
+          ],
+          "translation": [
+            242,
+            257
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            246,
+            591
+          ],
+          "sha256": "a5874dd81ec533a31dabb2cda61fe9adc7d885c9301b10df162131a042ac3877",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 165,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/low_block/001.png",
+          "source_rect": [
+            612,
+            136,
+            928,
+            604
+          ],
+          "translation": [
+            225,
+            289
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            771,
+            591
+          ],
+          "sha256": "373012151d89c4c223bd5fa38975f4d5d45705b3d8b963cb0c26cf417f3ca9cb",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 122,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/low_block/002.png",
+          "source_rect": [
+            1148,
+            184,
+            1512,
+            604
+          ],
+          "translation": [
+            202,
+            337
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1330,
+            591
+          ],
+          "sha256": "f3286d6e89db90040f27be0b457163a500dbca44c5015b0ba356e0b11d82ad56",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 166,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/low_block/003.png",
+          "source_rect": [
+            1716,
+            108,
+            2024,
+            604
+          ],
+          "translation": [
+            237,
+            261
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1863,
+            591
+          ],
+          "sha256": "93c152e9dd74447e4b847f54412dc511abbbde14348d553e7371c5ac3a637bfe",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 253,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        }
+      ],
+      "scale": 0.13445378151260504,
+      "native_facing": "right",
+      "warnings": [
+        "Original antialiased alpha and nonuniform pixel lattice retained; not strict NES pixel cells."
+      ]
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_mid_attack.png",
+      "sha256": "9ce961ef3d956c8a089fcd7f29f76e1d7547ffe57a4ab633a485839e1ce741c1",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 5,
+      "frames": [
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/mid_attack/000.png",
+          "source_rect": [
+            60,
+            136,
+            340,
+            580
+          ],
+          "translation": [
+            254,
+            313
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            190,
+            567
+          ],
+          "sha256": "d4eacf2e8d3a30b56c047fd36193ea3f41e88eb85109e8212ce5e9b8d0f25e00",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1773,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/mid_attack/001.png",
+          "source_rect": [
+            480,
+            136,
+            788,
+            580
+          ],
+          "translation": [
+            226,
+            311
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            638,
+            569
+          ],
+          "sha256": "f5dce827bf82dc78109faa659df8e605eac0d7a8ea2d8f6a3a4ebef28babb743",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 882,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/mid_attack/002.png",
+          "source_rect": [
+            864,
+            144,
+            1244,
+            580
+          ],
+          "translation": [
+            154,
+            319
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1094,
+            569
+          ],
+          "sha256": "dc8c77aba109135aab04a05d94961c18549862891dbf756f292bff2a4f8c3d5d",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 2662,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/mid_attack/003.png",
+          "source_rect": [
+            1296,
+            164,
+            1804,
+            580
+          ],
+          "translation": [
+            222,
+            339
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1458,
+            569
+          ],
+          "sha256": "7395c521941ce11b2aeacfbcbca66064c916eefb324801d3cc342af31c2fe9ff",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 5097,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/mid_attack/004.png",
+          "source_rect": [
+            1828,
+            136,
+            2104,
+            580
+          ],
+          "translation": [
+            257,
+            311
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1955,
+            569
+          ],
+          "sha256": "dae9e6d49123242a41acf490e3ab82fcc4bb951aa6489a1de079b6365607ace4",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 996,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        }
+      ],
+      "scale": 0.1523809523809524,
+      "native_facing": "right",
+      "warnings": [
+        "Original antialiased alpha and nonuniform pixel lattice retained; not strict NES pixel cells."
+      ]
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_mid_block.png",
+      "sha256": "9e0c51f14f6c328f95c559c60446c68e163aa54fb4935f8f281f3441d5b483bf",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 4,
+      "frames": [
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/mid_block/000.png",
+          "source_rect": [
+            72,
+            40,
+            448,
+            648
+          ],
+          "translation": [
+            208,
+            148
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            248,
+            636
+          ],
+          "sha256": "891da31101ad0567d3c6a1b8bc08034778b03d891268c4d64a6dbbec4a523aab",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1424,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/mid_block/001.png",
+          "source_rect": [
+            616,
+            52,
+            988,
+            648
+          ],
+          "translation": [
+            207,
+            160
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            793,
+            636
+          ],
+          "sha256": "98642e985dcb44dd5a2db96e0e3fa773d32f2f24c15f13f0e058a8e7181f4303",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1186,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/mid_block/002.png",
+          "source_rect": [
+            1160,
+            64,
+            1548,
+            648
+          ],
+          "translation": [
+            206,
+            172
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1338,
+            636
+          ],
+          "sha256": "742f31aa2feb539d28596927c7a2d9a2cd0fda5889b9c4e2ca26ef7edcad325b",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1530,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/mid_block/003.png",
+          "source_rect": [
+            1700,
+            52,
+            2076,
+            648
+          ],
+          "translation": [
+            206,
+            160
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1878,
+            636
+          ],
+          "sha256": "b9b378df9de105f26c7a7d1e2c0d3cd2a8797e1a687e105590490b24caa9d69f",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1231,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        }
+      ],
+      "scale": 0.1095890410958904,
+      "native_facing": "right",
+      "warnings": [
+        "Original antialiased alpha and nonuniform pixel lattice retained; not strict NES pixel cells."
+      ]
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_pickup.png",
+      "sha256": "93bca3dcaa2feba9c2883172f457055f7ffed7490792115ea5911d0a49f59f26",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 13,
+      "frames": [
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/000.png",
+          "source_rect": [
+            72,
+            64,
+            228,
+            324
+          ],
+          "translation": [
+            300,
+            494
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            156,
+            314
+          ],
+          "sha256": "c02368565ceb99883ba3990f70afe1a39046aa0336d527b1a3bcaae2ec01864f",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 172,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/001.png",
+          "source_rect": [
+            380,
+            60,
+            540,
+            324
+          ],
+          "translation": [
+            297,
+            490
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            467,
+            314
+          ],
+          "sha256": "41be6428d7d5fb213fc11f1eda5882a740be644126a49a4c405c364e9052187b",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 204,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/002.png",
+          "source_rect": [
+            684,
+            68,
+            844,
+            324
+          ],
+          "translation": [
+            297,
+            498
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            771,
+            314
+          ],
+          "sha256": "2e5df2ccdd296a6f4f4d194d110d965843d257fded56564a94f9cb0df9c03f5e",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 150,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/003.png",
+          "source_rect": [
+            988,
+            80,
+            1152,
+            324
+          ],
+          "translation": [
+            301,
+            510
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1071,
+            314
+          ],
+          "sha256": "4a8fc1b11811b574327e27f9b33b29751c0f67b584a121857a29d305dca38bd9",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 102,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/004.png",
+          "source_rect": [
+            1308,
+            60,
+            1468,
+            324
+          ],
+          "translation": [
+            308,
+            490
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1384,
+            314
+          ],
+          "sha256": "04b0351862a8b843b0242865f1415c7b4c8d991c0832c5c314a62a69e4542266",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 152,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/005.png",
+          "source_rect": [
+            1620,
+            72,
+            1792,
+            324
+          ],
+          "translation": [
+            307,
+            502
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1697,
+            314
+          ],
+          "sha256": "d7da15962dc4abe7ed7b68830d7fd84d64066999d5a77b1c670f53d1ed5c3054",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 273,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/006.png",
+          "source_rect": [
+            1928,
+            64,
+            2108,
+            324
+          ],
+          "translation": [
+            300,
+            494
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            2012,
+            314
+          ],
+          "sha256": "0cdbd6e792c8de5353263e8164fe4221a43fa49d56c25d3f91ae06268d794ead",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 164,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/007.png",
+          "source_rect": [
+            60,
+            424,
+            240,
+            672
+          ],
+          "translation": [
+            306,
+            507
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            138,
+            661
+          ],
+          "sha256": "6bc7481419f9ea8fb8bb0c6ce87d6eaa7b0e29da54555e9e5e34cb9f9095e1fe",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 177,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/008.png",
+          "source_rect": [
+            356,
+            436,
+            552,
+            672
+          ],
+          "translation": [
+            299,
+            519
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            441,
+            661
+          ],
+          "sha256": "297670ef55fa10cf80751613fac4cc086f6721782d8b292f55f867b1ae350229",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 46,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/009.png",
+          "source_rect": [
+            660,
+            444,
+            860,
+            672
+          ],
+          "translation": [
+            297,
+            527
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            747,
+            661
+          ],
+          "sha256": "e97ecc23bcf0517e9638cb13decd45ad6b3aeef73f3c1aabd7c030459c7e1d2a",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 158,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/010.png",
+          "source_rect": [
+            972,
+            428,
+            1208,
+            672
+          ],
+          "translation": [
+            297,
+            511
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1059,
+            661
+          ],
+          "sha256": "2b33b93d05e52c5126eae5e038eb2b3b5785cc124fc27ac2a3f51a7bd1eab03f",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 213,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/011.png",
+          "source_rect": [
+            1316,
+            424,
+            1528,
+            672
+          ],
+          "translation": [
+            299,
+            507
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1401,
+            661
+          ],
+          "sha256": "a2c391bf4c9a68ce6df5e096fd35acaa23276dd623f132f608ea336f1affc456",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 306,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/012.png",
+          "source_rect": [
+            1636,
+            416,
+            1820,
+            672
+          ],
+          "translation": [
+            298,
+            499
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1722,
+            661
+          ],
+          "sha256": "6561b311648e98ddbdd3aad0ec77dd4f58562ea75f5844e9eed1b5ecd5f15a19",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 127,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        }
+      ],
+      "scale": 0.2711864406779661,
+      "native_facing": "right",
+      "warnings": [
+        "Original antialiased alpha and nonuniform pixel lattice retained; not strict NES pixel cells."
+      ]
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_race_sheet.png",
+      "sha256": "34bc0d686725a6ff4cfe5f2caece324173a23c09f218421c06bfa3f296e7746e",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 13,
+      "frames": [
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/race/000.png",
+          "source_rect": [
+            76,
+            64,
+            228,
+            328
+          ],
+          "translation": [
+            303,
+            493
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            157,
+            315
+          ],
+          "sha256": "245657b9545f54c80d2c0b0b7209d5b4388fac06d59a25f9a2234a8d73fe1793",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 656,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/race/001.png",
+          "source_rect": [
+            380,
+            60,
+            540,
+            328
+          ],
+          "translation": [
+            298,
+            489
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            466,
+            315
+          ],
+          "sha256": "6d4ba32c43b63dbb1d12ebbad2df5a1398347b11fbd5b65477d17bc37a089344",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 616,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/race/002.png",
+          "source_rect": [
+            684,
+            64,
+            844,
+            328
+          ],
+          "translation": [
+            298,
+            493
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            770,
+            315
+          ],
+          "sha256": "fa79c34f73414ac9c946621cccabee6cfd78c5da646a7b677557a6e9205ec3b3",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 808,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/race/003.png",
+          "source_rect": [
+            988,
+            76,
+            1156,
+            328
+          ],
+          "translation": [
+            297,
+            505
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1075,
+            315
+          ],
+          "sha256": "af444c7896a67bd04744c755a60fbbb11e7e6432c28c3ca55b5a23de763172bf",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 870,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/race/004.png",
+          "source_rect": [
+            1304,
+            64,
+            1460,
+            328
+          ],
+          "translation": [
+            309,
+            493
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1379,
+            315
+          ],
+          "sha256": "c66c210971dbdab632fedb565b8a334f62f9f3294e18f222635274f02c42fa86",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 574,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/race/005.png",
+          "source_rect": [
+            1608,
+            68,
+            1780,
+            328
+          ],
+          "translation": [
+            305,
+            497
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1687,
+            315
+          ],
+          "sha256": "129c15c392153fa3f5a4c10da8bc3427c51185d31dc2610e1fe8fde7f4ecd872",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 753,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/race/006.png",
+          "source_rect": [
+            1916,
+            64,
+            2096,
+            328
+          ],
+          "translation": [
+            297,
+            493
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            2003,
+            315
+          ],
+          "sha256": "2541a02b36b722e4a5bfcb750fc036b900d72bc0525f06252a78afee7548c827",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 821,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/race/007.png",
+          "source_rect": [
+            60,
+            420,
+            236,
+            672
+          ],
+          "translation": [
+            305,
+            505
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            139,
+            659
+          ],
+          "sha256": "adea35ca9faf9c5cefa727f5b3f6aebc26302478fd689e6f8002f6e9bb13b0b0",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 578,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/race/008.png",
+          "source_rect": [
+            364,
+            428,
+            552,
+            672
+          ],
+          "translation": [
+            302,
+            513
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            446,
+            659
+          ],
+          "sha256": "ac133feba9b926cd0f87b71b7cd5fc8f7303fef26bad1e4dae5ce05cfa810bc5",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 904,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/race/009.png",
+          "source_rect": [
+            660,
+            444,
+            852,
+            672
+          ],
+          "translation": [
+            299,
+            529
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            745,
+            659
+          ],
+          "sha256": "d2cab7704d2f219c4d3ad844f6d8f9e258771c8308605ecfe0c5126546d0d151",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 345,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/race/010.png",
+          "source_rect": [
+            972,
+            428,
+            1216,
+            672
+          ],
+          "translation": [
+            299,
+            513
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1057,
+            659
+          ],
+          "sha256": "abeb018f3f0eac1b7c3367ab83b1a5db6abbc5b773f55984c39088b2b41bcf48",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1310,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/race/011.png",
+          "source_rect": [
+            1308,
+            420,
+            1516,
+            672
+          ],
+          "translation": [
+            291,
+            505
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1401,
+            659
+          ],
+          "sha256": "faf8021af7dc4cdeede348b26c10b7475d0885da778001c2a0e26a9f11d02054",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 668,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/race/012.png",
+          "source_rect": [
+            1624,
+            412,
+            1808,
+            672
+          ],
+          "translation": [
+            297,
+            497
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1711,
+            659
+          ],
+          "sha256": "b021caf8f704e8b8dad906e3abce8db2a1ab4365b0d0d474b583bd50abd2f978",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 676,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        }
+      ],
+      "scale": 0.26666666666666666,
+      "native_facing": "right",
+      "warnings": [
+        "Original antialiased alpha and nonuniform pixel lattice retained; not strict NES pixel cells."
+      ]
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_walk.png",
+      "sha256": "82bcedfa3c131bc98b41d210ea553970dca733fcbadb20f8e6a17cc485a99786",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "frame_count": 6,
+      "frames": [
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/walk/000.png",
+          "source_rect": [
+            112,
+            20,
+            404,
+            496
+          ],
+          "translation": [
+            246,
+            281
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            250,
+            483
+          ],
+          "sha256": "3cae399c9692a58e9a08c9ba84871f82a396bd0ce2c99c3af32f4e644662dc9c",
+          "alpha_extrema": [
+            0,
+            254
+          ],
+          "removed_haze_pixels": 1222,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/walk/001.png",
+          "source_rect": [
+            632,
+            36,
+            888,
+            496
+          ],
+          "translation": [
+            256,
+            297
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            760,
+            483
+          ],
+          "sha256": "de9d1f279e5f36351cf713a4372371d49870360f65d058e2708cedc16ca61573",
+          "alpha_extrema": [
+            0,
+            254
+          ],
+          "removed_haze_pixels": 552,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/walk/002.png",
+          "source_rect": [
+            1144,
+            20,
+            1404,
+            496
+          ],
+          "translation": [
+            295,
+            281
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1233,
+            483
+          ],
+          "sha256": "942b9968ed474e28bdf9e76381d096ab50ad220a7c0f13f424eb80c0d8e27d3d",
+          "alpha_extrema": [
+            0,
+            254
+          ],
+          "removed_haze_pixels": 201,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/walk/003.png",
+          "source_rect": [
+            112,
+            532,
+            404,
+            1008
+          ],
+          "translation": [
+            239,
+            281
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            257,
+            995
+          ],
+          "sha256": "86b8f9476a590f8d27835d9d31b565c79c55500c6d20b927d877738da14e953a",
+          "alpha_extrema": [
+            0,
+            254
+          ],
+          "removed_haze_pixels": 1922,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/walk/004.png",
+          "source_rect": [
+            632,
+            548,
+            888,
+            1008
+          ],
+          "translation": [
+            259,
+            297
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            757,
+            995
+          ],
+          "sha256": "af381d74bf27fdadd9135d3dafb8fdc9c3b6c46e0fcec4586fe268e34181b2fa",
+          "alpha_extrema": [
+            0,
+            254
+          ],
+          "removed_haze_pixels": 597,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_01/frames/milestone_002/walk/005.png",
+          "source_rect": [
+            1144,
+            532,
+            1404,
+            1008
+          ],
+          "translation": [
+            313,
+            281
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1215,
+            995
+          ],
+          "sha256": "c8179604b528da98a43074aed62d68c08d846d1e931b33e2367f94ca204d5825",
+          "alpha_extrema": [
+            0,
+            254
+          ],
+          "removed_haze_pixels": 327,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        }
+      ],
+      "scale": 0.1415929203539823,
+      "native_facing": "right",
+      "warnings": [
+        "Original antialiased alpha and nonuniform pixel lattice retained; not strict NES pixel cells."
+      ]
+    }
+  ],
+  "animations": {
+    "character_master": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/character_master.tres",
+      "frames": 1,
+      "scale": 0.26666666666666666,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "race",
+      "frame_indices": [
+        0
+      ],
+      "note": ""
+    },
+    "idle": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/idle.tres",
+      "frames": 4,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": ""
+    },
+    "standoff_anticipation": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/standoff_anticipation.tres",
+      "frames": 7,
+      "scale": 0.26666666666666666,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "race",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "note": ""
+    },
+    "false_start": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/false_start.tres",
+      "frames": 2,
+      "scale": 0.26666666666666666,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "race",
+      "frame_indices": [
+        11,
+        12
+      ],
+      "note": ""
+    },
+    "race_launch": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/race_launch.tres",
+      "frames": 2,
+      "scale": 0.26666666666666666,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "race",
+      "frame_indices": [
+        7,
+        8
+      ],
+      "note": ""
+    },
+    "running": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/running.tres",
+      "frames": 3,
+      "scale": 0.26666666666666666,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "race",
+      "frame_indices": [
+        8,
+        9,
+        10
+      ],
+      "note": ""
+    },
+    "combat_idle": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/combat_idle.tres",
+      "frames": 4,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": "No dedicated Blue combat-idle sheet; supplied ready pose"
+    },
+    "stick_pickup": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/stick_pickup.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Red pickup sheet depicts race poses, not a stick pickup; use existing idle while awaiting replacement"
+    },
+    "forward_step": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/forward_step.tres",
+      "frames": 6,
+      "scale": 0.1415929203539823,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "walk",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note": ""
+    },
+    "backward_step": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/backward_step.tres",
+      "frames": 6,
+      "scale": 0.1415929203539823,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "walk",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note": ""
+    },
+    "high_attack": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/high_attack.tres",
+      "frames": 5,
+      "scale": 0.1553398058252427,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "high_attack",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "note": ""
+    },
+    "high_block": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/high_block.tres",
+      "frames": 4,
+      "scale": 0.13333333333333333,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "high_block",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": ""
+    },
+    "high_parry": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/high_parry.tres",
+      "frames": 4,
+      "scale": 0.13333333333333333,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "high_block",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": "Reuse supplied block with runtime flash; no invented parry artwork"
+    },
+    "mid_attack": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/mid_attack.tres",
+      "frames": 5,
+      "scale": 0.1523809523809524,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "mid_attack",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "note": ""
+    },
+    "mid_block": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/mid_block.tres",
+      "frames": 4,
+      "scale": 0.1095890410958904,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "mid_block",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": ""
+    },
+    "mid_parry": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/mid_parry.tres",
+      "frames": 4,
+      "scale": 0.1095890410958904,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "mid_block",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": "Reuse supplied block with runtime flash; no invented parry artwork"
+    },
+    "low_attack": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/low_attack.tres",
+      "frames": 5,
+      "scale": 0.1523809523809524,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "low_attack",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "note": ""
+    },
+    "low_block": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/low_block.tres",
+      "frames": 4,
+      "scale": 0.13445378151260504,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "low_block",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": ""
+    },
+    "low_parry": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/low_parry.tres",
+      "frames": 4,
+      "scale": 0.13445378151260504,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "low_block",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": "Reuse supplied block with runtime flash; no invented parry artwork"
+    },
+    "high_hit": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/high_hit.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    },
+    "mid_hit": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/mid_hit.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    },
+    "low_hit": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/low_hit.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    },
+    "stagger": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/stagger.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    },
+    "knockdown": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/knockdown.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    },
+    "victory": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/victory.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    },
+    "defeat": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/defeat.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    }
+  },
+  "missing_authored_states": [
+    "high_hit",
+    "mid_hit",
+    "low_hit",
+    "stagger",
+    "knockdown",
+    "victory",
+    "defeat",
+    "stick_pickup"
+  ],
+  "validation": "passed technical extraction; visual review required"
+}

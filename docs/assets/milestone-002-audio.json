@@ -1,0 +1,180 @@
+{
+  "files": [
+    {
+      "path": "assets/audio/music/120bpm/combat_120.wav",
+      "sha256": "e915052959494b7466bcf9cf35c575a6fda3f4c78b9eb26f8dff58a5b34fa7ad",
+      "format": "PCM WAV",
+      "duration_seconds": 8.0,
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "bits_per_sample": 24,
+      "frames": 352800,
+      "bpm_from_folder": 120,
+      "metadata_labels": [
+        "Tempo: 120.0"
+      ],
+      "duration_in_beats": 16.0,
+      "first_signal_above_minus46dB_seconds": 0.0,
+      "beat_zero_seconds": 0.0,
+      "loop_region": [
+        0.0,
+        8.0
+      ],
+      "alignment_status": "owner_confirmed: beat 1 at sample zero; whole-file boundaries"
+    },
+    {
+      "path": "assets/audio/music/120bpm/defeat_120.wav",
+      "sha256": "8acfdd0b9e8668468d54e628c9c0f7b8612982d61821b9e12970a1e68c95e735",
+      "format": "PCM WAV",
+      "duration_seconds": 4.0,
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "bits_per_sample": 24,
+      "frames": 176400,
+      "bpm_from_folder": 120,
+      "metadata_labels": [
+        "Tempo: 120.0"
+      ],
+      "duration_in_beats": 8.0,
+      "first_signal_above_minus46dB_seconds": 0.0,
+      "beat_zero_seconds": 0.0,
+      "loop_region": [
+        0.0,
+        4.0
+      ],
+      "alignment_status": "owner_confirmed: beat 1 at sample zero; whole-file boundaries"
+    },
+    {
+      "path": "assets/audio/music/120bpm/intro_120.wav",
+      "sha256": "1f4ef4b5d5a81d55b5598d0a158104965cad2958bd2ed805b34eaa1271a2ac96",
+      "format": "PCM WAV",
+      "duration_seconds": 8.0,
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "bits_per_sample": 24,
+      "frames": 352800,
+      "bpm_from_folder": 120,
+      "metadata_labels": [
+        "Tempo: 120.0"
+      ],
+      "duration_in_beats": 16.0,
+      "first_signal_above_minus46dB_seconds": 0.002018140589569161,
+      "beat_zero_seconds": 0.0,
+      "loop_region": [
+        0.0,
+        8.0
+      ],
+      "alignment_status": "owner_confirmed: beat 1 at sample zero; whole-file boundaries"
+    },
+    {
+      "path": "assets/audio/music/120bpm/menu_120.wav",
+      "sha256": "055d2514b7011869c6f8dbadc2882383ff15330ede3368a96aa0bf733a77842c",
+      "format": "PCM WAV",
+      "duration_seconds": 8.0,
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "bits_per_sample": 24,
+      "frames": 352800,
+      "bpm_from_folder": 120,
+      "metadata_labels": [
+        "Tempo: 120.0"
+      ],
+      "duration_in_beats": 16.0,
+      "first_signal_above_minus46dB_seconds": 0.0,
+      "beat_zero_seconds": 0.0,
+      "loop_region": [
+        0.0,
+        8.0
+      ],
+      "alignment_status": "owner_confirmed: beat 1 at sample zero; whole-file boundaries"
+    },
+    {
+      "path": "assets/audio/music/120bpm/standoff_120.wav",
+      "sha256": "88484a96d072682a747457c250b94eeba021f0a4c27ea1f529bfefc25c12bac0",
+      "format": "PCM WAV",
+      "duration_seconds": 8.0,
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "bits_per_sample": 24,
+      "frames": 352800,
+      "bpm_from_folder": 120,
+      "metadata_labels": [
+        "Tempo: 120.0"
+      ],
+      "duration_in_beats": 16.0,
+      "first_signal_above_minus46dB_seconds": 0.0,
+      "beat_zero_seconds": 0.0,
+      "loop_region": [
+        0.0,
+        8.0
+      ],
+      "alignment_status": "owner_confirmed: beat 1 at sample zero; whole-file boundaries"
+    },
+    {
+      "path": "assets/audio/music/120bpm/victory_120.wav",
+      "sha256": "8e3b0e0f2e2fd8d8389764d435be9aaf4894a6a6553df09a883e15ed29ca691e",
+      "format": "PCM WAV",
+      "duration_seconds": 4.0,
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "bits_per_sample": 24,
+      "frames": 176400,
+      "bpm_from_folder": 120,
+      "metadata_labels": [
+        "Tempo: 120.0"
+      ],
+      "duration_in_beats": 8.0,
+      "first_signal_above_minus46dB_seconds": 0.0,
+      "beat_zero_seconds": 0.0,
+      "loop_region": [
+        0.0,
+        4.0
+      ],
+      "alignment_status": "owner_confirmed: beat 1 at sample zero; whole-file boundaries"
+    },
+    {
+      "path": "assets/audio/music/140bpm/combat_140.wav",
+      "sha256": "6c1e7fc290c3e6614cf200eca19d78d9cec05182ca1411a9cd6457136e3c0aa5",
+      "format": "PCM WAV",
+      "duration_seconds": 6.857142857142857,
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "bits_per_sample": 24,
+      "frames": 302400,
+      "bpm_from_folder": 140,
+      "metadata_labels": [
+        "Tempo: 140.0"
+      ],
+      "duration_in_beats": 16.0,
+      "first_signal_above_minus46dB_seconds": 0.0,
+      "beat_zero_seconds": 0.0,
+      "loop_region": [
+        0.0,
+        6.857142857142857
+      ],
+      "alignment_status": "owner_confirmed: beat 1 at sample zero; whole-file boundaries"
+    },
+    {
+      "path": "assets/audio/music/160bpm/combat_160.wav",
+      "sha256": "48595ff6f24bb47f0daf87921666cd09049fe7985cf9475301c7aa5aa4fd913e",
+      "format": "PCM WAV",
+      "duration_seconds": 6.0,
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "bits_per_sample": 24,
+      "frames": 264600,
+      "bpm_from_folder": 160,
+      "metadata_labels": [
+        "Tempo: 160.0"
+      ],
+      "duration_in_beats": 16.0,
+      "first_signal_above_minus46dB_seconds": 0.0,
+      "beat_zero_seconds": 0.0,
+      "loop_region": [
+        0.0,
+        6.0
+      ],
+      "alignment_status": "owner_confirmed: beat 1 at sample zero; whole-file boundaries"
+    }
+  ]
+}

@@ -40,9 +40,12 @@ func key(action: String, down: bool = true) -> void:
 func run() -> void:
  var scene := load(ProjectSettings.get_setting("application/run/main_scene")) as PackedScene
  game = scene.instantiate()
+ game.conductor.clock_override = func(): return time
  root.add_child(game)
  game.set_process(false)
  game.metronome_enabled = false
+ game.audio.enabled = false
+ game.audio.stop()
  game.conductor.clock_override = func(): return time
  for player in range(2):
   var prefix := "p%d_" % (player + 1)
@@ -189,7 +192,7 @@ func run() -> void:
  game.refresh()
  if DisplayServer.get_name() != "headless":
   for player in range(2):
-   game.fighters[player].position = Vector2(game.bout.positions[player],120)
+   game.fighters[player].position = Vector2(game.bout.positions[player],150)
   game.debug_visible = true
   game.refresh()
   await process_frame

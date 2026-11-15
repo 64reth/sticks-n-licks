@@ -1,12 +1,110 @@
 {
- "menu": {"path":"", "beat_zero_seconds":0},
- "standoff": {"path":"", "beat_zero_seconds":0},
- "120": {"path":"", "beat_zero_seconds":0},
- "140": {"path":"", "beat_zero_seconds":0},
- "160": {"path":"", "beat_zero_seconds":0},
- "race": {"path":"", "beat_zero_seconds":0},
- "hit": {"path":"", "beat_zero_seconds":0},
- "block": {"path":"", "beat_zero_seconds":0},
- "parry": {"path":"", "beat_zero_seconds":0},
- "victory": {"path":"", "beat_zero_seconds":0}
+  "menu": {
+    "path": "res://assets/audio/music/120bpm/menu_120.wav",
+    "bpm": 120,
+    "beat_zero_seconds": 0.0,
+    "alignment_confirmed": true,
+    "loop": true,
+    "loop_start_seconds": 0.0,
+    "loop_end_seconds": 8.0,
+    "notes": "Owner explicitly confirmed beat 1 at sample zero and whole-file loop boundaries. Outcome/intro arrangements remain one-shot by gameplay role."
+  },
+  "intro": {
+    "path": "res://assets/audio/music/120bpm/intro_120.wav",
+    "bpm": 120,
+    "beat_zero_seconds": 0.0,
+    "alignment_confirmed": true,
+    "loop": false,
+    "loop_start_seconds": 0.0,
+    "loop_end_seconds": 8.0,
+    "notes": "Owner explicitly confirmed beat 1 at sample zero and whole-file loop boundaries. Outcome/intro arrangements remain one-shot by gameplay role."
+  },
+  "standoff": {
+    "path": "res://assets/audio/music/120bpm/standoff_120.wav",
+    "bpm": 120,
+    "beat_zero_seconds": 0.0,
+    "alignment_confirmed": true,
+    "loop": true,
+    "loop_start_seconds": 0.0,
+    "loop_end_seconds": 8.0,
+    "notes": "Owner explicitly confirmed beat 1 at sample zero and whole-file loop boundaries. Outcome/intro arrangements remain one-shot by gameplay role."
+  },
+  "120": {
+    "path": "res://assets/audio/music/120bpm/combat_120.wav",
+    "bpm": 120,
+    "beat_zero_seconds": 0.0,
+    "alignment_confirmed": true,
+    "loop": true,
+    "loop_start_seconds": 0.0,
+    "loop_end_seconds": 8.0,
+    "notes": "Owner explicitly confirmed beat 1 at sample zero and whole-file loop boundaries. Outcome/intro arrangements remain one-shot by gameplay role."
+  },
+  "140": {
+    "path": "res://assets/audio/music/140bpm/combat_140.wav",
+    "bpm": 140,
+    "beat_zero_seconds": 0.0,
+    "alignment_confirmed": true,
+    "loop": true,
+    "loop_start_seconds": 0.0,
+    "loop_end_seconds": 6.857142857142857,
+    "notes": "Owner explicitly confirmed beat 1 at sample zero and whole-file loop boundaries. Outcome/intro arrangements remain one-shot by gameplay role."
+  },
+  "160": {
+    "path": "res://assets/audio/music/160bpm/combat_160.wav",
+    "bpm": 160,
+    "beat_zero_seconds": 0.0,
+    "alignment_confirmed": true,
+    "loop": true,
+    "loop_start_seconds": 0.0,
+    "loop_end_seconds": 6.0,
+    "notes": "Owner explicitly confirmed beat 1 at sample zero and whole-file loop boundaries. Outcome/intro arrangements remain one-shot by gameplay role."
+  },
+  "victory": {
+    "path": "res://assets/audio/music/120bpm/victory_120.wav",
+    "bpm": 120,
+    "beat_zero_seconds": 0.0,
+    "alignment_confirmed": true,
+    "loop": false,
+    "loop_start_seconds": 0.0,
+    "loop_end_seconds": 4.0,
+    "notes": "Owner explicitly confirmed beat 1 at sample zero and whole-file loop boundaries. Outcome/intro arrangements remain one-shot by gameplay role."
+  },
+  "defeat": {
+    "path": "res://assets/audio/music/120bpm/defeat_120.wav",
+    "bpm": 120,
+    "beat_zero_seconds": 0.0,
+    "alignment_confirmed": true,
+    "loop": false,
+    "loop_start_seconds": 0.0,
+    "loop_end_seconds": 4.0,
+    "notes": "Owner explicitly confirmed beat 1 at sample zero and whole-file loop boundaries. Outcome/intro arrangements remain one-shot by gameplay role."
+  },
+  "race": {
+    "path": "",
+    "beat_zero_seconds": null,
+    "alignment_confirmed": false,
+    "loop": false,
+    "notes": "Not supplied. Race uses existing synthetic authoritative cue; other optional SFX silent."
+  },
+  "hit": {
+    "path": "",
+    "beat_zero_seconds": null,
+    "alignment_confirmed": false,
+    "loop": false,
+    "notes": "Not supplied. Race uses existing synthetic authoritative cue; other optional SFX silent."
+  },
+  "block": {
+    "path": "",
+    "beat_zero_seconds": null,
+    "alignment_confirmed": false,
+    "loop": false,
+    "notes": "Not supplied. Race uses existing synthetic authoritative cue; other optional SFX silent."
+  },
+  "parry": {
+    "path": "",
+    "beat_zero_seconds": null,
+    "alignment_confirmed": false,
+    "loop": false,
+    "notes": "Not supplied. Race uses existing synthetic authoritative cue; other optional SFX silent."
+  }
 }

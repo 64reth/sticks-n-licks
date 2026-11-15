@@ -1,3 +1,478 @@
 {
-  "idle": "assets/characters/fighter_01/frames/placeholder_idle/idle.tres"
+  "version": 2,
+  "native_facing": "right",
+  "animations": {
+    "character_master": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/character_master.tres",
+      "frames": 1,
+      "scale": 0.26666666666666666,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "race",
+      "frame_indices": [
+        0
+      ],
+      "note": ""
+    },
+    "idle": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/idle.tres",
+      "frames": 4,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": ""
+    },
+    "standoff_anticipation": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/standoff_anticipation.tres",
+      "frames": 7,
+      "scale": 0.26666666666666666,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "race",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "note": ""
+    },
+    "false_start": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/false_start.tres",
+      "frames": 2,
+      "scale": 0.26666666666666666,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "race",
+      "frame_indices": [
+        11,
+        12
+      ],
+      "note": ""
+    },
+    "race_launch": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/race_launch.tres",
+      "frames": 2,
+      "scale": 0.26666666666666666,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "race",
+      "frame_indices": [
+        7,
+        8
+      ],
+      "note": ""
+    },
+    "running": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/running.tres",
+      "frames": 3,
+      "scale": 0.26666666666666666,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "race",
+      "frame_indices": [
+        8,
+        9,
+        10
+      ],
+      "note": ""
+    },
+    "combat_idle": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/combat_idle.tres",
+      "frames": 4,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": "No dedicated Blue combat-idle sheet; supplied ready pose"
+    },
+    "stick_pickup": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/stick_pickup.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Red pickup sheet depicts race poses, not a stick pickup; use existing idle while awaiting replacement"
+    },
+    "forward_step": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/forward_step.tres",
+      "frames": 6,
+      "scale": 0.1415929203539823,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "walk",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note": ""
+    },
+    "backward_step": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/backward_step.tres",
+      "frames": 6,
+      "scale": 0.1415929203539823,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "walk",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note": ""
+    },
+    "high_attack": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/high_attack.tres",
+      "frames": 5,
+      "scale": 0.1553398058252427,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "high_attack",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "note": ""
+    },
+    "high_block": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/high_block.tres",
+      "frames": 4,
+      "scale": 0.13333333333333333,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "high_block",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": ""
+    },
+    "high_parry": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/high_parry.tres",
+      "frames": 4,
+      "scale": 0.13333333333333333,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "high_block",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": "Reuse supplied block with runtime flash; no invented parry artwork"
+    },
+    "mid_attack": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/mid_attack.tres",
+      "frames": 5,
+      "scale": 0.1523809523809524,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "mid_attack",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "note": ""
+    },
+    "mid_block": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/mid_block.tres",
+      "frames": 4,
+      "scale": 0.1095890410958904,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "mid_block",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": ""
+    },
+    "mid_parry": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/mid_parry.tres",
+      "frames": 4,
+      "scale": 0.1095890410958904,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "mid_block",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": "Reuse supplied block with runtime flash; no invented parry artwork"
+    },
+    "low_attack": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/low_attack.tres",
+      "frames": 5,
+      "scale": 0.1523809523809524,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "low_attack",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "note": ""
+    },
+    "low_block": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/low_block.tres",
+      "frames": 4,
+      "scale": 0.13445378151260504,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "low_block",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": ""
+    },
+    "low_parry": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/low_parry.tres",
+      "frames": 4,
+      "scale": 0.13445378151260504,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "low_block",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": "Reuse supplied block with runtime flash; no invented parry artwork"
+    },
+    "high_hit": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/high_hit.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    },
+    "mid_hit": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/mid_hit.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    },
+    "low_hit": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/low_hit.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    },
+    "stagger": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/stagger.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    },
+    "knockdown": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/knockdown.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    },
+    "victory": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/victory.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    },
+    "defeat": {
+      "resource": "assets/characters/fighter_01/frames/milestone_002/defeat.tres",
+      "frames": 1,
+      "scale": 0.12121212121212122,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0
+      ],
+      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+    }
+  }
 }

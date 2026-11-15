@@ -3,11 +3,18 @@ extends Node2D
 var sprite := AnimatedSprite2D.new()
 var pose: String = "idle"
 var asset_config: String = ""
+var animation_meta: Dictionary = {}
+var native_facing: int = 1
+var looking: int = 1
+var spark_time: float = 0.0
+var flash_time: float = 0.0
 var color := Color("f3ba55")
 const STATES := ["idle", "standoff_anticipation", "false_start", "race_launch", "running", "stick_pickup", "combat_idle", "forward_step", "backward_step", "high_attack", "mid_attack", "low_attack", "high_block", "mid_block", "low_block", "high_parry", "mid_parry", "low_parry", "high_hit", "mid_hit", "low_hit", "stagger", "knockdown", "victory", "defeat"]
 
 func _ready() -> void:
  add_child(sprite)
+ sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+ sprite.position.y = -30
  var frames := SpriteFrames.new()
  frames.remove_animation("default")
  for state in STATES:
@@ -19,11 +26,18 @@ func _ready() -> void:
   var file := FileAccess.open(asset_config, FileAccess.READ)
   if file:
    var config = JSON.parse_string(file.get_as_text())
-   for state in config:
-    var path: String = "res://" + str(config[state])
+   var entries: Dictionary = config.get("animations", config)
+   native_facing = -1 if config.get("native_facing", "right") == "left" else 1
+   for state in entries:
+    var entry = entries[state]
+    var path: String = "res://" + str(entry.get("resource", "") if entry is Dictionary else entry)
+    if entry is Dictionary:
+     animation_meta[state] = entry
     if ResourceLoader.exists(path):
      var authored := load(path) as SpriteFrames
      if authored and authored.has_animation(state):
+      if not frames.has_animation(state):
+       frames.add_animation(state)
       frames.clear(state)
       for index in range(authored.get_frame_count(state)):
        frames.add_frame(state, authored.get_frame_texture(state, index))
@@ -65,7 +79,58 @@ func placeholder(state: String, frame: int) -> ImageTexture:
   img.fill_rect(Rect2i(38, 35, 20, 6), Color("ed5565"))
  return ImageTexture.create_from_image(img)
 
+func face(direction: int) -> void:
+ looking = direction
+ sprite.flip_h = direction != native_facing
+
 func set_pose(value: String) -> void:
+ if pose == value and sprite.animation == value:
+  return
  pose = value
  if sprite.sprite_frames and sprite.sprite_frames.has_animation(value):
+  if animation_meta.has(value):
+   var meta: Dictionary = animation_meta[value]
+   var factor := float(meta["scale"])
+   sprite.scale = Vector2.ONE * factor
+   sprite.position = Vector2(0, (float(meta["canvas"][1]) / 2.0 - float(meta["ground_pixel"])) * factor)
+  sprite.speed_scale = 1.0
   sprite.play(value)
+
+func rhythmic_pose(value: String, seconds: float) -> void:
+ set_pose(value)
+ sprite.frame = 0
+ sprite.frame_progress = 0.0
+ var count := sprite.sprite_frames.get_frame_count(value)
+ sprite.speed_scale = count / maxf(0.001, seconds * sprite.sprite_frames.get_animation_speed(value))
+
+func prepare(value: String, seconds: float) -> void:
+ set_pose(value)
+ sprite.frame = 0
+ var target_frame := 3 if value.ends_with("attack") else 2
+ sprite.speed_scale = target_frame / maxf(0.001, seconds * sprite.sprite_frames.get_animation_speed(value))
+
+func impact(value: String, seconds: float) -> void:
+ set_pose(value)
+ var count := sprite.sprite_frames.get_frame_count(value)
+ sprite.frame = mini(3 if value.ends_with("attack") else 2, count - 1)
+ sprite.frame_progress = 0.0
+ sprite.speed_scale = maxf(1, count - sprite.frame) / maxf(0.001, seconds * sprite.sprite_frames.get_animation_speed(value))
+
+func parry(height: String, seconds: float) -> void:
+ impact(height + "_parry", seconds)
+ spark_time = 0.18
+
+func hit_feedback() -> void:
+ flash_time = 0.2
+
+func _process(delta: float) -> void:
+ spark_time = maxf(0, spark_time - delta)
+ flash_time = maxf(0, flash_time - delta)
+ sprite.modulate = Color(1, 0.45, 0.45) if flash_time > 0 else Color.WHITE
+ queue_redraw()
+
+func _draw() -> void:
+ if spark_time > 0:
+  var at := Vector2(looking * 25, -38)
+  draw_line(at - Vector2(5, 0), at + Vector2(5, 0), Color("fff0ad"), 1)
+  draw_line(at - Vector2(0, 5), at + Vector2(0, 5), Color("fff0ad"), 1)

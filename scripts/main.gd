@@ -40,7 +40,11 @@ func _ready() -> void:
  max_anticipation_phrases = int(settings.get("max_anticipation_phrases", 3))
  race_timeout = float(settings.get("race_timeout_seconds", 2.0))
  cue_style = str(settings.get("cue_style", "snare"))
+ audio.clock_source = conductor.now
+ audio.enabled = not conductor.clock_override.is_valid()
+ audio.latency_ms = float(settings.get("audio_latency_ms", 0.0))
  add_child(audio)
+ metronome_enabled = not audio.tracks.has("120")
  add_child(click_player)
  click_stream = AudioStreamWAV.new()
  click_stream.format = AudioStreamWAV.FORMAT_16_BITS
@@ -57,7 +61,8 @@ func _ready() -> void:
   fighter.asset_config = "res://data/animations/fighter_0%d.json" % (player + 1)
   fighter.color = Color("f3ba55") if player == 0 else Color("66c9c8")
   add_child(fighter)
-  fighter.sprite.flip_h = player == 1
+  fighter.face(1 if player == 0 else -1)
+  fighter.position = Vector2(bout.positions[player], 150)
   fighters.append(fighter)
  label.position = Vector2(8, 5)
  label.add_theme_font_size_override("font_size", 12)
@@ -70,8 +75,8 @@ func _ready() -> void:
  audio.play_track("menu", conductor.now())
  refresh()
 
-func play_click() -> void:
- if metronome_enabled and DisplayServer.get_name() != "headless":
+func play_click(force: bool = false) -> void:
+ if (force or metronome_enabled) and DisplayServer.get_name() != "headless":
   click_player.play()
 
 func begin() -> void:
@@ -89,7 +94,7 @@ func begin() -> void:
  mode = "standoff"
  status = "Wait for GO. Early press forfeits the race."
  previous_bpm = 120
- audio.play_track("standoff", conductor.epoch)
+ audio.play_track("standoff", conductor.epoch, true)
  for fighter in fighters:
   fighter.set_pose("standoff_anticipation")
 
@@ -101,7 +106,7 @@ func _process(delta: float) -> void:
   mode = "race"
   status = "GO! Grab your stick"
   if cue_style == "snare":
-   play_click()
+   play_click(true)
   else:
    click_player.stop()
    audio.music.stop()
@@ -123,7 +128,8 @@ func _process(delta: float) -> void:
     status = "P%d takes initiative. Both fighters collect sticks." % (result + 1)
     for fighter in fighters:
      fighter.set_pose("stick_pickup")
-    conductor.start(at + 0.75)
+    var next_boundary: float = conductor.epoch + ceil((at + 0.75 - conductor.epoch) / 2.0) * 2.0
+    conductor.start(next_boundary)
     phrase_resolved = false
  if mode == "pickup" and at >= conductor.epoch:
   mode = "combat"
@@ -132,20 +138,20 @@ func _process(delta: float) -> void:
  if mode == "combat" and not phrase_resolved and at > conductor.action_time() + (conductor.good_ms + controls[0].combination_ms + maxf(0.0, conductor.latency_ms)) / 1000.0:
   resolve_exchange()
  for player in range(2):
-  fighters[player].sprite.flip_h = facing(player) < 0
+  fighters[player].face(facing(player))
   var target_x := bout.positions[player]
   if mode == "pickup" or (mode == "race" and bout.reactions[player] >= 0):
    target_x = 138.0 if player == 0 else 182.0
    if mode == "race":
     fighters[player].set_pose("running")
-  fighters[player].position = fighters[player].position.lerp(Vector2(target_x, 120), minf(1.0, delta * 16))
+  fighters[player].position = fighters[player].position.lerp(Vector2(target_x, 150), minf(1.0, delta * 16))
   if mode == "combat" and at > pose_until:
    fighters[player].set_pose("combat_idle")
  refresh()
  queue_redraw()
 
 func game_time() -> float:
- if mode == "combat" and audio.tracks.has(audio.active) and audio.music.playing:
+ if mode == "combat" and not conductor.clock_override.is_valid() and audio.tracks.has(audio.active) and audio.music.playing:
   return audio.anchor + maxf(0.0, audio.audio_time())
  return conductor.now()
 
@@ -167,7 +173,7 @@ func on_beat(beat: int, _phrase: int) -> void:
  if mode == "standoff":
   # Earlier anticipation phrases continue; only the final fourth beat cuts off.
   if beat <= 3 or conductor.now() < cue - 0.01:
-   play_click()
+   play_click(true)
  elif mode == "combat":
   click_player.pitch_scale = 1.5 if beat == 4 else 1.0
   play_click()
@@ -176,15 +182,24 @@ func on_beat(beat: int, _phrase: int) -> void:
    for player in range(2):
     bout.movements[player] = controls[player].step(beat, _phrase)
     if bout.movements[player] != 0:
-     fighters[player].set_pose("forward_step" if bout.movements[player] == facing(player) else "backward_step")
+     fighters[player].rhythmic_pose("forward_step" if bout.movements[player] == facing(player) else "backward_step", conductor.duration())
    bout.move()
    for player in range(2):
     if not is_equal_approx(before[player], bout.positions[player]):
      controls[player].last_step_time = conductor.beat_time
      controls[player].last_step_processed = game_time()
-   pose_until = conductor.now() + 0.16
+   pose_until = conductor.now() + conductor.duration() * 0.85
   else:
    bout.movements = [0, 0]
+   for player in range(2):
+    present_combat(player)
+
+func present_combat(player: int) -> void:
+ if bout.selections[player] < 0 or conductor.grade(bout.errors[player]) == "miss":
+  return
+ var height: String = ["high", "mid", "low"][bout.selections[player]]
+ fighters[player].impact(height + ("_attack" if bout.initiative == player else "_block"), conductor.duration() * 0.7)
+ pose_until = conductor.now() + conductor.duration() * 0.85
 
 func facing(player: int) -> int:
  return 1 if bout.positions[1 - player] > bout.positions[player] else -1
@@ -203,18 +218,18 @@ func resolve_exchange() -> void:
  var height: String = ["high", "mid", "low"][direction]
  status = bout.resolve(conductor)
  pose_until = conductor.now() + 0.35
- fighters[attack].set_pose(height + "_attack")
  if status.begins_with("Perfect"):
-  fighters[defense].set_pose(height + "_parry")
+  fighters[defense].parry(height, conductor.duration() * 0.5)
   audio.sound("parry")
  elif status.begins_with("Blocked"):
-  fighters[defense].set_pose(height + "_block")
   audio.sound("block")
  elif status.begins_with("Clean") or bout.winner >= 0:
   fighters[defense].set_pose(height + "_hit")
+  fighters[defense].hit_feedback()
   audio.sound("hit")
  if bout.winner >= 0:
   mode = "finishing"
+  audio.schedule_track("victory", conductor.phrase_start + conductor.duration() * 4.0)
   finish_victory(bout.winner)
 
 func finish_victory(player: int) -> void:
@@ -223,7 +238,6 @@ func finish_victory(player: int) -> void:
  await get_tree().create_timer(0.45).timeout
  fighters[player].set_pose("victory")
  fighters[1 - player].set_pose("defeat")
- audio.sound("victory")
  mode = "victory"
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -274,6 +288,12 @@ func _unhandled_input(event: InputEvent) -> void:
    if conductor.grade(error) != "miss":
     controls[player].suppress_movement()
     bout.movements[player] = 0
+    if at >= conductor.action_time():
+     present_combat(player)
+    else:
+     var height: String = ["high", "mid", "low"][bout.selections[player]]
+     fighters[player].prepare(height + ("_attack" if bout.initiative == player else "_block"), conductor.action_time() - at)
+     pose_until = conductor.now() + conductor.duration()
 
 func refresh() -> void:
  label.text = "STICKS N LICKS     %d BPM" % conductor.bpm
@@ -296,7 +316,7 @@ Enter rematch · Esc menu"
    var control := controls[player]
    var stamp := "--/--" if is_inf(control.last_step_time) else "%.3f/%.3fs" % [control.last_step_time, control.last_step_processed]
    detail.text += "\nP%d %s" % [player + 1, stamp]
-  detail.text += "\nAudio %sms · FPS %d" % [str(audio.offsets.get(audio.active, 0)), Engine.get_frames_per_second()]
+  detail.text += "\n%s\nBeat %d phase %s · next BPM %d" % [audio.diagnostic(), conductor.beat, mode, conductor.pending_bpm]
 
 func _draw() -> void:
  draw_rect(Rect2(0, 0, 320, 180), Color("151e29"))

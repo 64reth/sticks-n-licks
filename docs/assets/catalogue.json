@@ -1,6 +1,1140 @@
 {
-  "originals_policy": "Never overwrite sources or supplied references",
+  "originals_policy": "Never overwrite supplied originals. Derived native frames retain source RGBA with explicit alpha-haze removal and padding.",
   "assets": [
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/high_attack/000.png",
+      "sha256": "5aeaedf1a68e92e042f1069129012e0d719fc8e3278c9d209b050477d8bee881",
+      "bytes": 120253,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/high_attack/001.png",
+      "sha256": "ae8ac73d56dbffd8ef22ade92c5dc50bd8760959e646a90745fba297075a4e20",
+      "bytes": 118812,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/high_attack/002.png",
+      "sha256": "7ee0e4aeba5806338121e1953d5271dce85cfb5ef1be9f67750df83c795f598d",
+      "bytes": 129173,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/high_attack/003.png",
+      "sha256": "eeb3774a7a671121d88c8aadb8b5947e909e0163146c280b5348dccebb7c798d",
+      "bytes": 135146,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/high_attack/004.png",
+      "sha256": "9c4e889710aa3d8b466b7546d7994e29cae304f3d59ead3d153c3ba5547c5263",
+      "bytes": 122507,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/high_block/000.png",
+      "sha256": "4baeb107f72604111bfc2b3a47550f3fa29f90d6e9b2d3f38c24f034b1c1efbc",
+      "bytes": 158328,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/high_block/001.png",
+      "sha256": "0adbd9ca520afd86fb55b9cdea57e6ec3a6a7900144851fc7872f7a4d6419d07",
+      "bytes": 160676,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/high_block/002.png",
+      "sha256": "7360a4dd7fae1a83fe17aa6a9f1dd96e99e83b9f49bd58b050622df99bbe85c1",
+      "bytes": 163661,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/high_block/003.png",
+      "sha256": "d94786c54fd5fb7498dfe168927f6319b906d1a33306c4c7b5939d2362b2661d",
+      "bytes": 159286,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/idle/000.png",
+      "sha256": "43f9f8ecbcf449487a67da153cbb66b0ac5274514913fe7c0aff5be9a8fcca84",
+      "bytes": 163893,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/idle/001.png",
+      "sha256": "d7ca0e965858afa927799a8ad7c88d32601fac10b686a2ecb792acbc7f36d52f",
+      "bytes": 162816,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/idle/002.png",
+      "sha256": "13935ba502cec96dc3d9a6a4f44d3dc3980b2aa0c5d262517c3141cd4b204ecf",
+      "bytes": 165712,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/idle/003.png",
+      "sha256": "f4d1d5d9f7702c4b258ca6fd2ae04b63ae744ff82ea053179345127764bda89a",
+      "bytes": 163493,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/low_attack/000.png",
+      "sha256": "83e1557fa5296d306eb24a48e75dba297550f5da3fba5908cf6cfa3a47db0aca",
+      "bytes": 124012,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/low_attack/001.png",
+      "sha256": "8eb0089cb7aec9d6d3ec175663593f317711ee89606b7605a50ca6f29cc1e959",
+      "bytes": 119277,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/low_attack/002.png",
+      "sha256": "61e8cdd34774687bdf78fbb85aeb6a6c9745c402634c226834172556d3a1bb38",
+      "bytes": 128607,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/low_attack/003.png",
+      "sha256": "c9142c51403a9f3169104c9366f6bf4f4c03555ff8e11470ffd7bbc70ee93c26",
+      "bytes": 136165,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/low_attack/004.png",
+      "sha256": "e4919fa7acb05386220fe9b3171b248c3d589940079a05158bd9e8e1808cf38a",
+      "bytes": 125824,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/low_block/000.png",
+      "sha256": "a5874dd81ec533a31dabb2cda61fe9adc7d885c9301b10df162131a042ac3877",
+      "bytes": 139182,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/low_block/001.png",
+      "sha256": "373012151d89c4c223bd5fa38975f4d5d45705b3d8b963cb0c26cf417f3ca9cb",
+      "bytes": 135239,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/low_block/002.png",
+      "sha256": "f3286d6e89db90040f27be0b457163a500dbca44c5015b0ba356e0b11d82ad56",
+      "bytes": 131553,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/low_block/003.png",
+      "sha256": "93c152e9dd74447e4b847f54412dc511abbbde14348d553e7371c5ac3a637bfe",
+      "bytes": 140098,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/mid_attack/000.png",
+      "sha256": "d4eacf2e8d3a30b56c047fd36193ea3f41e88eb85109e8212ce5e9b8d0f25e00",
+      "bytes": 123138,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/mid_attack/001.png",
+      "sha256": "f5dce827bf82dc78109faa659df8e605eac0d7a8ea2d8f6a3a4ebef28babb743",
+      "bytes": 131479,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/mid_attack/002.png",
+      "sha256": "dc8c77aba109135aab04a05d94961c18549862891dbf756f292bff2a4f8c3d5d",
+      "bytes": 129076,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/mid_attack/003.png",
+      "sha256": "7395c521941ce11b2aeacfbcbca66064c916eefb324801d3cc342af31c2fe9ff",
+      "bytes": 132273,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/mid_attack/004.png",
+      "sha256": "dae9e6d49123242a41acf490e3ab82fcc4bb951aa6489a1de079b6365607ace4",
+      "bytes": 127147,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/mid_block/000.png",
+      "sha256": "891da31101ad0567d3c6a1b8bc08034778b03d891268c4d64a6dbbec4a523aab",
+      "bytes": 189566,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/mid_block/001.png",
+      "sha256": "98642e985dcb44dd5a2db96e0e3fa773d32f2f24c15f13f0e058a8e7181f4303",
+      "bytes": 192478,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/mid_block/002.png",
+      "sha256": "742f31aa2feb539d28596927c7a2d9a2cd0fda5889b9c4e2ca26ef7edcad325b",
+      "bytes": 197704,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/mid_block/003.png",
+      "sha256": "b9b378df9de105f26c7a7d1e2c0d3cd2a8797e1a687e105590490b24caa9d69f",
+      "bytes": 186488,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/pickup/000.png",
+      "sha256": "c02368565ceb99883ba3990f70afe1a39046aa0336d527b1a3bcaae2ec01864f",
+      "bytes": 54126,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/pickup/001.png",
+      "sha256": "41be6428d7d5fb213fc11f1eda5882a740be644126a49a4c405c364e9052187b",
+      "bytes": 55562,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/pickup/002.png",
+      "sha256": "2e5df2ccdd296a6f4f4d194d110d965843d257fded56564a94f9cb0df9c03f5e",
+      "bytes": 54798,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/pickup/003.png",
+      "sha256": "4a8fc1b11811b574327e27f9b33b29751c0f67b584a121857a29d305dca38bd9",
+      "bytes": 56144,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/pickup/004.png",
+      "sha256": "04b0351862a8b843b0242865f1415c7b4c8d991c0832c5c314a62a69e4542266",
+      "bytes": 57638,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/pickup/005.png",
+      "sha256": "d7da15962dc4abe7ed7b68830d7fd84d64066999d5a77b1c670f53d1ed5c3054",
+      "bytes": 59768,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/pickup/006.png",
+      "sha256": "0cdbd6e792c8de5353263e8164fe4221a43fa49d56c25d3f91ae06268d794ead",
+      "bytes": 57837,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/pickup/007.png",
+      "sha256": "6bc7481419f9ea8fb8bb0c6ce87d6eaa7b0e29da54555e9e5e34cb9f9095e1fe",
+      "bytes": 58597,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/pickup/008.png",
+      "sha256": "297670ef55fa10cf80751613fac4cc086f6721782d8b292f55f867b1ae350229",
+      "bytes": 61903,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/pickup/009.png",
+      "sha256": "e97ecc23bcf0517e9638cb13decd45ad6b3aeef73f3c1aabd7c030459c7e1d2a",
+      "bytes": 60226,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/pickup/010.png",
+      "sha256": "2b33b93d05e52c5126eae5e038eb2b3b5785cc124fc27ac2a3f51a7bd1eab03f",
+      "bytes": 67232,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/pickup/011.png",
+      "sha256": "a2c391bf4c9a68ce6df5e096fd35acaa23276dd623f132f608ea336f1affc456",
+      "bytes": 68676,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/pickup/012.png",
+      "sha256": "6561b311648e98ddbdd3aad0ec77dd4f58562ea75f5844e9eed1b5ecd5f15a19",
+      "bytes": 61001,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/race/000.png",
+      "sha256": "245657b9545f54c80d2c0b0b7209d5b4388fac06d59a25f9a2234a8d73fe1793",
+      "bytes": 55712,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/race/001.png",
+      "sha256": "6d4ba32c43b63dbb1d12ebbad2df5a1398347b11fbd5b65477d17bc37a089344",
+      "bytes": 57279,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/race/002.png",
+      "sha256": "fa79c34f73414ac9c946621cccabee6cfd78c5da646a7b677557a6e9205ec3b3",
+      "bytes": 55567,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/race/003.png",
+      "sha256": "af444c7896a67bd04744c755a60fbbb11e7e6432c28c3ca55b5a23de763172bf",
+      "bytes": 56413,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/race/004.png",
+      "sha256": "c66c210971dbdab632fedb565b8a334f62f9f3294e18f222635274f02c42fa86",
+      "bytes": 58600,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/race/005.png",
+      "sha256": "129c15c392153fa3f5a4c10da8bc3427c51185d31dc2610e1fe8fde7f4ecd872",
+      "bytes": 60353,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/race/006.png",
+      "sha256": "2541a02b36b722e4a5bfcb750fc036b900d72bc0525f06252a78afee7548c827",
+      "bytes": 60477,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/race/007.png",
+      "sha256": "adea35ca9faf9c5cefa727f5b3f6aebc26302478fd689e6f8002f6e9bb13b0b0",
+      "bytes": 58723,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/race/008.png",
+      "sha256": "ac133feba9b926cd0f87b71b7cd5fc8f7303fef26bad1e4dae5ce05cfa810bc5",
+      "bytes": 61148,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/race/009.png",
+      "sha256": "d2cab7704d2f219c4d3ad844f6d8f9e258771c8308605ecfe0c5126546d0d151",
+      "bytes": 58584,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/race/010.png",
+      "sha256": "abeb018f3f0eac1b7c3367ab83b1a5db6abbc5b773f55984c39088b2b41bcf48",
+      "bytes": 68226,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/race/011.png",
+      "sha256": "faf8021af7dc4cdeede348b26c10b7475d0885da778001c2a0e26a9f11d02054",
+      "bytes": 67426,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/race/012.png",
+      "sha256": "b021caf8f704e8b8dad906e3abce8db2a1ab4365b0d0d474b583bd50abd2f978",
+      "bytes": 59298,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/walk/000.png",
+      "sha256": "3cae399c9692a58e9a08c9ba84871f82a396bd0ce2c99c3af32f4e644662dc9c",
+      "bytes": 172851,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/walk/001.png",
+      "sha256": "de9d1f279e5f36351cf713a4372371d49870360f65d058e2708cedc16ca61573",
+      "bytes": 153859,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/walk/002.png",
+      "sha256": "942b9968ed474e28bdf9e76381d096ab50ad220a7c0f13f424eb80c0d8e27d3d",
+      "bytes": 156875,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/walk/003.png",
+      "sha256": "86b8f9476a590f8d27835d9d31b565c79c55500c6d20b927d877738da14e953a",
+      "bytes": 171663,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/walk/004.png",
+      "sha256": "af381d74bf27fdadd9135d3dafb8fdc9c3b6c46e0fcec4586fe268e34181b2fa",
+      "bytes": 151417,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/frames/milestone_002/walk/005.png",
+      "sha256": "c8179604b528da98a43074aed62d68c08d846d1e931b33e2367f94ca204d5825",
+      "bytes": 157561,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
     {
       "path": "assets/characters/fighter_01/frames/placeholder_idle/idle_000.png",
       "sha256": "8ab591b34757004e737960399edd80e005179bc7717aa1c9d52bbf5fb36df0ef",
@@ -14,7 +1148,6 @@
         0,
         255
       ],
-      "approval": "placeholder",
       "validation": {
         "status": "passed",
         "errors": [],
@@ -53,7 +1186,6 @@
         0,
         255
       ],
-      "approval": "placeholder",
       "validation": {
         "status": "passed",
         "errors": [],
@@ -92,7 +1224,6 @@
         0,
         255
       ],
-      "approval": "placeholder",
       "validation": {
         "status": "passed",
         "errors": [],
@@ -125,6 +1256,1096 @@
       }
     },
     {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_high_attack_sheet.png",
+      "sha256": "dfd0d1cf9dc23f5b05214c91ef82df2568c73ba3b4e205dbcb4677d517f36bdc",
+      "bytes": 591512,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 5
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_high_block.png",
+      "sha256": "4afc4dd65ba90ba4883ac15319dfb75363f58e1eddfb77349f0440367c0680c9",
+      "bytes": 626524,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 4
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_idle.png",
+      "sha256": "10640d61ca9db5eb37db8639054705ab2eab044a8e76e0fc6471bead6cf95d00",
+      "bytes": 714971,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 4
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_low_attack.png",
+      "sha256": "923b2b317d3e5bd54e7deb33e25bd491b784cb803ceadeaab5c15302a44c53d0",
+      "bytes": 614123,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 5
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_low_block.png",
+      "sha256": "caebc5b9b73d7b7cead14622d0586ef6ebbd8efc00a5b62cd52ab3ba0622470a",
+      "bytes": 533925,
+      "dimensions": [
+        2176,
+        723
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 4
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_mid_attack.png",
+      "sha256": "9ce961ef3d956c8a089fcd7f29f76e1d7547ffe57a4ab633a485839e1ce741c1",
+      "bytes": 659508,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 5
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_mid_block.png",
+      "sha256": "9e0c51f14f6c328f95c559c60446c68e163aa54fb4935f8f281f3441d5b483bf",
+      "bytes": 806813,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 4
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_pickup.png",
+      "sha256": "93bca3dcaa2feba9c2883172f457055f7ffed7490792115ea5911d0a49f59f26",
+      "bytes": 670931,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 13
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_race_sheet.png",
+      "sha256": "34bc0d686725a6ff4cfe5f2caece324173a23c09f218421c06bfa3f296e7746e",
+      "bytes": 742665,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 13
+      }
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_walk.png",
+      "sha256": "82bcedfa3c131bc98b41d210ea553970dca733fcbadb20f8e6a17cc485a99786",
+      "bytes": 1437199,
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 6
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/high_attack/000.png",
+      "sha256": "a4de278375c7a56e17abd9c5afd3259ef028c65de94e3e0888a3fa91c7a0e710",
+      "bytes": 132373,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/high_attack/001.png",
+      "sha256": "630acc90b08ccbc483c501ee9baf15e2b6364b1259406ee81310209d1ff20899",
+      "bytes": 129151,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/high_attack/002.png",
+      "sha256": "b55bae636cb117cd3a68533b4968773ab64802dfdc2007ab6b020ad1648b40c1",
+      "bytes": 137962,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/high_attack/003.png",
+      "sha256": "bafeace95540eb12959ff01783baa9eab384eaad098f6c57c627044aa0667df6",
+      "bytes": 150622,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/high_attack/004.png",
+      "sha256": "a20fae80ec13f17300865be1e986823d303b5620888be8b8b9713ee6c2a66f65",
+      "bytes": 133634,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/high_block/000.png",
+      "sha256": "589cbef33b8a67bbe2163837acdd2d0a528085e1e29e32c374d6465216e7becb",
+      "bytes": 169157,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/high_block/001.png",
+      "sha256": "03a7417ad165b669070a5eb32b22705cab413a61caf33c66f622fcfa5decd707",
+      "bytes": 173082,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/high_block/002.png",
+      "sha256": "01151b918e73fc17d08256c78cc467e17348451d9dba8502ffac6abc10ce9a73",
+      "bytes": 177224,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/high_block/003.png",
+      "sha256": "b04673e1d956f751e12438ba71535534907ea909d08183c1828e040259bcb6ef",
+      "bytes": 170340,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/low_attack/000.png",
+      "sha256": "d1a76d21ba57ba6e4a7f3b94a5714dcd22154233a82d10890bca092d0eebb334",
+      "bytes": 128448,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/low_attack/001.png",
+      "sha256": "00f90be5ecfed68f6538579ec03a41abac755eb28d4621e64b2f273e496eee64",
+      "bytes": 124483,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/low_attack/002.png",
+      "sha256": "743f400b5d9b9cf2104fbaf0ff6dec4202f6bba6dcaa436261dd54f755311f31",
+      "bytes": 133379,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/low_attack/003.png",
+      "sha256": "0785f852ec4fe0e5c7371c1dd31b513288aad3ec2308d145ccbfc797e7481d69",
+      "bytes": 138146,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/low_attack/004.png",
+      "sha256": "d3ae8236201aadeee0fe9396a9d89d02b1a5704826fc96c193c509e54856dfb0",
+      "bytes": 128132,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/low_block/000.png",
+      "sha256": "2580f2dc78c49c6767ee422277540456fa6f35381b93545e22beea8afc381e99",
+      "bytes": 150309,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/low_block/001.png",
+      "sha256": "1a61708d123825cc9b83dcd5cb96f41fafcd2ad631b6bad9eb8a35be12762ea8",
+      "bytes": 151771,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/low_block/002.png",
+      "sha256": "5b8f9aedfab95b79d28aa9e41afeabfbc9c7575080b31ad061358d45bece92e8",
+      "bytes": 142281,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/low_block/003.png",
+      "sha256": "a0e5cf5aeef27815633ba945bf1d8705bce585bb6a79cf6e41a11f6af2b8f132",
+      "bytes": 148422,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/mid_attack/000.png",
+      "sha256": "6ee3eefbe8b117a08d43f42adb13ab477e2da2a3d6ad7cbf51e656b894b01646",
+      "bytes": 125209,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/mid_attack/001.png",
+      "sha256": "d2ce5620440aab0bb86cca189741ca67f044805f9e01c06739ce86c67b877fb5",
+      "bytes": 128761,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/mid_attack/002.png",
+      "sha256": "bce1e68ed6469ac298dc5749d7878f3a3d17d65f6c374ba845e139cb392c630c",
+      "bytes": 128215,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/mid_attack/003.png",
+      "sha256": "ab8c00e2f6c2452ed3fd433ec80ea78c390d0fd600dd913113540c083ae8719d",
+      "bytes": 130975,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/mid_attack/004.png",
+      "sha256": "42201fe61e7a9589e64207bb78efa091e70917e9fce802eaa9f7e5f7cee2b714",
+      "bytes": 126792,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/mid_block/000.png",
+      "sha256": "e8aeefc9e340ab3972a23f661d3025b9e07c0bbe0e81b23dab166221428408c7",
+      "bytes": 193108,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/mid_block/001.png",
+      "sha256": "460010eef26aaa794cdacb2eabe3f8a095fce5a7cdd55cfc3d29bb80ef4477b0",
+      "bytes": 199093,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/mid_block/002.png",
+      "sha256": "b1b5760dc8691fc54bd4ddf5825529ace9c67ec23e67e8901f86963e86e385e4",
+      "bytes": 202569,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/mid_block/003.png",
+      "sha256": "dabed3efaec7680a54b029b6a219dae9c52fd04cd5ad0a4915cdc580ed68c5f8",
+      "bytes": 194457,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/pickup/000.png",
+      "sha256": "ce172c747f22de2c6f21ba158ebb5f96c86ab31887054b12288000f2f7a8e525",
+      "bytes": 211007,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/pickup/001.png",
+      "sha256": "d1099fe84b8115e487441f2954876588997997f2c901047bbc464b20c1c59c1c",
+      "bytes": 210693,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/pickup/002.png",
+      "sha256": "f80f42b20d4d961df4f3e1401a980bdd5551175ffa1346c071ff3826ef0f2be4",
+      "bytes": 222901,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/pickup/003.png",
+      "sha256": "7ccfe8ee54b46f131a5f95c7b4563702a1ec4ac5345968b9b58e05db2cdfadd3",
+      "bytes": 213407,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/race/000.png",
+      "sha256": "0a45a3ced09960112f4001027fcd1758b9d2531f3ef6d29d1d7ebed5b9b5d330",
+      "bytes": 54694,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/race/001.png",
+      "sha256": "749eea8f7fa24c8fd5bbc34e30bea72ace477875a5892cd56ef03df25b7f4118",
+      "bytes": 55838,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/race/002.png",
+      "sha256": "b2c8915ae22c6f579e0438ad39545a1f09944836185a0d74be0a80f476ae33fd",
+      "bytes": 55483,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/race/003.png",
+      "sha256": "c10de93b837bf440400a5a287bcc617ce67883c1defa34e3313d4d8a6f559c9a",
+      "bytes": 54503,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/race/004.png",
+      "sha256": "ee59103df73b53db2e3a72a5e1d5bbb187b48face304c2f70a3ff5ed85dbb615",
+      "bytes": 57572,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/race/005.png",
+      "sha256": "de6b49cb45829ef93979cd87c947862d9f91959b36e6fe01c5df1b03feabff16",
+      "bytes": 60691,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/race/006.png",
+      "sha256": "782ddc6ba02fc926e9802f29ec43345dfddc0907cc713b1da4e790b1347fb409",
+      "bytes": 59237,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/race/007.png",
+      "sha256": "fed00f3dad6f811695fe5b182684626b2a103388bb94101035747c412c3ba9e2",
+      "bytes": 60462,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/race/008.png",
+      "sha256": "e7fbfb9a7860a881da804c2e7bad95f3b3db9c39306eceee78cf17f2aff9620c",
+      "bytes": 61536,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/race/009.png",
+      "sha256": "5a32aa84698afd5823cae223a191cdecb074e38248f1072a7720c44b5600c646",
+      "bytes": 60291,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/race/010.png",
+      "sha256": "c6cbb01fda79fabcbe750c4d29fd2fe7e42e6433feb5b1c2042f70c5b494687e",
+      "bytes": 69830,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/race/011.png",
+      "sha256": "d19ac29b2f05dc770f8ce6f70b2d1b9c5f468d973773566669bdfcd17647105f",
+      "bytes": 68129,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/race/012.png",
+      "sha256": "81e6d52e47caa75c92d98c0184c341b1666bf6943ae3812c696e36522881d437",
+      "bytes": 58828,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/walk/000.png",
+      "sha256": "2755fe594127234e8c853acd3e954d399b2051f73f6613a6ae928afcd5189f6a",
+      "bytes": 175097,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/walk/001.png",
+      "sha256": "838d6c11aeb40978cdd2b9851a7394d9410bc4527300a74693655e906276f43c",
+      "bytes": 165033,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/walk/002.png",
+      "sha256": "e24aed56e50d86301b8dc14fca0d43f20980415a236ff4dcc8464a22a8d893ea",
+      "bytes": 161280,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/walk/003.png",
+      "sha256": "8f7de4c0a213aa3ea26300904fe56cc9a7c891d0010dd3071a72dc25e20a2bc1",
+      "bytes": 176243,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/walk/004.png",
+      "sha256": "9e64f9923abcaf29f2dca54b8bc0338180cd74265b9840554f685354628958aa",
+      "bytes": 162241,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/milestone_002/walk/005.png",
+      "sha256": "06043cdde7a93f9f738caebfea1ffbb9ffe39b87ea92a28b3fa1ea8a0a977c50",
+      "bytes": 169958,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
       "path": "assets/characters/fighter_02/frames/placeholder_idle/idle_000.png",
       "sha256": "65a4641c807e3c83d6d7cfd93c82b130370492bcbd71904edac16880e448362f",
       "bytes": 307,
@@ -137,7 +2358,6 @@
         0,
         255
       ],
-      "approval": "placeholder",
       "validation": {
         "status": "passed",
         "errors": [],
@@ -176,7 +2396,6 @@
         0,
         255
       ],
-      "approval": "placeholder",
       "validation": {
         "status": "passed",
         "errors": [],
@@ -215,7 +2434,6 @@
         0,
         255
       ],
-      "approval": "placeholder",
       "validation": {
         "status": "passed",
         "errors": [],
@@ -248,9 +2466,9 @@
       }
     },
     {
-      "path": "references/OpenAI Playground 2026-11-15 at 13.48.11.png",
-      "sha256": "34bc0d686725a6ff4cfe5f2caece324173a23c09f218421c06bfa3f296e7746e",
-      "bytes": 742665,
+      "path": "assets/characters/fighter_02/spritesheets/fighter_02_high_attack.png",
+      "sha256": "7d90ab11e15ac0ba123c03be74371211814dece136b99fd187596826a702350d",
+      "bytes": 666269,
       "dimensions": [
         2172,
         724
@@ -260,333 +2478,163 @@
         0,
         255
       ],
-      "approval": "unapproved_reference",
       "validation": {
-        "status": "failed",
-        "errors": [
-          "Sheet dimensions are not exact multiples of frame cells",
-          "Expected 13 frames, found 154",
-          "Frame 0 has non-pixel-art partial alpha",
-          "Frame 1 touches a cell boundary",
-          "Frame 1 has non-pixel-art partial alpha",
-          "Frame 2 touches a cell boundary",
-          "Frame 2 has non-pixel-art partial alpha",
-          "Frame 3 touches a cell boundary",
-          "Frame 3 has non-pixel-art partial alpha",
-          "Frame 4 touches a cell boundary",
-          "Frame 4 has non-pixel-art partial alpha",
-          "Frame 5 touches a cell boundary",
-          "Frame 5 has non-pixel-art partial alpha",
-          "Frame 6 touches a cell boundary",
-          "Frame 6 has non-pixel-art partial alpha",
-          "Frame 7 touches a cell boundary",
-          "Frame 7 has non-pixel-art partial alpha",
-          "Frame 8 touches a cell boundary",
-          "Frame 8 has non-pixel-art partial alpha",
-          "Frame 9 touches a cell boundary",
-          "Frame 9 has non-pixel-art partial alpha",
-          "Frame 10 touches a cell boundary",
-          "Frame 10 has non-pixel-art partial alpha",
-          "Frame 11 touches a cell boundary",
-          "Frame 11 has non-pixel-art partial alpha",
-          "Frame 12 touches a cell boundary",
-          "Frame 12 has non-pixel-art partial alpha",
-          "Frame 13 touches a cell boundary",
-          "Frame 13 has non-pixel-art partial alpha",
-          "Frame 14 touches a cell boundary",
-          "Frame 14 has non-pixel-art partial alpha",
-          "Frame 15 touches a cell boundary",
-          "Frame 15 has non-pixel-art partial alpha",
-          "Frame 16 touches a cell boundary",
-          "Frame 16 has non-pixel-art partial alpha",
-          "Frame 17 touches a cell boundary",
-          "Frame 17 has non-pixel-art partial alpha",
-          "Frame 18 touches a cell boundary",
-          "Frame 18 has non-pixel-art partial alpha",
-          "Frame 19 touches a cell boundary",
-          "Frame 19 has non-pixel-art partial alpha",
-          "Frame 20 touches a cell boundary",
-          "Frame 20 has non-pixel-art partial alpha",
-          "Frame 21 touches a cell boundary",
-          "Frame 21 has non-pixel-art partial alpha",
-          "Frame 22 touches a cell boundary",
-          "Frame 22 has non-pixel-art partial alpha",
-          "Frame 23 touches a cell boundary",
-          "Frame 23 has non-pixel-art partial alpha",
-          "Frame 24 touches a cell boundary",
-          "Frame 24 has non-pixel-art partial alpha",
-          "Frame 25 touches a cell boundary",
-          "Frame 25 has non-pixel-art partial alpha",
-          "Frame 26 touches a cell boundary",
-          "Frame 26 has non-pixel-art partial alpha",
-          "Frame 27 touches a cell boundary",
-          "Frame 27 has non-pixel-art partial alpha",
-          "Frame 28 touches a cell boundary",
-          "Frame 28 has non-pixel-art partial alpha",
-          "Frame 29 touches a cell boundary",
-          "Frame 29 has non-pixel-art partial alpha",
-          "Frame 30 touches a cell boundary",
-          "Frame 30 has non-pixel-art partial alpha",
-          "Frame 31 touches a cell boundary",
-          "Frame 31 has non-pixel-art partial alpha",
-          "Frame 32 touches a cell boundary",
-          "Frame 32 has non-pixel-art partial alpha",
-          "Frame 33 touches a cell boundary",
-          "Frame 33 has non-pixel-art partial alpha",
-          "Frame 34 touches a cell boundary",
-          "Frame 34 has non-pixel-art partial alpha",
-          "Frame 35 touches a cell boundary",
-          "Frame 35 has non-pixel-art partial alpha",
-          "Frame 36 touches a cell boundary",
-          "Frame 36 has non-pixel-art partial alpha",
-          "Frame 37 touches a cell boundary",
-          "Frame 37 has non-pixel-art partial alpha",
-          "Frame 38 touches a cell boundary",
-          "Frame 38 has non-pixel-art partial alpha",
-          "Frame 39 touches a cell boundary",
-          "Frame 39 has non-pixel-art partial alpha",
-          "Frame 40 touches a cell boundary",
-          "Frame 40 has non-pixel-art partial alpha",
-          "Frame 41 touches a cell boundary",
-          "Frame 41 has non-pixel-art partial alpha",
-          "Frame 42 touches a cell boundary",
-          "Frame 42 has non-pixel-art partial alpha",
-          "Frame 43 touches a cell boundary",
-          "Frame 43 has non-pixel-art partial alpha",
-          "Frame 44 touches a cell boundary",
-          "Frame 44 has non-pixel-art partial alpha",
-          "Frame 45 touches a cell boundary",
-          "Frame 45 has non-pixel-art partial alpha",
-          "Frame 46 touches a cell boundary",
-          "Frame 46 has non-pixel-art partial alpha",
-          "Frame 47 touches a cell boundary",
-          "Frame 47 has non-pixel-art partial alpha",
-          "Frame 48 touches a cell boundary",
-          "Frame 48 has non-pixel-art partial alpha",
-          "Frame 49 touches a cell boundary",
-          "Frame 49 has non-pixel-art partial alpha",
-          "Frame 50 touches a cell boundary",
-          "Frame 50 has non-pixel-art partial alpha",
-          "Frame 51 touches a cell boundary",
-          "Frame 51 has non-pixel-art partial alpha",
-          "Frame 52 touches a cell boundary",
-          "Frame 52 has non-pixel-art partial alpha",
-          "Frame 53 touches a cell boundary",
-          "Frame 53 has non-pixel-art partial alpha",
-          "Frame 54 touches a cell boundary",
-          "Frame 54 has non-pixel-art partial alpha",
-          "Frame 55 touches a cell boundary",
-          "Frame 55 has non-pixel-art partial alpha",
-          "Frame 56 touches a cell boundary",
-          "Frame 56 has non-pixel-art partial alpha",
-          "Frame 57 touches a cell boundary",
-          "Frame 57 has non-pixel-art partial alpha",
-          "Frame 58 touches a cell boundary",
-          "Frame 58 has non-pixel-art partial alpha",
-          "Frame 59 touches a cell boundary",
-          "Frame 59 has non-pixel-art partial alpha",
-          "Frame 60 touches a cell boundary",
-          "Frame 60 has non-pixel-art partial alpha",
-          "Frame 61 touches a cell boundary",
-          "Frame 61 has non-pixel-art partial alpha",
-          "Frame 62 touches a cell boundary",
-          "Frame 62 has non-pixel-art partial alpha",
-          "Frame 63 touches a cell boundary",
-          "Frame 63 has non-pixel-art partial alpha",
-          "Frame 64 touches a cell boundary",
-          "Frame 64 has non-pixel-art partial alpha",
-          "Frame 65 touches a cell boundary",
-          "Frame 65 has non-pixel-art partial alpha",
-          "Frame 66 touches a cell boundary",
-          "Frame 66 has non-pixel-art partial alpha",
-          "Frame 67 touches a cell boundary",
-          "Frame 67 has non-pixel-art partial alpha",
-          "Frame 68 touches a cell boundary",
-          "Frame 68 has non-pixel-art partial alpha",
-          "Frame 69 touches a cell boundary",
-          "Frame 69 has non-pixel-art partial alpha",
-          "Frame 70 touches a cell boundary",
-          "Frame 70 has non-pixel-art partial alpha",
-          "Frame 71 touches a cell boundary",
-          "Frame 71 has non-pixel-art partial alpha",
-          "Frame 72 touches a cell boundary",
-          "Frame 72 has non-pixel-art partial alpha",
-          "Frame 73 touches a cell boundary",
-          "Frame 73 has non-pixel-art partial alpha",
-          "Frame 74 touches a cell boundary",
-          "Frame 74 has non-pixel-art partial alpha",
-          "Frame 75 touches a cell boundary",
-          "Frame 75 has non-pixel-art partial alpha",
-          "Frame 76 touches a cell boundary",
-          "Frame 76 has non-pixel-art partial alpha",
-          "Frame 77 touches a cell boundary",
-          "Frame 77 has non-pixel-art partial alpha",
-          "Frame 78 touches a cell boundary",
-          "Frame 78 has non-pixel-art partial alpha",
-          "Frame 79 touches a cell boundary",
-          "Frame 79 has non-pixel-art partial alpha",
-          "Frame 80 touches a cell boundary",
-          "Frame 80 has non-pixel-art partial alpha",
-          "Frame 81 touches a cell boundary",
-          "Frame 81 has non-pixel-art partial alpha",
-          "Frame 82 touches a cell boundary",
-          "Frame 82 has non-pixel-art partial alpha",
-          "Frame 83 touches a cell boundary",
-          "Frame 83 has non-pixel-art partial alpha",
-          "Frame 84 touches a cell boundary",
-          "Frame 84 has non-pixel-art partial alpha",
-          "Frame 85 touches a cell boundary",
-          "Frame 85 has non-pixel-art partial alpha",
-          "Frame 86 touches a cell boundary",
-          "Frame 86 has non-pixel-art partial alpha",
-          "Frame 87 touches a cell boundary",
-          "Frame 87 has non-pixel-art partial alpha",
-          "Frame 88 touches a cell boundary",
-          "Frame 88 has non-pixel-art partial alpha",
-          "Frame 89 touches a cell boundary",
-          "Frame 89 has non-pixel-art partial alpha",
-          "Frame 90 touches a cell boundary",
-          "Frame 90 has non-pixel-art partial alpha",
-          "Frame 91 touches a cell boundary",
-          "Frame 91 has non-pixel-art partial alpha",
-          "Frame 92 touches a cell boundary",
-          "Frame 92 has non-pixel-art partial alpha",
-          "Frame 93 touches a cell boundary",
-          "Frame 93 has non-pixel-art partial alpha",
-          "Frame 94 touches a cell boundary",
-          "Frame 94 has non-pixel-art partial alpha",
-          "Frame 95 touches a cell boundary",
-          "Frame 95 has non-pixel-art partial alpha",
-          "Frame 96 touches a cell boundary",
-          "Frame 96 has non-pixel-art partial alpha",
-          "Frame 97 touches a cell boundary",
-          "Frame 97 has non-pixel-art partial alpha",
-          "Frame 98 touches a cell boundary",
-          "Frame 98 has non-pixel-art partial alpha",
-          "Frame 99 touches a cell boundary",
-          "Frame 99 has non-pixel-art partial alpha",
-          "Frame 100 touches a cell boundary",
-          "Frame 100 has non-pixel-art partial alpha",
-          "Frame 101 touches a cell boundary",
-          "Frame 101 has non-pixel-art partial alpha",
-          "Frame 102 touches a cell boundary",
-          "Frame 102 has non-pixel-art partial alpha",
-          "Frame 103 touches a cell boundary",
-          "Frame 103 has non-pixel-art partial alpha",
-          "Frame 104 touches a cell boundary",
-          "Frame 104 has non-pixel-art partial alpha",
-          "Frame 105 touches a cell boundary",
-          "Frame 105 has non-pixel-art partial alpha",
-          "Frame 106 touches a cell boundary",
-          "Frame 106 has non-pixel-art partial alpha",
-          "Frame 107 touches a cell boundary",
-          "Frame 107 has non-pixel-art partial alpha",
-          "Frame 108 touches a cell boundary",
-          "Frame 108 has non-pixel-art partial alpha",
-          "Frame 109 touches a cell boundary",
-          "Frame 109 has non-pixel-art partial alpha",
-          "Frame 110 touches a cell boundary",
-          "Frame 110 has non-pixel-art partial alpha",
-          "Frame 111 touches a cell boundary",
-          "Frame 111 has non-pixel-art partial alpha",
-          "Frame 112 touches a cell boundary",
-          "Frame 112 has non-pixel-art partial alpha",
-          "Frame 113 touches a cell boundary",
-          "Frame 113 has non-pixel-art partial alpha",
-          "Frame 114 touches a cell boundary",
-          "Frame 114 has non-pixel-art partial alpha",
-          "Frame 115 touches a cell boundary",
-          "Frame 115 has non-pixel-art partial alpha",
-          "Frame 116 touches a cell boundary",
-          "Frame 116 has non-pixel-art partial alpha",
-          "Frame 117 touches a cell boundary",
-          "Frame 117 has non-pixel-art partial alpha",
-          "Frame 118 touches a cell boundary",
-          "Frame 118 has non-pixel-art partial alpha",
-          "Frame 119 touches a cell boundary",
-          "Frame 119 has non-pixel-art partial alpha",
-          "Frame 120 touches a cell boundary",
-          "Frame 120 has non-pixel-art partial alpha",
-          "Frame 121 touches a cell boundary",
-          "Frame 121 has non-pixel-art partial alpha",
-          "Frame 122 touches a cell boundary",
-          "Frame 122 has non-pixel-art partial alpha",
-          "Frame 123 touches a cell boundary",
-          "Frame 123 has non-pixel-art partial alpha",
-          "Frame 124 touches a cell boundary",
-          "Frame 124 has non-pixel-art partial alpha",
-          "Frame 125 touches a cell boundary",
-          "Frame 125 has non-pixel-art partial alpha",
-          "Frame 126 touches a cell boundary",
-          "Frame 126 has non-pixel-art partial alpha",
-          "Frame 127 touches a cell boundary",
-          "Frame 127 has non-pixel-art partial alpha",
-          "Frame 128 touches a cell boundary",
-          "Frame 128 has non-pixel-art partial alpha",
-          "Frame 129 touches a cell boundary",
-          "Frame 129 has non-pixel-art partial alpha",
-          "Frame 130 touches a cell boundary",
-          "Frame 130 has non-pixel-art partial alpha",
-          "Frame 131 touches a cell boundary",
-          "Frame 131 has non-pixel-art partial alpha",
-          "Frame 132 touches a cell boundary",
-          "Frame 132 has non-pixel-art partial alpha",
-          "Frame 133 touches a cell boundary",
-          "Frame 133 has non-pixel-art partial alpha",
-          "Frame 134 touches a cell boundary",
-          "Frame 134 has non-pixel-art partial alpha",
-          "Frame 135 touches a cell boundary",
-          "Frame 135 has non-pixel-art partial alpha",
-          "Frame 136 touches a cell boundary",
-          "Frame 136 has non-pixel-art partial alpha",
-          "Frame 137 touches a cell boundary",
-          "Frame 137 has non-pixel-art partial alpha",
-          "Frame 138 touches a cell boundary",
-          "Frame 138 has non-pixel-art partial alpha",
-          "Frame 139 touches a cell boundary",
-          "Frame 139 has non-pixel-art partial alpha",
-          "Frame 140 touches a cell boundary",
-          "Frame 140 has non-pixel-art partial alpha",
-          "Frame 141 touches a cell boundary",
-          "Frame 141 has non-pixel-art partial alpha",
-          "Frame 142 touches a cell boundary",
-          "Frame 142 has non-pixel-art partial alpha",
-          "Frame 143 touches a cell boundary",
-          "Frame 143 has non-pixel-art partial alpha",
-          "Frame 144 touches a cell boundary",
-          "Frame 144 has non-pixel-art partial alpha",
-          "Frame 145 touches a cell boundary",
-          "Frame 145 has non-pixel-art partial alpha",
-          "Frame 146 touches a cell boundary",
-          "Frame 146 has non-pixel-art partial alpha",
-          "Frame 147 touches a cell boundary",
-          "Frame 147 has non-pixel-art partial alpha",
-          "Frame 148 touches a cell boundary",
-          "Frame 148 has non-pixel-art partial alpha",
-          "Frame 149 touches a cell boundary",
-          "Frame 149 has non-pixel-art partial alpha",
-          "Frame 150 touches a cell boundary",
-          "Frame 150 has non-pixel-art partial alpha",
-          "Frame 151 has non-pixel-art partial alpha",
-          "Frame 152 has non-pixel-art partial alpha",
-          "Frame 153 touches a cell boundary",
-          "Frame 153 has non-pixel-art partial alpha",
-          "Frame silhouette size drift exceeds limit; review consistency"
-        ],
-        "dimensions": [
-          2172,
-          724
-        ],
-        "cell": [
-          96,
-          96
-        ],
-        "frames": 154,
-        "palette_colors": 0,
-        "identity_review": "required",
-        "sha256": "34bc0d686725a6ff4cfe5f2caece324173a23c09f218421c06bfa3f296e7746e"
-      },
-      "notes": "Visually 13 poses, not an exact 96px cell grid. Original unchanged; no animation mapping inferred."
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 5
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/spritesheets/fighter_02_high_block.png",
+      "sha256": "463e7e3d2ea98632f4dd890d459c386b1af3d726fa2b26948a4ab0e45afd2c6f",
+      "bytes": 822852,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 4
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/spritesheets/fighter_02_low_attack.png",
+      "sha256": "e0a13e4c8b89f89795d7b70feb2688df40f94b1739c05b2ed429ac7a4f3b35ff",
+      "bytes": 624574,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 5
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/spritesheets/fighter_02_low_block.png",
+      "sha256": "ee9deccd4b90acafae506d47eeb7653253f779897c157031d970641d1ab74038",
+      "bytes": 619793,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 4
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/spritesheets/fighter_02_mid_attack.png",
+      "sha256": "8a8f8d26121245f663563479fc01ce08b356a4c0ba0cc2c8f5ca701423b33ca7",
+      "bytes": 612301,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 5
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/spritesheets/fighter_02_mid_block.png",
+      "sha256": "641ab06949a8a837b09e3d2fea543b722317cb3256e2ba1a73a53b5b31b0cc72",
+      "bytes": 811143,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 4
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/spritesheets/fighter_02_pickup.png",
+      "sha256": "861d288ad3ee2ff3fe6372dd90dbe0856a79c5e7a58a600a4109bb8b5ff84923",
+      "bytes": 1095501,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 4
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/spritesheets/fighter_02_race_sheet.png",
+      "sha256": "5509db018136711772b2cc2744b6c3789a966e53e2ca4571a093753ba7f2ac03",
+      "bytes": 680201,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 13
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/spritesheets/fighter_02_walk.png",
+      "sha256": "65e178847a87f14f40bc1ec7cb9b9163077f979c3b1b6e04bf4b4f039ed20477",
+      "bytes": 1498354,
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 6
+      }
     }
   ]
 }

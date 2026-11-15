@@ -6,11 +6,12 @@ var acted_phrase: int = -1
 var moving_phrase: int = -1
 var restart_checked: bool = false
 var victory_seen: bool = false
+var captured_combat: bool = false
 func _ready() -> void:
  conductor.clock_override = func(): return demo_time
  super._ready()
  max_anticipation_phrases = 1
- debug_visible = true
+ debug_visible = not OS.get_cmdline_user_args().has("--capture-combat")
  begin()
 
 func press(action: String, down: bool = true) -> void:
@@ -45,6 +46,9 @@ func _process(delta: float) -> void:
    press("p2_execute", false)
    acted_phrase = conductor.phrase
    exchanges += 1
+   if not captured_combat and OS.get_cmdline_user_args().has("--capture-combat"):
+    captured_combat = true
+    capture_combat.call_deferred()
  if mode == "victory" and not victory_seen:
   victory_seen = true
   print("DEMO: reached three-hit victory; exchanges=", exchanges, "; BPM=", conductor.bpm)
@@ -60,3 +64,7 @@ func _process(delta: float) -> void:
 
 func _exit_tree() -> void:
  conductor.clock_override = Callable()
+
+func capture_combat() -> void:
+ await RenderingServer.frame_post_draw
+ get_viewport().get_texture().get_image().save_png("res://output/combat-002.png")
