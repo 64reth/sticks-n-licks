@@ -18,15 +18,18 @@ cat output/controls.stdout
 cat output/media.stdout
 "$GODOT" --headless --path . --log-file output/launch-range.log --script tests/test_launch_range.gd >output/launch-range.stdout 2>&1
 cat output/launch-range.stdout
+"$GODOT" --headless --path . --log-file output/idle-movement.log --script tests/test_idle_movement.gd >output/idle-movement.stdout 2>&1
+cat output/idle-movement.stdout
 "$GODOT" --headless --path . --log-file output/smoke.log --quit-after 10 >output/smoke.stdout 2>&1
 "$GODOT" --headless --path . --log-file output/demo.log --fixed-fps 60 --scene scenes/tests/demo.tscn --quit-after 2400 -- --verify-demo >output/demo.stdout 2>&1
 cat output/demo.stdout
 # Godot can return zero on script parse failures; scan the output as well.
-if rg -n 'SCRIPT ERROR|Parse Error|Failed to load|Assertion failed' output/{import,rules,controls,media,launch-range,smoke,demo}.stdout; then exit 1; fi
+if rg -n 'SCRIPT ERROR|Parse Error|Failed to load|Assertion failed' output/{import,rules,controls,media,launch-range,idle-movement,smoke,demo}.stdout; then exit 1; fi
 if ! rg -q '51 checks, 0 failures' output/rules.stdout; then exit 1; fi
 if ! rg -q '117 checks, 0 failures' output/controls.stdout; then exit 1; fi
-if ! rg -q '3313 checks, 0 failures' output/media.stdout; then exit 1; fi
-if ! rg -q '910 checks, 0 failures' output/launch-range.stdout; then exit 1; fi
+if ! rg -q '3316 checks, 0 failures' output/media.stdout; then exit 1; fi
+if ! rg -q '916 checks, 0 failures' output/launch-range.stdout; then exit 1; fi
+if ! rg -q '875 checks, 0 failures' output/idle-movement.stdout; then exit 1; fi
 if ! rg -q 'DEMO: rematch reset' output/demo.stdout; then exit 1; fi
 if [[ -x .venv/bin/python ]]; then
   .venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v

@@ -19,23 +19,23 @@
       "note": ""
     },
     "idle": {
-      "resource": "assets/characters/fighter_02/frames/milestone_002/idle.tres",
+      "resource": "assets/characters/fighter_02/frames/idle_002/idle.tres",
       "frames": 4,
-      "scale": 0.2807017543859649,
+      "scale": 0.1095890410958904,
       "native_facing": "left",
       "ground_pixel": 744,
       "canvas": [
         768,
         768
       ],
-      "source_category": "race",
+      "source_category": "idle",
       "frame_indices": [
         0,
         1,
         2,
         3
       ],
-      "note": "Blue idle uses supplied race idle poses"
+      "note": "Supplied Blue idle; source is byte-identical to existing mid-block artwork; no regenerated pixels"
     },
     "standoff_anticipation": {
       "resource": "assets/characters/fighter_02/frames/milestone_002/standoff_anticipation.tres",
@@ -112,8 +112,8 @@
       "note": ""
     },
     "combat_idle": {
-      "resource": "assets/characters/fighter_02/frames/milestone_002/combat_idle.tres",
-      "frames": 1,
+      "resource": "assets/characters/fighter_02/frames/idle_002/combat_idle.tres",
+      "frames": 4,
       "scale": 0.1095890410958904,
       "native_facing": "left",
       "ground_pixel": 744,
@@ -121,11 +121,14 @@
         768,
         768
       ],
-      "source_category": "pickup",
+      "source_category": "idle",
       "frame_indices": [
-        0
+        0,
+        1,
+        2,
+        3
       ],
-      "note": "No dedicated Blue combat-idle sheet; supplied ready pose"
+      "note": "Supplied Blue idle; source is byte-identical to existing mid-block artwork; no regenerated pixels"
     },
     "stick_pickup": {
       "resource": "assets/characters/fighter_02/frames/milestone_002/stick_pickup.tres",

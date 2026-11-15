@@ -15,4 +15,4 @@ func _draw() -> void:
   var region: Rect2 = bout.last_event["attack_region"]
   draw_rect(region, Color(1, 0.7, 0.15, 0.4), false, 1)
  var event_text := "READY" if bout.last_event.is_empty() else "LAST " + str(bout.last_event["kind"])
- draw_string(ThemeDB.fallback_font, Vector2(8, 164), "%s · reach %.0f · cyan hurt / orange attack" % [event_text, bout.stick_reach], HORIZONTAL_ALIGNMENT_LEFT, -1, 8)
+ draw_string(ThemeDB.fallback_font, Vector2(8, 179), "%s · reach %.0f · cyan hurt / orange attack" % [event_text, bout.stick_reach], HORIZONTAL_ALIGNMENT_LEFT, -1, 8)

@@ -1,0 +1,167 @@
+{
+  "fighter": 2,
+  "sources": [
+    {
+      "path": "assets/characters/fighter_02/spritesheets/fighter_02_idle.png",
+      "sha256": "641ab06949a8a837b09e3d2fea543b722317cb3256e2ba1a73a53b5b31b0cc72",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 4,
+      "frames": [
+        {
+          "path": "assets/characters/fighter_02/frames/idle_002/000.png",
+          "source_rect": [
+            112,
+            40,
+            480,
+            648
+          ],
+          "translation": [
+            190,
+            149
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            306,
+            635
+          ],
+          "sha256": "e8aeefc9e340ab3972a23f661d3025b9e07c0bbe0e81b23dab166221428408c7",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 993,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_02/frames/idle_002/001.png",
+          "source_rect": [
+            660,
+            40,
+            1020,
+            648
+          ],
+          "translation": [
+            196,
+            149
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            848,
+            635
+          ],
+          "sha256": "460010eef26aaa794cdacb2eabe3f8a095fce5a7cdd55cfc3d29bb80ef4477b0",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1220,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_02/frames/idle_002/002.png",
+          "source_rect": [
+            1196,
+            52,
+            1568,
+            648
+          ],
+          "translation": [
+            188,
+            161
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1392,
+            635
+          ],
+          "sha256": "b1b5760dc8691fc54bd4ddf5825529ace9c67ec23e67e8901f86963e86e385e4",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1364,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        },
+        {
+          "path": "assets/characters/fighter_02/frames/idle_002/003.png",
+          "source_rect": [
+            1740,
+            40,
+            2108,
+            648
+          ],
+          "translation": [
+            190,
+            149
+          ],
+          "ground_pixel": 744,
+          "source_foot_anchor": [
+            1934,
+            635
+          ],
+          "sha256": "dabed3efaec7680a54b029b6a219dae9c52fd04cd5ad0a4915cdc580ed68c5f8",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "removed_haze_pixels": 1393,
+          "validation": "passed_native_pixels_and_transparent_padding"
+        }
+      ],
+      "scale": 0.1095890410958904,
+      "native_facing": "left",
+      "warnings": [
+        "Source duplicates fighter_02_mid_block.png byte-for-byte; accepted as owner-supplied idle. Original soft alpha preserved."
+      ]
+    }
+  ],
+  "animations": {
+    "idle": {
+      "resource": "assets/characters/fighter_02/frames/idle_002/idle.tres",
+      "frames": 4,
+      "scale": 0.1095890410958904,
+      "native_facing": "left",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": "Supplied Blue idle; source is byte-identical to existing mid-block artwork; no regenerated pixels"
+    },
+    "combat_idle": {
+      "resource": "assets/characters/fighter_02/frames/idle_002/combat_idle.tres",
+      "frames": 4,
+      "scale": 0.1095890410958904,
+      "native_facing": "left",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "idle",
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note": "Supplied Blue idle; source is byte-identical to existing mid-block artwork; no regenerated pixels"
+    }
+  },
+  "validation": "passed native pixel, transparency and baseline checks; visual inspection required",
+  "originals_unchanged": true,
+  "visual_review": {
+    "status": "inspected four actual Godot frames and walking-to-idle gameplay captures",
+    "result": "Blue costume, left-facing orientation, transparent background and common ground baseline retained"
+  }
+}

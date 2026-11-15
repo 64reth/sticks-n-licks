@@ -1,5 +1,7 @@
 # Milestone 002 — supplied sprites and original soundtrack
 
+This initial milestone report is preserved as history. The later [Blue idle integration](../design/blue-idle-and-movement-repair.md) adds the supplied four-frame idle; the current aggregate is 20 sheets / 117 frames.
+
 ## Source preservation and sprite processing
 
 Discovered **19 supplied PNG sheets**, Red 10 / Blue 9. There were no newly supplied standalone frames. Extracted **113 individual frames** into each fighter's `frames/milestone_002/` directory (Red 63 / Blue 50), with matching SpriteFrames resources and per-fighter manifests. The manifest in `docs/assets/milestone-002-sprites.json` records every source hash, rectangle, native pixel translation, filename, count, alpha result and state mapping.

@@ -1446,6 +1446,78 @@
       }
     },
     {
+      "path": "assets/characters/fighter_02/frames/idle_002/000.png",
+      "sha256": "e8aeefc9e340ab3972a23f661d3025b9e07c0bbe0e81b23dab166221428408c7",
+      "bytes": 193108,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/idle_002/001.png",
+      "sha256": "460010eef26aaa794cdacb2eabe3f8a095fce5a7cdd55cfc3d29bb80ef4477b0",
+      "bytes": 199093,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/idle_002/002.png",
+      "sha256": "b1b5760dc8691fc54bd4ddf5825529ace9c67ec23e67e8901f86963e86e385e4",
+      "bytes": 202569,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/frames/idle_002/003.png",
+      "sha256": "dabed3efaec7680a54b029b6a219dae9c52fd04cd5ad0a4915cdc580ed68c5f8",
+      "bytes": 194457,
+      "dimensions": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "passed_native_pixels_and_transparent_padding",
+        "manifest": "docs/assets/milestone-002-sprites.json"
+      }
+    },
+    {
       "path": "assets/characters/fighter_02/frames/milestone_002/high_attack/000.png",
       "sha256": "a4de278375c7a56e17abd9c5afd3259ef028c65de94e3e0888a3fa91c7a0e710",
       "bytes": 132373,
@@ -2488,6 +2560,25 @@
       "path": "assets/characters/fighter_02/spritesheets/fighter_02_high_block.png",
       "sha256": "463e7e3d2ea98632f4dd890d459c386b1af3d726fa2b26948a4ab0e45afd2c6f",
       "bytes": 822852,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "validation": {
+        "status": "supplied_source_preserved",
+        "manifest": "docs/assets/milestone-002-sprites.json",
+        "frames": 4
+      }
+    },
+    {
+      "path": "assets/characters/fighter_02/spritesheets/fighter_02_idle.png",
+      "sha256": "641ab06949a8a837b09e3d2fea543b722317cb3256e2ba1a73a53b5b31b0cc72",
+      "bytes": 811143,
       "dimensions": [
         2172,
         724

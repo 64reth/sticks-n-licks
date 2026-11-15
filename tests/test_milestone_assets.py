@@ -10,8 +10,8 @@ class MilestoneAssetTests(unittest.TestCase):
   cls.sprites=json.loads((ROOT/'docs/assets/milestone-002-sprites.json').read_text())
   cls.audio=json.loads((ROOT/'docs/assets/milestone-002-audio.json').read_text())
  def test_all_supplied_sheets_preserved(self):
-  self.assertEqual(self.sprites['source_sheets'],19)
-  self.assertEqual(self.sprites['individual_frames'],113)
+  self.assertEqual(self.sprites['source_sheets'],20)
+  self.assertEqual(self.sprites['individual_frames'],117)
   for fighter in self.sprites['fighters']:
    for sheet in fighter['sources']:
     self.assertEqual(sha(ROOT/sheet['path']),sheet['sha256'])
@@ -78,9 +78,27 @@ class MilestoneAssetTests(unittest.TestCase):
      self.assertIsNone(entry['beat_zero_seconds'])
   for name,bpm in [('120',120),('140',140),('160',160)]:
    self.assertEqual(config[name]['bpm'],bpm)
+ def test_supplied_blue_idle(self):
+  folder=ROOT/'assets/characters/fighter_02'
+  source=folder/'spritesheets/fighter_02_idle.png'
+  self.assertEqual(sha(source),sha(folder/'spritesheets/fighter_02_mid_block.png'))
+  manifest=json.loads((folder/'frames/idle_002/manifest.json').read_text())
+  self.assertEqual(manifest['sources'][0]['dimensions'],[2172,724])
+  self.assertEqual(manifest['sources'][0]['frame_count'],4)
+  config=json.loads((ROOT/'data/animations/fighter_02.json').read_text())
+  for state in ['idle','combat_idle']:
+   entry=config['animations'][state]
+   self.assertEqual(entry['frame_indices'],[0,1,2,3])
+   self.assertEqual(entry['native_facing'],'left')
+   self.assertEqual(entry['ground_pixel'],744)
+   text=(ROOT/entry['resource']).read_text()
+   self.assertIn('"loop":true',text)
+   self.assertIn('"speed":8.0',text)
  def test_missing_artwork_explicit(self):
   red,blue=self.sprites['fighters']
   self.assertIn('stick_pickup',red['missing_authored_states'])
-  self.assertIn('dedicated_idle',blue['missing_authored_states'])
+  self.assertNotIn('dedicated_idle',blue['missing_authored_states'])
+  self.assertEqual(blue['animations']['idle']['source_category'],'idle')
+  self.assertEqual(blue['animations']['combat_idle']['source_category'],'idle')
   self.assertIn('victory',red['missing_authored_states'])
 if __name__=='__main__':unittest.main()

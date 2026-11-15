@@ -107,7 +107,7 @@ func set_pose(value: String) -> void:
   sprite.position = Vector2(0, -30)
  var changed := pose != value or sprite.animation != value
  pose = value
- if changed:
+ if changed or (sprite.sprite_frames.get_animation_loop(value) and not sprite.is_playing()):
   sprite.speed_scale = 1.0
   sprite.play(value)
 
