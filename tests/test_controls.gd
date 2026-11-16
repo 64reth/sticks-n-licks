@@ -51,40 +51,6 @@ func run() -> void:
   var prefix := "p%d_" % (player + 1)
   var forward := "right" if player == 0 else "left"
   var sign_value := 1.0 if player == 0 else -1.0
-  for bpm in [120, 140, 160]:
-   reset_game(bpm)
-   var d := 60.0 / float(bpm)
-   var start: float = game.bout.positions[player]
-   time = 10.0 + d * 0.25
-   key(prefix + forward)
-   check(game.bout.positions[player] == start, "P%d/%d no immediate movement" % [player+1,bpm])
-   advance(10.0 + d * 0.9)
-   check(game.bout.positions[player] == start, "No off-beat displacement")
-   advance(10.0 + d)
-   check(game.bout.positions[player] == start + sign_value * Bout.STEP, "Held key steps at beat 2")
-   advance(10.0 + d + d * 0.2)
-   check(game.bout.positions[player] == start + sign_value * Bout.STEP, "Exactly one step per beat")
-   advance(10.0 + d * 2.0)
-   check(game.bout.positions[player] == start + sign_value * Bout.STEP * 2, "Held key repeats at beat 3")
-   advance(10.0 + d * 3.0)
-   check(game.bout.positions[player] == start + sign_value * Bout.STEP * 3, "Held movement executes on beat 4")
-   advance(10.0 + d * 3.5)
-   check(game.bout.positions[player] == start + sign_value * Bout.STEP * 3, "No off-boundary movement during beat 4")
-   advance(10.0 + d * 4.0)
-   check(game.bout.positions[player] == start + sign_value * Bout.STEP * 4, "Held key repeats at next beat 1")
-   reset_game(bpm)
-   start = game.bout.positions[player]
-   time = 10.0 + d * 0.1
-   key(prefix + forward)
-   time = 10.0 + d * 0.8
-   key(prefix + forward, false)
-   advance(10.0 + d)
-   check(game.bout.positions[player] == start + sign_value * Bout.STEP, "Released tap survives until boundary")
-   # Latest horizontal press replaces the pending direction.
-   key(prefix + "left")
-   key(prefix + "right")
-   advance(10.0 + d * 2.0)
-   check(game.bout.positions[player] == start + sign_value * Bout.STEP + Bout.STEP, "Latest direction wins with both keys held")
   for height in range(3):
    reset_game()
    advance(11.3)
@@ -96,7 +62,7 @@ func run() -> void:
    check(game.conductor.grade(game.bout.errors[player]) == "perfect", "Held direction + execute preserves timestamp")
    var position: float = game.bout.positions[player]
    advance(12.0)
-   check(game.bout.positions[player] == position + (sign_value * Bout.STEP if height == 1 else 0.0), "Combat combo does not lock held movement")
+   check(game.bout.positions[player] == position, "Held combat direction does not auto-repeat movement")
   # Execute first, direction within 100 ms: grade EXECUTE, not late direction.
   reset_game()
   advance(11.5)
@@ -118,13 +84,12 @@ func run() -> void:
   time = 11.5
   key(prefix + "execute")
   check(game.bout.selections[player] == 2, "Direction-first 100ms buffer supports quick taps")
-  # Reversed physical sides: dynamically derive forward; never assume D/Left.
-  reset_game()
-  advance(11.5)
-  game.bout.positions.assign([220.0,100.0])
-  key(prefix + ("left" if player == 0 else "right"))
-  key(prefix + "execute")
-  check(game.bout.selections[player] == 1, "MID follows reversed fighter facing")
+  # Verify facing-relative combat selection separately from invalid crossed positions.
+  var reverse := CombatInput.new()
+  var reversed_forward := "left" if player==0 else "right"
+  reverse.feed(reversed_forward,true,11.5,-int(sign_value))
+  var reversed_combo := reverse.feed("execute",true,11.5,-int(sign_value))
+  check(reversed_combo.get("height")==1,"MID follows reversed fighter facing")
   # Valid combat timing endpoints, including buffered late direction.
   for error in [-140.0, -70.0, 70.0, 140.0, 141.0]:
    reset_game()
@@ -140,26 +105,6 @@ func run() -> void:
   time = 11.74
   key(prefix + "high")
   check(game.bout.selections[player] == 0 and game.conductor.grade(game.bout.errors[player]) == "good", "Late valid execute can finish 100ms combination")
-  # New press after a crossed boundary must not affect that past boundary.
-  reset_game()
-  time = 10.6
-  key(prefix + forward)
-  check(game.bout.positions[player] == (100.0 if player == 0 else 220.0), "No retroactive step on delayed input processing")
-  advance(11.0)
-  check(game.controls[player].last_step_time == 11.0, "Overlay records exact beat execution time")
-  check(game.controls[player].last_step_processed == 11.0, "Overlay records actual processing time")
-  reset_game()
-  advance(11.5)
-  key(prefix + forward)
-  key(prefix + "execute")
-  key(prefix + "execute", false)
-  advance(12.0)
-  var position: float = game.bout.positions[player]
-  key(prefix + forward, false)
-  time = 12.1
-  key(prefix + forward)
-  advance(12.5)
-  check(game.bout.positions[player] == position + sign_value * Bout.STEP, "Release/repress remains valid with combined combat movement")
  # Race uses the same physical execute buttons, without requiring a direction.
  reset_game()
  game.mode = "standoff"
@@ -171,15 +116,6 @@ func run() -> void:
  key("p2_execute")
  check(is_equal_approx(game.bout.reactions[1], 0.1), "P2 Right Shift records valid race reaction")
  check(game.bout.resolve_race() == 1 and game.bout.hits == [0,0], "Race initiative and no race damage preserved")
- reset_game()
- time = 10.1
- key("p1_right")
- advance(12.1)
- check(game.bout.positions[0] == 164.0, "Catch-up steps once at each crossed eligible beat")
- check(game.controls[0].last_step_time == 12.0 and game.controls[0].last_step_processed == 12.1, "Overlay distinguishes grid timestamp from delayed processing")
- game._notification(NOTIFICATION_APPLICATION_FOCUS_OUT)
- advance(12.5)
- check(game.bout.positions[0] == 164.0, "Focus loss cancels held movement")
  # Right Shift only, obsolete controls removed, valid main scene retained.
  check(not InputMap.has_action("p1_mid") and not InputMap.has_action("p2_mid"), "No obsolete MID actions")
  var right_shift := InputEventKey.new()

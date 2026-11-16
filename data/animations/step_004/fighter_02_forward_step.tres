@@ -1,0 +1,5 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3]
+[ext_resource type="Texture2D" path="res://assets/characters/fighter_02/frames/milestone_002/walk/000.png" id="1"]
+[ext_resource type="Texture2D" path="res://assets/characters/fighter_02/frames/milestone_002/walk/002.png" id="2"]
+[resource]
+animations = [{"frames":[{"duration":1.0,"texture":ExtResource("1")},{"duration":1.0,"texture":ExtResource("2")}],"loop":false,"name":&"forward_step","speed":12.5}]

@@ -14,6 +14,7 @@ var footer_label: Label
 var help_panel := Panel.new()
 var help_label: Label
 var state: Dictionary = {}
+var step_labels: Array[Label] = []
 
 func text_label(at: Vector2, extent: Vector2) -> Label:
  var node := Label.new()
@@ -22,6 +23,9 @@ func text_label(at: Vector2, extent: Vector2) -> Label:
  node.add_theme_font_override("font",FONT)
  node.add_theme_font_size_override("font_size",8)
  node.add_theme_color_override("font_color",CREAM)
+ node.add_theme_color_override("font_shadow_color",Color.BLACK)
+ node.add_theme_constant_override("shadow_offset_x",1)
+ node.add_theme_constant_override("shadow_offset_y",1)
  node.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
  node.mouse_filter = Control.MOUSE_FILTER_IGNORE
  node.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -46,6 +50,12 @@ func _ready() -> void:
  blue.offset_top = 5
  blue.offset_bottom = 40
  add_child(blue)
+ for player in range(2):
+  var feedback := text_label(Vector2(8+player*166,43),Vector2(138,10))
+  feedback.add_theme_color_override("font_shadow_color",Color.BLACK)
+  feedback.add_theme_constant_override("shadow_offset_x",1)
+  feedback.add_theme_constant_override("shadow_offset_y",1)
+  step_labels.append(feedback)
  round_label = text_label(Vector2(103,5),Vector2(114,8))
  tempo_label = text_label(Vector2(103,17),Vector2(114,8))
  phase_label = text_label(Vector2(103,29),Vector2(114,8))
@@ -63,7 +73,8 @@ func _ready() -> void:
  help_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
  add_child(help_panel)
  help_label = text_label(Vector2(22,53),Vector2(276,94))
- help_label.text = "CONTROLS\n\nRED: A/D MOVE  W HIGH  S LOW  F EXECUTE\nBLUE: ARROWS MOVE/HIGH/LOW\nRIGHT SHIFT EXECUTES\nFORWARD + EXECUTE = MID\nMOVE ON BEATS 1-4 / COMBAT ON BEAT 4\nH CLOSE  F3 DEBUG  ESC MENU"
+ help_label.text = "CONTROLS\n\nRED: A/D MOVE  W HIGH  S LOW  F EXECUTE\nBLUE: ARROWS MOVE/HIGH/LOW\nRIGHT SHIFT EXECUTES\nFORWARD + EXECUTE = MID\nTAP ON BEATS 1-4 / COMBAT ON BEAT 4\nSTEP +/-90 PERFECT  +/-160 GOOD
+H CLOSE  F3 DEBUG  F4 STAGE  ESC MENU"
 
 func present(snapshot: Dictionary) -> void:
  state = snapshot

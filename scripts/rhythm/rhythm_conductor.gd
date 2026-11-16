@@ -72,3 +72,16 @@ func grade(error_ms: float) -> String:
  if abs(error_ms) <= good_ms + 0.000001:
   return "good"
  return "miss"
+
+func nearest_beat(at: float) -> Dictionary:
+ # Current boundary and its successor share the same authoritative tempo map.
+ var next_time := beat_time+duration()
+ var next_beat := beat+1
+ var next_phrase := phrase
+ if next_beat>4:
+  next_beat=1
+  next_phrase+=1
+ var use_next := absf(at-next_time)<absf(at-beat_time)
+ var target_beat := next_beat if use_next else beat
+ var target_phrase := next_phrase if use_next else phrase
+ return {"time":next_time if use_next else beat_time,"beat":target_beat,"phrase":target_phrase,"id":"%d:%d" % [target_phrase,target_beat]}

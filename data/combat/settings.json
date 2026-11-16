@@ -9,5 +9,8 @@
   "race_timeout_seconds": 2.0,
   "audio_latency_ms": 0.0,
   "stick_reach": 44.0,
-  "match_best_of": 3
+  "match_best_of": 3,
+  "movement_perfect_ms": 90.0,
+  "movement_good_ms": 160.0,
+  "step_seconds": 0.16
 }

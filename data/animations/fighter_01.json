@@ -147,8 +147,8 @@
       "note": "Red pickup sheet depicts race poses, not a stick pickup; use existing idle while awaiting replacement"
     },
     "forward_step": {
-      "resource": "assets/characters/fighter_01/frames/milestone_002/forward_step.tres",
-      "frames": 6,
+      "resource": "data/animations/step_004/fighter_01_forward_step.tres",
+      "frames": 2,
       "scale": 0.1415929203539823,
       "native_facing": "right",
       "ground_pixel": 744,
@@ -159,17 +159,13 @@
       "source_category": "walk",
       "frame_indices": [
         0,
-        1,
-        2,
-        3,
-        4,
-        5
+        2
       ],
-      "note": ""
+      "note": "Milestone 004: approved weight-transfer pose 0 then stable pose 2; non-looping, 160ms total. Originals retained."
     },
     "backward_step": {
-      "resource": "assets/characters/fighter_01/frames/milestone_002/backward_step.tres",
-      "frames": 6,
+      "resource": "data/animations/step_004/fighter_01_backward_step.tres",
+      "frames": 2,
       "scale": 0.1415929203539823,
       "native_facing": "right",
       "ground_pixel": 744,
@@ -180,13 +176,9 @@
       "source_category": "walk",
       "frame_indices": [
         0,
-        1,
-        2,
-        3,
-        4,
-        5
+        2
       ],
-      "note": ""
+      "note": "Milestone 004: approved weight-transfer pose 0 then stable pose 2; non-looping, 160ms total. Originals retained."
     },
     "high_attack": {
       "resource": "assets/characters/fighter_01/frames/milestone_002/high_attack.tres",

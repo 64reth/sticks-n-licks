@@ -162,6 +162,7 @@ func run() -> void:
   check(game.bout.positions[0]==original,"Early combo never moves immediately")
   advance(target)
   check(game.bout.positions[0]==original+Bout.STEP,"Held forward moves on beat four even with combat combination")
+  advance(target+0.161)
   check(game.bout.impact_positions==game.bout.positions,"Range snapshot occurs after both movements and collision limits")
   check(game.bout.in_reach(0,0,game.bout.impact_positions),"Beat-four advance can legitimately establish reach")
   advance(target+0.241)
@@ -169,9 +170,10 @@ func run() -> void:
   setup_combat(100,156,0,bpm)
   target=game.conductor.action_time()
   advance(target)
+  advance(target+0.161)
   key("p1_right")
   action(0)
-  check(game.bout.positions[0]==100,"New movement press after boundary cannot move retroactively")
+  check(game.bout.positions[0]==100,"Out-of-window movement cannot alter frozen range")
   game.bout.positions.assign([140.0,180.0]) # simulate any later state/render change
   advance(target+0.241)
   check(game.bout.last_event.get("kind")=="WHIFF","Late movement/state cannot exploit already-sampled range")
@@ -211,8 +213,12 @@ func run() -> void:
    time=start+0.1
    key("p1_right")
    key("p2_left")
-   advance(start+0.5)
-   advance(start+1.0)
+   for offset in [0.5,1.0]:
+    advance(start+offset)
+    key("p1_right",false)
+    key("p2_left",false)
+    key("p1_right")
+    key("p2_left")
    for hit in range(3):
     var target: float=game.conductor.action_time()
     advance(target)

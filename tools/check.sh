@@ -28,10 +28,10 @@ cat output/demo.stdout
 # Godot can return zero on script parse failures; scan the output as well.
 if rg -n 'SCRIPT ERROR|Parse Error|Failed to load|Assertion failed' output/{import,rules,controls,media,launch-range,idle-movement,arcade-hud,smoke,demo}.stdout; then exit 1; fi
 if ! rg -q '51 checks, 0 failures' output/rules.stdout; then exit 1; fi
-if ! rg -q '117 checks, 0 failures' output/controls.stdout; then exit 1; fi
-if ! rg -q '3316 checks, 0 failures' output/media.stdout; then exit 1; fi
-if ! rg -q '916 checks, 0 failures' output/launch-range.stdout; then exit 1; fi
-if ! rg -q '1127 checks, 0 failures' output/idle-movement.stdout; then exit 1; fi
+if ! rg -q '46 checks, 0 failures' output/controls.stdout; then exit 1; fi
+if ! rg -q '3300 checks, 0 failures' output/media.stdout; then exit 1; fi
+if ! rg -q '884 checks, 0 failures' output/launch-range.stdout; then exit 1; fi
+if ! rg -q '676 checks, 0 failures' output/idle-movement.stdout; then exit 1; fi
 if ! rg -q '189 checks, 0 failures' output/arcade-hud.stdout; then exit 1; fi
 if ! rg -q 'DEMO: rematch reset' output/demo.stdout; then exit 1; fi
 if [[ -x .venv/bin/python ]]; then

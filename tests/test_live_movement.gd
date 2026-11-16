@@ -40,28 +40,37 @@ func capture(label: String) -> void:
  get_root().get_texture().get_image().save_png("res://output/live-"+label+".png")
 func simultaneous_tap(codes: Array, signs: Array, label: String) -> void:
  await boundary()
- await create_timer(0.08).timeout
+ var target_time: float=game.conductor.beat_time+game.conductor.duration()
+ while game.game_time()<target_time-0.09:await process_frame
  var before: Array=game.bout.positions.duplicate()
  var beat: int=game.conductor.beat
  for code in codes:await key(code)
  await create_timer(0.025).timeout
  for code in codes:await key(code,false)
- check(game.bout.positions==before,"No off-boundary movement "+label)
- await boundary()
+ if game.game_time()<target_time:
+  check(game.bout.positions==before,"Early tap waits for musical boundary "+label)
+ else:
+  check(game.controls[0].movement_executed,"Crossed boundary consumes tap exactly once "+label)
+ while game.game_time()<target_time:await process_frame
+ await process_frame
  var after: Array=game.bout.positions.duplicate()
  for player in range(2):check(after[player]==before[player]+signs[player]*Bout.STEP,"Released tap steps "+label+" P%d" % player)
- await create_timer(0.17).timeout
+ await capture(label+"-step")
+ await create_timer(0.09).timeout
+ await capture(label+"-stable")
+ await create_timer(0.08).timeout
  for player in range(2):check(abs(game.fighters[player].position.x-after[player])<2.5,"Visible sprite follows "+label)
  print("LIVE sample ",label," ",before," -> ",after)
  evidence.append({"label":label,"input_beat":beat,"resolved_beat":game.conductor.beat,"bpm":game.conductor.bpm,"before":before,"after":after,"rendered":[game.fighters[0].position.x,game.fighters[1].position.x]})
  await capture(label)
 func win_round() -> void:
- # Move into actual reach through normal held keys.
- await key(KEY_D)
- await key(KEY_LEFT)
- for n in range(4):await boundary()
- await key(KEY_D,false)
- await key(KEY_LEFT,false)
+ # Deliberate taps, never held polling, advance into actual reach.
+ while game.bout.positions[1]-game.bout.positions[0]>Bout.GAP+0.01:
+  await boundary()
+  await key(KEY_D)
+  await key(KEY_LEFT)
+  await key(KEY_D,false)
+  await key(KEY_LEFT,false)
  while game.mode=="combat":
   while game.mode=="combat" and game.game_time()<game.conductor.action_time()-0.035:await process_frame
   if game.mode!="combat":break
@@ -87,7 +96,25 @@ func run() -> void:
  check(game.bout.positions==[100.0,220.0],"Countdown rejects displacement")
  await race()
  await create_timer(0.4).timeout
- await capture("start")
+ await capture("stage01-idle")
+ await key(KEY_F4)
+ await key(KEY_F4,false)
+ check(game.stage.selected==1,"F4 switches stage via real key handler")
+ await capture("stage02-idle")
+ await boundary()
+ await create_timer(game.conductor.duration()/2.0).timeout
+ var miss_before: Array=game.bout.positions.duplicate()
+ await tap(KEY_A)
+ check(game.controls[0].movement_grade=="miss" and game.bout.positions==miss_before,"Midpoint tap misses without movement")
+ await capture("miss")
+ for pair in [[KEY_D,KEY_LEFT],[KEY_A,KEY_RIGHT]]:
+  await boundary()
+  await create_timer(0.12).timeout
+  for code in pair:await key(code)
+  for code in pair:await key(code,false)
+  check(game.controls[0].movement_grade=="good" and game.controls[1].movement_grade=="good","Late GOOD movement confirmed")
+  await capture("good"+str(pair[0]))
+  await create_timer(0.18).timeout
  for bpm in [120,140,160]:
   game.conductor.schedule_tempo(bpm)
   while game.conductor.bpm!=bpm:await process_frame
@@ -102,10 +129,8 @@ func run() -> void:
   for n in range(2):await boundary()
   await key(KEY_D,false)
   await key(KEY_LEFT,false)
-  check(game.bout.positions[0]==before[0]+2*Bout.STEP and game.bout.positions[1]==before[1]-2*Bout.STEP,"Held repeated at %d" % bpm)
-  # Restore spacing via two real retreat taps, never direct positions.
-  await simultaneous_tap([KEY_A,KEY_RIGHT],[-1,1],"%d-restore-a" % bpm)
-  await simultaneous_tap([KEY_A,KEY_RIGHT],[-1,1],"%d-restore-b" % bpm)
+  check(game.bout.positions==before,"Holding cannot repeat at %d" % bpm)
+  await simultaneous_tap([KEY_A,KEY_RIGHT],[-1,1],"%d-restore" % bpm)
  await win_round()
  await tap(KEY_ENTER)
  await race()

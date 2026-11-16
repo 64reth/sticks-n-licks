@@ -1,0 +1,33 @@
+{
+  "default": "stage_01",
+  "stages": [
+    {
+      "id": "stage_01",
+      "name": "Stage 01",
+      "path": "assets/environments/backgrounds/background_01.png",
+      "source": "assets/environments/backgrounds/background_01.png",
+      "sha256": "fe611396caf60d73793f083d6d9fb3588b68639edb38b18e1ecdd7406973ea69",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG",
+      "mode": "RGB",
+      "ground_y": 150
+    },
+    {
+      "id": "stage_02",
+      "name": "Stage 02",
+      "path": "assets/environments/backgrounds/background_02.png",
+      "source": "assets/environments/backgrounds/background_02",
+      "sha256": "6e45176ed0bba0bfc5a7944c9105908f13b7490fd0ca4cd94154493394a9641b",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG",
+      "mode": "RGB",
+      "ground_y": 150
+    }
+  ]
+}

@@ -1,0 +1,530 @@
+{
+  "checks": 168,
+  "failures": 0,
+  "samples": [
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 120,
+      "input_beat": 2,
+      "label": "120-retreat-0",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 3
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        84.0,
+        236.0
+      ],
+      "bpm": 120,
+      "input_beat": 4,
+      "label": "120-advance-0",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 1
+    },
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 120,
+      "input_beat": 2,
+      "label": "120-retreat-1",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 3
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        84.0,
+        236.0
+      ],
+      "bpm": 120,
+      "input_beat": 4,
+      "label": "120-advance-1",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 1
+    },
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 120,
+      "input_beat": 3,
+      "label": "120-retreat-2",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 4
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        84.0,
+        236.0
+      ],
+      "bpm": 120,
+      "input_beat": 1,
+      "label": "120-advance-2",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 2
+    },
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 120,
+      "input_beat": 3,
+      "label": "120-retreat-3",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 4
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        84.0,
+        236.0
+      ],
+      "bpm": 120,
+      "input_beat": 1,
+      "label": "120-advance-3",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 2
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        116.0,
+        204.0
+      ],
+      "bpm": 120,
+      "input_beat": 2,
+      "label": "120-restore",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 3
+    },
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 140,
+      "input_beat": 2,
+      "label": "140-retreat-0",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 3
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        84.0,
+        236.0
+      ],
+      "bpm": 140,
+      "input_beat": 4,
+      "label": "140-advance-0",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 1
+    },
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 140,
+      "input_beat": 2,
+      "label": "140-retreat-1",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 3
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        84.0,
+        236.0
+      ],
+      "bpm": 140,
+      "input_beat": 4,
+      "label": "140-advance-1",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 1
+    },
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 140,
+      "input_beat": 3,
+      "label": "140-retreat-2",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 4
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        84.0,
+        236.0
+      ],
+      "bpm": 140,
+      "input_beat": 1,
+      "label": "140-advance-2",
+      "rendered": [
+        99.6671524047852,
+        220.338348388672
+      ],
+      "resolved_beat": 2
+    },
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 140,
+      "input_beat": 3,
+      "label": "140-retreat-3",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 4
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        84.0,
+        236.0
+      ],
+      "bpm": 140,
+      "input_beat": 1,
+      "label": "140-advance-3",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 2
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        116.0,
+        204.0
+      ],
+      "bpm": 140,
+      "input_beat": 2,
+      "label": "140-restore",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 3
+    },
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 160,
+      "input_beat": 2,
+      "label": "160-retreat-0",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 3
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        84.0,
+        236.0
+      ],
+      "bpm": 160,
+      "input_beat": 4,
+      "label": "160-advance-0",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 1
+    },
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 160,
+      "input_beat": 2,
+      "label": "160-retreat-1",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 3
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        84.0,
+        236.0
+      ],
+      "bpm": 160,
+      "input_beat": 4,
+      "label": "160-advance-1",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 1
+    },
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 160,
+      "input_beat": 3,
+      "label": "160-retreat-2",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 4
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        84.0,
+        236.0
+      ],
+      "bpm": 160,
+      "input_beat": 1,
+      "label": "160-advance-2",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 2
+    },
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 160,
+      "input_beat": 3,
+      "label": "160-retreat-3",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 4
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        84.0,
+        236.0
+      ],
+      "bpm": 160,
+      "input_beat": 1,
+      "label": "160-advance-3",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 2
+    },
+    {
+      "after": [
+        100.0,
+        220.0
+      ],
+      "before": [
+        116.0,
+        204.0
+      ],
+      "bpm": 160,
+      "input_beat": 2,
+      "label": "160-restore",
+      "rendered": [
+        100.0,
+        220.0
+      ],
+      "resolved_beat": 3
+    },
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 120,
+      "input_beat": 2,
+      "label": "round-reset",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 3
+    },
+    {
+      "after": [
+        84.0,
+        236.0
+      ],
+      "before": [
+        100.0,
+        220.0
+      ],
+      "bpm": 120,
+      "input_beat": 2,
+      "label": "rematch",
+      "rendered": [
+        84.0,
+        236.0
+      ],
+      "resolved_beat": 3
+    }
+  ],
+  "limitation": "Engine-injected keys; physical keyboard/focus awaiting human verification. Tempo matrix scheduled via public conductor API.",
+  "source_catalogue": "data/stages.json"
+}

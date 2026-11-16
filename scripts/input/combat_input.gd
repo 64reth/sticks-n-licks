@@ -11,11 +11,23 @@ var last_step_processed: float = -INF
 var last_step_evaluated: float = -INF
 var latest_horizontal: String = "right"
 var pending_move: int = 0
+var pending_target: Dictionary = {}
+var movement_target: Dictionary = {}
+var movement_input_at: float = 0.0
+var movement_error_ms: float = 0.0
+var movement_grade: String = "READY"
+var movement_executed: bool = false
+var movement_feedback_until: float = 0.0
 var queued: int = 0
 var input_feedback: String = "READY"
 var step_feedback: String = "No step yet"
 
 func reset() -> void:
+ pending_target.clear()
+ movement_target.clear()
+ movement_grade = "READY"
+ movement_executed = false
+ movement_feedback_until = 0.0
  held.clear()
  pressed_at.clear()
  pending_execute = -INF
@@ -42,12 +54,25 @@ func direction(at: float, facing: int) -> int:
  return choice
 
 func movement() -> int:
- var held_direction := 0
- for action in ["left", "right"]:
-  if held.get(action, false):held_direction = -1 if action == "left" else 1
- if held.get(latest_horizontal, false):held_direction = -1 if latest_horizontal == "left" else 1
- queued = pending_move if pending_move != 0 else held_direction
+ queued = pending_move
  return queued
+
+func request_movement(action: String, at: float, clock: RhythmConductor, perfect: float, good: float) -> void:
+ movement_input_at = at
+ movement_target = clock.nearest_beat(clock.timestamp(at))
+ movement_error_ms = (clock.timestamp(at)-float(movement_target.time))*1000.0
+ movement_executed = false
+ movement_feedback_until = at+0.55
+ movement_grade = "perfect" if absf(movement_error_ms)<=perfect+0.000001 else ("good" if absf(movement_error_ms)<=good+0.000001 else "miss")
+ if movement_grade=="miss" or str(movement_target.id)==last_movement_beat:
+  movement_grade = "miss"
+  input_feedback = "MISS outside window" if str(movement_target.id)!=last_movement_beat else "MISS beat already consumed"
+  return
+ pending_target = movement_target.duplicate()
+ pending_move = -1 if action=="left" else 1
+ queued = pending_move
+ input_feedback = "ACCEPT "+movement_grade+" tap"
+
 
 func feed(action: String, pressed: bool, at: float, facing: int, allow_combinations: bool = true) -> Dictionary:
  if pressed == bool(held.get(action, false)):
@@ -60,8 +85,6 @@ func feed(action: String, pressed: bool, at: float, facing: int, allow_combinati
   return {}
  pressed_at[action] = at
  if action in ["left", "right"]:latest_horizontal = action
- if action in ["left", "right"] and allow_combinations:
-  pending_move = -1 if action == "left" else 1
  if action == "execute" and allow_combinations:
   pending_execute = at
  movement()
@@ -85,22 +108,13 @@ func feed(action: String, pressed: bool, at: float, facing: int, allow_combinati
  return result
 
 func step(beat: int, phrase: int) -> int:
- # Called only from the conductor boundary signal; accept all four boundaries, reject invalid/repeated beats.
- if beat < 1 or beat > 4:
-  queued = 0
-  step_feedback = "REJECT invalid beat"
-  return 0
- var identity := "%d:%d" % [phrase, beat]
- if identity == last_movement_beat:
-  step_feedback = "REJECT duplicate beat"
-  return 0
+ if beat<1 or beat>4:return 0
+ var identity := "%d:%d" % [phrase,beat]
+ if identity==last_movement_beat or pending_move==0 or str(pending_target.get("id",""))!=identity:return 0
  last_movement_beat = identity
- var direction_value := movement()
+ var result := pending_move
  pending_move = 0
- movement()
- if direction_value != 0:
-  step_feedback = "ACCEPT step beat%d" % beat
-
- else:
-  step_feedback = "NO STEP no pending/held direction"
- return direction_value
+ queued = 0
+ movement_executed = true
+ step_feedback = "EXECUTED "+identity
+ return result
