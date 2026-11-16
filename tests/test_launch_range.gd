@@ -69,9 +69,11 @@ func capture(name: String) -> void:
 
 func run() -> void:
  game = load(ProjectSettings.get_setting("application/run/main_scene")).instantiate()
+ game.preferences_path=""
  game.game_mode="pvp"
  game.conductor.clock_override = func(): return time
  root.add_child(game)
+ game.preferences.values.game_mode=game.game_mode
  game.set_process(false)
  # Inspect the actual initial menu BEFORE selecting any pose (the previous test blind spot).
  check(game.mode == "menu", "Configured root scene launches to menu")
@@ -261,7 +263,7 @@ func run() -> void:
    if strike<2:
     advance(game.conductor.phrase_start+game.conductor.duration()*4)
   check(game.mode == "finishing" and game.bout.winner == winner, "Either player reaches three-hit victory")
-  await create_timer(0.95).timeout
+  advance(time+0.95)
   check(game.mode == "round_win", "Round victory sequence completes independently of scoring")
   await capture("winner_p%d" % (winner+1))
   var enter := InputEventKey.new()

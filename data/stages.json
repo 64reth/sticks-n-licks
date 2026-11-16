@@ -3,10 +3,11 @@
   "stages": [
     {
       "id": "stage_01",
-      "name": "Stage 01",
+      "name": "Village Street",
       "path": "assets/environments/backgrounds/background_01.png",
       "source": "assets/environments/backgrounds/background_01.png",
       "sha256": "fe611396caf60d73793f083d6d9fb3588b68639edb38b18e1ecdd7406973ea69",
+      "source_sha256": "fe611396caf60d73793f083d6d9fb3588b68639edb38b18e1ecdd7406973ea69",
       "dimensions": [
         1672,
         941
@@ -17,10 +18,103 @@
     },
     {
       "id": "stage_02",
-      "name": "Stage 02",
+      "name": "Beach Courtyard",
       "path": "assets/environments/backgrounds/background_02.png",
       "source": "assets/environments/backgrounds/background_02",
       "sha256": "6e45176ed0bba0bfc5a7944c9105908f13b7490fd0ca4cd94154493394a9641b",
+      "source_sha256": "6e45176ed0bba0bfc5a7944c9105908f13b7490fd0ca4cd94154493394a9641b",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG",
+      "mode": "RGB",
+      "ground_y": 150
+    },
+    {
+      "id": "stage_03",
+      "name": "Crop Over Festival",
+      "path": "assets/environments/backgrounds/background_03.png",
+      "source": "assets/environments/backgrounds/background_03",
+      "sha256": "7ed094497b3ec70503baf3b230a9d1cfecab360b0c710005e2a6677f6d6c8210",
+      "source_sha256": "7ed094497b3ec70503baf3b230a9d1cfecab360b0c710005e2a6677f6d6c8210",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG",
+      "mode": "RGB",
+      "ground_y": 150
+    },
+    {
+      "id": "stage_04",
+      "name": "Fish Fry",
+      "path": "assets/environments/backgrounds/background_04.png",
+      "source": "assets/environments/backgrounds/background_04.png",
+      "sha256": "bb1e881d1d11ec95279d48351a43ad75a4ba637060d551519a59f6ad560e17f7",
+      "source_sha256": "bb1e881d1d11ec95279d48351a43ad75a4ba637060d551519a59f6ad560e17f7",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG",
+      "mode": "RGB",
+      "ground_y": 150
+    },
+    {
+      "id": "stage_04_original",
+      "name": "Seafront Street",
+      "path": "assets/environments/backgrounds/background_04_original.png",
+      "source": "assets/environments/backgrounds/background_04",
+      "sha256": "1066e7083e8857bc321bfca432fa650a779c230ab1fb7bf21bce408a96b3e74c",
+      "source_sha256": "1066e7083e8857bc321bfca432fa650a779c230ab1fb7bf21bce408a96b3e74c",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG",
+      "mode": "RGB",
+      "ground_y": 150
+    },
+    {
+      "id": "stage_05",
+      "name": "Fish Fry Copy",
+      "path": "assets/environments/backgrounds/background_05.png",
+      "source": "assets/environments/backgrounds/background_05",
+      "sha256": "bb1e881d1d11ec95279d48351a43ad75a4ba637060d551519a59f6ad560e17f7",
+      "source_sha256": "bb1e881d1d11ec95279d48351a43ad75a4ba637060d551519a59f6ad560e17f7",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG",
+      "mode": "RGB",
+      "ground_y": 150,
+      "duplicate_of": "stage_04"
+    },
+    {
+      "id": "stage_06",
+      "name": "Speightstown",
+      "path": "assets/environments/backgrounds/background_06.png",
+      "source": "assets/environments/backgrounds/background_06.png",
+      "sha256": "1066e7083e8857bc321bfca432fa650a779c230ab1fb7bf21bce408a96b3e74c",
+      "source_sha256": "1066e7083e8857bc321bfca432fa650a779c230ab1fb7bf21bce408a96b3e74c",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG",
+      "mode": "RGB",
+      "ground_y": 150,
+      "duplicate_of": "stage_04_original"
+    },
+    {
+      "id": "stage_07",
+      "name": "Animal Flower Cave",
+      "path": "assets/environments/backgrounds/background_07.png",
+      "source": "assets/environments/backgrounds/background_07.png",
+      "sha256": "b51d074666f35e197bfc77863ad333b0c20af74c1ae0d6b50b4f0661014fafde",
+      "source_sha256": "b51d074666f35e197bfc77863ad333b0c20af74c1ae0d6b50b4f0661014fafde",
       "dimensions": [
         1672,
         941

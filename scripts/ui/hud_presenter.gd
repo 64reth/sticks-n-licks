@@ -34,7 +34,7 @@ static func snapshot(game: Node2D, at: float) -> Dictionary:
   var champion: int = progress.winner
   var who: int = game.bout.winner
   major = NAMES[who] + (" CHAMPION!" if champion >= 0 else " ROUND WON!") if who >= 0 else ""
-  if phase == "round_win": footer = "ENTER NEXT ROUND  ESC MENU"
+  if phase == "round_win": footer = "ENTER NEXT ROUND  ESC PAUSE"
   elif phase == "match_win": footer = "ENTER REMATCH  ESC MENU"
  if phase == "combat" and at < game.outcome_until and not game.bout.last_event.is_empty():
   var event: Dictionary = game.bout.last_event

@@ -13,7 +13,7 @@ class StageAssetTests(unittest.TestCase):
         for item in config['stages']:
             for field in ('source', 'path'):
                 path = ROOT / item[field]
-                self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), item['sha256'])
+                self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), item['source_sha256'] if field == 'source' else item['sha256'])
                 with Image.open(path) as image:
                     self.assertEqual(image.format, 'PNG')
                     self.assertEqual(list(image.size), item['dimensions'])

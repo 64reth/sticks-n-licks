@@ -355,68 +355,73 @@
       "note": "Reuse supplied block with runtime flash; no invented parry artwork"
     },
     "high_hit": {
-      "resource": "assets/characters/fighter_01/frames/milestone_002/high_hit.tres",
-      "frames": 1,
-      "scale": 0.12121212121212122,
+      "resource": "assets/characters/fighter_01/frames/milestone_006/hurt.tres",
+      "frames": 2,
+      "scale": 0.09182209469153516,
       "native_facing": "right",
       "ground_pixel": 744,
       "canvas": [
         768,
         768
       ],
-      "source_category": "idle",
+      "source_category": "hurt",
       "frame_indices": [
-        0
+        0,
+        1
       ],
-      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+      "source_animation": "hurt"
     },
     "mid_hit": {
-      "resource": "assets/characters/fighter_01/frames/milestone_002/mid_hit.tres",
-      "frames": 1,
-      "scale": 0.12121212121212122,
+      "resource": "assets/characters/fighter_01/frames/milestone_006/hurt.tres",
+      "frames": 2,
+      "scale": 0.09182209469153516,
       "native_facing": "right",
       "ground_pixel": 744,
       "canvas": [
         768,
         768
       ],
-      "source_category": "idle",
+      "source_category": "hurt",
       "frame_indices": [
-        0
+        0,
+        1
       ],
-      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+      "source_animation": "hurt"
     },
     "low_hit": {
-      "resource": "assets/characters/fighter_01/frames/milestone_002/low_hit.tres",
-      "frames": 1,
-      "scale": 0.12121212121212122,
+      "resource": "assets/characters/fighter_01/frames/milestone_006/hurt.tres",
+      "frames": 2,
+      "scale": 0.09182209469153516,
       "native_facing": "right",
       "ground_pixel": 744,
       "canvas": [
         768,
         768
       ],
-      "source_category": "idle",
+      "source_category": "hurt",
       "frame_indices": [
-        0
+        0,
+        1
       ],
-      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+      "source_animation": "hurt"
     },
     "stagger": {
-      "resource": "assets/characters/fighter_01/frames/milestone_002/stagger.tres",
-      "frames": 1,
-      "scale": 0.12121212121212122,
+      "resource": "assets/characters/fighter_01/frames/milestone_006/stunned.tres",
+      "frames": 3,
+      "scale": 0.10829103214890017,
       "native_facing": "right",
       "ground_pixel": 744,
       "canvas": [
         768,
         768
       ],
-      "source_category": "idle",
+      "source_category": "stunned",
       "frame_indices": [
-        0
+        0,
+        1,
+        2
       ],
-      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+      "source_animation": "stunned"
     },
     "knockdown": {
       "resource": "assets/characters/fighter_01/frames/milestone_002/knockdown.tres",
@@ -435,36 +440,90 @@
       "note": "Missing authored state: retain actual character ready pose with runtime feedback"
     },
     "victory": {
-      "resource": "assets/characters/fighter_01/frames/milestone_002/victory.tres",
-      "frames": 1,
-      "scale": 0.12121212121212122,
+      "resource": "assets/characters/fighter_01/frames/milestone_006/victory.tres",
+      "frames": 4,
+      "scale": 0.14918414918414918,
       "native_facing": "right",
       "ground_pixel": 744,
       "canvas": [
         768,
         768
       ],
-      "source_category": "idle",
+      "source_category": "victory",
       "frame_indices": [
-        0
-      ],
-      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+        0,
+        1,
+        2,
+        3
+      ]
     },
     "defeat": {
-      "resource": "assets/characters/fighter_01/frames/milestone_002/defeat.tres",
-      "frames": 1,
-      "scale": 0.12121212121212122,
+      "resource": "assets/characters/fighter_01/frames/milestone_006/defeat.tres",
+      "frames": 3,
+      "scale": 0.10847457627118644,
       "native_facing": "right",
       "ground_pixel": 744,
       "canvas": [
         768,
         768
       ],
-      "source_category": "idle",
+      "source_category": "defeat",
       "frame_indices": [
-        0
+        0,
+        1,
+        2
+      ]
+    },
+    "stunned": {
+      "resource": "assets/characters/fighter_01/frames/milestone_006/stunned.tres",
+      "frames": 3,
+      "scale": 0.10829103214890017,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
       ],
-      "note": "Missing authored state: retain actual character ready pose with runtime feedback"
+      "source_category": "stunned",
+      "frame_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "hurt": {
+      "resource": "assets/characters/fighter_01/frames/milestone_006/hurt.tres",
+      "frames": 2,
+      "scale": 0.09182209469153516,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "hurt",
+      "frame_indices": [
+        0,
+        1
+      ]
+    },
+    "defeated": {
+      "resource": "assets/characters/fighter_01/frames/milestone_006/defeat.tres",
+      "frames": 3,
+      "scale": 0.10847457627118644,
+      "native_facing": "right",
+      "ground_pixel": 744,
+      "canvas": [
+        768,
+        768
+      ],
+      "source_category": "defeat",
+      "frame_indices": [
+        0,
+        1,
+        2
+      ],
+      "source_animation": "defeat"
     }
   }
 }

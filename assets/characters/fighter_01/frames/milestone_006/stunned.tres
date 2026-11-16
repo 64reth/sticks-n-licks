@@ -1,0 +1,6 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3]
+[ext_resource type="Texture2D" path="res://assets/characters/fighter_01/frames/milestone_006/stunned_000.png" id="1"]
+[ext_resource type="Texture2D" path="res://assets/characters/fighter_01/frames/milestone_006/stunned_001.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/fighter_01/frames/milestone_006/stunned_002.png" id="3"]
+[resource]
+animations = [{"frames":[{"duration":1.0,"texture":ExtResource("1")}, {"duration":1.0,"texture":ExtResource("2")}, {"duration":1.0,"texture":ExtResource("3")}],"loop":false,"name":&"stunned","speed":9}]

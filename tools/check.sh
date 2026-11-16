@@ -29,8 +29,8 @@ cat output/demo.stdout
 if rg -n 'SCRIPT ERROR|Parse Error|Failed to load|Assertion failed' output/{import,rules,controls,media,launch-range,idle-movement,arcade-hud,smoke,demo}.stdout; then exit 1; fi
 if ! rg -q '51 checks, 0 failures' output/rules.stdout; then exit 1; fi
 if ! rg -q '46 checks, 0 failures' output/controls.stdout; then exit 1; fi
-if ! rg -q '3300 checks, 0 failures' output/media.stdout; then exit 1; fi
-if ! rg -q '884 checks, 0 failures' output/launch-range.stdout; then exit 1; fi
+if ! rg -q '3348 checks, 0 failures' output/media.stdout; then exit 1; fi
+if ! rg -q '974 checks, 0 failures' output/launch-range.stdout; then exit 1; fi
 if ! rg -q '676 checks, 0 failures' output/idle-movement.stdout; then exit 1; fi
 if ! rg -q '189 checks, 0 failures' output/arcade-hud.stdout; then exit 1; fi
 if ! rg -q 'DEMO: rematch reset' output/demo.stdout; then exit 1; fi
@@ -55,3 +55,8 @@ if ! rg -q 'CPU TESTS: [0-9]+ checks, 0 failures; 900 measured matches' output/c
 cat output/cpu-demo.stdout
 if rg -n 'SCRIPT ERROR|Parse Error|Failed to load|Assertion failed' output/cpu-demo.stdout; then exit 1; fi
 if ! rg -q 'CPU DEMO COMPLETE' output/cpu-demo.stdout; then exit 1; fi
+
+"$GODOT" --headless --path . --log-file output/milestone006.log --script tests/test_milestone006.gd >output/milestone006.stdout 2>&1
+cat output/milestone006.stdout
+if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/milestone006.stdout; then exit 1; fi
+if ! rg -q 'MILESTONE 006: [0-9]+ checks, 0 failures' output/milestone006.stdout; then exit 1; fi

@@ -10,6 +10,7 @@ var captured_combat: bool = false
 func _ready() -> void:
  conductor.clock_override = func(): return demo_time
  game_mode="pvp"
+ preferences_path=""
  super._ready()
  max_anticipation_phrases = 1
  debug_visible = OS.get_cmdline_user_args().has("--debug-demo")

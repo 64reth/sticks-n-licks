@@ -1,5 +1,9 @@
 class_name Fighter
 extends Node2D
+var final_locked: bool=false
+var visual_priority: int=0
+var visual_until: float=-INF
+var clock_source: Callable
 var sprite := AnimatedSprite2D.new()
 var pose: String = "idle"
 var asset_config: String = ""
@@ -38,14 +42,15 @@ func _ready() -> void:
      animation_meta[state] = entry
     if ResourceLoader.exists(path):
      var authored := load(path) as SpriteFrames
-     if authored and authored.has_animation(state):
+     var source_state: String=str(entry.get("source_animation",state)) if entry is Dictionary else state
+     if authored and authored.has_animation(source_state):
       if not frames.has_animation(state):
        frames.add_animation(state)
       frames.clear(state)
-      for index in range(authored.get_frame_count(state)):
-       frames.add_frame(state, authored.get_frame_texture(state, index))
-      frames.set_animation_speed(state, authored.get_animation_speed(state))
-      frames.set_animation_loop(state, authored.get_animation_loop(state))
+      for index in range(authored.get_frame_count(source_state)):
+       frames.add_frame(state, authored.get_frame_texture(source_state, index))
+      frames.set_animation_speed(state, authored.get_animation_speed(source_state))
+      frames.set_animation_loop(state, authored.get_animation_loop(source_state))
  sprite.sprite_frames = frames
  set_pose("idle")
  # This visible/inspectable hurtbox mirrors the same gameplay geometry used by Bout.
@@ -93,6 +98,7 @@ func face(direction: int) -> void:
  sprite.flip_h = direction != native_facing
 
 func set_pose(value: String) -> void:
+ if final_locked and value!=pose:return
  if sprite.sprite_frames == null or not sprite.sprite_frames.has_animation(value):
   return
  # SpriteFrames can auto-select idle when assigned. Always apply its metadata,
@@ -111,31 +117,53 @@ func set_pose(value: String) -> void:
   sprite.speed_scale = 1.0
   sprite.play(value)
 
-func rhythmic_pose(value: String, seconds: float) -> void:
+func visual_now() -> float:
+ return clock_source.call() if clock_source.is_valid() else Time.get_ticks_usec()/1000000.0
+func reset_visual() -> void:
+ flash_time=0
+ whiff_time=0
+ spark_time=0
+ sprite.modulate=Color.WHITE
+ final_locked=false
+ visual_priority=0
+ visual_until=-INF
+func request_pose(value: String, priority: int, seconds: float) -> bool:
+ if final_locked or (visual_now()<visual_until and priority<visual_priority):return false
+ visual_priority=priority
+ visual_until=visual_now()+seconds
  set_pose(value)
+ return true
+func play_final(value: String) -> void:
+ reset_visual()
+ rhythmic_pose(value,0.8 if value=="victory" else 0.6,100)
+ final_locked=true
+func rhythmic_pose(value: String, seconds: float, priority: int=30) -> void:
+ if not request_pose(value,priority,seconds):return
  sprite.frame = 0
  sprite.frame_progress = 0.0
  var count := sprite.sprite_frames.get_frame_count(value)
  sprite.speed_scale = count / maxf(0.001, seconds * sprite.sprite_frames.get_animation_speed(value))
 
 func prepare(value: String, seconds: float) -> void:
- set_pose(value)
+ if not request_pose(value,75,seconds):return
  sprite.frame = 0
  var target_frame := 3 if value.ends_with("attack") else 2
  sprite.speed_scale = target_frame / maxf(0.001, seconds * sprite.sprite_frames.get_animation_speed(value))
 
 func impact(value: String, seconds: float) -> void:
- set_pose(value)
+ if not request_pose(value,75,seconds):return
  var count := sprite.sprite_frames.get_frame_count(value)
  sprite.frame = mini(3 if value.ends_with("attack") else 2, count - 1)
  sprite.frame_progress = 0.0
  sprite.speed_scale = maxf(1, count - sprite.frame) / maxf(0.001, seconds * sprite.sprite_frames.get_animation_speed(value))
 
 func parry(height: String, seconds: float) -> void:
+ if final_locked:return
  impact(height + "_parry", seconds)
  spark_time = 0.18
 
 func whiff(height: String, seconds: float) -> void:
+ if final_locked:return
  # Reuse the supplied attack recovery, with the same duration at every height.
  set_pose(height + "_attack")
  sprite.frame = sprite.sprite_frames.get_frame_count(sprite.animation) - 1
@@ -143,6 +171,7 @@ func whiff(height: String, seconds: float) -> void:
  whiff_time = seconds
 
 func hit_feedback() -> void:
+ if final_locked:return
  flash_time = 0.2
 
 func _process(delta: float) -> void:

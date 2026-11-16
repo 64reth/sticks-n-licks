@@ -15,14 +15,22 @@ var good_ms: float = 140.0
 var started: bool = false
 var clock_override: Callable
 
+var paused: bool=false
+var paused_at: float=0.0
+var pause_offset: float=0.0
+func raw_now() -> float:
+ return clock_override.call() if clock_override.is_valid() else Time.get_ticks_usec()/1000000.0
 func now() -> float:
- if clock_override.is_valid():
-  return clock_override.call()
- return Time.get_ticks_usec() / 1000000.0
+ return (paused_at if paused else raw_now())-pause_offset
+func set_paused(value: bool) -> void:
+ if value==paused:return
+ if value:paused_at=raw_now()
+ else:pause_offset+=raw_now()-paused_at
+ paused=value
 
-func start(at: float = -1.0) -> void:
- bpm = 120
- pending_bpm = 120
+func start(at: float = -1.0,tempo: int=120) -> void:
+ bpm = tempo
+ pending_bpm = tempo
  phrase = 0
  beat = 0
  epoch = now() if at < 0 else at
@@ -38,6 +46,7 @@ func schedule_tempo(value: int) -> void:
  pending_bpm = value
 
 func update(at: float) -> void:
+ if paused:return
  if not started or at < epoch:
   return
  # Emit every crossed boundary in order, even after a slow render frame.

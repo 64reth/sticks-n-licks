@@ -87,11 +87,15 @@ func run() -> void:
   push_error("Live movement E2E timed out in "+game.mode)
   quit(1))
  game=load(ProjectSettings.get_setting("application/run/main_scene")).instantiate()
+ game.preferences_path=""
  game.game_mode="pvp"
  root.add_child(game)
+ game.preferences.values.game_mode=game.game_mode
  check(game.mode=="menu" and not game.conductor.clock_override.is_valid(),"Actual entrypoint, normal clock")
  await tap(KEY_A)
  check(game.bout.positions==[100.0,220.0],"Menu rejects displacement")
+ await tap(KEY_ENTER)
+ for i in range(5):await tap(KEY_DOWN)
  await tap(KEY_ENTER)
  await tap(KEY_D)
  check(game.bout.positions==[100.0,220.0],"Countdown rejects displacement")
@@ -100,7 +104,7 @@ func run() -> void:
  await capture("stage01-idle")
  await key(KEY_F4)
  await key(KEY_F4,false)
- check(game.stage.selected==1,"F4 switches stage via real key handler")
+ check(game.stage.selected==0,"F4 cannot change a live match stage")
  await capture("stage02-idle")
  await boundary()
  await create_timer(game.conductor.duration()/2.0).timeout
@@ -145,7 +149,13 @@ func run() -> void:
  await tap(KEY_ENTER)
  await race()
  await simultaneous_tap([KEY_A,KEY_RIGHT],[-1,1],"rematch")
- check(game.raw_event_count==game.handled_event_count,"All injected directional events reached unhandled routing")
+ var raw_gameplay:=0
+ var routed_gameplay:=0
+ for row in game.movement_trace:
+  if row.phase!="combat":continue
+  if row.stage=="raw":raw_gameplay+=1
+  if row.stage=="unhandled":routed_gameplay+=1
+ check(raw_gameplay==routed_gameplay,"Combat directional events reach validation; menus intentionally consume navigation")
  for bpm in [120,140,160]:
   var seen := {}
   for sample in evidence:

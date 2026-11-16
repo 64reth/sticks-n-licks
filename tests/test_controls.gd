@@ -40,9 +40,11 @@ func key(action: String, down: bool = true) -> void:
 func run() -> void:
  var scene := load(ProjectSettings.get_setting("application/run/main_scene")) as PackedScene
  game = scene.instantiate()
+ game.preferences_path=""
  game.game_mode="pvp"
  game.conductor.clock_override = func(): return time
  root.add_child(game)
+ game.preferences.values.game_mode=game.game_mode
  game.set_process(false)
  game.metronome_enabled = false
  game.audio.enabled = false

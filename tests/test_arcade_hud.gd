@@ -100,11 +100,13 @@ func run() -> void:
   check(HUDPresenter.countdown(cue,cue,d)=="GO!","GO is exactly the authoritative cue")
   check(HUDPresenter.countdown(cue+0.35,cue,d)=="","GO clears after its short accent")
  game = load(ProjectSettings.get_setting("application/run/main_scene")).instantiate()
+ game.preferences_path=""
  game.game_mode="pvp"
  game.conductor.clock_override = func():return time
  root.add_child(game)
+ game.preferences.values.game_mode=game.game_mode
  game.set_process(false)
- check(game.hud.visible and not game.label.visible and not game.detail.visible and not game.input_feedback_label.visible,"Default HUD hides all old diagnostics")
+ check(game.flow.view.visible and not game.hud.visible and not game.label.visible and not game.detail.visible and not game.input_feedback_label.visible,"Title front end hides old diagnostics")
  check(game.hud.size==Vector2(320,180),"HUD uses viewport Control layout")
  check(game.hud.red.position==Vector2(5,5) and game.hud.blue.position==Vector2(219,5),"Player cards are symmetrical and anchored")
  check(game.hud.red.energy==3 and game.hud.blue.energy==3,"Both energy bars start full")
@@ -234,7 +236,7 @@ func run() -> void:
    check(game.mode=="finishing" and game.match_progress.round_wins[champion]==round_index+1,"Third hit awards one round marker immediately")
    game.resolve_exchange()
    check(game.match_progress.round_wins[champion]==round_index+1,"Repeated resolution never duplicates round markers")
-   await create_timer(0.95).timeout
+   advance(time+0.95)
    game.refresh()
    if round_index==0:
     check(game.mode=="round_win" and game.match_progress.winner==-1,"First victory is a round, not a match")

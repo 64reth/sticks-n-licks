@@ -1,0 +1,490 @@
+{
+  "continuous_recording": {
+    "audio_events": [
+      {
+        "at": 87.0249999999975,
+        "event": "match_result",
+        "game_mode": "cpu",
+        "theme": "victory",
+        "winner": 0
+      }
+    ],
+    "clock": "injected for offline recording",
+    "elapsed": 91.3583333333307,
+    "events": [
+      {
+        "at": 13.925,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 1
+      },
+      {
+        "at": 15.9250000000001,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 1
+      },
+      {
+        "at": 17.9250000000002,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 1
+      },
+      {
+        "audio": "",
+        "event": "ordinary_round",
+        "poses": [
+          "combat_idle",
+          "combat_idle"
+        ]
+      },
+      {
+        "at": 28.858333333334,
+        "attacker": 0,
+        "event": "WHIFF",
+        "round": 2
+      },
+      {
+        "at": 30.858333333334,
+        "attacker": 1,
+        "event": "HIT",
+        "round": 2
+      },
+      {
+        "at": 32.8583333333339,
+        "attacker": 1,
+        "event": "HIT",
+        "round": 2
+      },
+      {
+        "at": 34.8583333333338,
+        "attacker": 1,
+        "event": "PARRY",
+        "round": 2
+      },
+      {
+        "at": 36.8583333333337,
+        "attacker": 0,
+        "event": "BLOCK",
+        "round": 2
+      },
+      {
+        "at": 38.8583333333336,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 2
+      },
+      {
+        "at": 40.8583333333335,
+        "attacker": 0,
+        "event": "BLOCK",
+        "round": 2
+      },
+      {
+        "at": 42.8583333333334,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 2
+      },
+      {
+        "at": 44.8583333333332,
+        "attacker": 0,
+        "event": "BLOCK",
+        "round": 2
+      },
+      {
+        "at": 46.8583333333331,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 2
+      },
+      {
+        "audio": "",
+        "event": "ordinary_round",
+        "poses": [
+          "combat_idle",
+          "combat_idle"
+        ]
+      },
+      {
+        "at": 55.8249999999993,
+        "attacker": 0,
+        "event": "PARRY",
+        "round": 3
+      },
+      {
+        "at": 57.8249999999992,
+        "attacker": 1,
+        "event": "HIT",
+        "round": 3
+      },
+      {
+        "at": 59.8249999999991,
+        "attacker": 1,
+        "event": "HIT",
+        "round": 3
+      },
+      {
+        "at": 61.8249999999989,
+        "attacker": 1,
+        "event": "HIT",
+        "round": 3
+      },
+      {
+        "audio": "",
+        "event": "ordinary_round",
+        "poses": [
+          "combat_idle",
+          "combat_idle"
+        ]
+      },
+      {
+        "at": 70.7916666666651,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 4
+      },
+      {
+        "at": 72.791666666665,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 4
+      },
+      {
+        "at": 74.7916666666649,
+        "attacker": 0,
+        "event": "BLOCK",
+        "round": 4
+      },
+      {
+        "at": 76.7916666666648,
+        "attacker": 0,
+        "event": "PARRY",
+        "round": 4
+      },
+      {
+        "at": 78.7916666666647,
+        "attacker": 1,
+        "event": "WHIFF",
+        "round": 4
+      },
+      {
+        "at": 80.7916666666645,
+        "attacker": 0,
+        "event": "WHIFF",
+        "round": 4
+      },
+      {
+        "at": 82.7916666666644,
+        "attacker": 1,
+        "event": "HIT",
+        "round": 4
+      },
+      {
+        "at": 84.7916666666643,
+        "attacker": 1,
+        "event": "WHIFF",
+        "round": 4
+      },
+      {
+        "at": 86.7916666666642,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 4
+      },
+      {
+        "event": "match_result",
+        "theme": "victory",
+        "winner": 0,
+        "wins": [
+          3,
+          1
+        ]
+      }
+    ],
+    "input": "synthetic physical-key events via InputMap; no manual keyboard",
+    "parries": 3,
+    "scenario": "human_win",
+    "seed": 7000,
+    "success": true
+  },
+  "recording_validation": {
+    "file": "output/milestone006-complete.avi",
+    "frames": 2741,
+    "fps": 30,
+    "duration_seconds": 91.36666666666666,
+    "dimensions": [
+      320,
+      180
+    ],
+    "audio_chunks": 2741,
+    "nonzero_audio": true,
+    "all_jpeg_frames_verified": true,
+    "sample_frames": [
+      0,
+      50,
+      175,
+      190,
+      250,
+      400,
+      700,
+      1000,
+      1115,
+      1125,
+      1180,
+      1500,
+      1900,
+      2300,
+      2710,
+      2740
+    ],
+    "sha256": "2af5674c664027bde099c77325828962c028526b34adfb95aecc68695ed8c501"
+  },
+  "cpu_defeat": {
+    "audio_events": [
+      {
+        "at": 52.4833333333316,
+        "event": "match_result",
+        "game_mode": "cpu",
+        "theme": "defeat",
+        "winner": 1
+      }
+    ],
+    "clock": "injected for offline recording",
+    "elapsed": 54.6166666666648,
+    "events": [
+      {
+        "at": 13.3166666666669,
+        "attacker": 1,
+        "event": "WHIFF",
+        "round": 1
+      },
+      {
+        "at": 15.316666666667,
+        "attacker": 0,
+        "event": "PARRY",
+        "round": 1
+      },
+      {
+        "at": 17.316666666667,
+        "attacker": 1,
+        "event": "HIT",
+        "round": 1
+      },
+      {
+        "at": 19.3166666666669,
+        "attacker": 1,
+        "event": "HIT",
+        "round": 1
+      },
+      {
+        "at": 21.3166666666667,
+        "attacker": 1,
+        "event": "HIT",
+        "round": 1
+      },
+      {
+        "audio": "",
+        "event": "ordinary_round",
+        "poses": [
+          "combat_idle",
+          "combat_idle"
+        ]
+      },
+      {
+        "at": 32.2499999999995,
+        "attacker": 1,
+        "event": "WHIFF",
+        "round": 2
+      },
+      {
+        "at": 34.2499999999993,
+        "attacker": 0,
+        "event": "BLOCK",
+        "round": 2
+      },
+      {
+        "at": 36.2499999999992,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 2
+      },
+      {
+        "at": 38.2499999999991,
+        "attacker": 0,
+        "event": "BLOCK",
+        "round": 2
+      },
+      {
+        "at": 40.249999999999,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 2
+      },
+      {
+        "at": 42.2499999999989,
+        "attacker": 0,
+        "event": "BLOCK",
+        "round": 2
+      },
+      {
+        "at": 44.2499999999988,
+        "attacker": 0,
+        "event": "WHIFF",
+        "round": 2
+      },
+      {
+        "at": 46.2499999999987,
+        "attacker": 1,
+        "event": "BLOCK",
+        "round": 2
+      },
+      {
+        "at": 48.2499999999985,
+        "attacker": 1,
+        "event": "HIT",
+        "round": 2
+      },
+      {
+        "at": 50.2499999999984,
+        "attacker": 1,
+        "event": "HIT",
+        "round": 2
+      },
+      {
+        "at": 52.2499999999983,
+        "attacker": 1,
+        "event": "HIT",
+        "round": 2
+      },
+      {
+        "event": "match_result",
+        "theme": "defeat",
+        "winner": 1,
+        "wins": [
+          0,
+          2
+        ]
+      }
+    ],
+    "input": "synthetic physical-key events via InputMap; no manual keyboard",
+    "parries": 1,
+    "scenario": "cpu_loss",
+    "seed": 7000,
+    "success": true
+  },
+  "pvp": {
+    "audio_events": [
+      {
+        "at": 40.4833333333323,
+        "event": "match_result",
+        "game_mode": "pvp",
+        "theme": "victory",
+        "winner": 0
+      }
+    ],
+    "clock": "injected for offline recording",
+    "elapsed": 42.6166666666655,
+    "events": [
+      {
+        "at": 17.316666666667,
+        "attacker": 0,
+        "event": "BLOCK",
+        "round": 1
+      },
+      {
+        "at": 19.3166666666669,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 1
+      },
+      {
+        "at": 21.3166666666667,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 1
+      },
+      {
+        "at": 23.3166666666666,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 1
+      },
+      {
+        "audio": "",
+        "event": "ordinary_round",
+        "poses": [
+          "combat_idle",
+          "combat_idle"
+        ]
+      },
+      {
+        "at": 34.2499999999993,
+        "attacker": 0,
+        "event": "BLOCK",
+        "round": 2
+      },
+      {
+        "at": 36.2499999999992,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 2
+      },
+      {
+        "at": 38.2499999999991,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 2
+      },
+      {
+        "at": 40.249999999999,
+        "attacker": 0,
+        "event": "HIT",
+        "round": 2
+      },
+      {
+        "event": "match_result",
+        "theme": "victory",
+        "winner": 0,
+        "wins": [
+          2,
+          0
+        ]
+      }
+    ],
+    "input": "synthetic physical-key events via InputMap; no manual keyboard",
+    "parries": 0,
+    "scenario": "pvp",
+    "seed": 7000,
+    "success": true
+  },
+  "live_graphical": {
+    "clock": "production monotonic/audio",
+    "source_log": "output/front006-live.log",
+    "completed": true,
+    "parries": 5
+  },
+  "preferences": {
+    "separate_process_save": true,
+    "separate_process_reload": true,
+    "temporary_user_file_removed": true
+  },
+  "limits": "Synthetic key events. Offline movie clock is test-only; physical keyboard and perceptual audio sync remain unverified.",
+  "automated_tests": {
+    "command": "bash tools/check.sh",
+    "log": "output/check006-final-complete.stdout",
+    "failures": 0,
+    "rules": 51,
+    "controls": 46,
+    "media": 3348,
+    "launch_range": 974,
+    "idle_movement": 676,
+    "arcade_hud": 189,
+    "live_movement": 168,
+    "cpu_checks": 1795853,
+    "cpu_matches": 900,
+    "milestone_006": 292,
+    "python_tests": 24,
+    "cpu_demo_completed": true
+  }
+}

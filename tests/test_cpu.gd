@@ -23,6 +23,9 @@ func keyboard(code: int) -> void:
  event.keycode=code
  event.pressed=true
  game._unhandled_input(event)
+ event=event.duplicate()
+ event.pressed=false
+ game._unhandled_input(event)
 func on_boundary(_beat: int,_phrase: int) -> void:
  if hook_enabled and game.mode=="combat":human.plan_boundary(game.public_cpu_observation())
 func start_human_round() -> void:
@@ -38,10 +41,12 @@ func dispatch_human(intent: Dictionary) -> void:
 func simulate(level: String,seed_value: int,strategy: String,frame: float=1.0/60.0,tempo: int=120) -> Dictionary:
  game.cpu_difficulty=level
  game.cpu_seed=seed_value
+ game.preferences.values.difficulty=level
+ game.preferences.values.game_mode="cpu"
  human.configure(strategy,seed_value+100000)
  game.mode="menu"
  time=0.0
- keyboard(KEY_ENTER)
+ MenuTestInput.start(game)
  start_human_round()
  var started:=time
  var last_hit:=time
@@ -57,8 +62,8 @@ func simulate(level: String,seed_value: int,strategy: String,frame: float=1.0/60
  var states_seen: Dictionary={}
  while game.mode!="match_win" and time-started<360.0:
   if game.mode=="finishing":
-   # Accelerate only test harness timers, never production rules or damage.
-   await process_frame
+   time+=frame
+   game._process(frame)
    continue
   if game.mode=="round_win":
    keyboard(KEY_ENTER)
@@ -119,28 +124,32 @@ func simulate(level: String,seed_value: int,strategy: String,frame: float=1.0/60
  var decisions: Array=game.cpu.decisions.duplicate(true)
  check(game.mode=="match_win","Seeded CPU match completes: %s/%d/%s" % [level,seed_value,strategy])
  check(game.match_progress.round_wins.max()==2,"CPU match uses normal best-of-three scoring")
- return {"difficulty":level,"seed":seed_value,"strategy":strategy,"winner":game.match_progress.winner,"duration":time-started+played_rounds*0.9,"active_clock_duration":time-started,"rounds":played_rounds,"stalls":stalls,"timed_out":game.mode!="match_win","timing":action_counts,"attack_heights":heights,"bpms":observed_bpms.keys(),"cpu_defense_opportunities":cpu_defense_opportunities,"cpu_blocks":cpu_blocks,"cpu_parries":cpu_parries,"outcomes":kinds,"movement_changes":movement_steps,"distance_min":min_distance,"distance_max":max_distance,"states":states_seen.keys(),"decisions":decisions,"final_hits":game.bout.hits.duplicate()}
+ return {"difficulty":level,"seed":seed_value,"strategy":strategy,"winner":game.match_progress.winner,"duration":time-started,"active_clock_duration":time-started,"rounds":played_rounds,"stalls":stalls,"timed_out":game.mode!="match_win","timing":action_counts,"attack_heights":heights,"bpms":observed_bpms.keys(),"cpu_defense_opportunities":cpu_defense_opportunities,"cpu_blocks":cpu_blocks,"cpu_parries":cpu_parries,"outcomes":kinds,"movement_changes":movement_steps,"distance_min":min_distance,"distance_max":max_distance,"states":states_seen.keys(),"decisions":decisions,"final_hits":game.bout.hits.duplicate()}
 func run() -> void:
- Engine.time_scale=1000.0
  game=load(ProjectSettings.get_setting("application/run/main_scene")).instantiate()
+ game.preferences_path=""
  game.conductor.clock_override=func():return time
  root.add_child(game)
+ game.preferences.values.game_mode=game.game_mode
  game.set_process(false)
  game.audio.stop()
  check(game.game_mode=="cpu" and game.cpu_difficulty=="normal","Default starts Player vs CPU Normal")
+ keyboard(KEY_ENTER)
+ keyboard(KEY_DOWN)
  keyboard(KEY_LEFT)
- check(game.cpu_difficulty=="easy","Menu selects Easy")
+ check(game.cpu_difficulty=="easy","Setup selects Easy")
  keyboard(KEY_RIGHT)
  keyboard(KEY_RIGHT)
- check(game.cpu_difficulty=="hard","Menu selects Hard")
- keyboard(KEY_P)
- check(game.game_mode=="pvp","Immediate PvP shortcut")
- keyboard(KEY_M)
- check(game.game_mode=="cpu","Mode returns to CPU")
+ check(game.cpu_difficulty=="hard","Setup selects Hard")
+ keyboard(KEY_UP)
+ keyboard(KEY_RIGHT)
+ check(game.game_mode=="pvp","Setup selects PvP")
+ keyboard(KEY_RIGHT)
+ check(game.game_mode=="cpu","Setup returns to CPU")
  keyboard(KEY_F3)
  check(game.debug_visible,"F3 CPU diagnostics")
  keyboard(KEY_F4)
- check(game.stage.selected==1,"F4 stage selection retained")
+ check(game.stage.selected==1,"Pre-match developer stage preview retained")
  game.debug_visible=false
  var public: Dictionary=game.public_cpu_observation()
  var original_public:=public.duplicate(true)
@@ -234,5 +243,4 @@ func run() -> void:
  game.audio.stop()
  game.conductor.clock_override=Callable()
  game.queue_free()
- Engine.time_scale=1.0
  quit(1 if failures else 0)

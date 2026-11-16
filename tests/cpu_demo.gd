@@ -12,6 +12,7 @@ var last_exchange_count := 0
 func _ready() -> void:
  recording="--record-cpu-demo" in OS.get_cmdline_user_args()
  if recording:conductor.clock_override=func():return test_clock
+ preferences_path=""
  super._ready()
  if recording:
   # Offline movie audio uses the same simulated conductor clock; production is unchanged.
@@ -25,6 +26,9 @@ func _key(code: int) -> void:
  var event:=InputEventKey.new()
  event.keycode=code
  event.pressed=true
+ _unhandled_input(event)
+ event=event.duplicate()
+ event.pressed=false
  _unhandled_input(event)
 func _player_action(intent: Dictionary) -> void:
  if intent.kind=="race" and mode not in ["standoff","race"]:return
@@ -50,7 +54,9 @@ func _process(delta: float) -> void:
  if mode=="menu" and not start_queued:
   capture_once("menu")
   if elapsed>0.75:
-   _key(KEY_ENTER)
+   preferences.values.difficulty=cpu_difficulty
+   preferences.values.game_mode=game_mode
+   MenuTestInput.start(self)
    start_queued=true
  if mode=="standoff" and cue!=last_round_cue:
   last_round_cue=cue
@@ -71,7 +77,6 @@ func _process(delta: float) -> void:
   if outcome_at<0:outcome_at=elapsed
   capture_once(mode)
   if mode=="round_win" and elapsed-outcome_at>0.6:
-   _key(KEY_F4)
    _key(KEY_ENTER)
    outcome_at=-1
   elif mode=="match_win" and elapsed-outcome_at>1.0:

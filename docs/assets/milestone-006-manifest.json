@@ -1,0 +1,834 @@
+{
+  "version": 1,
+  "canvas": [
+    768,
+    768
+  ],
+  "ground_pixel": 744,
+  "sheets": [
+    {
+      "fighter": 1,
+      "state": "stunned",
+      "source": "assets/characters/fighter_01/spritesheets/fighter_01_stunned.png",
+      "sha256": "6fdba5f1a443d2e652e80d5a7b0f89e7a3bf840ff7d3040794a19707ce233db9",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 3,
+      "cell_width": 724,
+      "scale": 0.10829103214890017,
+      "neutral_border_pixels_removed": 0,
+      "frames": [
+        {
+          "file": "assets/characters/fighter_01/frames/milestone_006/stunned_000.png",
+          "source_cell": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "source_foreground": [
+            67,
+            55,
+            544,
+            648
+          ],
+          "translation": [
+            78,
+            96
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            145,
+            151,
+            622,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_01/frames/milestone_006/stunned_001.png",
+          "source_cell": [
+            724,
+            0,
+            1448,
+            724
+          ],
+          "source_foreground": [
+            29,
+            73,
+            606,
+            649
+          ],
+          "translation": [
+            66,
+            95
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            95,
+            168,
+            672,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_01/frames/milestone_006/stunned_002.png",
+          "source_cell": [
+            1448,
+            0,
+            2172,
+            724
+          ],
+          "source_foreground": [
+            121,
+            58,
+            546,
+            649
+          ],
+          "translation": [
+            50,
+            95
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            171,
+            153,
+            596,
+            744
+          ]
+        }
+      ]
+    },
+    {
+      "fighter": 1,
+      "state": "hurt",
+      "source": "assets/characters/fighter_01/spritesheets/fighter_01_hurt.png",
+      "sha256": "0a6ffa27f7dc3527c23684e398f06c0c4c2739205123261b25dcc311eeacec8a",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "frame_count": 2,
+      "cell_width": 887,
+      "scale": 0.09182209469153516,
+      "neutral_border_pixels_removed": 0,
+      "frames": [
+        {
+          "file": "assets/characters/fighter_01/frames/milestone_006/hurt_000.png",
+          "source_cell": [
+            0,
+            0,
+            887,
+            887
+          ],
+          "source_foreground": [
+            108,
+            124,
+            700,
+            821
+          ],
+          "translation": [
+            -20,
+            -77
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            88,
+            47,
+            680,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_01/frames/milestone_006/hurt_001.png",
+          "source_cell": [
+            887,
+            0,
+            1774,
+            887
+          ],
+          "source_foreground": [
+            184,
+            147,
+            710,
+            821
+          ],
+          "translation": [
+            -63,
+            -77
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            121,
+            70,
+            647,
+            744
+          ]
+        }
+      ]
+    },
+    {
+      "fighter": 1,
+      "state": "victory",
+      "source": "assets/characters/fighter_01/spritesheets/fighter_01_victory.png",
+      "sha256": "86d043bd9ccda43352242facbdc78c496c23a058aeaa2f61d2c1eb3a8cd10b41",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 4,
+      "cell_width": 543,
+      "scale": 0.14918414918414918,
+      "neutral_border_pixels_removed": 1249082,
+      "frames": [
+        {
+          "file": "assets/characters/fighter_01/frames/milestone_006/victory_000.png",
+          "source_cell": [
+            0,
+            0,
+            543,
+            724
+          ],
+          "source_foreground": [
+            132,
+            175,
+            438,
+            604
+          ],
+          "translation": [
+            99,
+            140
+          ],
+          "alpha_extrema": [
+            0,
+            252
+          ],
+          "bbox": [
+            231,
+            315,
+            537,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_01/frames/milestone_006/victory_001.png",
+          "source_cell": [
+            543,
+            0,
+            1086,
+            724
+          ],
+          "source_foreground": [
+            101,
+            101,
+            411,
+            604
+          ],
+          "translation": [
+            128,
+            140
+          ],
+          "alpha_extrema": [
+            0,
+            252
+          ],
+          "bbox": [
+            229,
+            241,
+            539,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_01/frames/milestone_006/victory_002.png",
+          "source_cell": [
+            1086,
+            0,
+            1629,
+            724
+          ],
+          "source_foreground": [
+            107,
+            157,
+            444,
+            604
+          ],
+          "translation": [
+            108,
+            140
+          ],
+          "alpha_extrema": [
+            0,
+            252
+          ],
+          "bbox": [
+            215,
+            297,
+            552,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_01/frames/milestone_006/victory_003.png",
+          "source_cell": [
+            1629,
+            0,
+            2172,
+            724
+          ],
+          "source_foreground": [
+            97,
+            109,
+            437,
+            604
+          ],
+          "translation": [
+            117,
+            140
+          ],
+          "alpha_extrema": [
+            0,
+            253
+          ],
+          "bbox": [
+            214,
+            249,
+            554,
+            744
+          ]
+        }
+      ]
+    },
+    {
+      "fighter": 1,
+      "state": "defeat",
+      "source": "assets/characters/fighter_01/spritesheets/fighter_01_defeat.png",
+      "sha256": "1af2a7d6e158e661b39d46f1b96e2f59325aabc508ad3b708bb1566a1c41b64d",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 3,
+      "cell_width": 724,
+      "scale": 0.10847457627118644,
+      "neutral_border_pixels_removed": 0,
+      "frames": [
+        {
+          "file": "assets/characters/fighter_01/frames/milestone_006/defeat_000.png",
+          "source_cell": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "source_foreground": [
+            198,
+            84,
+            559,
+            674
+          ],
+          "translation": [
+            5,
+            70
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            203,
+            154,
+            564,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_01/frames/milestone_006/defeat_001.png",
+          "source_cell": [
+            724,
+            0,
+            1448,
+            724
+          ],
+          "source_foreground": [
+            147,
+            150,
+            551,
+            674
+          ],
+          "translation": [
+            35,
+            70
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            182,
+            220,
+            586,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_01/frames/milestone_006/defeat_002.png",
+          "source_cell": [
+            1448,
+            0,
+            2172,
+            724
+          ],
+          "source_foreground": [
+            147,
+            195,
+            550,
+            674
+          ],
+          "translation": [
+            35,
+            70
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            182,
+            265,
+            585,
+            744
+          ]
+        }
+      ]
+    },
+    {
+      "fighter": 2,
+      "state": "stunned",
+      "source": "assets/characters/fighter_02/spritesheets/fighter_02_stunned.png",
+      "sha256": "28730454312f7b0246e5a12e7819dd638e5a30475722119a7df4aaea4b916e3e",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 3,
+      "cell_width": 724,
+      "scale": 0.10631229235880399,
+      "neutral_border_pixels_removed": 0,
+      "frames": [
+        {
+          "file": "assets/characters/fighter_02/frames/milestone_006/stunned_000.png",
+          "source_cell": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "source_foreground": [
+            161,
+            66,
+            646,
+            673
+          ],
+          "translation": [
+            -20,
+            71
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            141,
+            137,
+            626,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_02/frames/milestone_006/stunned_001.png",
+          "source_cell": [
+            724,
+            0,
+            1448,
+            724
+          ],
+          "source_foreground": [
+            133,
+            85,
+            644,
+            672
+          ],
+          "translation": [
+            -5,
+            72
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            128,
+            157,
+            639,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_02/frames/milestone_006/stunned_002.png",
+          "source_cell": [
+            1448,
+            0,
+            2172,
+            724
+          ],
+          "source_foreground": [
+            149,
+            70,
+            575,
+            672
+          ],
+          "translation": [
+            22,
+            72
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            171,
+            142,
+            597,
+            744
+          ]
+        }
+      ]
+    },
+    {
+      "fighter": 2,
+      "state": "hurt",
+      "source": "assets/characters/fighter_02/spritesheets/fighter_02_hurt.png",
+      "sha256": "1da0e285097195a84cee6547f9a2e44b87cb1100d0793f1fb10bc935d96f8ae5",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "frame_count": 2,
+      "cell_width": 887,
+      "scale": 0.095952023988006,
+      "neutral_border_pixels_removed": 0,
+      "frames": [
+        {
+          "file": "assets/characters/fighter_02/frames/milestone_006/hurt_000.png",
+          "source_cell": [
+            0,
+            0,
+            887,
+            887
+          ],
+          "source_foreground": [
+            233,
+            141,
+            773,
+            808
+          ],
+          "translation": [
+            -119,
+            -64
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            114,
+            77,
+            654,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_02/frames/milestone_006/hurt_001.png",
+          "source_cell": [
+            887,
+            0,
+            1774,
+            887
+          ],
+          "source_foreground": [
+            233,
+            120,
+            668,
+            808
+          ],
+          "translation": [
+            -67,
+            -64
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            166,
+            56,
+            601,
+            744
+          ]
+        }
+      ]
+    },
+    {
+      "fighter": 2,
+      "state": "victory",
+      "source": "assets/characters/fighter_02/spritesheets/fighter_02_victory.png",
+      "sha256": "32818cd9595fc6908a8808056408895450968cc0d80da4c2adb7ff13d491e391",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 4,
+      "cell_width": 543,
+      "scale": 0.1285140562248996,
+      "neutral_border_pixels_removed": 0,
+      "frames": [
+        {
+          "file": "assets/characters/fighter_02/frames/milestone_006/victory_000.png",
+          "source_cell": [
+            0,
+            0,
+            543,
+            724
+          ],
+          "source_foreground": [
+            112,
+            117,
+            394,
+            615
+          ],
+          "translation": [
+            131,
+            129
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            243,
+            246,
+            525,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_02/frames/milestone_006/victory_001.png",
+          "source_cell": [
+            543,
+            0,
+            1086,
+            724
+          ],
+          "source_foreground": [
+            82,
+            118,
+            410,
+            615
+          ],
+          "translation": [
+            138,
+            129
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            220,
+            247,
+            548,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_02/frames/milestone_006/victory_002.png",
+          "source_cell": [
+            1086,
+            0,
+            1629,
+            724
+          ],
+          "source_foreground": [
+            30,
+            113,
+            455,
+            615
+          ],
+          "translation": [
+            141,
+            129
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            171,
+            242,
+            596,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_02/frames/milestone_006/victory_003.png",
+          "source_cell": [
+            1629,
+            0,
+            2172,
+            724
+          ],
+          "source_foreground": [
+            104,
+            109,
+            434,
+            615
+          ],
+          "translation": [
+            115,
+            129
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            219,
+            238,
+            549,
+            744
+          ]
+        }
+      ]
+    },
+    {
+      "fighter": 2,
+      "state": "defeat",
+      "source": "assets/characters/fighter_02/spritesheets/fighter_02_defeat.png",
+      "sha256": "dd9d5624273737cc75dcf9d8d145ccaf24c8a5106faf8c3d50edcdd66287c3f7",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "frame_count": 3,
+      "cell_width": 724,
+      "scale": 0.10684474123539232,
+      "neutral_border_pixels_removed": 0,
+      "frames": [
+        {
+          "file": "assets/characters/fighter_02/frames/milestone_006/defeat_000.png",
+          "source_cell": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "source_foreground": [
+            193,
+            73,
+            533,
+            672
+          ],
+          "translation": [
+            21,
+            72
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            214,
+            145,
+            554,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_02/frames/milestone_006/defeat_001.png",
+          "source_cell": [
+            724,
+            0,
+            1448,
+            724
+          ],
+          "source_foreground": [
+            109,
+            144,
+            574,
+            672
+          ],
+          "translation": [
+            42,
+            72
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            151,
+            216,
+            616,
+            744
+          ]
+        },
+        {
+          "file": "assets/characters/fighter_02/frames/milestone_006/defeat_002.png",
+          "source_cell": [
+            1448,
+            0,
+            2172,
+            724
+          ],
+          "source_foreground": [
+            148,
+            149,
+            564,
+            688
+          ],
+          "translation": [
+            28,
+            56
+          ],
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "bbox": [
+            176,
+            205,
+            592,
+            744
+          ]
+        }
+      ]
+    }
+  ]
+}

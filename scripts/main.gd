@@ -1,4 +1,17 @@
 extends Node2D
+var flow:=ArcadeFlow.new()
+var preferences:=UserPreferences.new()
+var preferences_path: String="user://preferences.cfg"
+var selected_bpm: int=120
+var stage_preference: String="stage_01"
+var stage_rng:=RandomNumberGenerator.new()
+var match_serial: int=0
+var paused: bool=false
+var ui_held: Dictionary={}
+var transition_until: float=INF
+var result_handled: bool=false
+var movement_stun: Array[String]=["",""]
+var stun_time: Array[float]=[-INF,-INF]
 var game_mode: String = "cpu"
 var cpu_difficulty: String = "normal"
 var cpu_seed: int = 5005
@@ -102,6 +115,7 @@ func _ready() -> void:
  add_child(cpu_debug_label)
  stage.z_index = -1
  add_child(stage)
+ flow.setup(self)
  var config := FileAccess.open("res://data/combat/settings.json", FileAccess.READ)
  if config:
   settings = JSON.parse_string(config.get_as_text())
@@ -136,6 +150,7 @@ func _ready() -> void:
  click_player.stream = click_stream
  for player in range(2):
   var fighter := Fighter.new()
+  fighter.clock_source=conductor.now
   fighter.asset_config = "res://data/animations/fighter_0%d.json" % (player + 1)
   fighter.color = Color("f3ba55") if player == 0 else Color("66c9c8")
   add_child(fighter)
@@ -168,6 +183,22 @@ func _ready() -> void:
  hud_layer.layer = 10
  add_child(hud_layer)
  hud_layer.add_child(hud)
+ hud_layer.add_child(flow.view)
+ if conductor.clock_override.is_valid():preferences_path=""
+ preferences.path=preferences_path
+ var stage_ids: Array=[]
+ for entry in stage.entries:stage_ids.append(entry.id)
+ preferences.load_values(stage_ids)
+ apply_preferences(not preferences_path.is_empty())
+ # Explicit test/replay CLI overrides take precedence over saved defaults.
+ for argument in OS.get_cmdline_user_args():
+  if argument.begins_with("--cpu-difficulty="):
+   var level:=argument.get_slice("=",1).to_lower()
+   if level in ["easy","normal","hard"]:
+    cpu_difficulty=level
+    preferences.values.difficulty=level
+ cpu.configure(cpu_difficulty,cpu_seed)
+ flow.root("title")
  conductor.beat_changed.connect(on_beat)
  conductor.phrase_changed.connect(on_phrase)
  audio.play_track("menu", conductor.now())
@@ -178,6 +209,18 @@ func play_click(force: bool = false) -> void:
   click_player.play()
 
 func begin() -> void:
+ if paused:set_paused(false)
+ result_handled=false
+ transition_until=INF
+ ui_held.clear()
+ flow.view.visible=false
+ match_serial+=1
+ if stage_preference=="random" and not stage.entries.is_empty():
+  stage_rng.seed=cpu_seed^0x53544147^match_serial
+  stage.select_stage(stage_rng.randi_range(0,stage.entries.size()-1))
+ else:
+  for index in range(stage.entries.size()):
+   if stage.entries[index].id==stage_preference:stage.select_stage(index)
  cpu.configure(cpu_difficulty,cpu_seed)
  cpu_difficulty=cpu.difficulty
  match_rng.seed=cpu_seed^0x534e4c
@@ -191,6 +234,9 @@ func next_round() -> void:
   _begin_round()
 
 func _begin_round() -> void:
+ movement_stun=["",""]
+ stun_time=[-INF,-INF]
+ transition_until=INF
  phrase_resolved = false
  exchange_phrase = 0
  outcome_until = -INF
@@ -211,20 +257,25 @@ func _begin_round() -> void:
  step_started = [-INF,-INF]
  pose_until_by_player = [0.0, 0.0]
  last_error = [INF, INF]
- conductor.start()
+ conductor.start(-1,selected_bpm)
  anticipation_phrases = match_rng.randi_range(1,max_anticipation_phrases) if game_mode=="cpu" else randi_range(1, max_anticipation_phrases)
- cue = conductor.epoch + anticipation_phrases * 2.0 + 1.5
+ cue = conductor.epoch+conductor.duration()*(anticipation_phrases*4+3)
  race_deadline = cue + race_timeout
  mode = "standoff"
  if game_mode=="cpu":cpu.start_round(cue)
  status = "Wait for GO. Early press forfeits the race."
- previous_bpm = 120
+ previous_bpm = selected_bpm
+ audio.music.pitch_scale=float(selected_bpm)/120.0
  audio.play_track("standoff", conductor.epoch, true)
  for fighter in fighters:
+  fighter.reset_visual()
   fighter.set_pose("standoff_anticipation")
  refresh()
 
 func _process(delta: float) -> void:
+ if paused:
+  refresh()
+  return
  var at := game_time()
  if mode in ["standoff", "race", "combat"]:
   advance_timeline(at)
@@ -254,13 +305,17 @@ func _process(delta: float) -> void:
     status = "P%d takes initiative. Both fighters collect sticks." % (result + 1)
     for fighter in fighters:
      fighter.set_pose("stick_pickup")
-    var next_boundary: float = conductor.epoch + ceil((at + 0.75 - conductor.epoch) / 2.0) * 2.0
-    conductor.start(next_boundary)
+    var phrase_seconds: float=conductor.duration()*4
+    var next_boundary: float = conductor.epoch+ceil((at+conductor.duration()*1.5-conductor.epoch)/phrase_seconds)*phrase_seconds
+    conductor.start(next_boundary,selected_bpm)
     phrase_resolved = false
  if mode == "pickup" and at >= conductor.epoch:
   mode = "combat"
-  audio.play_track("120", conductor.epoch)
+  audio.music.pitch_scale=1.0
+  audio.play_track(str(selected_bpm), conductor.epoch)
   advance_timeline(at)
+ if mode=="finishing" and at>=transition_until:complete_round_transition()
+ expire_stuns(at)
  if mode=="combat":
   freeze_combat_positions(at)
  if mode == "combat" and not phrase_resolved and at > conductor.action_time() + (conductor.good_ms + controls[0].combination_ms + maxf(0.0, conductor.latency_ms)) / 1000.0:
@@ -284,9 +339,9 @@ func _process(delta: float) -> void:
    trace_movement("rendered",player,{"execution_time":controls[player].last_step_time})
   fighters[player].sync_hurtbox(Vector2(bout.positions[player], Bout.GROUND_Y))
   if mode=="combat" and fighters[player].pose in ["forward_step","backward_step"] and at-step_started[player]>=step_seconds:
-   fighters[player].set_pose("combat_idle")
+   fighters[player].request_pose("combat_idle",0,0)
   if mode == "combat" and at > pose_until_by_player[player]:
-   fighters[player].set_pose("combat_idle")
+   fighters[player].request_pose("combat_idle",0,0)
  combat_debug.visible = debug_visible
  combat_debug.queue_redraw()
  refresh()
@@ -327,6 +382,7 @@ func dispatch_cpu(intent: Dictionary) -> void:
  if cpu_attempts.size()>4096:cpu_attempts.pop_front()
 
 func advance_timeline(at: float) -> void:
+ if paused:return
  if game_mode!="cpu":
   conductor.update(at)
   return
@@ -378,6 +434,7 @@ func on_beat(beat: int, _phrase: int) -> void:
   click_player.pitch_scale = 1.5 if beat == 4 else 1.0
   play_click()
   exchange_phrase = _phrase
+  expire_stuns(conductor.beat_time)
   apply_movement(beat,_phrase,conductor.beat_time)
   if game_mode=="cpu":cpu.plan_boundary(public_cpu_observation())
   if beat==4:
@@ -394,6 +451,12 @@ func apply_movement(beat: int, phrase: int, at: float) -> void:
  for player in range(2):
   controls[player].last_step_evaluated=at
   requested[player]=controls[player].step(beat,phrase)
+  if movement_stun[player]=="%d:%d" % [phrase,beat]:
+   if requested[player]!=0:
+    controls[player].step_feedback="STUN: ONE MOVE LOST"
+    controls[player].input_feedback="STUN: COMBAT STILL AVAILABLE"
+    controls[player].movement_executed=false
+   requested[player]=0
   bout.movements[player]=requested[player]
  if requested==[0,0]:return
  bout.move()
@@ -423,6 +486,7 @@ func facing(player: int) -> int:
 
 func _notification(what: int) -> void:
  if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+  ui_held.clear()
   for control in controls:
    control.reset()
    control.input_feedback = "REJECT focus lost; press again"
@@ -438,6 +502,9 @@ func resolve_exchange() -> void:
  var direction := maxi(0, selected[attack])
  var height: String = ["high", "mid", "low"][direction]
  status = bout.resolve(conductor, exchange_phrase)
+ for fighter in fighters:
+  fighter.visual_priority=0
+  fighter.visual_until=-INF
  var published:=bout.last_event.duplicate(true)
  published["round"]=match_progress.round_number
  published["time"]=game_time()
@@ -451,67 +518,121 @@ func resolve_exchange() -> void:
   fighters[attack].whiff(height, 0.35)
  elif status.begins_with("Perfect"):
   fighters[defense].parry(height, conductor.duration() * 0.5)
+  movement_stun[attack]="%d:1" % (exchange_phrase+1)
+  stun_time[attack]=conductor.phrase_start if conductor.phrase>exchange_phrase else conductor.phrase_start+conductor.duration()*4
+  if str(controls[attack].pending_target.get("id",""))==movement_stun[attack]:
+   controls[attack].pending_move=0
+   controls[attack].queued=0
+   controls[attack].movement_executed=false
+   controls[attack].step_feedback="STUN: ONE MOVE LOST"
+   controls[attack].input_feedback="STUN: COMBAT STILL AVAILABLE"
+  fighters[attack].rhythmic_pose("stunned",0.33,50)
   audio.sound("parry")
  elif status.begins_with("Blocked"):
   audio.sound("block")
  elif status.begins_with("Clean") or bout.winner >= 0:
-  fighters[defense].set_pose(height + "_hit")
+  fighters[defense].rhythmic_pose("hurt",0.2,70)
   fighters[defense].hit_feedback()
   audio.sound("hit")
  if bout.winner >= 0:
   match_progress.award_round(bout.winner)
   mode = "finishing"
-  audio.schedule_track("victory", conductor.phrase_start + conductor.duration() * 4.0)
-  finish_victory(bout.winner,bout)
+  audio.stop()
+  transition_until=conductor.now()+(0.22 if match_progress.winner>=0 else 0.35)
  refresh()
 
-func finish_victory(player: int,completed_bout: Bout) -> void:
- await get_tree().create_timer(0.45).timeout
- if bout != completed_bout:
-  return
- fighters[1 - player].set_pose("knockdown")
- await get_tree().create_timer(0.45).timeout
- if bout != completed_bout:
-  return
- fighters[player].set_pose("victory")
- fighters[1 - player].set_pose("defeat")
- mode = "match_win" if match_progress.winner >= 0 else "round_win"
+func complete_round_transition() -> void:
+ if mode!="finishing":return
+ transition_until=INF
+ if match_progress.winner>=0:
+  if result_handled:return
+  result_handled=true
+  var winner: int=match_progress.winner
+  fighters[winner].play_final("victory")
+  fighters[1-winner].play_final("defeat")
+  audio.music.pitch_scale=1.0
+  audio.play_result(game_mode,winner)
+  mode="match_win"
+  flow.root("result")
+ else:
+  for fighter in fighters:
+   fighter.reset_visual()
+   fighter.set_pose("combat_idle")
+  mode="round_win"
+
+func expire_stuns(at: float) -> void:
+ for player in range(2):
+  if not movement_stun[player].is_empty() and at>stun_time[player]+(movement_good_ms+maxf(0,conductor.latency_ms))/1000.0:
+   movement_stun[player]=""
+
+func apply_preferences(include_match: bool=true) -> void:
+ var values: Dictionary=preferences.values
+ if include_match:
+  game_mode=values.game_mode
+  cpu_difficulty=values.difficulty
+  selected_bpm=values.bpm
+  stage_preference=values.stage
+  settings["match_best_of"]=values.best_of
+ audio.apply_preferences(values)
+ click_player.bus="SFX"
+ if DisplayServer.get_name()!="headless":
+  DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if values.fullscreen else DisplayServer.WINDOW_MODE_WINDOWED)
+ get_window().content_scale_stretch=Window.CONTENT_SCALE_STRETCH_INTEGER if values.integer_scale else Window.CONTENT_SCALE_STRETCH_FRACTIONAL
+
+func set_paused(value: bool) -> void:
+ if value==paused:return
+ if value and audio.music.playing:audio.audio_time()
+ paused=value
+ conductor.set_paused(value)
+ audio.music.stream_paused=value
+ audio.effects.stream_paused=value
+ for fighter in fighters: fighter.process_mode=Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
+ for control in controls:control.reset()
+ bout.movements=[0,0]
+ if value:flow.root("pause")
+ refresh()
+
+func return_to_title() -> void:
+ if paused:set_paused(false)
+ cpu.queue.clear()
+ conductor.started=false
+ mode="menu"
+ audio.stop()
+ audio.music.pitch_scale=1
+ audio.play_track("menu",conductor.now(),true)
+ for fighter in fighters:
+  fighter.reset_visual()
+  fighter.set_pose("idle")
+ flow.root("title")
+ refresh()
 
 func _unhandled_input(event: InputEvent) -> void:
- if event is InputEventKey and event.echo:
-  return
- if event is InputEventKey and event.pressed:
-  if mode=="menu":
-   if event.keycode in [KEY_M,KEY_P]:
-    game_mode="pvp" if event.keycode==KEY_P or game_mode=="cpu" else "cpu"
-    refresh()
-    return
-   if event.keycode in [KEY_LEFT,KEY_RIGHT] and game_mode=="cpu":
-    var levels: Array[String]=["easy","normal","hard"]
-    cpu_difficulty=levels[posmod(levels.find(cpu_difficulty)+(1 if event.keycode==KEY_RIGHT else -1),3)]
-    refresh()
-    return
-  if event.keycode == KEY_F4:
-   stage.select_stage(stage.selected+1)
-  if event.keycode == KEY_F3:
-   debug_visible = not debug_visible
-  if event.keycode == KEY_H:
-   help_visible = not help_visible
-  if event.keycode == KEY_ESCAPE:
-   if mode != "finishing":
-    mode = "menu"
-    cpu.queue.clear()
-    conductor.started = false
-    audio.play_track("menu", conductor.now())
+ if event is InputEventKey:
+  if not event.pressed:ui_held.erase(event.keycode)
+  if event.echo:return
+  if event.pressed and event.keycode==KEY_F3:
+   debug_visible=not debug_visible
+   refresh()
    return
-  if event.keycode == KEY_C and mode == "menu":
-   cue_style = "cutoff" if cue_style == "snare" else "snare"
-  if event.keycode == KEY_ENTER and mode in ["menu", "match_win"]:
-   begin()
+  if event.pressed and event.keycode==KEY_F4:
+   if debug_visible and mode=="menu":
+    stage.select_stage(stage.selected+1)
    return
-  if event.keycode == KEY_ENTER and mode == "round_win":
+  if flow.active():
+   if not event.pressed:return
+   if ui_held.has(event.keycode):return
+   ui_held[event.keycode]=true
+   flow.view.key(event)
+   refresh()
+   return
+  if event.pressed and event.keycode==KEY_ESCAPE:
+   set_paused(true)
+   ui_held[event.keycode]=true
+   return
+  if event.pressed and event.keycode==KEY_ENTER and mode=="round_win":
    next_round()
    return
+ if paused or mode in ["finishing","round_win","match_win","menu"]:return
  var at:=game_time()
  if mode in ["standoff","race","combat"]:advance_timeline(at)
  for player in range(2):
@@ -522,6 +643,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func submit_action(player: int, action: String, pressed: bool, at: float, source: String="human", event_id: int=0) -> void:
  # Sole action adapter for keyboard and CPU. All damage/positions remain in existing rules.
+ if paused or mode in ["menu","finishing","round_win","match_win"]:return
  if player not in [0,1] or action not in ["left","right","high","low","execute"]:return
  if game_mode=="cpu" and player==1 and source!="cpu":return
  if mode in ["standoff","race"] and action=="execute" and pressed:
@@ -569,17 +691,23 @@ func submit_action(player: int, action: String, pressed: bool, at: float, source
  else:
   controls[player].input_feedback = "REJECT action timing; movement independent"
 func refresh() -> void:
- hud.visible = not debug_visible
+ hud.visible = not debug_visible and mode!="menu"
+ flow.refresh()
  hud.blue.player_name="CPU "+cpu_difficulty.to_upper() if game_mode=="cpu" else "BLUE"
  hud.present(HUDPresenter.snapshot(self,game_time()))
+ hud.major_label.visible=mode!="match_win"
+ hud.footer_label.visible=mode!="match_win"
+ hud.outcome_label.visible=mode!="match_win"
  for player in range(2):
   var control: CombatInput=controls[player]
-  hud.step_labels[player].text = (control.movement_grade.to_upper()+" STEP" if control.movement_grade in ["perfect","good"] else "MISS") if mode=="combat" and game_time()<control.movement_feedback_until else ""
- cpu_debug_label.visible=debug_visible and game_mode=="cpu"
+  hud.step_labels[player].text = (control.movement_grade.to_upper()+" STEP" if control.movement_grade in ["perfect","good"] else "MISS") if mode=="combat" and preferences.values.timing_feedback and game_time()<control.movement_feedback_until else ""
+ cpu_debug_label.visible=debug_visible and game_mode=="cpu" and not flow.active()
  cpu_debug_label.text=cpu.diagnostic(absf(bout.positions[1]-bout.positions[0]))
- label.visible = debug_visible
- detail.visible = debug_visible
- input_feedback_label.visible = debug_visible
+ for player in range(2):
+  if controls[player].step_feedback.begins_with("STUN") and game_time()<controls[player].movement_feedback_until: hud.step_labels[player].text="STUN"
+ label.visible = debug_visible and not flow.active()
+ detail.visible = debug_visible and not flow.active()
+ input_feedback_label.visible = debug_visible and not flow.active()
  input_feedback_label.text = ""
  for player in range(2):
   var control: CombatInput=controls[player]
@@ -607,6 +735,7 @@ Enter rematch · Esc menu"
   var file := str(item.get("path", "none")).get_file()
   detail.text = "%s beat%d phrase%d atkP%d hits%d:%d" % [mode, conductor.beat, conductor.phrase, bout.initiative+1, bout.hits[0], bout.hits[1]]
   detail.text += "\nerr%s sel%s q%s" % ["[%+.0f,%+.0f]" % last_error, str(selected), str([controls[0].movement(),controls[1].movement()])]
+  detail.text += " S%s/%s" % [movement_stun[0],movement_stun[1]]
   detail.text += "\nStep grid/actual P1 %s P2 %s" % [stamps[0],stamps[1]]
   detail.text += "\n%s off %ss" % [file,str(item.get("beat_zero_seconds","?"))]
   detail.text += "\nLatency in/out %.0f/%.0fms next%d BPM" % [conductor.latency_ms,audio.latency_ms,conductor.pending_bpm]

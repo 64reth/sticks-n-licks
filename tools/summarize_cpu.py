@@ -12,7 +12,7 @@ def summarize(report):
               "definitions": {
                   "valid_timing": "Actual shared validator result; excludes race, hesitation and skipped actions. Not damage or win probability.",
                   "defence_frequency": "CPU blocks/parries divided by in-range successful player attacks (HIT/BLOCK/PARRY) against CPU.",
-                  "duration": "Simulated musical match clock plus 0.9s per round for victory presentation; excludes human Enter waits.",
+                  "duration": "Measured simulated musical clock through the deciding result, including current transition delays; excludes human Enter waits.",
                   "stall": "60 seconds with no clean hit; timeout is 360 seconds.",
                   "strategies": "rush_high: high attacks/low blocks; balanced: cycling heights, 8% spacing retreats; guard_high: high attacks/blocks and perfect-capable timing. All use 88% combat timing, rhythmic approach and 230ms race reaction."
               }, "difficulties": {}}

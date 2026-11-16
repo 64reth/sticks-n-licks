@@ -55,7 +55,7 @@ class MilestoneAssetTests(unittest.TestCase):
    self.assertEqual(config['native_facing'],'right' if i==1 else 'left')
    for state,entry in config['animations'].items():
     text=(ROOT/entry['resource']).read_text()
-    self.assertIn(f'&"{state}"',text)
+    self.assertIn(f'&"{entry.get("source_animation", state)}"',text)
     self.assertEqual(text.count('[ext_resource'),entry['frames'])
   for state in ['high_attack','mid_attack','low_attack','high_block','mid_block','low_block','forward_step','running']:
    self.assertEqual(configs[0]['animations'][state]['frames'],configs[1]['animations'][state]['frames'])

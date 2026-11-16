@@ -45,9 +45,11 @@ func reset(bpm: int=120) -> void:
  advance(0)
 func run() -> void:
  game=load(ProjectSettings.get_setting("application/run/main_scene")).instantiate()
+ game.preferences_path=""
  game.game_mode="pvp"
  game.conductor.clock_override=func():return time
  root.add_child(game)
+ game.preferences.values.game_mode=game.game_mode
  game.set_process(false)
  game.audio.stop()
  for p in range(2):

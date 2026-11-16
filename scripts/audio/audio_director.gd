@@ -71,7 +71,8 @@ func play_track(key: String, beat_zero: float, force: bool = false) -> void:
   return
  music.stream = tracks[key]
  var elapsed := maxf(0.0, now() - anchor)
- var seek := elapsed + float(offsets.get(key, 0.0)) + AudioServer.get_time_to_next_mix() + AudioServer.get_output_latency() + latency_ms / 1000.0
+ var rate:=music.pitch_scale
+ var seek := elapsed*rate + float(offsets.get(key, 0.0)) + (AudioServer.get_time_to_next_mix()+AudioServer.get_output_latency()+latency_ms/1000.0)*rate
  var length := music.stream.get_length()
  if length > 0 and entries[key].get("loop", false):
   if music.stream is AudioStreamWAV:
@@ -85,9 +86,12 @@ func play_track(key: String, beat_zero: float, force: bool = false) -> void:
  restart_count += 1
 
 func sound(key: String) -> void:
- if enabled and tracks.has(key):
-  effects.stream = tracks[key]
+ if not enabled:return
+ if tracks.has(key):
+  effects.stream=tracks[key]
   effects.play()
+ elif key in ["hit","block","parry"]:
+  menu_tick({"hit":0.65,"block":0.9,"parry":1.4}[key])
 
 static func unwrap(raw: float, expected: float, length: float) -> float:
  # Playback positions wrap; the shared monotonic anchor disambiguates loop cycles.
@@ -96,14 +100,16 @@ static func unwrap(raw: float, expected: float, length: float) -> float:
  return raw + maxf(0.0, round((expected - raw) / length)) * length
 
 func audio_time() -> float:
+ if music.stream_paused:return last_elapsed
  if not music.playing or music.stream == null:
   return maxf(last_elapsed, now() - anchor)
- var raw := music.get_playback_position() + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency() - latency_ms / 1000.0 - float(offsets.get(active, 0.0))
- var expected := maxf(0, now() - anchor)
+ var rate:=music.pitch_scale
+ var raw := music.get_playback_position() + (AudioServer.get_time_since_last_mix()-AudioServer.get_output_latency()-latency_ms/1000.0)*rate-float(offsets.get(active,0.0))
+ var expected := maxf(0,now()-anchor)*rate
  var length := music.stream.get_length() if entries.get(active, {}).get("loop", false) else 0.0
  if length > 0 and music.stream is AudioStreamWAV:
   length = float(music.stream.loop_end - music.stream.loop_begin) / music.stream.mix_rate
- last_elapsed = maxf(last_elapsed, unwrap(raw, expected, length))
+ last_elapsed = maxf(last_elapsed, unwrap(raw, expected, length)/rate)
  return last_elapsed
 
 func diagnostic() -> String:
@@ -121,3 +127,38 @@ func _exit_tree() -> void:
  effects.stream = null
  tracks.clear()
  clock_source = Callable()
+
+var navigation := AudioStreamPlayer.new()
+var event_log: Array[Dictionary] = []
+func apply_preferences(values: Dictionary) -> void:
+ for bus in ["Music","SFX"]:
+  if AudioServer.get_bus_index(bus)<0:
+   AudioServer.add_bus()
+   AudioServer.set_bus_name(AudioServer.bus_count-1,bus)
+   AudioServer.set_bus_send(AudioServer.bus_count-1,"Master")
+ music.bus="Music"
+ effects.bus="SFX"
+ navigation.bus="SFX"
+ for entry in [["Master","master"],["Music","music"],["SFX","sfx"]]:
+  AudioServer.set_bus_volume_db(AudioServer.get_bus_index(entry[0]),linear_to_db(maxf(0.00001,float(values[entry[1]])/100.0)))
+ AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"),int(values.master)==0)
+ AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"),not bool(values.music_on) or int(values.music)==0)
+ AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"),not bool(values.sfx_on) or int(values.sfx)==0)
+func menu_tick(pitch: float=1.0) -> void:
+ navigation.pitch_scale=pitch
+ if navigation.get_parent()==null:
+  add_child(navigation)
+  var stream:=AudioStreamWAV.new()
+  stream.format=AudioStreamWAV.FORMAT_16_BITS
+  stream.mix_rate=22050
+  var samples:=PackedByteArray()
+  samples.resize(660*2)
+  for i in range(660):samples.encode_s16(i*2,int(sin(i*TAU*440/22050)*3000*(1.0-i/660.0)))
+  stream.data=samples
+  navigation.stream=stream
+ if enabled:navigation.play()
+func play_result(game_mode: String, winner: int) -> void:
+ var theme: String="defeat" if game_mode=="cpu" and winner==1 else "victory"
+ stop()
+ play_track(theme,now(),true)
+ event_log.append({"event":"match_result","theme":theme,"winner":winner,"game_mode":game_mode,"at":now()})
