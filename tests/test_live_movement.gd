@@ -87,6 +87,7 @@ func run() -> void:
   push_error("Live movement E2E timed out in "+game.mode)
   quit(1))
  game=load(ProjectSettings.get_setting("application/run/main_scene")).instantiate()
+ game.game_mode="pvp"
  root.add_child(game)
  check(game.mode=="menu" and not game.conductor.clock_override.is_valid(),"Actual entrypoint, normal clock")
  await tap(KEY_A)

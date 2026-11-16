@@ -1,4 +1,13 @@
 extends Node2D
+var game_mode: String = "cpu"
+var cpu_difficulty: String = "normal"
+var cpu_seed: int = 5005
+var cpu := CpuController.new()
+var match_rng := RandomNumberGenerator.new()
+var cpu_attempts: Array[Dictionary] = []
+var completed_exchanges: Array[Dictionary] = []
+var cpu_debug_label := Label.new()
+var advancing_timeline := false
 var stage := StageBackground.new()
 var movement_perfect_ms: float = 90.0
 var movement_good_ms: float = 160.0
@@ -79,6 +88,18 @@ func _exit_tree() -> void:
 
 func _ready() -> void:
  Bindings.install()
+ var cpu_config: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://data/cpu.json"))
+ cpu_difficulty=str(cpu_config.default_difficulty)
+ cpu_seed=int(cpu_config.default_seed)
+ for argument in OS.get_cmdline_user_args():
+  if argument.begins_with("--cpu-seed="):cpu_seed=int(argument.get_slice("=",1))
+  if argument.begins_with("--cpu-difficulty="):cpu_difficulty=argument.get_slice("=",1)
+ cpu.configure(cpu_difficulty,cpu_seed)
+ cpu_difficulty=cpu.difficulty
+ cpu_debug_label.position=Vector2(5,88)
+ cpu_debug_label.z_index=102
+ cpu_debug_label.add_theme_font_size_override("font_size",7)
+ add_child(cpu_debug_label)
  stage.z_index = -1
  add_child(stage)
  var config := FileAccess.open("res://data/combat/settings.json", FileAccess.READ)
@@ -132,6 +153,14 @@ func _ready() -> void:
  input_feedback_label.add_theme_font_size_override("font_size", 7)
  input_feedback_label.add_theme_constant_override("line_spacing", -2)
  add_child(input_feedback_label)
+ for diagnostic_label in [label,detail,input_feedback_label,cpu_debug_label]:
+  diagnostic_label.add_theme_font_override("font",ArcadeHUD.FONT)
+  diagnostic_label.add_theme_font_size_override("font_size",8)
+  diagnostic_label.add_theme_constant_override("line_spacing",0)
+ label.position=Vector2(4,3)
+ detail.position=Vector2(4,15)
+ cpu_debug_label.position=Vector2(4,69)
+ input_feedback_label.position=Vector2(4,143)
  combat_debug.game = self
  combat_debug.z_index = 100
  combat_debug.visible = debug_visible
@@ -149,6 +178,11 @@ func play_click(force: bool = false) -> void:
   click_player.play()
 
 func begin() -> void:
+ cpu.configure(cpu_difficulty,cpu_seed)
+ cpu_difficulty=cpu.difficulty
+ match_rng.seed=cpu_seed^0x534e4c
+ cpu_attempts.clear()
+ completed_exchanges.clear()
  match_progress.reset(int(settings.get("match_best_of",3)))
  _begin_round()
 
@@ -171,17 +205,18 @@ func _begin_round() -> void:
   # Seed physical directions already held when Enter starts/rematches the bout.
   # Execute/pending actions are always cleared and cannot auto-fire from the race.
   for action in ["left", "right", "high", "low"]:
-   if Input.is_action_pressed("p%d_%s" % [player+1, action]):
+   if not (game_mode=="cpu" and player==1) and Input.is_action_pressed("p%d_%s" % [player+1, action]):
     controls[player].feed(action, true, conductor.now(), facing(player), false)
     controls[player].input_feedback = "REJECT movement phase; held tracked"
  step_started = [-INF,-INF]
  pose_until_by_player = [0.0, 0.0]
  last_error = [INF, INF]
  conductor.start()
- anticipation_phrases = randi_range(1, max_anticipation_phrases)
+ anticipation_phrases = match_rng.randi_range(1,max_anticipation_phrases) if game_mode=="cpu" else randi_range(1, max_anticipation_phrases)
  cue = conductor.epoch + anticipation_phrases * 2.0 + 1.5
  race_deadline = cue + race_timeout
  mode = "standoff"
+ if game_mode=="cpu":cpu.start_round(cue)
  status = "Wait for GO. Early press forfeits the race."
  previous_bpm = 120
  audio.play_track("standoff", conductor.epoch, true)
@@ -192,7 +227,7 @@ func _begin_round() -> void:
 func _process(delta: float) -> void:
  var at := game_time()
  if mode in ["standoff", "race", "combat"]:
-  conductor.update(at)
+  advance_timeline(at)
  if mode == "standoff" and at >= cue:
   mode = "race"
   status = "GO! Grab your stick"
@@ -225,7 +260,7 @@ func _process(delta: float) -> void:
  if mode == "pickup" and at >= conductor.epoch:
   mode = "combat"
   audio.play_track("120", conductor.epoch)
-  conductor.update(at)
+  advance_timeline(at)
  if mode=="combat":
   freeze_combat_positions(at)
  if mode == "combat" and not phrase_resolved and at > conductor.action_time() + (conductor.good_ms + controls[0].combination_ms + maxf(0.0, conductor.latency_ms)) / 1000.0:
@@ -256,6 +291,62 @@ func _process(delta: float) -> void:
  combat_debug.queue_redraw()
  refresh()
  queue_redraw()
+
+func public_cpu_observation() -> Dictionary:
+ # Intentionally no selected[], controls, errors, input buffers, or current attack.
+ return {"positions":bout.positions.duplicate(),"initiative":bout.initiative,
+  "energy":[bout.energy_remaining(0),bout.energy_remaining(1)],
+  "beat":conductor.beat,"phrase":conductor.phrase,"beat_time":conductor.beat_time,
+  "duration":conductor.duration(),"latency_ms":conductor.latency_ms,
+  "reach":bout.stick_reach+Bout.HURTBOX.size.x/2.0}
+
+func dispatch_cpu(intent: Dictionary) -> void:
+ var kind: String=intent.kind
+ if kind=="race" and mode not in ["standoff","race"]:return
+ if kind!="race" and mode!="combat":return
+ var at: float=intent.at
+ submit_action(1,str(intent.action),true,at,"cpu")
+ if kind=="combat":
+  submit_action(1,"execute",true,at,"cpu")
+  submit_action(1,"execute",false,at,"cpu")
+ submit_action(1,str(intent.action),false,at,"cpu")
+ var grade: String=controls[1].movement_grade if kind=="move" else conductor.grade(bout.errors[1])
+ if kind=="race":grade="false start" if bout.false_starts[1] else "reaction"
+ cpu.result=grade
+ var sample:=intent.duplicate(true)
+ sample["grade"]=grade
+ sample["difficulty"]=cpu_difficulty
+ sample["bpm"]=conductor.bpm
+ sample["round"]=match_progress.round_number
+ sample["position"]=bout.positions[1]
+ sample["movement_error_ms"]=controls[1].movement_error_ms
+ sample["movement_target"]=controls[1].movement_target.duplicate()
+ sample["input_feedback"]=controls[1].input_feedback
+ sample["movement_executed"]=controls[1].movement_executed if kind=="move" else false
+ cpu_attempts.append(sample)
+ if cpu_attempts.size()>4096:cpu_attempts.pop_front()
+
+func advance_timeline(at: float) -> void:
+ if game_mode!="cpu":
+  conductor.update(at)
+  return
+ if advancing_timeline:return
+ advancing_timeline=true
+ # Merge scheduled input and beat boundaries chronologically, even on slow frames.
+ # CPU intents were committed in advance; neither gameplay nor decisions use render delta.
+ while mode in ["standoff","race","combat"]:
+  var boundary := INF
+  if mode=="combat" and conductor.started:
+   boundary=conductor.epoch if conductor.beat==0 else conductor.beat_time+conductor.duration()
+  var event_time := cpu.next_time()
+  if minf(boundary,event_time)>at:break
+  if boundary<=event_time:
+   conductor.update(boundary)
+  else:
+   conductor.update(event_time)
+   dispatch_cpu(cpu.pop_intent())
+ conductor.update(at)
+ advancing_timeline=false
 
 func game_time() -> float:
  if mode == "combat" and not conductor.clock_override.is_valid() and audio.tracks.has(audio.active) and audio.music.playing:
@@ -288,6 +379,7 @@ func on_beat(beat: int, _phrase: int) -> void:
   play_click()
   exchange_phrase = _phrase
   apply_movement(beat,_phrase,conductor.beat_time)
+  if game_mode=="cpu":cpu.plan_boundary(public_cpu_observation())
   if beat==4:
    for player in range(2):present_combat(player)
 
@@ -346,6 +438,12 @@ func resolve_exchange() -> void:
  var direction := maxi(0, selected[attack])
  var height: String = ["high", "mid", "low"][direction]
  status = bout.resolve(conductor, exchange_phrase)
+ var published:=bout.last_event.duplicate(true)
+ published["round"]=match_progress.round_number
+ published["time"]=game_time()
+ completed_exchanges.append(published)
+ if completed_exchanges.size()>4096:completed_exchanges.pop_front()
+ if game_mode=="cpu":cpu.observe_result(published,"%d:%d" % [match_progress.round_number,exchange_phrase])
  outcome_until = game_time() + 0.6
  pose_until = conductor.now() + 0.35
  pose_until_by_player = [pose_until, pose_until]
@@ -383,6 +481,16 @@ func _unhandled_input(event: InputEvent) -> void:
  if event is InputEventKey and event.echo:
   return
  if event is InputEventKey and event.pressed:
+  if mode=="menu":
+   if event.keycode in [KEY_M,KEY_P]:
+    game_mode="pvp" if event.keycode==KEY_P or game_mode=="cpu" else "cpu"
+    refresh()
+    return
+   if event.keycode in [KEY_LEFT,KEY_RIGHT] and game_mode=="cpu":
+    var levels: Array[String]=["easy","normal","hard"]
+    cpu_difficulty=levels[posmod(levels.find(cpu_difficulty)+(1 if event.keycode==KEY_RIGHT else -1),3)]
+    refresh()
+    return
   if event.keycode == KEY_F4:
    stage.select_stage(stage.selected+1)
   if event.keycode == KEY_F3:
@@ -392,6 +500,7 @@ func _unhandled_input(event: InputEvent) -> void:
   if event.keycode == KEY_ESCAPE:
    if mode != "finishing":
     mode = "menu"
+    cpu.queue.clear()
     conductor.started = false
     audio.play_track("menu", conductor.now())
    return
@@ -403,74 +512,78 @@ func _unhandled_input(event: InputEvent) -> void:
   if event.keycode == KEY_ENTER and mode == "round_win":
    next_round()
    return
+ var at:=game_time()
+ if mode in ["standoff","race","combat"]:advance_timeline(at)
  for player in range(2):
-  var prefix := "p%d_" % (player + 1)
-  if mode in ["standoff", "race"] and event.is_action_pressed(prefix + "execute"):
-   bout.race_press(player, conductor.now(), cue)
-   if bout.false_starts[player]:
-    fighters[player].set_pose("false_start")
-    status = "P%d false start: forfeits initiative" % (player + 1)
-  var at := game_time()
-  if mode == "combat":
-   # Apply crossed beats using previous held state before accepting this event.
-   conductor.update(at)
-  for action in ["left", "right", "high", "low", "execute"]:
-   if not event.is_action(prefix + action):
-    continue
-   var pressed := event.is_action_pressed(prefix + action)
-   var rising := pressed and not bool(controls[player].held.get(action,false))
-   var combination := controls[player].feed(action, pressed, at, facing(player), mode == "combat")
-   if rising and action in ["left","right"] and mode=="combat":
-    controls[player].request_movement(action,at,conductor,movement_perfect_ms,movement_good_ms)
-    if controls[player].movement_grade!="miss":
-     accepted_until[player]=conductor.now()+0.18
-     apply_movement(conductor.beat,conductor.phrase,conductor.beat_time)
-    freeze_combat_positions(at)
-   if action in ["left", "right"]:
-    handled_event_count += 1
-    if mode != "combat":controls[player].input_feedback = "REJECT movement phase " + mode
+  if game_mode=="cpu" and player==1:continue
+  var prefix := "p%d_" % (player+1)
+  for action in ["left","right","high","low","execute"]:
+   if event.is_action(prefix+action):submit_action(player,action,event.is_action_pressed(prefix+action),at,"human",event.get_instance_id())
 
-    trace_movement("unhandled",player,{"event_id":event.get_instance_id(),"action":prefix+action,"pressed":pressed,"accepted":mode=="combat" and controls[player].movement_grade!="miss"})
-   if mode != "combat":
-    if pressed and action in ["left", "right", "high", "low"]:
-     controls[player].input_feedback = "REJECT movement phase; held tracked"
-    elif pressed and action == "execute":
-     controls[player].input_feedback = ("REJECT false start" if bout.false_starts[player] else "ACCEPT race reaction") if mode in ["standoff", "race"] else "REJECT execute outside combat"
-    continue
-   if combination.is_empty():
-    continue
-   if phrase_resolved or not is_inf(bout.errors[player]):
-    controls[player].input_feedback = "REJECT action already submitted"
-    continue
-   var error := (conductor.timestamp(combination["execute_at"]) - conductor.action_time()) * 1000.0
-   bout.errors[player] = error
-   bout.selections[player] = combination["height"]
-   selected[player] = combination["height"]
-   last_error[player] = error
-   if conductor.grade(error) != "miss":
-    controls[player].input_feedback = "ACCEPT combat + movement queued"
-    if at >= conductor.action_time():
-     present_combat(player)
-    else:
-     var height: String = ["high", "mid", "low"][bout.selections[player]]
-     fighters[player].prepare(height + ("_attack" if bout.initiative == player else "_block"), conductor.action_time() - at)
-     pose_until_by_player[player] = conductor.now() + conductor.duration()
-   else:
-    controls[player].input_feedback = "REJECT action timing; movement independent"
+func submit_action(player: int, action: String, pressed: bool, at: float, source: String="human", event_id: int=0) -> void:
+ # Sole action adapter for keyboard and CPU. All damage/positions remain in existing rules.
+ if player not in [0,1] or action not in ["left","right","high","low","execute"]:return
+ if game_mode=="cpu" and player==1 and source!="cpu":return
+ if mode in ["standoff","race"] and action=="execute" and pressed:
+  bout.race_press(player,at,cue)
+  if bout.false_starts[player]:
+   fighters[player].set_pose("false_start")
+   status="P%d false start: forfeits initiative" % (player+1)
+ var rising := pressed and not bool(controls[player].held.get(action,false))
+ var combination := controls[player].feed(action, pressed, at, facing(player), mode == "combat")
+ if rising and action in ["left","right"] and mode=="combat":
+  controls[player].request_movement(action,at,conductor,movement_perfect_ms,movement_good_ms)
+  if controls[player].movement_grade!="miss":
+   accepted_until[player]=conductor.now()+0.18
+   apply_movement(conductor.beat,conductor.phrase,conductor.beat_time)
+  freeze_combat_positions(at)
+ if action in ["left", "right"]:
+  handled_event_count += 1
+  if mode != "combat":controls[player].input_feedback = "REJECT movement phase " + mode
 
+  trace_movement("unhandled",player,{"event_id":event_id,"action":"p%d_%s" % [player+1,action],"pressed":pressed,"source":source,"accepted":mode=="combat" and controls[player].movement_grade!="miss"})
+ if mode != "combat":
+  if pressed and action in ["left", "right", "high", "low"]:
+   controls[player].input_feedback = "REJECT movement phase; held tracked"
+  elif pressed and action == "execute":
+   controls[player].input_feedback = ("REJECT false start" if bout.false_starts[player] else "ACCEPT race reaction") if mode in ["standoff", "race"] else "REJECT execute outside combat"
+  return
+ if combination.is_empty():
+  return
+ if phrase_resolved or not is_inf(bout.errors[player]):
+  controls[player].input_feedback = "REJECT action already submitted"
+  return
+ var error := (conductor.timestamp(combination["execute_at"]) - conductor.action_time()) * 1000.0
+ bout.errors[player] = error
+ bout.selections[player] = combination["height"]
+ selected[player] = combination["height"]
+ last_error[player] = error
+ if conductor.grade(error) != "miss":
+  controls[player].input_feedback = "ACCEPT combat + movement queued"
+  if at >= conductor.action_time():
+   present_combat(player)
+  else:
+   var height: String = ["high", "mid", "low"][bout.selections[player]]
+   fighters[player].prepare(height + ("_attack" if bout.initiative == player else "_block"), conductor.action_time() - at)
+   pose_until_by_player[player] = conductor.now() + conductor.duration()
+ else:
+  controls[player].input_feedback = "REJECT action timing; movement independent"
 func refresh() -> void:
  hud.visible = not debug_visible
+ hud.blue.player_name="CPU "+cpu_difficulty.to_upper() if game_mode=="cpu" else "BLUE"
  hud.present(HUDPresenter.snapshot(self,game_time()))
  for player in range(2):
   var control: CombatInput=controls[player]
   hud.step_labels[player].text = (control.movement_grade.to_upper()+" STEP" if control.movement_grade in ["perfect","good"] else "MISS") if mode=="combat" and game_time()<control.movement_feedback_until else ""
+ cpu_debug_label.visible=debug_visible and game_mode=="cpu"
+ cpu_debug_label.text=cpu.diagnostic(absf(bout.positions[1]-bout.positions[0]))
  label.visible = debug_visible
  detail.visible = debug_visible
  input_feedback_label.visible = debug_visible
  input_feedback_label.text = ""
  for player in range(2):
   var control: CombatInput=controls[player]
-  input_feedback_label.text += "P%d %s t%.3f beat%s %+.1fms %s\n%s executed:%s X%.0f/%.0f %s\n" % [player+1,last_keys[player],control.movement_input_at,str(control.movement_target.get("id","-")),control.movement_error_ms,control.movement_grade,mode,str(control.movement_executed),bout.positions[player],fighters[player].position.x,control.input_feedback]
+  input_feedback_label.text += "P%d t%.3f b%s %+.0fms %s\n%s e%d X%.0f/%.0f %s\n" % [player+1,control.movement_input_at,str(control.movement_target.get("id","-")),control.movement_error_ms,control.movement_grade,last_keys[player],int(control.movement_executed),bout.positions[player],fighters[player].position.x,control.input_feedback]
  label.text = "STICKS N LICKS     %d BPM" % conductor.bpm
  if help_visible:
   detail.text = "P1: A/D move · W high · S low · F execute\nP2: arrows move/high/low · RShift execute\nForward + execute = MID (facing-relative)\nTap on beats 1-4; combat on beat 4\nPerfect ±70ms · valid ±140ms · combo 100ms\nH help · F3 debug · F4 stage · Esc menu"
@@ -499,6 +612,9 @@ Enter rematch · Esc menu"
   detail.text += "\nLatency in/out %.0f/%.0fms next%d BPM" % [conductor.latency_ms,audio.latency_ms,conductor.pending_bpm]
   detail.text += "\nLAST %s · reach %.0f" % [result,bout.stick_reach]
 
+ for diagnostic_label in [label,detail,input_feedback_label,cpu_debug_label]:
+  diagnostic_label.text=diagnostic_label.text.to_upper().replace("·"," ").replace("±","+/-")
+
 func active_attack_region() -> Rect2:
  # The shared beat-four active window, not sprite callbacks, gates attack geometry.
  if mode != "combat" or conductor.beat != 4 or phrase_resolved:
@@ -509,7 +625,7 @@ func active_attack_region() -> Rect2:
  return bout.attack_region(player, bout.selections[player], bout.impact_positions)
 
 func _draw() -> void:
- if not stage.texture:
+ if not stage.texture or debug_visible:
   draw_rect(Rect2(0, 0, 320, 180), Color("151e29"))
  if debug_visible:draw_line(Vector2(16,150),Vector2(304,150),Color("aeaa7a"),1)
  for player in range(fighters.size()):

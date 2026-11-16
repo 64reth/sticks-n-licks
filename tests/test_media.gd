@@ -37,6 +37,7 @@ func run() -> void:
  # Visual impact is beat-aligned while adjudication still waits for buffered input.
  var scene := load("res://scenes/main/main.tscn") as PackedScene
  var game = scene.instantiate()
+ game.game_mode="pvp"
  game.conductor.clock_override = func(): return time
  root.add_child(game)
  game.set_process(false)

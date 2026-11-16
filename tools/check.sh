@@ -45,3 +45,13 @@ fi
 cat output/live-movement.stdout
 if rg -n 'SCRIPT ERROR|Parse Error|Failed to load|Assertion failed' output/live-movement.stdout; then exit 1; fi
 if ! rg -q 'LIVE MOVEMENT: [0-9]+ checks, 0 failures' output/live-movement.stdout; then exit 1; fi
+
+# Production CPU through the shared action adapter; accelerated seeded match matrix.
+"$GODOT" --headless --path . --log-file output/cpu.log --script tests/test_cpu.gd >output/cpu.stdout 2>&1
+cat output/cpu.stdout
+if rg -n 'SCRIPT ERROR|Parse Error|Failed to load|Assertion failed' output/cpu.stdout; then exit 1; fi
+if ! rg -q 'CPU TESTS: [0-9]+ checks, 0 failures; 900 measured matches' output/cpu.stdout; then exit 1; fi
+"$GODOT" --headless --path . --log-file output/cpu-demo.log --fixed-fps 60 --scene scenes/tests/cpu_demo.tscn --quit-after 12000 -- --cpu-seed=7000 --cpu-difficulty=hard --record-cpu-demo >output/cpu-demo.stdout 2>&1
+cat output/cpu-demo.stdout
+if rg -n 'SCRIPT ERROR|Parse Error|Failed to load|Assertion failed' output/cpu-demo.stdout; then exit 1; fi
+if ! rg -q 'CPU DEMO COMPLETE' output/cpu-demo.stdout; then exit 1; fi

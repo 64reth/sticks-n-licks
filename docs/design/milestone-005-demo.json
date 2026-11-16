@@ -1,0 +1,66 @@
+{
+  "live_graphical": {
+    "difficulty": "hard",
+    "elapsed_seconds": 49.6505733333313,
+    "outcomes": {
+      "BLOCK": 4,
+      "HIT": 8,
+      "PARRY": 1,
+      "WHIFF": 3
+    },
+    "recording": false,
+    "round_wins": [
+      0,
+      2
+    ],
+    "seed": 7000,
+    "test_player": "rush_high; synthetic input; movie clock injected only when recording",
+    "winner": 1
+  },
+  "continuous_movie": {
+    "difficulty": "hard",
+    "elapsed_seconds": 49.7499999999985,
+    "outcomes": {
+      "BLOCK": 4,
+      "HIT": 8,
+      "PARRY": 1,
+      "WHIFF": 3
+    },
+    "recording": true,
+    "round_wins": [
+      0,
+      2
+    ],
+    "seed": 7000,
+    "test_player": "rush_high; synthetic input; movie clock injected only when recording",
+    "winner": 1
+  },
+  "movie_validation": {
+    "file": "output/cpu005-complete-match.avi",
+    "bytes": 47697464,
+    "frames": 1494,
+    "fps": 30,
+    "duration_seconds": 49.8,
+    "dimensions": [
+      320,
+      180
+    ],
+    "sampled_frames": [
+      0,
+      45,
+      120,
+      210,
+      300,
+      480,
+      660,
+      840,
+      990,
+      1110,
+      1320,
+      1493
+    ],
+    "audio_chunks": 1494,
+    "nonzero_audio_payload": true
+  },
+  "limitation": "Synthetic Red test player; offline movie clock is injected only for Movie Maker; live graphical test uses production wall/audio clock. Physical keyboard and subjective balance are unverified."
+}

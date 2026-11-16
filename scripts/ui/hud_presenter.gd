@@ -20,9 +20,10 @@ static func snapshot(game: Node2D, at: float) -> Dictionary:
  var outcome := ""
  var phases := {"menu":"LOCAL VERSUS","standoff":"GET READY","race":"GRAB STICKS!","pickup":"READY","combat":"FIGHT!","finishing":"ROUND OVER","round_win":"ROUND WON!","match_win":"CHAMPION!"}
  if phase == "menu":
+  phases["menu"]="PLAYER VS CPU" if game.game_mode=="cpu" else "LOCAL VERSUS"
   major = "STICKS N LICKS"
-  instruction = "ENTER - LOCAL VERSUS"
-  footer = "H CONTROLS    F3 DEBUG"
+  instruction = "M MODE: "+("PLAYER VS CPU" if game.game_mode=="cpu" else "PLAYER VS PLAYER")
+  footer = "ENTER START  H HELP  F4 STAGE"
  elif phase == "standoff":
   instruction = "GET READY TO GRAB YOUR STICK!"
  elif number == "GO!":
@@ -55,4 +56,5 @@ static func snapshot(game: Node2D, at: float) -> Dictionary:
   "round_number":progress.round_number,"bpm":game.conductor.bpm,"phase":phases.get(phase,"READY"),
   "initiative":game.bout.initiative if phase=="combat" else -1,"major":major,"major_scale":scale,
   "instruction":instruction,"footer":footer,"outcome":outcome,"go":number=="GO!",
+  "menu_options":("LEFT/RIGHT CPU: "+game.cpu_difficulty.to_upper() if game.game_mode=="cpu" else "P1 RED / P2 BLUE") if phase=="menu" else "",
   "help":game.help_visible,"best_of":progress.best_of}

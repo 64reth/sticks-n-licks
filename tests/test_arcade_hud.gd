@@ -100,6 +100,7 @@ func run() -> void:
   check(HUDPresenter.countdown(cue,cue,d)=="GO!","GO is exactly the authoritative cue")
   check(HUDPresenter.countdown(cue+0.35,cue,d)=="","GO clears after its short accent")
  game = load(ProjectSettings.get_setting("application/run/main_scene")).instantiate()
+ game.game_mode="pvp"
  game.conductor.clock_override = func():return time
  root.add_child(game)
  game.set_process(false)

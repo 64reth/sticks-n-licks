@@ -69,6 +69,7 @@ func capture(name: String) -> void:
 
 func run() -> void:
  game = load(ProjectSettings.get_setting("application/run/main_scene")).instantiate()
+ game.game_mode="pvp"
  game.conductor.clock_override = func(): return time
  root.add_child(game)
  game.set_process(false)

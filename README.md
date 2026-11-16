@@ -1,6 +1,6 @@
 # Sticks n Licks
 
-Original local two-player Caribbean stick-fighting rhythm prototype. Godot 4.6+, GDScript, 320×180. The supplied Red/Blue artwork and original soundtrack are integrated. No API key or Python installation is required to play; optional missing assets have fallbacks.
+Original Caribbean stick-fighting rhythm prototype with Player vs CPU and local two-player modes. Godot 4.6+, GDScript, 320×180. The supplied Red/Blue artwork and original soundtrack are integrated. No API key or Python installation is required to play; optional missing assets have fallbacks.
 
 ## Launch on this Mac
 
@@ -15,7 +15,7 @@ Press **F5** to launch the playable prototype from any open scene. The root `pro
 /Applications/Godot.app/Contents/MacOS/Godot --path .
 ```
 
-Enter starts Local Versus. H toggles help; F3 toggles the developer overlay; Escape returns to the menu. C on the menu switches the race cue between an accented click and drum cutoff. Enter starts the next round after ROUND WON, or a new match after CHAMPION. Match wins remain visible until rematch/menu.
+The menu defaults to **Player vs CPU / Normal**. **M** toggles CPU/PvP; **P** selects PvP immediately; **Left/Right** selects Easy/Normal/Hard in the CPU menu. **Enter** starts. Red is Player 1; Blue is CPU in single-player, with P2 keyboard input disabled during that match. H toggles help; F3 toggles the developer overlay; Escape returns to the menu. C on the menu switches the race cue between an accented click and drum cutoff. Enter starts the next round after ROUND WON, or a new match after CHAMPION. Match wins remain visible until rematch/menu.
 
 | Player | Move left/right | High / Low | MID | Race / execute |
 |---|---|---|---|---|
@@ -80,3 +80,8 @@ See [Milestone 003](docs/design/milestone-003.md) for HUD/countdown, best-of-thr
 Milestone 004 uses two existing approved walk poses, non-looping over 160 ms, with displacement completing over the same interval. Combat reactions may take visual priority. Compact PERFECT STEP / GOOD STEP / MISS feedback appears per fighter. F3 includes input time, target beat, millisecond error, grade, executed status and logical/rendered X. `-- --movement-trace` exports the bounded input trace to `output/movement-trace.json` after running the checks once to create `output/`.
 
 Stage 01 and Stage 02 are configured in `data/stages.json`; change `default` or press **F4** to switch in place. Both native 1672×941 RGB PNGs fill the 320×180 viewport proportionally with nearest filtering. Stage 02's extensionless original is retained beside a byte-identical importable PNG. The fighting baseline remains Y=150. See [Milestone 004 evidence](docs/design/milestone-004.md).
+
+
+Milestone 005 adds the seeded rhythm-aware CPU. Difficulty parameters are in `data/cpu.json`. Reproduce an opponent with `/Applications/Godot.app/Contents/MacOS/Godot --path . -- --cpu-seed=7000 --cpu-difficulty=hard`. Identical seeds reproduce relative CPU decisions for identical public match/input timelines, not fixed wins. Rematch resets the seed and learned tendencies; next round retains match learning but clears queued actions. F3 adds behaviour, distance, choice, intended beat, timing, outcome, weights, commitment and seed. F4 still switches stages.
+
+See [CPU architecture, measured results and recording instructions](docs/design/milestone-005.md). `bash tools/check.sh` includes 900 seeded matches against three defined test strategies. Raw simulation data is saved to `output/cpu005-simulation.json`; summarise with `.venv/bin/python tools/summarize_cpu.py output/cpu005-simulation.json --output output/cpu005-summary.json`. Run `tests/test_cpu.gd` with `-- --quick-cpu` for an 18-match development check. Human keyboard playtesting and subjective balance remain the owner's review.

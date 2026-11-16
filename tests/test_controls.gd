@@ -40,6 +40,7 @@ func key(action: String, down: bool = true) -> void:
 func run() -> void:
  var scene := load(ProjectSettings.get_setting("application/run/main_scene")) as PackedScene
  game = scene.instantiate()
+ game.game_mode="pvp"
  game.conductor.clock_override = func(): return time
  root.add_child(game)
  game.set_process(false)

@@ -11,6 +11,8 @@ var major_label: Label
 var instruction_label: Label
 var outcome_label: Label
 var footer_label: Label
+var menu_options: Label
+var mode_panel := Panel.new()
 var help_panel := Panel.new()
 var help_label: Label
 var state: Dictionary = {}
@@ -36,6 +38,15 @@ func _ready() -> void:
  set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
  mouse_filter = Control.MOUSE_FILTER_IGNORE
  texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+ var menu_style := StyleBoxFlat.new()
+ menu_style.bg_color=Color("202323")
+ menu_style.border_color=CREAM
+ menu_style.set_border_width_all(1)
+ mode_panel.position=Vector2(24,47)
+ mode_panel.size=Vector2(272,66)
+ mode_panel.mouse_filter=Control.MOUSE_FILTER_IGNORE
+ mode_panel.add_theme_stylebox_override("panel",menu_style)
+ add_child(mode_panel)
  red.position = Vector2(5,5)
  red.size = Vector2(96,35)
  red.set_anchors_preset(Control.PRESET_TOP_LEFT)
@@ -61,6 +72,7 @@ func _ready() -> void:
  phase_label = text_label(Vector2(103,29),Vector2(114,8))
  major_label = text_label(Vector2(0,50),Vector2(160,10))
  instruction_label = text_label(Vector2(0,79),Vector2(320,8))
+ menu_options = text_label(Vector2(0,94),Vector2(320,10))
  outcome_label = text_label(Vector2(0,153),Vector2(320,8))
  footer_label = text_label(Vector2(0,166),Vector2(320,8))
  var style := StyleBoxFlat.new()
@@ -90,6 +102,8 @@ func present(snapshot: Dictionary) -> void:
  major_label.modulate = Color("eec65e") if state["go"] else CREAM
  instruction_label.text = state["instruction"]
  footer_label.text = state["footer"]
+ menu_options.text=state.get("menu_options","")
+ mode_panel.visible=not menu_options.text.is_empty() and not state["help"]
  outcome_label.text = state["outcome"]
  help_panel.visible = state["help"]
  help_label.visible = state["help"]

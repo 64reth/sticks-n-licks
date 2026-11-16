@@ -1,0 +1,7 @@
+{
+  "default_difficulty": "normal",
+  "default_seed": 5005,
+  "easy": {"rhythm_success": 0.60, "perfect_share": 0.08, "decision_delay": 0.35, "race_min": 0.28, "race_max": 0.65, "false_start": 0.08, "hesitate": 0.24, "defend": 0.52, "retreat": 0.05, "learning": 0.12, "attack_weights": [0.60, 0.25, 0.15]},
+  "normal": {"rhythm_success": 0.80, "perfect_share": 0.28, "decision_delay": 0.22, "race_min": 0.18, "race_max": 0.42, "false_start": 0.035, "hesitate": 0.12, "defend": 0.82, "retreat": 0.12, "learning": 0.45, "attack_weights": [0.36, 0.34, 0.30]},
+  "hard": {"rhythm_success": 0.94, "perfect_share": 0.48, "decision_delay": 0.14, "race_min": 0.12, "race_max": 0.28, "false_start": 0.015, "hesitate": 0.045, "defend": 0.95, "retreat": 0.16, "learning": 0.72, "attack_weights": [0.34, 0.33, 0.33]}
+}

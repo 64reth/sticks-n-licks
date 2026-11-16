@@ -1,0 +1,168 @@
+{
+  "checks": 1794836,
+  "failures": 0,
+  "matches": 900,
+  "seed_range": [
+    7000,
+    7099
+  ],
+  "definitions": {
+    "valid_timing": "Actual shared validator result; excludes race, hesitation and skipped actions. Not damage or win probability.",
+    "defence_frequency": "CPU blocks/parries divided by in-range successful player attacks (HIT/BLOCK/PARRY) against CPU.",
+    "duration": "Simulated musical match clock plus 0.9s per round for victory presentation; excludes human Enter waits.",
+    "stall": "60 seconds with no clean hit; timeout is 360 seconds.",
+    "strategies": "rush_high: high attacks/low blocks; balanced: cycling heights, 8% spacing retreats; guard_high: high attacks/blocks and perfect-capable timing. All use 88% combat timing, rhythmic approach and 230ms race reaction."
+  },
+  "difficulties": {
+    "easy": {
+      "matches": 300,
+      "timing": {
+        "combat": 2821,
+        "move": 2666,
+        "perfect_combat": 129,
+        "perfect_move": 110,
+        "valid_combat": 1713,
+        "valid_move": 1509
+      },
+      "movement_valid_percent": 56.601650412603156,
+      "combat_valid_percent": 60.72314781992202,
+      "combined_valid_percent": 58.72061235647895,
+      "height_counts_high_mid_low": [
+        753,
+        384,
+        265
+      ],
+      "height_percent_high_mid_low": [
+        53.70898716119829,
+        27.38944365192582,
+        18.901569186875893
+      ],
+      "defence_opportunities": 2012,
+      "blocks": 193,
+      "parries": 21,
+      "block_percent": 9.59244532803181,
+      "parry_percent": 1.0437375745526838,
+      "average_match_seconds": 47.30008555555527,
+      "maximum_match_seconds": 116.883571428571,
+      "stalls": 0,
+      "timeouts": 0,
+      "wins_by_strategy": {
+        "rush_high": {
+          "matches": 100,
+          "cpu_wins": 9,
+          "player_wins": 91
+        },
+        "balanced": {
+          "matches": 100,
+          "cpu_wins": 7,
+          "player_wins": 93
+        },
+        "guard_high": {
+          "matches": 100,
+          "cpu_wins": 0,
+          "player_wins": 100
+        }
+      }
+    },
+    "normal": {
+      "matches": 300,
+      "timing": {
+        "combat": 4434,
+        "move": 4729,
+        "perfect_combat": 1010,
+        "perfect_move": 1092,
+        "valid_combat": 3620,
+        "valid_move": 3825
+      },
+      "movement_valid_percent": 80.88390780291816,
+      "combat_valid_percent": 81.64185836716284,
+      "combined_valid_percent": 81.25068209101822,
+      "height_counts_high_mid_low": [
+        706,
+        664,
+        561
+      ],
+      "height_percent_high_mid_low": [
+        36.561367167270845,
+        34.38632832729156,
+        29.052304505437597
+      ],
+      "defence_opportunities": 2371,
+      "blocks": 530,
+      "parries": 205,
+      "block_percent": 22.35343736819907,
+      "parry_percent": 8.646140868831717,
+      "average_match_seconds": 55.47147253968234,
+      "maximum_match_seconds": 113.944666666666,
+      "stalls": 0,
+      "timeouts": 0,
+      "wins_by_strategy": {
+        "rush_high": {
+          "matches": 100,
+          "cpu_wins": 44,
+          "player_wins": 56
+        },
+        "balanced": {
+          "matches": 100,
+          "cpu_wins": 27,
+          "player_wins": 73
+        },
+        "guard_high": {
+          "matches": 100,
+          "cpu_wins": 15,
+          "player_wins": 85
+        }
+      }
+    },
+    "hard": {
+      "matches": 300,
+      "timing": {
+        "combat": 5311,
+        "move": 6597,
+        "perfect_combat": 2383,
+        "perfect_move": 3022,
+        "valid_combat": 5013,
+        "valid_move": 6180
+      },
+      "movement_valid_percent": 93.67894497498864,
+      "combat_valid_percent": 94.38900395405761,
+      "combined_valid_percent": 93.99563318777294,
+      "height_counts_high_mid_low": [
+        889,
+        872,
+        871
+      ],
+      "height_percent_high_mid_low": [
+        33.77659574468085,
+        33.130699088145896,
+        33.09270516717325
+      ],
+      "defence_opportunities": 2184,
+      "blocks": 496,
+      "parries": 458,
+      "block_percent": 22.71062271062271,
+      "parry_percent": 20.97069597069597,
+      "average_match_seconds": 60.380357142856994,
+      "maximum_match_seconds": 109.95,
+      "stalls": 0,
+      "timeouts": 0,
+      "wins_by_strategy": {
+        "rush_high": {
+          "matches": 100,
+          "cpu_wins": 85,
+          "player_wins": 15
+        },
+        "balanced": {
+          "matches": 100,
+          "cpu_wins": 58,
+          "player_wins": 42
+        },
+        "guard_high": {
+          "matches": 100,
+          "cpu_wins": 65,
+          "player_wins": 35
+        }
+      }
+    }
+  }
+}
