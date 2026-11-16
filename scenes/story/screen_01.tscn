@@ -1,4 +1,15 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=4 format=3]
 [ext_resource type="Script" path="res://scripts/story/story_screen.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/story/story_backdrop.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/props/coconut_palm.tscn" id="3"]
 [node name="Screen01" type="Node2D"]
 script = ExtResource("1")
+
+[node name="Backdrop" type="Node2D" parent="."]
+z_index = -2
+script = ExtResource("2")
+
+[node name="CoconutPalm" parent="." instance=ExtResource("3")]
+z_index = -1
+position = Vector2(42,149)
+display_scale = 0.24

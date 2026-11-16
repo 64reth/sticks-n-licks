@@ -1,0 +1,811 @@
+{
+  "baseline": "6562fcf630b13aaa37a4decc51c2bff49e4d5d25",
+  "branch": "development",
+  "movie": {
+    "path": "output/milestone-010.avi",
+    "sha256": "c547b1b81790cdf58de820c80132b3db9a1dcd3e363c278acf677c4b89df2353",
+    "frames": 1801,
+    "fps": 60,
+    "seconds": 30.016666666666666,
+    "audio_format": [
+      1,
+      2,
+      48000,
+      192000,
+      4,
+      16
+    ],
+    "audio_bytes": 5763200,
+    "audio": {
+      "samples": 2881600,
+      "peak": 0.5982666015625,
+      "rms": 0.10510603014394797,
+      "clipped_samples": 0,
+      "nonzero_samples": 2781025
+    }
+  },
+  "movie_run": {
+    "captures": [
+      "closed",
+      "frame0",
+      "frame1",
+      "frame2",
+      "frame3",
+      "frame4",
+      "kick",
+      "frame5",
+      "frame6",
+      "landing",
+      "frame7",
+      "recovery",
+      "handoff",
+      "control",
+      "traversal",
+      "paused",
+      "restarted",
+      "skipped",
+      "two-palms-2",
+      "two-palms-3",
+      "two-palms-4",
+      "two-palms-5",
+      "two-palms-6",
+      "two-palms-7",
+      "two-palms-0",
+      "two-palms-1",
+      "one-palm-restored"
+    ],
+    "mode": "story",
+    "offline_clock": true,
+    "remaining_palms": 1,
+    "report": [
+      {
+        "beat": 0.0,
+        "epoch": 2.21666666666666,
+        "frame": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "closed",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 0.0,
+        "epoch": 2.21666666666666,
+        "frame": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame0",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 1.0,
+        "epoch": 2.21666666666666,
+        "frame": 1,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame1",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 2.0,
+        "epoch": 2.21666666666666,
+        "frame": 2,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame2",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 3.0,
+        "epoch": 2.21666666666666,
+        "frame": 3,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame3",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 4.0,
+        "epoch": 2.21666666666666,
+        "frame": 4,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame4",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 4.03333333333332,
+        "epoch": 2.21666666666666,
+        "frame": 4,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "kick",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 5.0,
+        "epoch": 2.21666666666666,
+        "frame": 5,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame5",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 6.0,
+        "epoch": 2.21666666666666,
+        "frame": 6,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame6",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 6.03333333333331,
+        "epoch": 2.21666666666666,
+        "frame": 6,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "landing",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 7.0,
+        "epoch": 2.21666666666666,
+        "frame": 7,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame7",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 14.0000000000001,
+        "epoch": 2.21666666666666,
+        "frame": 6,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "recovery",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 15.0000000000001,
+        "epoch": 2.21666666666666,
+        "frame": 7,
+        "music_restarts": 2,
+        "phase": "waiting",
+        "shot": "handoff",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 16.0000000000002,
+        "epoch": 2.21666666666666,
+        "frame": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "control",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 30.0000000000006,
+        "epoch": 2.21666666666666,
+        "frame": 6,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "traversal",
+        "twin_frame": -1,
+        "x": 164.0
+      },
+      {
+        "beat": 31.5666666666672,
+        "epoch": 2.21666666666666,
+        "frame": 7,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "paused",
+        "twin_frame": -1,
+        "x": 164.0
+      },
+      {
+        "beat": 35.566666666667,
+        "epoch": 2.21666666666666,
+        "frame": 3,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "restarted",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 39.6000000000001,
+        "epoch": 2.21666666666666,
+        "frame": 7,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "skipped",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 42.1999999999999,
+        "epoch": 2.21666666666666,
+        "frame": 2,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-2",
+        "twin_frame": 4,
+        "x": 100.0
+      },
+      {
+        "beat": 43.0,
+        "epoch": 2.21666666666666,
+        "frame": 3,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-3",
+        "twin_frame": 5,
+        "x": 100.0
+      },
+      {
+        "beat": 44.0,
+        "epoch": 2.21666666666666,
+        "frame": 4,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-4",
+        "twin_frame": 6,
+        "x": 100.0
+      },
+      {
+        "beat": 45.0,
+        "epoch": 2.21666666666666,
+        "frame": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-5",
+        "twin_frame": 7,
+        "x": 100.0
+      },
+      {
+        "beat": 46.0,
+        "epoch": 2.21666666666666,
+        "frame": 6,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-6",
+        "twin_frame": 0,
+        "x": 100.0
+      },
+      {
+        "beat": 47.0,
+        "epoch": 2.21666666666666,
+        "frame": 7,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-7",
+        "twin_frame": 1,
+        "x": 100.0
+      },
+      {
+        "beat": 48.0,
+        "epoch": 2.21666666666666,
+        "frame": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-0",
+        "twin_frame": 2,
+        "x": 100.0
+      },
+      {
+        "beat": 49.0,
+        "epoch": 2.21666666666666,
+        "frame": 1,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-1",
+        "twin_frame": 3,
+        "x": 100.0
+      },
+      {
+        "beat": 51.5999999999994,
+        "epoch": 2.21666666666666,
+        "frame": 3,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "one-palm-restored",
+        "twin_frame": -1,
+        "x": 100.0
+      }
+    ],
+    "seconds": 30.0166666666662,
+    "state": "playing"
+  },
+  "production_clock_run": {
+    "captures": [
+      "closed",
+      "frame0",
+      "frame1",
+      "frame2",
+      "frame3",
+      "frame4",
+      "kick",
+      "frame5",
+      "frame6",
+      "landing",
+      "frame7",
+      "recovery",
+      "handoff",
+      "control",
+      "traversal",
+      "paused",
+      "restarted",
+      "skipped",
+      "two-palms-2",
+      "two-palms-3",
+      "two-palms-4",
+      "two-palms-5",
+      "two-palms-6",
+      "two-palms-7",
+      "two-palms-0",
+      "two-palms-1",
+      "one-palm-restored"
+    ],
+    "mode": "story",
+    "offline_clock": false,
+    "remaining_palms": 1,
+    "report": [
+      {
+        "beat": 0.0,
+        "epoch": 3.388458,
+        "frame": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "closed",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 0.0,
+        "epoch": 3.388458,
+        "frame": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame0",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 1.012092,
+        "epoch": 3.388458,
+        "frame": 1,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame1",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 2.028736,
+        "epoch": 3.388458,
+        "frame": 2,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame2",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 3.01225,
+        "epoch": 3.388458,
+        "frame": 3,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame3",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 4.028744,
+        "epoch": 3.388458,
+        "frame": 4,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame4",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 5.012154,
+        "epoch": 3.388458,
+        "frame": 5,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "kick",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 5.012154,
+        "epoch": 3.388458,
+        "frame": 5,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame5",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 6.02868,
+        "epoch": 3.388458,
+        "frame": 6,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame6",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 7.012186,
+        "epoch": 3.388458,
+        "frame": 7,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "landing",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 7.012186,
+        "epoch": 3.388458,
+        "frame": 7,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "frame7",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 15.011934,
+        "epoch": 3.388458,
+        "frame": 7,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "recovery",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 16.02873,
+        "epoch": 3.388458,
+        "frame": 0,
+        "music_restarts": 2,
+        "phase": "waiting",
+        "shot": "handoff",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 17.011904,
+        "epoch": 3.388458,
+        "frame": 1,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "control",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 31.011844,
+        "epoch": 3.388458,
+        "frame": 7,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "traversal",
+        "twin_frame": -1,
+        "x": 164.0
+      },
+      {
+        "beat": 31.595114,
+        "epoch": 3.388458,
+        "frame": 7,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "paused",
+        "twin_frame": -1,
+        "x": 164.0
+      },
+      {
+        "beat": 35.59496,
+        "epoch": 3.388458,
+        "frame": 3,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "shot": "restarted",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 39.595028,
+        "epoch": 3.388458,
+        "frame": 7,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "skipped",
+        "twin_frame": -1,
+        "x": 100.0
+      },
+      {
+        "beat": 42.194958,
+        "epoch": 3.388458,
+        "frame": 2,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-2",
+        "twin_frame": 4,
+        "x": 100.0
+      },
+      {
+        "beat": 43.011576,
+        "epoch": 3.388458,
+        "frame": 3,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-3",
+        "twin_frame": 5,
+        "x": 100.0
+      },
+      {
+        "beat": 44.00587,
+        "epoch": 3.388458,
+        "frame": 4,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-4",
+        "twin_frame": 6,
+        "x": 100.0
+      },
+      {
+        "beat": 45.011528,
+        "epoch": 3.388458,
+        "frame": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-5",
+        "twin_frame": 7,
+        "x": 100.0
+      },
+      {
+        "beat": 46.028288,
+        "epoch": 3.388458,
+        "frame": 6,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-6",
+        "twin_frame": 0,
+        "x": 100.0
+      },
+      {
+        "beat": 47.011564,
+        "epoch": 3.388458,
+        "frame": 7,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-7",
+        "twin_frame": 1,
+        "x": 100.0
+      },
+      {
+        "beat": 48.028288,
+        "epoch": 3.388458,
+        "frame": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-0",
+        "twin_frame": 2,
+        "x": 100.0
+      },
+      {
+        "beat": 49.011568,
+        "epoch": 3.388458,
+        "frame": 1,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "two-palms-1",
+        "twin_frame": 3,
+        "x": 100.0
+      },
+      {
+        "beat": 51.678202,
+        "epoch": 3.388458,
+        "frame": 3,
+        "music_restarts": 2,
+        "phase": "playing",
+        "shot": "one-palm-restored",
+        "twin_frame": -1,
+        "x": 100.0
+      }
+    ],
+    "seconds": 30.0015151515144,
+    "state": "playing"
+  },
+  "desktop_scale": {
+    "native": [
+      320,
+      180
+    ],
+    "game_area": [
+      1280,
+      720
+    ],
+    "chrome_height": 56,
+    "uniform_4x4_blocks": 57262,
+    "total_blocks": 57600
+  },
+  "graphical_review": "Actual native screenshots, normal desktop window and decoded movie frames inspected; temporary offset test uses two palms, production scene and final demo have one.",
+  "inputs": "Scripted keyboard through existing native main-scene input; not physical human playtesting.",
+  "audio_review": "PCM validated with zero clipped samples; extracted audio played through local device with afplay exit 0. Subjective balance/perceptual listening review not established.",
+  "tests": {
+    "palm": {
+      "checks": 353,
+      "failures": 0
+    },
+    "story009": {
+      "checks": 168,
+      "failures": 0
+    },
+    "python": {
+      "tests": 33,
+      "failures": 0
+    },
+    "cpu": {
+      "matches": 900,
+      "checks": 1795853,
+      "failures": 0
+    },
+    "complete_suite": {
+      "command": "bash tools/check.sh",
+      "exit_code": 0,
+      "log": "output/check010.stdout",
+      "log_sha256": "178e0fbafed3e0c4fda1a17563b747373a4b1e3bc620bac77be26d50d1b72017"
+    }
+  },
+  "screenshots": [
+    {
+      "path": "docs/screenshots/milestone-010/010-closed.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "2c49980bd4111799b3d1f000cb1c37bda1169bbb030abccfdfd1bb94d51dad49"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-control.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "99ff3b2e2ce5dc61a349f776d2712b950f8a00f05de3cb53a9bc90e2240fd102"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-desktop.png",
+      "dimensions": [
+        1280,
+        776
+      ],
+      "sha256": "30c199522c7b5de6bec3acee3b0295653f527e362964c01823be025be214ce7b"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-handoff.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "ffb6a2745f2ee80d81df516bfe12d8f6c369e89c2b218b217bc52f15129a7e68"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-kick.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "eed9c9639d1568b4d0c6e940be91eed5c7a75bd2eab3549999f5ad48913214f3"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-landing.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "77a3ba2a975b2e30e03efa0ff446a1585f6c7e350f7acb0549f60825080d4116"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-one-palm-restored.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "23a9b00cafd330beb1726ab878e1b8bcbd18345c384016eeb1a73a57d83341d6"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-paused.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "d4e35f050a8b699633c719360df2dcfeae64caa16c3516815dd91411821c2c44"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-restarted.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "b267e36d0252e92f4385234493e059e25bb73453092d7a0a08f1c279eae16859"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-skipped.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "31f00e6a0197d86a5c8dc3e44c9b6b543cd21bb6016be623a3dccc7991bafa7f"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-traversal.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "7590b0bbac9caf496d6a74b9a2a7276e1f415e9c3917e18f5759255e0de5a86b"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-two-palms-0.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "c942d6535bb9008694770974796050fa9a79161a50e86fb013ea7a2b639cff8e"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-two-palms-2.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "75deb7174a366ec58355cd96455d9b399a9a782a1d90429d31dda269272d6236"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-two-palms-4.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "7ebb91d760c6c8a6989c1326ed4ff7df837496a0e1c2c834f260a41cde78e344"
+    },
+    {
+      "path": "docs/screenshots/milestone-010/010-two-palms-6.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "6f1d2b73860a165842b97db49b70d03f8c0f6e1fbd1b1e43dbc0e5e8f81ec34f"
+    }
+  ],
+  "unrelated_untracked_preserved": [
+    "assets/audio/sfx/FreeSFX.zip",
+    "assets/ui/arcade/logo.png",
+    "assets/ui/arcade/logo.png.import"
+  ]
+}

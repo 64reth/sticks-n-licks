@@ -90,3 +90,8 @@ if ! rg -q 'MILESTONE 008: [0-9]+ checks, 0 failures' output/milestone008.stdout
 cat output/story009.stdout
 if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/story009.stdout; then exit 1; fi
 if ! rg -q 'STORY 009: [0-9]+ checks, 0 failures' output/story009.stdout; then exit 1; fi
+
+"$GODOT" --headless --path . --log-file output/palm010.log --script tests/test_palm010.gd >output/palm010.stdout 2>&1
+cat output/palm010.stdout
+if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/palm010.stdout; then exit 1; fi
+if ! rg -q 'PALM 010: [0-9]+ checks, 0 failures' output/palm010.stdout; then exit 1; fi

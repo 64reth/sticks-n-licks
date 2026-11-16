@@ -58,7 +58,7 @@ func start(cinematic: bool) -> void:
  if not game.conductor.started:
   game.conductor.start(game.conductor.now(),int(config.tempo))
   game.audio.play_track(str(int(config.tempo)),game.conductor.epoch,true)
- screens.load_screen(1)
+ screens.load_screen(1).bind_clock(game.conductor)
  visible=true
  overlay.visible=true
  game.stage.visible=false
