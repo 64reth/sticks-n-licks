@@ -30,7 +30,7 @@ func run() -> void:
   fighter.impact("high_attack",0.3)
   check(fighter.sprite.frame==3,"Attack impact frame selected immediately at beat four")
   fighter.parry("low",0.3)
-  check(fighter.spark_time>0 and fighter.sprite.animation=="low_parry","Parry uses supplied block plus feedback")
+  check(fighter.spark_time==0 and fighter.sprite.animation=="low_parry","Parry pose uses supplied block; resolved ImpactEffect owns the burst")
   fighter.face(-1 if player==0 else 1)
   check(fighter.sprite.flip_h,"Facing reversal mirrors exactly once")
   fighter.queue_free()

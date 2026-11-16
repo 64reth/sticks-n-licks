@@ -160,7 +160,8 @@ func impact(value: String, seconds: float) -> void:
 func parry(height: String, seconds: float) -> void:
  if final_locked:return
  impact(height + "_parry", seconds)
- spark_time = 0.18
+ # Resolved ImpactEffect owns parry feedback; no second procedural spark.
+ spark_time = 0.0
 
 func whiff(height: String, seconds: float) -> void:
  if final_locked:return

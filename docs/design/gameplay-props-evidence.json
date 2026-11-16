@@ -1,0 +1,79 @@
+{
+  "date": "2026-11-16",
+  "engine": "Godot 4.6.2 stable",
+  "full_check_exit_code": 0,
+  "suites": [
+    {
+      "suite": "RULE TESTS",
+      "checks": 51,
+      "failures": 0
+    },
+    {
+      "suite": "CONTROL TESTS",
+      "checks": 46,
+      "failures": 0
+    },
+    {
+      "suite": "MEDIA TESTS",
+      "checks": 3348,
+      "failures": 0
+    },
+    {
+      "suite": "LAUNCH/RANGE TESTS",
+      "checks": 974,
+      "failures": 0
+    },
+    {
+      "suite": "IDLE/MOVEMENT TESTS",
+      "checks": 676,
+      "failures": 0
+    },
+    {
+      "suite": "ARCADE HUD TESTS",
+      "checks": 189,
+      "failures": 0
+    },
+    {
+      "suite": "LIVE MOVEMENT",
+      "checks": 168,
+      "failures": 0
+    },
+    {
+      "suite": "CPU TESTS",
+      "checks": 1795853,
+      "failures": 0
+    },
+    {
+      "suite": "MILESTONE 006",
+      "checks": 292,
+      "failures": 0
+    },
+    {
+      "suite": "TUTORIAL",
+      "checks": 249,
+      "failures": 0
+    },
+    {
+      "suite": "GAMEPLAY PROPS",
+      "checks": 166,
+      "failures": 0
+    }
+  ],
+  "python_tests": 25,
+  "cpu_measured_matches": 900,
+  "new_suite_cpu_effects": 13,
+  "native_recording": {
+    "path": "output/gameplay-props.avi",
+    "frames": 3181,
+    "fps": 60,
+    "duration_seconds": 53.016666666666666,
+    "size_bytes": 93727856,
+    "sha256": "a53c6c25f5221edb60633f89b6e1eb53ade7619f56941ef3f0e861fc0647faf1",
+    "format": "Motion JPEG AVI, 320x180"
+  },
+  "limitations": [
+    "Synthetic fixtures and inputs; injected clock for recording. No fresh physical keyboard playtest.",
+    "Existing Godot macOS certificate diagnostic and ObjectDB exit warnings remain in logs."
+  ],
+  "preserved_work": "Uncommitted tutorial/UI code, artwork, demo and check.sh tutorial addition excluded from integration commit."
+}

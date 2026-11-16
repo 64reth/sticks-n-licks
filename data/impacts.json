@@ -1,0 +1,5 @@
+{
+  "HIT": {"texture": "res://assets/environments/props/impact_hit.png", "frame_ms": 55, "display_size": 32},
+  "BLOCK": {"texture": "res://assets/environments/props/impact_block.png", "frame_ms": 50, "display_size": 32},
+  "PARRY": {"texture": "res://assets/environments/props/impact_perfect_parry.png", "frame_ms": 70, "display_size": 36}
+}

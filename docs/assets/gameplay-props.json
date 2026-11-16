@@ -1,0 +1,301 @@
+{
+  "source_policy": "Original files used directly; no derivative images. Runtime nearest filtering and alpha cutoff 0.5 only.",
+  "assets": [
+    {
+      "path": "assets/environments/props/ground_sticks_states.png",
+      "sha256": "844a2496cdf8ada3beb83c70a0315606c7b7a6173747b514f064395ee45add28",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_levels": 256,
+      "transparent_pixels": 2909,
+      "opaque_pixels": 1083,
+      "cells": [
+        {
+          "rect": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "alpha_bounds": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "alpha_above_128_bounds": [
+            130,
+            151,
+            595,
+            606
+          ]
+        },
+        {
+          "rect": [
+            724,
+            0,
+            724,
+            724
+          ],
+          "alpha_bounds": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "alpha_above_128_bounds": [
+            132,
+            151,
+            589,
+            606
+          ]
+        },
+        {
+          "rect": [
+            1448,
+            0,
+            724,
+            724
+          ],
+          "alpha_bounds": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "alpha_above_128_bounds": [
+            135,
+            151,
+            594,
+            606
+          ]
+        }
+      ]
+    },
+    {
+      "path": "assets/environments/props/impact_block.png",
+      "sha256": "f284097bce9273c5d2cf0a82a3d4b6269130d551d38f48717394668c92ac0019",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_levels": 256,
+      "transparent_pixels": 1426723,
+      "opaque_pixels": 1888,
+      "cells": [
+        {
+          "rect": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "alpha_bounds": [
+            31,
+            71,
+            724,
+            636
+          ],
+          "alpha_above_128_bounds": [
+            259,
+            257,
+            465,
+            461
+          ]
+        },
+        {
+          "rect": [
+            724,
+            0,
+            724,
+            724
+          ],
+          "alpha_bounds": [
+            0,
+            19,
+            724,
+            702
+          ],
+          "alpha_above_128_bounds": [
+            148,
+            154,
+            576,
+            563
+          ]
+        },
+        {
+          "rect": [
+            1448,
+            0,
+            724,
+            724
+          ],
+          "alpha_bounds": [
+            1,
+            37,
+            686,
+            700
+          ],
+          "alpha_above_128_bounds": [
+            227,
+            231,
+            491,
+            486
+          ]
+        }
+      ]
+    },
+    {
+      "path": "assets/environments/props/impact_hit.png",
+      "sha256": "6fe4aef46221f88da73780960eddb407a2e1d39d5a5a05fe100075e153095ffe",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_levels": 256,
+      "transparent_pixels": 1273498,
+      "opaque_pixels": 899,
+      "cells": [
+        {
+          "rect": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "alpha_bounds": [
+            0,
+            39,
+            724,
+            674
+          ],
+          "alpha_above_128_bounds": [
+            225,
+            219,
+            495,
+            484
+          ]
+        },
+        {
+          "rect": [
+            724,
+            0,
+            724,
+            724
+          ],
+          "alpha_bounds": [
+            0,
+            9,
+            724,
+            724
+          ],
+          "alpha_above_128_bounds": [
+            45,
+            47,
+            676,
+            661
+          ]
+        },
+        {
+          "rect": [
+            1448,
+            0,
+            724,
+            724
+          ],
+          "alpha_bounds": [
+            0,
+            26,
+            692,
+            668
+          ],
+          "alpha_above_128_bounds": [
+            161,
+            129,
+            577,
+            554
+          ]
+        }
+      ]
+    },
+    {
+      "path": "assets/environments/props/impact_perfect_parry.png",
+      "sha256": "0f6e8531c0b57202d955fa3894338eede5b059cc7d70bf04a97d98868406cece",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_levels": 256,
+      "transparent_pixels": 1295043,
+      "opaque_pixels": 2003,
+      "cells": [
+        {
+          "rect": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "alpha_bounds": [
+            73,
+            73,
+            722,
+            684
+          ],
+          "alpha_above_128_bounds": [
+            236,
+            232,
+            488,
+            481
+          ]
+        },
+        {
+          "rect": [
+            724,
+            0,
+            724,
+            724
+          ],
+          "alpha_bounds": [
+            1,
+            10,
+            724,
+            684
+          ],
+          "alpha_above_128_bounds": [
+            31,
+            38,
+            691,
+            678
+          ]
+        },
+        {
+          "rect": [
+            1448,
+            0,
+            724,
+            724
+          ],
+          "alpha_bounds": [
+            5,
+            15,
+            708,
+            708
+          ],
+          "alpha_above_128_bounds": [
+            124,
+            92,
+            596,
+            594
+          ]
+        }
+      ]
+    }
+  ]
+}

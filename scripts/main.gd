@@ -22,6 +22,8 @@ var completed_exchanges: Array[Dictionary] = []
 var cpu_debug_label := Label.new()
 var advancing_timeline := false
 var stage := StageBackground.new()
+var ground_sticks := GroundSticks.new()
+var impact_effect := ImpactEffect.new()
 var movement_perfect_ms: float = 90.0
 var movement_good_ms: float = 160.0
 var step_seconds: float = 0.16
@@ -115,6 +117,9 @@ func _ready() -> void:
  add_child(cpu_debug_label)
  stage.z_index = -1
  add_child(stage)
+ add_child(ground_sticks)
+ impact_effect.clock_source = conductor.now
+ add_child(impact_effect)
  flow.setup(self)
  var config := FileAccess.open("res://data/combat/settings.json", FileAccess.READ)
  if config:
@@ -234,6 +239,8 @@ func next_round() -> void:
   _begin_round()
 
 func _begin_round() -> void:
+ impact_effect.clear()
+ ground_sticks.set_collected(false, false)
  movement_stun=["",""]
  stun_time=[-INF,-INF]
  transition_until=INF
@@ -320,6 +327,7 @@ func _process(delta: float) -> void:
   freeze_combat_positions(at)
  if mode == "combat" and not phrase_resolved and at > conductor.action_time() + (conductor.good_ms + controls[0].combination_ms + maxf(0.0, conductor.latency_ms)) / 1000.0:
   resolve_exchange()
+ sync_ground_sticks()
  for player in range(2):
   fighters[player].face(facing(player))
   var target_x := bout.positions[player]
@@ -502,6 +510,7 @@ func resolve_exchange() -> void:
  var direction := maxi(0, selected[attack])
  var height: String = ["high", "mid", "low"][direction]
  status = bout.resolve(conductor, exchange_phrase)
+ impact_effect.play_resolved(bout.last_event, "%d:%d:%d" % [match_serial,match_progress.round_number,exchange_phrase], conductor.now())
  for fighter in fighters:
   fighter.visual_priority=0
   fighter.visual_until=-INF
@@ -764,6 +773,8 @@ func _draw() -> void:
   if debug_visible or help_visible or not str(hud.state.get("footer", "")).is_empty():
    continue
   draw_circle(Vector2(139 + n * 14, 172), 3, Color("f3ba55") if conductor.beat == n + 1 else Color("596066"))
- if mode in ["standoff", "race", "menu"]:
-  draw_line(Vector2(145, 144), Vector2(175, 126), Color("d9bc85"), 2)
-  draw_line(Vector2(145, 126), Vector2(175, 144), Color("d9bc85"), 2)
+
+func sync_ground_sticks() -> void:
+ # Existing race adjudication automatically collects both sticks in pickup.
+ var automatic_pickup := mode not in ["menu", "standoff", "race"]
+ ground_sticks.set_collected(automatic_pickup or (mode == "race" and bout.reactions[0] >= 0), automatic_pickup or (mode == "race" and bout.reactions[1] >= 0))
