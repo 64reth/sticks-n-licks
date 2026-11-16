@@ -94,7 +94,9 @@ func run() -> void:
  check(game.mode=="menu" and not game.conductor.clock_override.is_valid(),"Actual entrypoint, normal clock")
  await tap(KEY_A)
  check(game.bout.positions==[100.0,220.0],"Menu rejects displacement")
- await tap(KEY_ENTER)
+ await tap(KEY_ENTER) # Skip intro
+ await tap(KEY_ENTER) # Open main menu
+ await tap(KEY_ENTER) # Match setup
  for i in range(5):await tap(KEY_DOWN)
  await tap(KEY_ENTER)
  await tap(KEY_D)

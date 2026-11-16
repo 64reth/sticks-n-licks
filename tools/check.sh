@@ -61,7 +61,17 @@ cat output/milestone006.stdout
 if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/milestone006.stdout; then exit 1; fi
 if ! rg -q 'MILESTONE 006: [0-9]+ checks, 0 failures' output/milestone006.stdout; then exit 1; fi
 
+"$GODOT" --headless --path . --log-file output/tutorial-test.log --script tests/test_tutorial.gd >output/tutorial-test.stdout 2>&1
+cat output/tutorial-test.stdout
+if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/tutorial-test.stdout; then exit 1; fi
+if ! rg -q 'TUTORIAL: [0-9]+ checks, 0 failures' output/tutorial-test.stdout; then exit 1; fi
+
 "$GODOT" --headless --path . --log-file output/gameplay-props.log --script tests/test_gameplay_props.gd >output/gameplay-props.stdout 2>&1
 cat output/gameplay-props.stdout
 if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/gameplay-props.stdout; then exit 1; fi
 if ! rg -q 'GAMEPLAY PROPS: [0-9]+ checks, 0 failures' output/gameplay-props.stdout; then exit 1; fi
+
+"$GODOT" --headless --path . --log-file output/milestone007.log --script tests/test_milestone007.gd >output/milestone007.stdout 2>&1
+cat output/milestone007.stdout
+if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/milestone007.stdout; then exit 1; fi
+if ! rg -q 'MILESTONE 007: [0-9]+ checks, 0 failures' output/milestone007.stdout; then exit 1; fi

@@ -1,0 +1,451 @@
+{
+  "date": "2026-11-16",
+  "engine": "Godot 4.6.2",
+  "full_check_exit_code": 0,
+  "suites": [
+    {
+      "suite": "RULE TESTS",
+      "checks": 51,
+      "failures": 0
+    },
+    {
+      "suite": "CONTROL TESTS",
+      "checks": 46,
+      "failures": 0
+    },
+    {
+      "suite": "MEDIA TESTS",
+      "checks": 3348,
+      "failures": 0
+    },
+    {
+      "suite": "LAUNCH/RANGE TESTS",
+      "checks": 974,
+      "failures": 0
+    },
+    {
+      "suite": "IDLE/MOVEMENT TESTS",
+      "checks": 676,
+      "failures": 0
+    },
+    {
+      "suite": "ARCADE HUD TESTS",
+      "checks": 189,
+      "failures": 0
+    },
+    {
+      "suite": "LIVE MOVEMENT",
+      "checks": 168,
+      "failures": 0
+    },
+    {
+      "suite": "CPU TESTS",
+      "checks": 1795853,
+      "failures": 0
+    },
+    {
+      "suite": "MILESTONE 006",
+      "checks": 292,
+      "failures": 0
+    },
+    {
+      "suite": "TUTORIAL",
+      "checks": 201,
+      "failures": 0
+    },
+    {
+      "suite": "GAMEPLAY PROPS",
+      "checks": 166,
+      "failures": 0
+    },
+    {
+      "suite": "MILESTONE 007",
+      "checks": 60,
+      "failures": 0
+    }
+  ],
+  "supplemental_final_intro_checks": 61,
+  "python_tests": 27,
+  "cpu_matches": 900,
+  "recording": {
+    "path": "output/milestone007.avi",
+    "frames": 1592,
+    "fps": 60,
+    "duration_seconds": 26.533333333333335,
+    "sha256": "7ebb35ef1c571d8e094645322d082e2c3e14e725dd08e293bf9797c72adf3148",
+    "audio_pcm_bytes": 5094400,
+    "nonzero_audio_bytes": 3902118
+  },
+  "movie_demo": {
+    "audio_capture": "Godot Movie Maker AVI audio; listening review pending",
+    "captures": [
+      "initial",
+      "sky-entering",
+      "foreground-entering",
+      "logo-entrance",
+      "logo-squash",
+      "logo-stretch",
+      "logo-rest",
+      "title-ready",
+      "main-menu",
+      "tutorial-1",
+      "tutorial-2",
+      "tutorial-3",
+      "stage-speaker-rest",
+      "stage-speaker-pulse",
+      "pause-tutorial",
+      "pause-return",
+      "resumed-game"
+    ],
+    "clock": "injected offline",
+    "cue_log": [
+      {
+        "audio_seconds": 0.0,
+        "cue": "music_start",
+        "skipped": false
+      },
+      {
+        "audio_seconds": 0.0,
+        "cue": "sky",
+        "skipped": false
+      },
+      {
+        "audio_seconds": 0.516666666666667,
+        "cue": "foreground",
+        "skipped": false
+      },
+      {
+        "audio_seconds": 1.51666666666667,
+        "cue": "logo",
+        "skipped": false
+      },
+      {
+        "audio_seconds": 2.01666666666666,
+        "cue": "speakers",
+        "skipped": false
+      },
+      {
+        "audio_seconds": 3.01666666666666,
+        "cue": "prompt",
+        "skipped": false
+      },
+      {
+        "audio_seconds": 3.51666666666666,
+        "cue": "ready",
+        "skipped": false
+      }
+    ],
+    "elapsed": 26.5333333333331,
+    "input": "scripted keyboard; not physical playtesting",
+    "success": true
+  },
+  "live_demo": {
+    "audio_capture": "Godot Movie Maker AVI audio; listening review pending",
+    "captures": [
+      "initial",
+      "sky-entering",
+      "foreground-entering",
+      "logo-entrance",
+      "logo-rest",
+      "logo-stretch",
+      "logo-squash",
+      "title-ready",
+      "main-menu",
+      "tutorial-1",
+      "tutorial-2",
+      "tutorial-3",
+      "stage-speaker-rest",
+      "stage-speaker-pulse",
+      "pause-tutorial",
+      "pause-return",
+      "resumed-game"
+    ],
+    "clock": "production playback/monotonic",
+    "cue_log": [
+      {
+        "audio_seconds": 0.0,
+        "cue": "music_start",
+        "skipped": false
+      },
+      {
+        "audio_seconds": 0.0,
+        "cue": "sky",
+        "skipped": false
+      },
+      {
+        "audio_seconds": 0.515618100727081,
+        "cue": "foreground",
+        "skipped": false
+      },
+      {
+        "audio_seconds": 1.51396618817139,
+        "cue": "logo",
+        "skipped": false
+      },
+      {
+        "audio_seconds": 2.00462523056793,
+        "cue": "speakers",
+        "skipped": false
+      },
+      {
+        "audio_seconds": 3.01362728953552,
+        "cue": "prompt",
+        "skipped": false
+      },
+      {
+        "audio_seconds": 3.50230421272278,
+        "cue": "ready",
+        "skipped": false
+      }
+    ],
+    "elapsed": 26.3879913333332,
+    "input": "scripted keyboard; not physical playtesting",
+    "success": true
+  },
+  "screenshots": [
+    {
+      "path": "docs/screenshots/milestone-007/007-foreground-entering-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-foreground-entering.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-initial-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-initial.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-logo-entrance-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-logo-entrance.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-logo-rest-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-logo-rest.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-logo-squash-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-logo-squash.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-logo-stretch-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-logo-stretch.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-main-menu-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-main-menu.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-pause-return-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-pause-return.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-pause-tutorial-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-pause-tutorial.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-resumed-game-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-resumed-game.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-sky-entering-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-sky-entering.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-stage-speaker-pulse-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-stage-speaker-pulse.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-stage-speaker-rest-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-stage-speaker-rest.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-title-ready-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-title-ready.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-tutorial-1-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-tutorial-1.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-tutorial-2-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-tutorial-2.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-tutorial-3-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007/007-tutorial-3.png",
+      "size": [
+        320,
+        180
+      ]
+    }
+  ],
+  "title_stability": "Rendered lettering rectangle (106,23)-(215,118) pixel-identical between rest and stretch captures.",
+  "limitations": [
+    "Cue arrangement values provisional; listening review pending.",
+    "Synthetic keyboard, not physical keyboard playtesting.",
+    "Existing macOS certificate and ObjectDB diagnostics in prior regression logs."
+  ]
+}

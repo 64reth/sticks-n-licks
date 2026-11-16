@@ -1,0 +1,14 @@
+{
+  "music": "intro",
+  "bpm": 120,
+  "beat_zero_seconds": 0.0,
+  "cue_status": "Provisional arrangement cues; track downbeat at sample zero owner-confirmed. Perceptual accent review pending.",
+  "cues": {"music_start": 0.0, "sky": 0.0, "foreground": 0.5, "logo": 1.5, "speakers": 2.0, "prompt": 3.0, "ready": 3.5},
+  "entrance_seconds": {"sky": 0.75, "foreground": 0.75, "logo": 0.35},
+  "sky": "res://assets/environments/backgrounds/bim_sky.png",
+  "foreground": "res://assets/environments/backgrounds/bim_foreground.png",
+  "logo": "res://assets/ui/arcade/logo_animated.png",
+  "logo_position": [160, 72],
+  "logo_width": 232,
+  "pulse_frames": [1, 2, 4, 0, 5, 0]
+}

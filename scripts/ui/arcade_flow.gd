@@ -52,13 +52,11 @@ func refresh() -> void:
    rows=[option("STEP FEEDBACK","timing_feedback","ON" if p.timing_feedback else "OFF"),item("CONTROL REFERENCE","help"),item("BACK","back")]
   "help":
    title="HOW TO PLAY"
-   sub="WAIT FOR GO. RACE. FIND YOUR RANGE."
-   view.help_lines.assign(["RED: A/D MOVE  W HIGH  S LOW  F ACT","BLUE: ARROWS MOVE / HIGH / LOW","RIGHT SHIFT ACTS / FORWARD + ACT = MID","TAP 1-4: +/-90 PERFECT / +/-160 GOOD","ACT 4: +/-70 PERFECT / +/-140 GOOD","MATCH THE BLOCK HEIGHT. PARRY TO COUNTER.","STUN LOSES ONE MOVE. COMBAT STAYS LIVE.","THREE HITS WIN A ROUND. ESC PAUSES."])
-   rows=[item("BACK","back")]
+   sub=""
   "pause":
    title="BOUT PAUSED"
    sub="THE BEAT WILL WAIT"
-   rows=[item("RESUME","resume"),item("RESTART MATCH","restart"),item("OPTIONS","options"),item("MAIN MENU","title")]
+   rows=[item("RESUME","resume"),item("RESTART MATCH","restart"),item("OPTIONS","options"),item("HOW TO PLAY","help"),item("MAIN MENU","title")]
   "result":
    title=("YOU WIN!" if game.match_progress.winner==0 else "YOU LOSE!") if game.game_mode=="cpu" else ("RED WINS!" if game.match_progress.winner==0 else "BLUE WINS!")
    rows=[item("REMATCH","rematch"),item("MATCH SETUP","setup"),item("MAIN MENU","title")]
@@ -78,6 +76,9 @@ func command(action: String) -> void:
    game.begin()
   "resume":game.set_paused(false)
   "title":game.return_to_title()
+  "tutorial_exit":
+   if not stack.is_empty():view.open(stack.pop_back())
+   else:view.open("pause" if game.paused else "title")
   "options","audio","display","gameplay","help":open(action)
   "defaults":
    game.preferences.values=UserPreferences.DEFAULTS.duplicate(true)

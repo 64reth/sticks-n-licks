@@ -11,7 +11,7 @@ var cursor: int=0
 var rows: Array[Dictionary]=[]
 var heading: String="STICKS N LICKS"
 var subtitle: String="RHYTHM. SPACING. ONE MORE BOUT."
-var help_lines: Array[String]=[]
+var tutorial:=TutorialPages.new()
 var result: bool=false
 var visual_phase: float=0.0
 func _process(delta: float) -> void:
@@ -22,8 +22,14 @@ func _ready() -> void:
  mouse_filter=Control.MOUSE_FILTER_IGNORE
  texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
  set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+ add_child(tutorial)
+ tutorial.visible=page=="help"
 func open(next: String) -> void:
  page=next
+ tutorial.visible=page=="help"
+ if page=="help":
+  tutorial.current=0
+  tutorial.rebuild()
  cursor=0
  queue_redraw()
 func present(title: String, items: Array[Dictionary], sub: String="") -> void:
@@ -35,6 +41,12 @@ func present(title: String, items: Array[Dictionary], sub: String="") -> void:
  queue_redraw()
 func key(event: InputEventKey) -> bool:
  if not event.pressed or event.echo:return true
+ if page=="help":
+  if event.keycode in [KEY_LEFT,KEY_RIGHT]:
+   tutorial.change(-1 if event.keycode==KEY_LEFT else 1)
+   activated.emit("nav")
+  elif event.keycode==KEY_ESCAPE:activated.emit("tutorial_exit")
+  return true
  if event.keycode==KEY_UP:
   cursor=posmod(cursor-1,maxi(1,rows.size()))
   activated.emit("nav")
@@ -59,6 +71,7 @@ func centered(text: String,y: float,color: Color=CREAM) -> void:
  var width:=FONT.get_string_size(text.to_upper(),HORIZONTAL_ALIGNMENT_LEFT,-1,8).x
  label(text,Vector2(roundf((320-width)/2),y),color)
 func _draw() -> void:
+ if page=="help":return
  if result:
   draw_rect(Rect2(4,43,312,18),INK)
   centered(heading,55,GOLD)
@@ -72,8 +85,6 @@ func _draw() -> void:
    draw_string(FONT,Vector2((320-extent)/2,27),heading,HORIZONTAL_ALIGNMENT_LEFT,-1,16,GOLD)
   else:centered(heading,25,GOLD)
   if not subtitle.is_empty():centered(subtitle,45,Color("9dbeaa"))
- if page=="help":
-  for index in range(help_lines.size()):centered(help_lines[index],62+index*10)
  var start:=158.0 if result else (62.0 if rows.size()>5 else 75.0)
  var spacing:=10.0 if result else 14.0
  for index in range(rows.size() if page!="help" else 0):
@@ -89,7 +100,4 @@ func _draw() -> void:
    var value:=str(row.value)
    var extent:=FONT.get_string_size(value.to_upper(),HORIZONTAL_ALIGNMENT_LEFT,-1,8).x
    label(value,Vector2(292-extent,y),GOLD if selected else CREAM)
- if page=="help":
-  draw_rect(Rect2(19,153,282,12),Color("3b4a42"))
-  centered("ENTER / ESC - BACK",162,GOLD)
- elif not result:centered("ARROWS SELECT    ENTER CONFIRM    ESC BACK",166,Color("9dbeaa"))
+ if not result:centered("ARROWS SELECT    ENTER CONFIRM    ESC BACK",166,Color("9dbeaa"))

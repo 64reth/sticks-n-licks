@@ -1,5 +1,9 @@
 extends Node2D
 var flow:=ArcadeFlow.new()
+var intro := ArcadeIntro.new()
+var intro_music_pending: bool = false
+var intro_started_at: float = 0.0
+var intro_music_started: bool = false
 var preferences:=UserPreferences.new()
 var preferences_path: String="user://preferences.cfg"
 var selected_bpm: int=120
@@ -189,6 +193,11 @@ func _ready() -> void:
  add_child(hud_layer)
  hud_layer.add_child(hud)
  hud_layer.add_child(flow.view)
+ intro.z_index = 20
+ hud_layer.add_child(intro)
+ intro.timeline = intro_time
+ intro.menu_requested.connect(open_main_menu)
+ stage.speaker.clock_source = conductor.now
  if conductor.clock_override.is_valid():preferences_path=""
  preferences.path=preferences_path
  var stage_ids: Array=[]
@@ -206,7 +215,11 @@ func _ready() -> void:
  flow.root("title")
  conductor.beat_changed.connect(on_beat)
  conductor.phrase_changed.connect(on_phrase)
- audio.play_track("menu", conductor.now())
+ intro_started_at = conductor.now()
+ intro_music_pending = intro.validate()
+ intro.visible = intro_music_pending
+ if not intro_music_pending:audio.play_track("menu",conductor.now())
+ elif float(intro.config.cues.music_start)<=0:start_intro_music()
  refresh()
 
 func play_click(force: bool = false) -> void:
@@ -214,6 +227,8 @@ func play_click(force: bool = false) -> void:
   click_player.play()
 
 func begin() -> void:
+ intro.visible = false
+ intro_music_pending = false
  if paused:set_paused(false)
  result_handled=false
  transition_until=INF
@@ -271,6 +286,8 @@ func _begin_round() -> void:
  mode = "standoff"
  if game_mode=="cpu":cpu.start_round(cue)
  status = "Wait for GO. Early press forfeits the race."
+ stage.speaker.anchor_time = conductor.epoch
+ stage.speaker.bpm = selected_bpm
  previous_bpm = selected_bpm
  audio.music.pitch_scale=float(selected_bpm)/120.0
  audio.play_track("standoff", conductor.epoch, true)
@@ -280,6 +297,12 @@ func _begin_round() -> void:
  refresh()
 
 func _process(delta: float) -> void:
+ stage.speaker.bpm = conductor.bpm
+ stage.speaker.anchor_time = conductor.phrase_start
+ if intro_music_pending and not intro_music_started and intro_time()>=float(intro.config.cues.music_start):start_intro_music()
+ if intro_music_pending and intro_music_started and intro_time() >= float(intro.config.cues.music_start)+float(audio.entries.get(str(intro.config.music),{}).get("loop_end_seconds",8.0)):
+  intro_music_pending = false
+  audio.play_track("menu",conductor.now())
  if paused:
   refresh()
   return
@@ -602,6 +625,8 @@ func set_paused(value: bool) -> void:
  refresh()
 
 func return_to_title() -> void:
+ intro.visible = false
+ intro_music_pending = false
  if paused:set_paused(false)
  cpu.queue.clear()
  conductor.started=false
@@ -619,6 +644,13 @@ func _unhandled_input(event: InputEvent) -> void:
  if event is InputEventKey:
   if not event.pressed:ui_held.erase(event.keycode)
   if event.echo:return
+  if mode=="menu" and intro.visible:
+   if event.pressed and event.keycode in [KEY_ENTER,KEY_ESCAPE] and not ui_held.has(event.keycode):
+    ui_held[event.keycode]=true
+    if event.keycode==KEY_ENTER:intro.accept()
+    elif not intro.is_ready:intro.skip()
+    else:open_main_menu()
+   return
   if event.pressed and event.keycode==KEY_F3:
    debug_visible=not debug_visible
    refresh()
@@ -778,3 +810,19 @@ func sync_ground_sticks() -> void:
  # Existing race adjudication automatically collects both sticks in pickup.
  var automatic_pickup := mode not in ["menu", "standoff", "race"]
  ground_sticks.set_collected(automatic_pickup or (mode == "race" and bout.reactions[0] >= 0), automatic_pickup or (mode == "race" and bout.reactions[1] >= 0))
+
+func intro_time() -> float:
+ # Real playback clock in production; AudioDirector falls back to monotonic time
+ # for muted/missing/finished streams and test-only disabled audio.
+ return audio.audio_time()+float(intro.config.cues.music_start) if audio.active==str(intro.config.music) and intro_music_started else maxf(0,conductor.now()-intro_started_at)
+
+func open_main_menu() -> void:
+ intro.visible = false
+ flow.root("title")
+ # Keep the one-shot intro running; the same player changes to menu at its end.
+ refresh()
+
+func start_intro_music() -> void:
+ if intro_music_started:return
+ intro_music_started = true
+ audio.play_track(str(intro.config.music),conductor.now())

@@ -1,6 +1,9 @@
 class_name MenuTestInput
 extends RefCounted
 static func key(game: Node, code: int) -> void:
+ if game.intro.visible:
+  game.intro.skip()
+  game.open_main_menu()
  var event:=InputEventKey.new()
  event.keycode=code
  event.pressed=true

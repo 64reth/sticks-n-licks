@@ -55,6 +55,7 @@ func run() -> void:
  game.preferences_path=""
  game.conductor.clock_override=func():return time
  root.add_child(game)
+ game.open_main_menu() # Gallery covers menus; 007 demo covers the intro.
  game.set_process(false)
  await capture("title")
  for page in ["setup","options","audio","display","gameplay","help"]:

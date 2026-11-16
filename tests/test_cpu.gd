@@ -130,6 +130,7 @@ func run() -> void:
  game.preferences_path=""
  game.conductor.clock_override=func():return time
  root.add_child(game)
+ game.open_main_menu() # CPU fixtures bypass the independently tested intro.
  game.preferences.values.game_mode=game.game_mode
  game.set_process(false)
  game.audio.stop()

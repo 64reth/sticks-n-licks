@@ -25,6 +25,7 @@ func _ready() -> void:
  if offline:conductor.clock_override=func():return demo_raw
  preferences_path=""
  super._ready()
+ open_main_menu() # Legacy front-end fixture bypasses the separately tested intro.
  if offline:
   audio.enabled=true
   audio.play_track("menu",conductor.now(),true)
