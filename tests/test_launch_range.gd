@@ -266,11 +266,8 @@ func run() -> void:
   advance(time+0.95)
   check(game.mode == "round_win", "Round victory sequence completes independently of scoring")
   await capture("winner_p%d" % (winner+1))
-  var enter := InputEventKey.new()
-  enter.keycode = KEY_ENTER
-  enter.pressed = true
-  game._unhandled_input(enter)
-  check(game.mode == "standoff" and game.bout.hits == [0,0] and game.bout.winner == -1 and game.conductor.bpm == 120, "Enter next round resets bout energy")
+  advance(game.round_transition_at)
+  check(game.mode == "standoff" and game.bout.hits == [0,0] and game.bout.winner == -1 and game.conductor.bpm == 120, "Automatic next round resets bout energy")
  print("LAUNCH/RANGE TESTS: %d checks, %d failures" % [checks,failures])
  game.conductor.clock_override = Callable()
  game.queue_free()

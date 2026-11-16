@@ -121,14 +121,12 @@ func _process(delta: float) -> void:
   exchange_seen=completed_exchanges.size()
   data.append({"event":bout.last_event.kind,"attacker":bout.last_event.attacker,"at":conductor.now(),"round":match_progress.round_number})
   capture(str(bout.last_event.kind).to_lower())
+ if mode=="standoff":phase_at=-1
  if mode=="round_win":
   capture("round-win")
   if phase_at<0:
    phase_at=elapsed
    data.append({"event":"ordinary_round","audio":audio.active,"poses":[fighters[0].pose,fighters[1].pose]})
-  if elapsed-phase_at>0.8:
-   _key(KEY_ENTER)
-   phase_at=-1
  if mode=="match_win" and not finished:
   capture("result")
   if final_at<0:

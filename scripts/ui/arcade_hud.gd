@@ -7,7 +7,7 @@ var blue := ArcadePlayerCard.new()
 var round_label: Label
 var tempo_label: Label
 var phase_label: Label
-var major_label: Label
+var major_label: PixelAnnouncement
 var instruction_label: Label
 var outcome_label: Label
 var footer_label: Label
@@ -18,8 +18,8 @@ var help_label: Label
 var state: Dictionary = {}
 var step_labels: Array[Label] = []
 
-func text_label(at: Vector2, extent: Vector2) -> Label:
- var node := Label.new()
+func text_label(at: Vector2, extent: Vector2) -> PixelAnnouncement:
+ var node := PixelAnnouncement.new()
  node.position = at
  node.size = extent
  node.add_theme_font_override("font",FONT)
@@ -63,14 +63,12 @@ func _ready() -> void:
  add_child(blue)
  for player in range(2):
   var feedback := text_label(Vector2(8+player*166,43),Vector2(138,10))
-  feedback.add_theme_color_override("font_shadow_color",Color.BLACK)
-  feedback.add_theme_constant_override("shadow_offset_x",1)
-  feedback.add_theme_constant_override("shadow_offset_y",1)
   step_labels.append(feedback)
  round_label = text_label(Vector2(103,5),Vector2(114,8))
  tempo_label = text_label(Vector2(103,17),Vector2(114,8))
  phase_label = text_label(Vector2(103,29),Vector2(114,8))
- major_label = text_label(Vector2(0,50),Vector2(160,10))
+ # Reserve the 4x uppercase glyph ink plus the 2px stroke before instructions.
+ major_label = text_label(Vector2(0,45),Vector2(160,10))
  instruction_label = text_label(Vector2(0,79),Vector2(320,8))
  menu_options = text_label(Vector2(0,94),Vector2(320,10))
  outcome_label = text_label(Vector2(0,153),Vector2(320,8))
@@ -84,7 +82,13 @@ func _ready() -> void:
  help_panel.add_theme_stylebox_override("panel",style)
  help_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
  add_child(help_panel)
- help_label = text_label(Vector2(22,53),Vector2(276,94))
+ help_label = Label.new()
+ help_label.position=Vector2(22,53)
+ help_label.size=Vector2(276,94)
+ help_label.add_theme_font_override("font",FONT)
+ help_label.add_theme_font_size_override("font_size",8)
+ help_label.add_theme_color_override("font_color",CREAM)
+ add_child(help_label)
  help_label.text = "CONTROLS\n\nRED: A/D MOVE  W HIGH  S LOW  F EXECUTE\nBLUE: ARROWS MOVE/HIGH/LOW\nRIGHT SHIFT EXECUTES\nFORWARD + EXECUTE = MID\nTAP ON BEATS 1-4 / COMBAT ON BEAT 4\nSTEP +/-90 PERFECT  +/-160 GOOD
 H CLOSE  F3 DEBUG  F4 STAGE  ESC MENU"
 
@@ -99,7 +103,8 @@ func present(snapshot: Dictionary) -> void:
  major_label.scale = Vector2.ONE*factor
  major_label.size = Vector2(320.0/factor,10)
  major_label.text = state["major"]
- major_label.modulate = Color("eec65e") if state["go"] else CREAM
+ major_label.modulate = Color.WHITE
+ major_label.fill_color = Color("eec65e") if state["go"] else Color("ffe2a0")
  instruction_label.text = state["instruction"]
  footer_label.text = state["footer"]
  menu_options.text=state.get("menu_options","")

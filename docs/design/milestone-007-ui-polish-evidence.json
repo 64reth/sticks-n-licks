@@ -1,0 +1,876 @@
+{
+  "date": "2026-11-16",
+  "baseline": "a57870d",
+  "full_check_exit_code": 0,
+  "suites": [
+    {
+      "suite": "RULE TESTS",
+      "checks": 51,
+      "failures": 0
+    },
+    {
+      "suite": "CONTROL TESTS",
+      "checks": 46,
+      "failures": 0
+    },
+    {
+      "suite": "MEDIA TESTS",
+      "checks": 3348,
+      "failures": 0
+    },
+    {
+      "suite": "LAUNCH/RANGE TESTS",
+      "checks": 974,
+      "failures": 0
+    },
+    {
+      "suite": "IDLE/MOVEMENT TESTS",
+      "checks": 676,
+      "failures": 0
+    },
+    {
+      "suite": "ARCADE HUD TESTS",
+      "checks": 189,
+      "failures": 0
+    },
+    {
+      "suite": "LIVE MOVEMENT",
+      "checks": 168,
+      "failures": 0
+    },
+    {
+      "suite": "CPU TESTS",
+      "checks": 1795853,
+      "failures": 0
+    },
+    {
+      "suite": "MILESTONE 006",
+      "checks": 292,
+      "failures": 0
+    },
+    {
+      "suite": "TUTORIAL",
+      "checks": 201,
+      "failures": 0
+    },
+    {
+      "suite": "GAMEPLAY PROPS",
+      "checks": 166,
+      "failures": 0
+    },
+    {
+      "suite": "MILESTONE 007",
+      "checks": 61,
+      "failures": 0
+    },
+    {
+      "suite": "UI POLISH",
+      "checks": 200,
+      "failures": 0
+    },
+    {
+      "suite": "MILESTONE 008",
+      "checks": 292,
+      "failures": 0
+    }
+  ],
+  "python_tests": 29,
+  "cpu_matches": 900,
+  "metrics": {
+    "checks": 200,
+    "content_rect": [
+      7.0,
+      5.0,
+      266.0,
+      16.0
+    ],
+    "failures": 0,
+    "font_size": 16,
+    "line_height": 16.0,
+    "line_width": 240.0,
+    "outline_pixels": 2,
+    "panel_rect": [
+      20.0,
+      137.0,
+      280.0,
+      26.0
+    ]
+  },
+  "stages": [
+    {
+      "id": "stage_01",
+      "name": "Village Street",
+      "image_sha256": "fe611396caf60d73793f083d6d9fb3588b68639edb38b18e1ecdd7406973ea69"
+    },
+    {
+      "id": "stage_02",
+      "name": "Beach Courtyard",
+      "image_sha256": "6e45176ed0bba0bfc5a7944c9105908f13b7490fd0ca4cd94154493394a9641b"
+    },
+    {
+      "id": "stage_03",
+      "name": "Crop Over Festival",
+      "image_sha256": "7ed094497b3ec70503baf3b230a9d1cfecab360b0c710005e2a6677f6d6c8210"
+    },
+    {
+      "id": "stage_04",
+      "name": "Fish Fry",
+      "image_sha256": "bb1e881d1d11ec95279d48351a43ad75a4ba637060d551519a59f6ad560e17f7"
+    },
+    {
+      "id": "stage_04_original",
+      "name": "Seafront Street",
+      "image_sha256": "1066e7083e8857bc321bfca432fa650a779c230ab1fb7bf21bce408a96b3e74c"
+    },
+    {
+      "id": "stage_05",
+      "name": "Fish Fry Copy",
+      "image_sha256": "bb1e881d1d11ec95279d48351a43ad75a4ba637060d551519a59f6ad560e17f7"
+    },
+    {
+      "id": "stage_06",
+      "name": "Speightstown",
+      "image_sha256": "1066e7083e8857bc321bfca432fa650a779c230ab1fb7bf21bce408a96b3e74c"
+    },
+    {
+      "id": "stage_07",
+      "name": "Animal Flower Cave",
+      "image_sha256": "b51d074666f35e197bfc77863ad333b0c20af74c1ae0d6b50b4f0661014fafde"
+    }
+  ],
+  "unique_images": 6,
+  "recording": {
+    "path": "output/ui-polish.avi",
+    "sha256": "555c07c8ebdf6d4b6adcdabea8afbccb115eafb0211eaa4d2203e1660879569d",
+    "frames": 1119,
+    "fps": 60,
+    "seconds": 18.65,
+    "audio_bytes": 3580800,
+    "nonzero_pcm_bytes": 0,
+    "peak": 0.0,
+    "clipped_samples": 0,
+    "rms": 0.0
+  },
+  "screenshots": [
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/960-cta-desktop.png",
+      "size": [
+        960,
+        596
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/960-cta.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/cta-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/cta-dim.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/cta.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage1-0_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage1-2_5-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage1-2_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage1-2_6.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage1-3_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage1-3_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage1-4_0-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage1-4_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage1-cta-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage1-cta.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage1-pickup.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage2-0_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage2-2_5-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage2-2_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage2-2_6.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage2-3_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage2-3_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage2-4_0-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage2-4_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage2-cta-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage2-cta.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage2-pickup.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage3-0_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage3-2_5-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage3-2_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage3-2_6.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage3-3_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage3-3_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage3-4_0-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage3-4_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage3-cta-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage3-cta.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage3-pickup.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage4-0_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage4-2_5-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage4-2_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage4-2_6.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage4-3_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage4-3_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage4-4_0-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage4-4_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage4-cta-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage4-cta.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage4-pickup.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage5-0_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage5-2_5-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage5-2_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage5-2_6.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage5-3_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage5-3_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage5-4_0-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage5-4_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage5-cta-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage5-cta.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage5-pickup.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage6-0_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage6-2_5-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage6-2_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage6-2_6.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage6-3_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage6-3_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage6-4_0-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage6-4_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage6-cta-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage6-cta.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage6-pickup.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage7-0_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage7-2_5-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage7-2_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage7-2_6.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage7-3_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage7-3_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage7-4_0-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage7-4_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage7-cta-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage7-cta.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage7-pickup.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage8-0_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage8-2_5-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage8-2_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage8-2_6.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage8-3_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage8-3_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage8-4_0-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage8-4_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage8-cta-desktop.png",
+      "size": [
+        1280,
+        776
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage8-cta.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/after/stage8-pickup.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/before/cta-dim.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/before/cta.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/before/stage1-0_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/before/stage1-2_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/before/stage1-2_6.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/before/stage1-3_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/before/stage1-3_5.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/before/stage1-4_0.png",
+      "size": [
+        320,
+        180
+      ]
+    },
+    {
+      "path": "docs/screenshots/milestone-007-ui-polish/before/stage1-pickup.png",
+      "size": [
+        320,
+        180
+      ]
+    }
+  ],
+  "limitation": "Gallery uses injected/held timestamps and scripted stage fixtures; not physical keyboard playtesting. Before images limited to original CTA and Village Street.",
+  "final_focused_checks": {
+    "ui_polish": 200,
+    "milestone008": 292
+  },
+  "final_check_log": "output/check008-final.stdout"
+}

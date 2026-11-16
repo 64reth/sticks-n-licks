@@ -1,0 +1,476 @@
+{
+  "archive": "assets/audio/sfx/FreeSFX.zip",
+  "archive_sha256": "3378feb1912e0081a7e3d07b7dd378e7e0a4ec4696c25d18b0edd4aae1330ac1",
+  "license": "UNVERIFIED: no licence/terms/readme found in supplied archive; commercial redistribution not established. Provisional development only.",
+  "selection_basis": "Short measured onset/excerpts; audition playlist supplied. Perceptual review required. No FreeSFX music/cinematic/ambience/countdown/result melodies used.",
+  "assets": [
+    {
+      "event": "swing",
+      "archive_path": "FreeSFX/GameSFX/Swoosh/Retro Swooosh 02.wav",
+      "original": "source/audio/freesfx_008/Retro Swooosh 02.wav",
+      "original_sha256": "c9b4cfcf4b659a8d1f039fc6e9b029aa53bd110a1a04e987651b5eb40adce33f",
+      "resource": "assets/audio/sfx/freesfx_008/swing.wav",
+      "sha256": "68ebe96432ae7d135e01fb4470eb0e8b723fcf4932844699efa769791987313b",
+      "sample_rate": 44100,
+      "channels": 2,
+      "source_frames": 24866,
+      "source_duration": 0.5638548752834467,
+      "start_frame": 0,
+      "end_frame": 9702,
+      "fade_out_frames": 529,
+      "duration": 0.22,
+      "source_peak": 0.717864990234375
+    },
+    {
+      "event": "hit",
+      "archive_path": "FreeSFX/GameSFX/Impact/Retro Impact Punch 07.wav",
+      "original": "source/audio/freesfx_008/Retro Impact Punch 07.wav",
+      "original_sha256": "1bb518750e2ba7160e1856cd856827d9cf25951b851b1b75a83a376fd20fd24e",
+      "resource": "assets/audio/sfx/freesfx_008/hit.wav",
+      "sha256": "860964235dcc4a26c0a843110e0039862f7624cb54f6c2decd2268bb4205e471",
+      "sample_rate": 44100,
+      "channels": 2,
+      "source_frames": 12655,
+      "source_duration": 0.28696145124716554,
+      "start_frame": 0,
+      "end_frame": 12348,
+      "fade_out_frames": 529,
+      "duration": 0.28,
+      "source_peak": 1.0
+    },
+    {
+      "event": "block",
+      "archive_path": "FreeSFX/GameSFX/Impact/Retro Impact Punch Hurt 01.wav",
+      "original": "source/audio/freesfx_008/Retro Impact Punch Hurt 01.wav",
+      "original_sha256": "e5f6e423e63eb2d504840fc6b8cb0159105976a31c84664489992a12c7849496",
+      "resource": "assets/audio/sfx/freesfx_008/block.wav",
+      "sha256": "9d215332395e08fa203fce803999c174ad4f26e4b1c6ada32ec0159708bcce2e",
+      "sample_rate": 44100,
+      "channels": 1,
+      "source_frames": 14879,
+      "source_duration": 0.3373922902494331,
+      "start_frame": 0,
+      "end_frame": 9702,
+      "fade_out_frames": 529,
+      "duration": 0.22,
+      "source_peak": 0.24951171875
+    },
+    {
+      "event": "parry",
+      "archive_path": "FreeSFX/GameSFX/Impact/Retro Impact Metal 36.wav",
+      "original": "source/audio/freesfx_008/Retro Impact Metal 36.wav",
+      "original_sha256": "46ef0d7e33ec6b525a63b4e19b61cdc6ad15baf0b641f2cc290b06e9a5b871cd",
+      "resource": "assets/audio/sfx/freesfx_008/parry.wav",
+      "sha256": "07c2f8372783c1ccbe0c283f8451f7de937304de9977962a9bce128bee068f23",
+      "sample_rate": 44100,
+      "channels": 2,
+      "source_frames": 55105,
+      "source_duration": 1.249546485260771,
+      "start_frame": 0,
+      "end_frame": 10584,
+      "fade_out_frames": 529,
+      "duration": 0.24,
+      "source_peak": 0.708221435546875
+    },
+    {
+      "event": "pickup",
+      "archive_path": "FreeSFX/GameSFX/PickUp/Retro PickUp Coin 04.wav",
+      "original": "source/audio/freesfx_008/Retro PickUp Coin 04.wav",
+      "original_sha256": "a49d385099b7b4b08e40f87db9945212f866d71400ce154888b24d7ce4c858f0",
+      "resource": "assets/audio/sfx/freesfx_008/pickup.wav",
+      "sha256": "0da03f44c334bb81cf8fb3d059669ce36bce3aac13ab3fda482acc8ed35a3008",
+      "sample_rate": 44100,
+      "channels": 2,
+      "source_frames": 12535,
+      "source_duration": 0.2842403628117914,
+      "start_frame": 0,
+      "end_frame": 8820,
+      "fade_out_frames": 529,
+      "duration": 0.2,
+      "source_peak": 0.42303466796875
+    },
+    {
+      "event": "menu_navigate",
+      "archive_path": "FreeSFX/GameSFX/Alarms Blip Beeps/Retro Beeep 06.wav",
+      "original": "source/audio/freesfx_008/Retro Beeep 06.wav",
+      "original_sha256": "aca8bf6fa779b08c0a3092bce0cb6572190055ba3bfb5cccb8f9c21f3add756b",
+      "resource": "assets/audio/sfx/freesfx_008/menu_navigate.wav",
+      "sha256": "d88a2675e6f98a8c25626e077e7ac63c37874646a2d4b84ee9e2b439cad3168d",
+      "sample_rate": 44100,
+      "channels": 2,
+      "source_frames": 3528,
+      "source_duration": 0.08,
+      "start_frame": 0,
+      "end_frame": 3528,
+      "fade_out_frames": 529,
+      "duration": 0.08,
+      "source_peak": 1.0
+    },
+    {
+      "event": "menu_confirm",
+      "archive_path": "FreeSFX/GameSFX/Alarms Blip Beeps/Retro Beeep 20.wav",
+      "original": "source/audio/freesfx_008/Retro Beeep 20.wav",
+      "original_sha256": "e7ada4931dc08094ebb523af0e8ef10da2591d2dfe7371f1d5af8b432cb2d4aa",
+      "resource": "assets/audio/sfx/freesfx_008/menu_confirm.wav",
+      "sha256": "32b0ffe87bbd2d0dca4943cc54c8e58551f051da3ffb9c9309791fa1babc64c1",
+      "sample_rate": 44100,
+      "channels": 2,
+      "source_frames": 4265,
+      "source_duration": 0.09671201814058956,
+      "start_frame": 0,
+      "end_frame": 4265,
+      "fade_out_frames": 529,
+      "duration": 0.09671201814058956,
+      "source_peak": 0.318389892578125
+    },
+    {
+      "event": "menu_back",
+      "archive_path": "FreeSFX/GameSFX/Events/Wrong/Retro Event Wrong Simple 03.wav",
+      "original": "source/audio/freesfx_008/Retro Event Wrong Simple 03.wav",
+      "original_sha256": "ee04f82a3c5eaf781815b76b38f913ddd3bb79e9949356c8016d93da45dc0e73",
+      "resource": "assets/audio/sfx/freesfx_008/menu_back.wav",
+      "sha256": "3232b76fa531c1983baa5740606e3ce68a8abb90287a50099d14d68b00544ef1",
+      "sample_rate": 44100,
+      "channels": 1,
+      "source_frames": 30083,
+      "source_duration": 0.6821541950113379,
+      "start_frame": 0,
+      "end_frame": 7938,
+      "fade_out_frames": 529,
+      "duration": 0.18,
+      "source_peak": 1.0
+    }
+  ],
+  "inventory": [
+    {
+      "archive_path": "FreeSFX/GameSFX/Alarms Blip Beeps/Retro Alarm 02.wav",
+      "seconds": 2.474666666666667,
+      "rate": 48000,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Alarms Blip Beeps/Retro Alarm Long 02.wav",
+      "seconds": 28.540884353741497,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Alarms Blip Beeps/Retro Alarmed 06.wav",
+      "seconds": 0.970702947845805,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Alarms Blip Beeps/Retro Alarmed 10.wav",
+      "seconds": 0.8731065759637188,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Alarms Blip Beeps/Retro Alarmed StereoUP 03.wav",
+      "seconds": 0.7261224489795919,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Alarms Blip Beeps/Retro Beeep 06.wav",
+      "seconds": 0.08,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Alarms Blip Beeps/Retro Beeep 20.wav",
+      "seconds": 0.09671201814058956,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Alarms Blip Beeps/Retro Blip 07.wav",
+      "seconds": 1.48,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Alarms Blip Beeps/Retro Blip 15.wav",
+      "seconds": 1.2172562358276644,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Alarms Blip Beeps/Retro Ring 01.wav",
+      "seconds": 0.71,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Cinematic/Retro Cinematic Drums 01.wav",
+      "seconds": 2.94312925170068,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Cinematic/Retro Cinematic Long 04.wav",
+      "seconds": 5.400022675736961,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Cinematic/Retro Cinematic Long 05.wav",
+      "seconds": 4.61,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Cinematic/Retro Cinematic Long 31.wav",
+      "seconds": 8.050702947845805,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Cinematic/Retro Cinematic Short 02.wav",
+      "seconds": 2.3893333333333335,
+      "rate": 48000,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Cinematic/Retro Cinematic Short 07.wav",
+      "seconds": 2.304,
+      "rate": 48000,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Cinematic/Retro Cinematic Wind 02.wav",
+      "seconds": 3.982312925170068,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Negative/Retro Negative Long 01.wav",
+      "seconds": 5.499047619047619,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Negative/Retro Negative Long 12.wav",
+      "seconds": 4.662630385487528,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Negative/Retro Negative Short 07.wav",
+      "seconds": 1.5097732426303856,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Negative/Retro Negative Short 21.wav",
+      "seconds": 2.904739229024943,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Negative/Retro Negative Short 23.wav",
+      "seconds": 0.6721995464852608,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Retro Event 19.wav",
+      "seconds": 1.8186621315192744,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Retro Event 49.wav",
+      "seconds": 3.52718820861678,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Retro Event Acute 08.wav",
+      "seconds": 1.4506666666666668,
+      "rate": 48000,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Retro Event Acute 11.wav",
+      "seconds": 1.1093333333333333,
+      "rate": 48000,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Retro Event Complex 03.wav",
+      "seconds": 2.9859863945578233,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Retro Event Echo 12.wav",
+      "seconds": 2.4222902494331064,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Retro Event StereoUP 02.wav",
+      "seconds": 1.7066666666666668,
+      "rate": 48000,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Retro Event UI 01.wav",
+      "seconds": 1.7066666666666668,
+      "rate": 48000,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Retro Event UI 13.wav",
+      "seconds": 1.6172335600907028,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Retro Event UI 15.wav",
+      "seconds": 1.48,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Retro Event UI StereoUP 01.wav",
+      "seconds": 0.8647165532879818,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Wrong/Retro Event Wrong Echo 03.wav",
+      "seconds": 2.7983900226757368,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Wrong/Retro Event Wrong Simple 03.wav",
+      "seconds": 0.6821541950113379,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Events/Wrong/Retro Event Wrong Simple 07.wav",
+      "seconds": 2.005192743764172,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Impact/Retro Impact 20.wav",
+      "seconds": 2.213718820861678,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Impact/Retro Impact LoFi 09.wav",
+      "seconds": 1.6213333333333333,
+      "rate": 48000,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Impact/Retro Impact Metal 05.wav",
+      "seconds": 2.5122902494331067,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Impact/Retro Impact Metal 36.wav",
+      "seconds": 1.249546485260771,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Impact/Retro Impact Punch 07.wav",
+      "seconds": 0.28696145124716554,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Impact/Retro Impact Punch Hurt 01.wav",
+      "seconds": 0.3373922902494331,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Impact/Retro Impact Water 03.wav",
+      "seconds": 2.675079365079365,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Music/Events/Retro Music - WolfSynth - Tempo Normal - 02.wav",
+      "seconds": 15.439818594104308,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Music/Success/Retro Success Melody 01 - sawtooth lead 1.wav",
+      "seconds": 1.8459863945578232,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Music/Success/Retro Success Melody 02 - choir soprano.wav",
+      "seconds": 1.8459863945578232,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Music/Success/Retro Success Melody 04 - electric piano 2.wav",
+      "seconds": 1.8459863945578232,
+      "rate": 44100,
+      "channels": 1
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/PickUp/Retro PickUp 10.wav",
+      "seconds": 1.7997278911564625,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/PickUp/Retro PickUp 18.wav",
+      "seconds": 0.4029251700680272,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/PickUp/Retro PickUp Coin 04.wav",
+      "seconds": 0.2842403628117914,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/PickUp/Retro PickUp Coin 07.wav",
+      "seconds": 0.4776417233560091,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/PickUp/Retro PickUp Coin StereoUP 04.wav",
+      "seconds": 0.4426530612244898,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Swoosh/Retro Swooosh 02.wav",
+      "seconds": 0.5638548752834467,
+      "rate": 44100,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Swoosh/Retro Swooosh 07.wav",
+      "seconds": 1.1093333333333333,
+      "rate": 48000,
+      "channels": 2
+    },
+    {
+      "archive_path": "FreeSFX/GameSFX/Swoosh/Retro Swooosh 16.wav",
+      "seconds": 2.1333333333333333,
+      "rate": 48000,
+      "channels": 2
+    }
+  ]
+}

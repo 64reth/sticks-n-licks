@@ -276,7 +276,7 @@ func run() -> void:
    advance(1.741)
    advance(2.10)
    check(game.mode=="round_win" and game.audio.event_log.size()==count,"Ordinary round has no victory/defeat music %s %d %s %s" % [mode,winner,game.mode,str(game.bout.hits)])
-   check(game.fighters[0].pose not in ["victory","defeat"] and game.fighters[1].pose not in ["victory","defeat"],"Ordinary round has no final poses")
+   check(not game.fighters[0].final_locked and not game.fighters[1].final_locked,"Ordinary round reactions are not match-final locks (Milestone 008)")
    # Deciding round in same match, then one legal final strike.
    combat(winner)
    game.game_mode=mode

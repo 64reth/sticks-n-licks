@@ -63,9 +63,9 @@ func refresh() -> void:
  view.present(title,rows,sub)
 func command(action: String) -> void:
  if action=="nav":
-  game.audio.menu_tick()
+  game.audio.emit_event("menu_navigate")
   return
- game.audio.menu_tick()
+ game.audio.emit_event("menu_back" if action in ["back","tutorial_exit","title"] else "menu_confirm")
  match action:
   "setup":
    if game.mode=="match_win":game.return_to_title()

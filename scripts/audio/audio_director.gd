@@ -5,6 +5,7 @@ var offsets: Dictionary = {}
 var entries: Dictionary = {}
 var music := AudioStreamPlayer.new()
 var effects := AudioStreamPlayer.new()
+var events := AudioEvents.new()
 var anchor: float = 0.0
 var active: String = ""
 var enabled: bool = true
@@ -21,12 +22,16 @@ func now() -> float:
 func _ready() -> void:
  add_child(music)
  add_child(effects)
+ events.clock_source = now
+ events.enabled = enabled
+ add_child(events)
  var file := FileAccess.open("res://data/audio.json", FileAccess.READ)
  if not file:
   return
  entries = JSON.parse_string(file.get_as_text())
  for key in entries:
   var item: Dictionary = entries[key]
+  if item.get("category","")=="sfx":continue
   offsets[key] = float(item["beat_zero_seconds"]) if item.get("beat_zero_seconds") != null else 0.0
   var path: String = item.get("path", "")
   if path.is_empty() or not ResourceLoader.exists(path):
@@ -85,13 +90,13 @@ func play_track(key: String, beat_zero: float, force: bool = false) -> void:
  music.play(maxf(0.0, seek))
  restart_count += 1
 
+func emit_event(event: String,key: String="") -> bool:
+ events.enabled=enabled
+ return events.emit_event(event,key)
+
 func sound(key: String) -> void:
- if not enabled:return
- if tracks.has(key):
-  effects.stream=tracks[key]
-  effects.play()
- elif key in ["hit","block","parry"]:
-  menu_tick({"hit":0.65,"block":0.9,"parry":1.4}[key])
+ if key in ["hit","block","parry"]:emit_event(key)
+ # Race/countdown retain the original cue path; no FreeSFX substitution.
 
 static func unwrap(raw: float, expected: float, length: float) -> float:
  # Playback positions wrap; the shared monotonic anchor disambiguates loop cycles.
@@ -128,37 +133,27 @@ func _exit_tree() -> void:
  tracks.clear()
  clock_source = Callable()
 
-var navigation := AudioStreamPlayer.new()
 var event_log: Array[Dictionary] = []
 func apply_preferences(values: Dictionary) -> void:
- for bus in ["Music","SFX"]:
+ for bus in ["Music","SFX","UI"]:
   if AudioServer.get_bus_index(bus)<0:
    AudioServer.add_bus()
    AudioServer.set_bus_name(AudioServer.bus_count-1,bus)
    AudioServer.set_bus_send(AudioServer.bus_count-1,"Master")
  music.bus="Music"
  effects.bus="SFX"
- navigation.bus="SFX"
+ AudioServer.set_bus_send(AudioServer.get_bus_index("UI"),"SFX")
+ AudioServer.set_bus_volume_db(AudioServer.get_bus_index("UI"),float(events.config.get("ui_bus_gain_db",-3)))
  for entry in [["Master","master"],["Music","music"],["SFX","sfx"]]:
   AudioServer.set_bus_volume_db(AudioServer.get_bus_index(entry[0]),linear_to_db(maxf(0.00001,float(values[entry[1]])/100.0)))
  AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"),int(values.master)==0)
  AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"),not bool(values.music_on) or int(values.music)==0)
  AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"),not bool(values.sfx_on) or int(values.sfx)==0)
-func menu_tick(pitch: float=1.0) -> void:
- navigation.pitch_scale=pitch
- if navigation.get_parent()==null:
-  add_child(navigation)
-  var stream:=AudioStreamWAV.new()
-  stream.format=AudioStreamWAV.FORMAT_16_BITS
-  stream.mix_rate=22050
-  var samples:=PackedByteArray()
-  samples.resize(660*2)
-  for i in range(660):samples.encode_s16(i*2,int(sin(i*TAU*440/22050)*3000*(1.0-i/660.0)))
-  stream.data=samples
-  navigation.stream=stream
- if enabled:navigation.play()
+func menu_tick(_pitch: float=1.0) -> void:
+ emit_event("menu_navigate")
 func play_result(game_mode: String, winner: int) -> void:
  var theme: String="defeat" if game_mode=="cpu" and winner==1 else "victory"
  stop()
  play_track(theme,now(),true)
+ emit_event("match_defeat" if theme=="defeat" else "match_victory","match_result:%s" % str(now()))
  event_log.append({"event":"match_result","theme":theme,"winner":winner,"game_mode":game_mode,"at":now()})

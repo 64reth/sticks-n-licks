@@ -1,0 +1,82 @@
+{
+  "license_status": "PROVISIONAL: supplied archive has no licence; commercial redistribution unverified",
+  "voices": {
+    "SFX": 3,
+    "UI": 1
+  },
+  "ui_bus_gain_db": -3,
+  "events": {
+    "menu_navigate": {
+      "bus": "UI",
+      "volume_db": -23,
+      "min_interval_ms": 65,
+      "resource": "menu_navigate"
+    },
+    "menu_confirm": {
+      "bus": "UI",
+      "volume_db": -19,
+      "min_interval_ms": 65,
+      "resource": "menu_confirm"
+    },
+    "menu_back": {
+      "bus": "UI",
+      "volume_db": -22,
+      "pitch": 1.0,
+      "min_interval_ms": 65,
+      "pitch_end": 0.72,
+      "resource": "menu_back"
+    },
+    "swing": {
+      "bus": "SFX",
+      "volume_db": -25,
+      "pitch_variation": 0.035,
+      "resource": "swing"
+    },
+    "hit": {
+      "bus": "SFX",
+      "volume_db": -11,
+      "resource": "hit"
+    },
+    "block": {
+      "bus": "SFX",
+      "volume_db": -16,
+      "pitch": 0.9,
+      "resource": "block"
+    },
+    "parry": {
+      "bus": "SFX",
+      "volume_db": -14,
+      "resource": "parry"
+    },
+    "pickup": {
+      "bus": "SFX",
+      "volume_db": -21,
+      "min_interval_ms": 70,
+      "resource": "pickup"
+    },
+    "countdown": {
+      "owner": "existing original percussion cue",
+      "resource": null
+    },
+    "go": {
+      "owner": "existing original GO cue",
+      "resource": null
+    },
+    "round_victory": {
+      "owner": "silent result; no new melodies",
+      "resource": null
+    },
+    "round_defeat": {
+      "owner": "silent result; no new melodies",
+      "resource": null
+    },
+    "match_victory": {
+      "owner": "existing original victory music",
+      "resource": null
+    },
+    "match_defeat": {
+      "owner": "existing original defeat music",
+      "resource": null
+    }
+  }
+}

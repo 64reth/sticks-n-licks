@@ -12,5 +12,6 @@
   "match_best_of": 3,
   "movement_perfect_ms": 90.0,
   "movement_good_ms": 160.0,
-  "step_seconds": 0.16
+  "step_seconds": 0.16,
+  "round_result_seconds": 2.5
 }

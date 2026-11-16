@@ -84,27 +84,70 @@
     "beat_zero_seconds": null,
     "alignment_confirmed": false,
     "loop": false,
-    "notes": "Not supplied. Race uses existing synthetic authoritative cue; other optional SFX silent."
+    "notes": "Original authoritative race/percussion cue retained. No FreeSFX countdown or GO mapping."
   },
   "hit": {
-    "path": "",
+    "path": "res://assets/audio/sfx/freesfx_008/hit.wav",
+    "category": "sfx",
     "beat_zero_seconds": null,
     "alignment_confirmed": false,
     "loop": false,
-    "notes": "Not supplied. Race uses existing synthetic authoritative cue; other optional SFX silent."
+    "notes": "Milestone 008 provisional essential SFX. Commercial rights unverified; musical downbeat not asserted. See docs/assets/milestone-008-sfx.json."
   },
   "block": {
-    "path": "",
+    "path": "res://assets/audio/sfx/freesfx_008/block.wav",
+    "category": "sfx",
     "beat_zero_seconds": null,
     "alignment_confirmed": false,
     "loop": false,
-    "notes": "Not supplied. Race uses existing synthetic authoritative cue; other optional SFX silent."
+    "notes": "Milestone 008 provisional essential SFX. Commercial rights unverified; musical downbeat not asserted. See docs/assets/milestone-008-sfx.json."
   },
   "parry": {
-    "path": "",
+    "path": "res://assets/audio/sfx/freesfx_008/parry.wav",
+    "category": "sfx",
     "beat_zero_seconds": null,
     "alignment_confirmed": false,
     "loop": false,
-    "notes": "Not supplied. Race uses existing synthetic authoritative cue; other optional SFX silent."
+    "notes": "Milestone 008 provisional essential SFX. Commercial rights unverified; musical downbeat not asserted. See docs/assets/milestone-008-sfx.json."
+  },
+  "menu_navigate": {
+    "path": "res://assets/audio/sfx/freesfx_008/menu_navigate.wav",
+    "category": "sfx",
+    "beat_zero_seconds": null,
+    "alignment_confirmed": false,
+    "loop": false,
+    "notes": "Milestone 008 provisional essential SFX. Commercial rights unverified; musical downbeat not asserted. See docs/assets/milestone-008-sfx.json."
+  },
+  "menu_confirm": {
+    "path": "res://assets/audio/sfx/freesfx_008/menu_confirm.wav",
+    "category": "sfx",
+    "beat_zero_seconds": null,
+    "alignment_confirmed": false,
+    "loop": false,
+    "notes": "Milestone 008 provisional essential SFX. Commercial rights unverified; musical downbeat not asserted. See docs/assets/milestone-008-sfx.json."
+  },
+  "menu_back": {
+    "path": "res://assets/audio/sfx/freesfx_008/menu_back.wav",
+    "category": "sfx",
+    "beat_zero_seconds": null,
+    "alignment_confirmed": false,
+    "loop": false,
+    "notes": "Milestone 008 provisional essential SFX. Commercial rights unverified; musical downbeat not asserted. See docs/assets/milestone-008-sfx.json."
+  },
+  "swing": {
+    "path": "res://assets/audio/sfx/freesfx_008/swing.wav",
+    "category": "sfx",
+    "beat_zero_seconds": null,
+    "alignment_confirmed": false,
+    "loop": false,
+    "notes": "Milestone 008 provisional essential SFX. Commercial rights unverified; musical downbeat not asserted. See docs/assets/milestone-008-sfx.json."
+  },
+  "pickup": {
+    "path": "res://assets/audio/sfx/freesfx_008/pickup.wav",
+    "category": "sfx",
+    "beat_zero_seconds": null,
+    "alignment_confirmed": false,
+    "loop": false,
+    "notes": "Milestone 008 provisional essential SFX. Commercial rights unverified; musical downbeat not asserted. See docs/assets/milestone-008-sfx.json."
   }
 }

@@ -242,7 +242,7 @@ func run() -> void:
     check(game.mode=="round_win" and game.match_progress.winner==-1,"First victory is a round, not a match")
     check(game.hud.major_label.text.contains("ROUND WON!"),"Round victory is clearly announced")
     await capture("round_won_p%d" % (champion+1))
-    enter()
+    advance(game.round_transition_at)
     check(game.mode=="standoff" and game.hud.red.energy==3 and game.hud.blue.energy==3,"Next round resets energy")
     check(game.match_progress.round_wins[champion]==1 and game.match_progress.round_number==2,"Next round preserves win markers")
     advance(game.race_deadline+0.01)

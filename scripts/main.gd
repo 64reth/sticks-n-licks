@@ -13,6 +13,8 @@ var match_serial: int=0
 var paused: bool=false
 var ui_held: Dictionary={}
 var transition_until: float=INF
+var round_transition_at: float=INF
+var pickup_reported: Array[bool]=[false,false]
 var result_handled: bool=false
 var movement_stun: Array[String]=["",""]
 var stun_time: Array[float]=[-INF,-INF]
@@ -251,9 +253,13 @@ func begin() -> void:
 
 func next_round() -> void:
  if match_progress.next_round():
-  _begin_round()
+  round_transition_at=INF
+  _begin_round(false)
 
-func _begin_round() -> void:
+func _begin_round(allow_held: bool=true) -> void:
+ round_transition_at=INF
+ pickup_reported=[false,false]
+ audio.events.clear_round()
  impact_effect.clear()
  ground_sticks.set_collected(false, false)
  movement_stun=["",""]
@@ -273,7 +279,7 @@ func _begin_round() -> void:
   # Seed physical directions already held when Enter starts/rematches the bout.
   # Execute/pending actions are always cleared and cannot auto-fire from the race.
   for action in ["left", "right", "high", "low"]:
-   if not (game_mode=="cpu" and player==1) and Input.is_action_pressed("p%d_%s" % [player+1, action]):
+   if allow_held and not (game_mode=="cpu" and player==1) and Input.is_action_pressed("p%d_%s" % [player+1, action]):
     controls[player].feed(action, true, conductor.now(), facing(player), false)
     controls[player].input_feedback = "REJECT movement phase; held tracked"
  step_started = [-INF,-INF]
@@ -291,7 +297,10 @@ func _begin_round() -> void:
  previous_bpm = selected_bpm
  audio.music.pitch_scale=float(selected_bpm)/120.0
  audio.play_track("standoff", conductor.epoch, true)
- for fighter in fighters:
+ for player in range(fighters.size()):
+  var fighter: Fighter=fighters[player]
+  fighter.position=Vector2(bout.positions[player],Bout.GROUND_Y)
+  fighter.sync_hurtbox(fighter.position)
   fighter.reset_visual()
   fighter.set_pose("standoff_anticipation")
  refresh()
@@ -317,7 +326,7 @@ func _process(delta: float) -> void:
   else:
    click_player.stop()
    audio.music.stop()
-  audio.sound("race")
+  audio.emit_event("go",race_event_key("go"))
   for player in range(2):
    if not bout.false_starts[player]:
     fighters[player].set_pose("race_launch")
@@ -333,8 +342,9 @@ func _process(delta: float) -> void:
    else:
     mode = "pickup"
     status = "P%d takes initiative. Both fighters collect sticks." % (result + 1)
-    for fighter in fighters:
-     fighter.set_pose("stick_pickup")
+    for player in range(fighters.size()):
+     report_pickup(player)
+     fighters[player].set_pose("stick_pickup")
     var phrase_seconds: float=conductor.duration()*4
     var next_boundary: float = conductor.epoch+ceil((at+conductor.duration()*1.5-conductor.epoch)/phrase_seconds)*phrase_seconds
     conductor.start(next_boundary,selected_bpm)
@@ -345,6 +355,7 @@ func _process(delta: float) -> void:
   audio.play_track(str(selected_bpm), conductor.epoch)
   advance_timeline(at)
  if mode=="finishing" and at>=transition_until:complete_round_transition()
+ if mode=="round_win" and conductor.now()+0.000000001>=round_transition_at:next_round()
  expire_stuns(at)
  if mode=="combat":
   freeze_combat_positions(at)
@@ -458,6 +469,8 @@ func on_phrase(_phrase: int) -> void:
 
 func on_beat(beat: int, _phrase: int) -> void:
  if mode == "standoff":
+  if conductor.beat_time>=cue-3*conductor.duration() and conductor.beat_time<cue:
+   audio.emit_event("countdown",race_event_key("count:%d:%d" % [_phrase,beat]))
   # Earlier anticipation phrases continue; only the final fourth beat cuts off.
   if beat <= 3 or conductor.now() < cue - 0.01:
    play_click(true)
@@ -533,7 +546,13 @@ func resolve_exchange() -> void:
  var direction := maxi(0, selected[attack])
  var height: String = ["high", "mid", "low"][direction]
  status = bout.resolve(conductor, exchange_phrase)
- impact_effect.play_resolved(bout.last_event, "%d:%d:%d" % [match_serial,match_progress.round_number,exchange_phrase], conductor.now())
+ var event_key: String="%d:%d:%d" % [match_serial,match_progress.round_number,int(bout.last_event.get("phrase",exchange_phrase))]
+ impact_effect.play_resolved(bout.last_event,event_key,conductor.now())
+ var kind: String=str(bout.last_event.get("kind","WHIFF"))
+ if kind in ["HIT","BLOCK","PARRY"] or bout.last_event.get("reason")=="out of range":
+  audio.emit_event("swing",event_key+":swing")
+ if kind in ["HIT","BLOCK","PARRY"]:
+  audio.emit_event(kind.to_lower(),event_key+":impact")
  for fighter in fighters:
   fighter.visual_priority=0
   fighter.visual_until=-INF
@@ -559,13 +578,11 @@ func resolve_exchange() -> void:
    controls[attack].step_feedback="STUN: ONE MOVE LOST"
    controls[attack].input_feedback="STUN: COMBAT STILL AVAILABLE"
   fighters[attack].rhythmic_pose("stunned",0.33,50)
-  audio.sound("parry")
  elif status.begins_with("Blocked"):
-  audio.sound("block")
+  pass
  elif status.begins_with("Clean") or bout.winner >= 0:
   fighters[defense].rhythmic_pose("hurt",0.2,70)
   fighters[defense].hit_feedback()
-  audio.sound("hit")
  if bout.winner >= 0:
   match_progress.award_round(bout.winner)
   mode = "finishing"
@@ -587,10 +604,14 @@ func complete_round_transition() -> void:
   mode="match_win"
   flow.root("result")
  else:
-  for fighter in fighters:
-   fighter.reset_visual()
-   fighter.set_pose("combat_idle")
+  for player in range(2):
+   fighters[player].reset_visual()
+   fighters[player].rhythmic_pose("victory" if player==bout.winner else "defeat",0.8,80)
+  for control in controls:control.reset()
+  cpu.queue.clear()
   mode="round_win"
+  round_transition_at=conductor.now()+clampf(float(settings.get("round_result_seconds",2.5)),2.0,10.0)
+  audio.emit_event("round_defeat" if game_mode=="cpu" and bout.winner==1 else "round_victory",race_event_key("result"))
 
 func expire_stuns(at: float) -> void:
  for player in range(2):
@@ -618,6 +639,7 @@ func set_paused(value: bool) -> void:
  conductor.set_paused(value)
  audio.music.stream_paused=value
  audio.effects.stream_paused=value
+ audio.events.set_paused(value)
  for fighter in fighters: fighter.process_mode=Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
  for control in controls:control.reset()
  bout.movements=[0,0]
@@ -625,6 +647,8 @@ func set_paused(value: bool) -> void:
  refresh()
 
 func return_to_title() -> void:
+ round_transition_at=INF
+ audio.events.clear_round()
  intro.visible = false
  intro_music_pending = false
  if paused:set_paused(false)
@@ -670,9 +694,6 @@ func _unhandled_input(event: InputEvent) -> void:
    set_paused(true)
    ui_held[event.keycode]=true
    return
-  if event.pressed and event.keycode==KEY_ENTER and mode=="round_win":
-   next_round()
-   return
  if paused or mode in ["finishing","round_win","match_win","menu"]:return
  var at:=game_time()
  if mode in ["standoff","race","combat"]:advance_timeline(at)
@@ -688,7 +709,9 @@ func submit_action(player: int, action: String, pressed: bool, at: float, source
  if player not in [0,1] or action not in ["left","right","high","low","execute"]:return
  if game_mode=="cpu" and player==1 and source!="cpu":return
  if mode in ["standoff","race"] and action=="execute" and pressed:
+  var previous_reaction: float=bout.reactions[player]
   bout.race_press(player,at,cue)
+  if previous_reaction<0 and bout.reactions[player]>=0:report_pickup(player)
   if bout.false_starts[player]:
    fighters[player].set_pose("false_start")
    status="P%d false start: forfeits initiative" % (player+1)
@@ -763,7 +786,10 @@ C cue style: %s · F3 rhythm overlay" % cue_style
   detail.text = "%s · Beat %d · P%d attacks
 P1 %d/3 hits   P2 %d/3 hits
 %s" % [mode.to_upper(), conductor.beat, bout.initiative + 1, bout.hits[0], bout.hits[1], status]
-  if mode in ["round_win", "match_win"]:
+  if mode=="round_win":
+   detail.text += "
+Automatic next round · Esc pause"
+  elif mode=="match_win":
    detail.text += "
 Enter rematch · Esc menu"
  if debug_visible and not help_visible:
@@ -826,3 +852,11 @@ func start_intro_music() -> void:
  if intro_music_started:return
  intro_music_started = true
  audio.play_track(str(intro.config.music),conductor.now())
+
+func race_event_key(suffix: String) -> String:
+ return "%d:%d:%.6f:%s" % [match_serial,match_progress.round_number,cue,suffix]
+
+func report_pickup(player: int) -> void:
+ if pickup_reported[player]:return
+ pickup_reported[player]=true
+ audio.emit_event("pickup",race_event_key("pickup:%d" % player))

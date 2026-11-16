@@ -27,7 +27,7 @@ func boundary() -> void:
  var identity := "%d:%d" % [game.conductor.phrase,game.conductor.beat]
  while identity=="%d:%d" % [game.conductor.phrase,game.conductor.beat]:await process_frame
 func race() -> void:
- while game.mode=="standoff":await process_frame
+ while game.mode in ["round_win","standoff"]:await process_frame
  check(game.mode=="race","Countdown reaches authoritative GO")
  await tap(KEY_F)
  await create_timer(0.04).timeout
@@ -139,12 +139,10 @@ func run() -> void:
   check(game.bout.positions==before,"Holding cannot repeat at %d" % bpm)
   await simultaneous_tap([KEY_A,KEY_RIGHT],[-1,1],"%d-restore" % bpm)
  await win_round()
- await tap(KEY_ENTER)
  await race()
  await simultaneous_tap([KEY_A,KEY_RIGHT],[-1,1],"round-reset")
  await win_round()
  if game.mode=="round_win":
-  await tap(KEY_ENTER)
   await race()
   await win_round()
  check(game.mode=="match_win","Complete match via keyboard events")

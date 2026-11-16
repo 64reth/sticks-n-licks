@@ -75,3 +75,13 @@ if ! rg -q 'GAMEPLAY PROPS: [0-9]+ checks, 0 failures' output/gameplay-props.std
 cat output/milestone007.stdout
 if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/milestone007.stdout; then exit 1; fi
 if ! rg -q 'MILESTONE 007: [0-9]+ checks, 0 failures' output/milestone007.stdout; then exit 1; fi
+
+"$GODOT" --headless --path . --log-file output/ui-polish.log --script tests/test_ui_polish.gd >output/ui-polish.stdout 2>&1
+cat output/ui-polish.stdout
+if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/ui-polish.stdout; then exit 1; fi
+if ! rg -q 'UI POLISH: [0-9]+ checks, 0 failures' output/ui-polish.stdout; then exit 1; fi
+
+"$GODOT" --headless --path . --log-file output/milestone008.log --script tests/test_milestone008.gd >output/milestone008.stdout 2>&1
+cat output/milestone008.stdout
+if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/milestone008.stdout; then exit 1; fi
+if ! rg -q 'MILESTONE 008: [0-9]+ checks, 0 failures' output/milestone008.stdout; then exit 1; fi

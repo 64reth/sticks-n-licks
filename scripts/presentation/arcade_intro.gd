@@ -7,7 +7,9 @@ var sky := Sprite2D.new()
 var foreground := Sprite2D.new()
 var logo := TempoLogo.new()
 var prompt := Label.new()
-var prompt_panel := Panel.new()
+var prompt_panel := PanelContainer.new()
+const CTA_PADDING := Vector2i(6,4)
+const CTA_BORDER := 1
 var timeline: Callable
 var elapsed: float = 0.0
 var skipped: bool = false
@@ -29,11 +31,15 @@ func _ready() -> void:
  logo.display_width = float(config.logo_width)
  add_child(logo)
  prompt_panel.position = Vector2(20,137)
- prompt_panel.size = Vector2(280,22)
+ prompt_panel.custom_minimum_size = Vector2(280,0)
  var style := StyleBoxFlat.new()
  style.bg_color = Color("141e29")
  style.border_color = Color("efb854")
- style.set_border_width_all(1)
+ style.set_border_width_all(CTA_BORDER)
+ style.content_margin_left = CTA_BORDER+CTA_PADDING.x
+ style.content_margin_right = CTA_BORDER+CTA_PADDING.x
+ style.content_margin_top = CTA_BORDER+CTA_PADDING.y
+ style.content_margin_bottom = CTA_BORDER+CTA_PADDING.y
  prompt_panel.add_theme_stylebox_override("panel",style)
  add_child(prompt_panel)
  prompt.add_theme_font_override("font",FONT)
@@ -44,9 +50,11 @@ func _ready() -> void:
  prompt.add_theme_constant_override("shadow_offset_y",1)
  prompt.text = "PRESS ENTER TO START"
  prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
- prompt.position = Vector2(20,137)
- prompt.size = Vector2(280,22)
- add_child(prompt)
+ prompt.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+ prompt.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ prompt_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ prompt_panel.add_child(prompt)
+ prompt_panel.reset_size()
  update_at(0)
 func validate() -> bool:
  var last := -INF

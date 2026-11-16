@@ -61,8 +61,7 @@ func _process(delta: float) -> void:
  if mode == "round_win" and not victory_seen:
   victory_seen = true
   print("DEMO: round won; score=",match_progress.round_wins)
-  await get_tree().create_timer(0.25).timeout
-  next_round()
+  while mode=="round_win":await get_tree().process_frame
   exchanges = 0
   acted_phrase = -1
   moving_phrase = -1

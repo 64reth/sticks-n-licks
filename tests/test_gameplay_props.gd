@@ -198,7 +198,6 @@ func run() -> void:
     check(game.impact_effect.visible and game.impact_effect.kind==game.bout.last_event.kind,"CPU resolved effect")
     cpu_effects+=1
     await capture("cpu-"+str(game.bout.last_event.kind).to_lower())
-  if game.mode=="round_win":game.next_round()
   if game.mode=="match_win":break
   if graphical:await process_frame
  check(game.mode=="match_win" and cpu_effects>0,"legal CPU match completes with effects")

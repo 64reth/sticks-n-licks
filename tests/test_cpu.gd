@@ -61,14 +61,13 @@ func simulate(level: String,seed_value: int,strategy: String,frame: float=1.0/60
  var frames:=0
  var states_seen: Dictionary={}
  while game.mode!="match_win" and time-started<360.0:
-  if game.mode=="finishing":
+  if game.mode in ["finishing","round_win"]:
    time+=frame
    game._process(frame)
+   if game.mode=="standoff":
+    start_human_round()
+    played_rounds+=1
    continue
-  if game.mode=="round_win":
-   keyboard(KEY_ENTER)
-   start_human_round()
-   played_rounds+=1
   if game.mode=="combat" and tempo_round!=game.match_progress.round_number:
    tempo_round=game.match_progress.round_number
    game.conductor.schedule_tempo(tempo)

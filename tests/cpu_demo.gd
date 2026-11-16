@@ -76,9 +76,7 @@ func _process(delta: float) -> void:
  if mode in ["round_win","match_win"]:
   if outcome_at<0:outcome_at=elapsed
   capture_once(mode)
-  if mode=="round_win" and elapsed-outcome_at>0.6:
-   _key(KEY_ENTER)
-   outcome_at=-1
+  if mode=="round_win":outcome_at=-1
   elif mode=="match_win" and elapsed-outcome_at>1.0:
    var kinds: Dictionary={}
    for event in completed_exchanges:kinds[event.kind]=int(kinds.get(event.kind,0))+1
