@@ -1,5 +1,6 @@
 extends Node2D
 var flow:=ArcadeFlow.new()
+var story:=StorySession.new()
 var intro := ArcadeIntro.new()
 var intro_music_pending: bool = false
 var intro_started_at: float = 0.0
@@ -214,6 +215,8 @@ func _ready() -> void:
     cpu_difficulty=level
     preferences.values.difficulty=level
  cpu.configure(cpu_difficulty,cpu_seed)
+ add_child(story)
+ story.setup(self)
  flow.root("title")
  conductor.beat_changed.connect(on_beat)
  conductor.phrase_changed.connect(on_phrase)
@@ -229,6 +232,7 @@ func play_click(force: bool = false) -> void:
   click_player.play()
 
 func begin() -> void:
+ if story.phase!="inactive":story.deactivate()
  intro.visible = false
  intro_music_pending = false
  if paused:set_paused(false)
@@ -316,6 +320,11 @@ func _process(delta: float) -> void:
   refresh()
   return
  var at := game_time()
+ if mode=="story":
+  conductor.update(at)
+  story.advance()
+  refresh()
+  return
  if mode in ["standoff", "race", "combat"]:
   advance_timeline(at)
  if mode == "standoff" and at >= cue:
@@ -370,8 +379,7 @@ func _process(delta: float) -> void:
    if mode == "race":
     fighters[player].set_pose("running")
   if mode=="combat" and at-step_started[player]<=step_seconds:
-   var progress := clampf((at-step_started[player])/step_seconds,0,1)
-   fighters[player].position = Vector2(lerpf(step_origins[player],target_x,progress),150)
+   fighters[player].position = Vector2(RhythmMovement.position_at(step_origins[player],target_x,step_started[player],at,step_seconds),150)
   elif mode=="combat":
    fighters[player].position = Vector2(target_x,150)
   else:
@@ -468,6 +476,9 @@ func on_phrase(_phrase: int) -> void:
   previous_bpm = conductor.bpm
 
 func on_beat(beat: int, _phrase: int) -> void:
+ if mode=="story":
+  story.on_beat(beat,_phrase)
+  return
  if mode == "standoff":
   if conductor.beat_time>=cue-3*conductor.duration() and conductor.beat_time<cue:
    audio.emit_event("countdown",race_event_key("count:%d:%d" % [_phrase,beat]))
@@ -511,7 +522,7 @@ func apply_movement(beat: int, phrase: int, at: float) -> void:
    step_started[player]=game_time()
    controls[player].last_step_time=at
    controls[player].last_step_processed=game_time()
-   fighters[player].rhythmic_pose("forward_step" if requested[player]==facing(player) else "backward_step",step_seconds)
+   fighters[player].rhythmic_pose(RhythmMovement.pose(requested[player],facing(player)),step_seconds)
    pose_until_by_player[player]=conductor.now()+step_seconds
   elif requested[player]!=0:
    controls[player].movement_executed=false
@@ -642,11 +653,15 @@ func set_paused(value: bool) -> void:
  audio.events.set_paused(value)
  for fighter in fighters: fighter.process_mode=Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
  for control in controls:control.reset()
+ if mode=="story":
+  story.control.reset()
+  story.blocked.clear()
  bout.movements=[0,0]
- if value:flow.root("pause")
+ if value:flow.root("story_pause" if mode=="story" else "pause")
  refresh()
 
 func return_to_title() -> void:
+ if story.phase!="inactive":story.deactivate()
  round_transition_at=INF
  audio.events.clear_round()
  intro.visible = false
@@ -694,6 +709,9 @@ func _unhandled_input(event: InputEvent) -> void:
    set_paused(true)
    ui_held[event.keycode]=true
    return
+ if mode=="story" and not paused:
+  story.key(event)
+  return
  if paused or mode in ["finishing","round_win","match_win","menu"]:return
  var at:=game_time()
  if mode in ["standoff","race","combat"]:advance_timeline(at)
@@ -715,10 +733,9 @@ func submit_action(player: int, action: String, pressed: bool, at: float, source
   if bout.false_starts[player]:
    fighters[player].set_pose("false_start")
    status="P%d false start: forfeits initiative" % (player+1)
- var rising := pressed and not bool(controls[player].held.get(action,false))
- var combination := controls[player].feed(action, pressed, at, facing(player), mode == "combat")
- if rising and action in ["left","right"] and mode=="combat":
-  controls[player].request_movement(action,at,conductor,movement_perfect_ms,movement_good_ms)
+ var movement := RhythmMovement.feed(controls[player],action,pressed,at,facing(player),mode=="combat",conductor,movement_perfect_ms,movement_good_ms)
+ var combination: Dictionary=movement.combination
+ if movement.requested:
   if controls[player].movement_grade!="miss":
    accepted_until[player]=conductor.now()+0.18
    apply_movement(conductor.beat,conductor.phrase,conductor.beat_time)
@@ -755,6 +772,15 @@ func submit_action(player: int, action: String, pressed: bool, at: float, source
  else:
   controls[player].input_feedback = "REJECT action timing; movement independent"
 func refresh() -> void:
+ if mode=="story":
+  hud.visible=false
+  ground_sticks.visible=false
+  for diagnostic in [label,detail,input_feedback_label,cpu_debug_label,combat_debug]:diagnostic.visible=false
+  flow.refresh()
+  story.overlay.visible=story.phase!="inactive" and not flow.active()
+  story.overlay.queue_redraw()
+  queue_redraw()
+  return
  hud.visible = not debug_visible and mode!="menu"
  flow.refresh()
  hud.blue.player_name="CPU "+cpu_difficulty.to_upper() if game_mode=="cpu" else "BLUE"
@@ -821,6 +847,7 @@ func active_attack_region() -> Rect2:
  return bout.attack_region(player, bout.selections[player], bout.impact_positions)
 
 func _draw() -> void:
+ if mode=="story":return
  if not stage.texture or debug_visible:
   draw_rect(Rect2(0, 0, 320, 180), Color("151e29"))
  if debug_visible:draw_line(Vector2(16,150),Vector2(304,150),Color("aeaa7a"),1)

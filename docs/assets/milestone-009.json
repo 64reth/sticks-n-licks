@@ -1,0 +1,322 @@
+{
+  "resampled": false,
+  "alpha_policy": "Keep source RGBA within 4 native pixels of alpha >=128; discard isolated soft haze in derivatives only.",
+  "sources": [
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_kicked_sheet.png",
+      "sha256": "c1f4e99bac63aaab92b01b213a7b852012ec001b5b6eb168826a83acefcaba4c",
+      "dimensions": [
+        1448,
+        1086
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "frame": 0,
+          "rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "anchor": [
+            175,
+            327
+          ],
+          "translation": [
+            209,
+            417
+          ],
+          "path": "assets/story/009/fighter_00.png"
+        },
+        {
+          "frame": 1,
+          "rect": [
+            362,
+            0,
+            724,
+            362
+          ],
+          "anchor": [
+            186,
+            323
+          ],
+          "translation": [
+            198,
+            421
+          ],
+          "path": "assets/story/009/fighter_01.png"
+        },
+        {
+          "frame": 2,
+          "rect": [
+            724,
+            0,
+            1086,
+            362
+          ],
+          "anchor": [
+            186,
+            323
+          ],
+          "translation": [
+            198,
+            421
+          ],
+          "path": "assets/story/009/fighter_02.png"
+        },
+        {
+          "frame": 3,
+          "rect": [
+            1086,
+            0,
+            1448,
+            362
+          ],
+          "anchor": [
+            228,
+            326
+          ],
+          "translation": [
+            156,
+            418
+          ],
+          "path": "assets/story/009/fighter_03.png"
+        },
+        {
+          "frame": 4,
+          "rect": [
+            0,
+            362,
+            362,
+            724
+          ],
+          "anchor": [
+            191,
+            321
+          ],
+          "translation": [
+            193,
+            423
+          ],
+          "path": "assets/story/009/fighter_04.png"
+        },
+        {
+          "frame": 5,
+          "rect": [
+            362,
+            362,
+            724,
+            724
+          ],
+          "anchor": [
+            187,
+            323
+          ],
+          "translation": [
+            197,
+            421
+          ],
+          "path": "assets/story/009/fighter_05.png"
+        },
+        {
+          "frame": 6,
+          "rect": [
+            724,
+            362,
+            1086,
+            724
+          ],
+          "anchor": [
+            178,
+            323
+          ],
+          "translation": [
+            206,
+            421
+          ],
+          "path": "assets/story/009/fighter_06.png"
+        },
+        {
+          "frame": 7,
+          "rect": [
+            1086,
+            362,
+            1448,
+            724
+          ],
+          "anchor": [
+            153,
+            328
+          ],
+          "translation": [
+            231,
+            416
+          ],
+          "path": "assets/story/009/fighter_07.png"
+        },
+        {
+          "frame": 8,
+          "rect": [
+            0,
+            724,
+            362,
+            1086
+          ],
+          "anchor": [
+            165,
+            325
+          ],
+          "translation": [
+            219,
+            419
+          ],
+          "path": "assets/story/009/fighter_08.png"
+        },
+        {
+          "frame": 9,
+          "rect": [
+            362,
+            724,
+            724,
+            1086
+          ],
+          "anchor": [
+            166,
+            325
+          ],
+          "translation": [
+            218,
+            419
+          ],
+          "path": "assets/story/009/fighter_09.png"
+        },
+        {
+          "frame": 10,
+          "rect": [
+            724,
+            724,
+            1086,
+            1086
+          ],
+          "anchor": [
+            180,
+            325
+          ],
+          "translation": [
+            204,
+            419
+          ],
+          "path": "assets/story/009/fighter_10.png"
+        },
+        {
+          "frame": 11,
+          "rect": [
+            1086,
+            724,
+            1448,
+            1086
+          ],
+          "anchor": [
+            191,
+            325
+          ],
+          "translation": [
+            193,
+            419
+          ],
+          "path": "assets/story/009/fighter_11.png"
+        }
+      ]
+    },
+    {
+      "path": "assets/environments/props/house_wife_kick.png",
+      "sha256": "9bf24a0747eb797551939230ff8d69c2651bffc2f5e7a78de41e6c63f6a49beb",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "frame": 0,
+          "rect": [
+            0,
+            310,
+            410,
+            690
+          ],
+          "anchor": [
+            0,
+            362
+          ],
+          "translation": [
+            384,
+            382
+          ],
+          "path": "assets/story/009/house_00.png"
+        },
+        {
+          "frame": 1,
+          "rect": [
+            410,
+            310,
+            828,
+            690
+          ],
+          "anchor": [
+            7,
+            362
+          ],
+          "translation": [
+            377,
+            382
+          ],
+          "path": "assets/story/009/house_01.png"
+        },
+        {
+          "frame": 2,
+          "rect": [
+            828,
+            310,
+            1246,
+            690
+          ],
+          "anchor": [
+            7,
+            362
+          ],
+          "translation": [
+            377,
+            382
+          ],
+          "path": "assets/story/009/house_02.png"
+        },
+        {
+          "frame": 3,
+          "rect": [
+            1246,
+            310,
+            1664,
+            690
+          ],
+          "anchor": [
+            7,
+            362
+          ],
+          "translation": [
+            377,
+            382
+          ],
+          "path": "assets/story/009/house_03.png"
+        }
+      ]
+    }
+  ]
+}

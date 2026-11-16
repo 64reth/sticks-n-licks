@@ -1,0 +1,566 @@
+{
+  "baseline": "9b3120a8d58d46da782d9761e2d1e702c50409d0",
+  "branch": "development",
+  "movie": {
+    "path": "output/milestone-009.avi",
+    "sha256": "cc612ff37e4eece1351c45a551cc598bf83195eef0b5d8a753f6e7a82b302744",
+    "frames": 1855,
+    "fps": 60,
+    "seconds": 30.916666666666668,
+    "audio_format": [
+      1,
+      2,
+      48000,
+      192000,
+      4,
+      16
+    ],
+    "audio_bytes": 5936000,
+    "audio": {
+      "samples": 2968000,
+      "peak": 0.64434814453125,
+      "rms": 0.10468652888174172,
+      "clipped_samples": 0,
+      "nonzero_samples": 2914038
+    }
+  },
+  "movie_run": {
+    "arcade_mode": "standoff",
+    "captures": [
+      "story-menu",
+      "closed",
+      "door",
+      "kick",
+      "flight",
+      "landing",
+      "dust",
+      "dust-off",
+      "recovered",
+      "handoff-idle",
+      "control-enabled",
+      "eight-right",
+      "stopped",
+      "duck",
+      "mistimed",
+      "held-no-repeat",
+      "screen-complete",
+      "continue",
+      "arcade"
+    ],
+    "offline_clock": true,
+    "seconds": 30.9166666666662,
+    "traversal": [
+      {
+        "at": 10.2166666666668,
+        "beat": 16.0000000000002,
+        "event": "control",
+        "position": "(100.0, 150.0)"
+      },
+      {
+        "at": 10.2166666666667,
+        "beat": "4:1",
+        "event": "step",
+        "grade": "perfect",
+        "target": 116.0
+      },
+      {
+        "at": 10.7166666666667,
+        "beat": "4:2",
+        "event": "step",
+        "grade": "perfect",
+        "target": 132.0
+      },
+      {
+        "at": 11.2166666666667,
+        "beat": "4:3",
+        "event": "step",
+        "grade": "perfect",
+        "target": 148.0
+      },
+      {
+        "at": 11.7166666666667,
+        "beat": "4:4",
+        "event": "step",
+        "grade": "perfect",
+        "target": 164.0
+      },
+      {
+        "at": 12.2166666666667,
+        "beat": "5:1",
+        "event": "step",
+        "grade": "perfect",
+        "target": 180.0
+      },
+      {
+        "at": 12.7166666666667,
+        "beat": "5:2",
+        "event": "step",
+        "grade": "perfect",
+        "target": 196.0
+      },
+      {
+        "at": 13.2166666666667,
+        "beat": "5:3",
+        "event": "step",
+        "grade": "perfect",
+        "target": 212.0
+      },
+      {
+        "at": 13.7166666666667,
+        "beat": "5:4",
+        "event": "step",
+        "grade": "perfect",
+        "target": 228.0
+      },
+      {
+        "at": 15.2166666666667,
+        "beat": "6:3",
+        "event": "step",
+        "grade": "perfect",
+        "target": 212.0
+      },
+      {
+        "at": 15.7166666666667,
+        "beat": "6:4",
+        "event": "step",
+        "grade": "perfect",
+        "target": 196.0
+      },
+      {
+        "at": 16.2166666666667,
+        "beat": "7:1",
+        "event": "step",
+        "grade": "perfect",
+        "target": 180.0
+      },
+      {
+        "at": 16.7166666666667,
+        "beat": "7:2",
+        "event": "step",
+        "grade": "perfect",
+        "target": 164.0
+      },
+      {
+        "at": 18.7166666666667,
+        "beat": "8:2",
+        "event": "step",
+        "grade": "perfect",
+        "target": 180.0
+      },
+      {
+        "at": 20.7166666666667,
+        "beat": "9:2",
+        "event": "step",
+        "grade": "perfect",
+        "target": 196.0
+      },
+      {
+        "at": 21.2166666666667,
+        "beat": "9:3",
+        "event": "step",
+        "grade": "perfect",
+        "target": 212.0
+      },
+      {
+        "at": 21.7166666666667,
+        "beat": "9:4",
+        "event": "step",
+        "grade": "perfect",
+        "target": 228.0
+      },
+      {
+        "at": 22.2166666666667,
+        "beat": "10:1",
+        "event": "step",
+        "grade": "perfect",
+        "target": 244.0
+      },
+      {
+        "at": 22.7166666666667,
+        "beat": "10:2",
+        "event": "step",
+        "grade": "perfect",
+        "target": 260.0
+      },
+      {
+        "at": 23.2166666666667,
+        "beat": "10:3",
+        "event": "step",
+        "grade": "perfect",
+        "target": 276.0
+      },
+      {
+        "at": 23.7166666666667,
+        "beat": "10:4",
+        "event": "step",
+        "grade": "perfect",
+        "target": 280.0
+      }
+    ]
+  },
+  "production_clock_run": {
+    "arcade_mode": "standoff",
+    "captures": [
+      "story-menu",
+      "closed",
+      "door",
+      "kick",
+      "flight",
+      "landing",
+      "dust",
+      "dust-off",
+      "recovered",
+      "handoff-idle",
+      "control-enabled",
+      "eight-right",
+      "stopped",
+      "duck",
+      "mistimed",
+      "held-no-repeat",
+      "screen-complete",
+      "continue",
+      "arcade"
+    ],
+    "offline_clock": false,
+    "seconds": 31.2967193333329,
+    "traversal": [
+      {
+        "at": 11.814094,
+        "beat": 17.02096,
+        "event": "control",
+        "position": "(100.0, 150.0)"
+      },
+      {
+        "at": 11.803611,
+        "beat": "4:2",
+        "event": "step",
+        "grade": "perfect",
+        "target": 116.0
+      },
+      {
+        "at": 12.303611,
+        "beat": "4:3",
+        "event": "step",
+        "grade": "perfect",
+        "target": 132.0
+      },
+      {
+        "at": 12.803611,
+        "beat": "4:4",
+        "event": "step",
+        "grade": "perfect",
+        "target": 148.0
+      },
+      {
+        "at": 13.303611,
+        "beat": "5:1",
+        "event": "step",
+        "grade": "perfect",
+        "target": 164.0
+      },
+      {
+        "at": 13.803611,
+        "beat": "5:2",
+        "event": "step",
+        "grade": "perfect",
+        "target": 180.0
+      },
+      {
+        "at": 14.303611,
+        "beat": "5:3",
+        "event": "step",
+        "grade": "perfect",
+        "target": 196.0
+      },
+      {
+        "at": 14.803611,
+        "beat": "5:4",
+        "event": "step",
+        "grade": "perfect",
+        "target": 212.0
+      },
+      {
+        "at": 15.303611,
+        "beat": "6:1",
+        "event": "step",
+        "grade": "perfect",
+        "target": 228.0
+      },
+      {
+        "at": 16.803611,
+        "beat": "6:4",
+        "event": "step",
+        "grade": "perfect",
+        "target": 212.0
+      },
+      {
+        "at": 17.303611,
+        "beat": "7:1",
+        "event": "step",
+        "grade": "perfect",
+        "target": 196.0
+      },
+      {
+        "at": 17.803611,
+        "beat": "7:2",
+        "event": "step",
+        "grade": "perfect",
+        "target": 180.0
+      },
+      {
+        "at": 18.303611,
+        "beat": "7:3",
+        "event": "step",
+        "grade": "perfect",
+        "target": 164.0
+      },
+      {
+        "at": 20.303611,
+        "beat": "8:3",
+        "event": "step",
+        "grade": "perfect",
+        "target": 180.0
+      },
+      {
+        "at": 22.303611,
+        "beat": "9:3",
+        "event": "step",
+        "grade": "perfect",
+        "target": 196.0
+      },
+      {
+        "at": 22.803611,
+        "beat": "9:4",
+        "event": "step",
+        "grade": "perfect",
+        "target": 212.0
+      },
+      {
+        "at": 23.303611,
+        "beat": "10:1",
+        "event": "step",
+        "grade": "perfect",
+        "target": 228.0
+      },
+      {
+        "at": 23.803611,
+        "beat": "10:2",
+        "event": "step",
+        "grade": "perfect",
+        "target": 244.0
+      },
+      {
+        "at": 24.303611,
+        "beat": "10:3",
+        "event": "step",
+        "grade": "perfect",
+        "target": 260.0
+      },
+      {
+        "at": 24.803611,
+        "beat": "10:4",
+        "event": "step",
+        "grade": "perfect",
+        "target": 276.0
+      },
+      {
+        "at": 25.303611,
+        "beat": "11:1",
+        "event": "step",
+        "grade": "perfect",
+        "target": 280.0
+      }
+    ]
+  },
+  "inputs": "Scripted keyboard through the real main-scene input path; not physical keyboard playtesting.",
+  "graphical_review": "Native screenshots, desktop window and sampled decoded AVI frames inspected. Corrected edge crop, diagnostics, Continue backdrop and menu-overlay cleanup.",
+  "audio_review": "PCM capture validated; afplay local device playback exited 0. Subjective balance/perceptual synchronisation not established.",
+  "tests": {
+    "story": {
+      "checks": 168,
+      "failures": 0
+    },
+    "python": {
+      "tests": 31,
+      "failures": 0
+    },
+    "cpu": {
+      "matches": 900,
+      "checks": 1795853,
+      "failures": 0
+    },
+    "complete_suite": {
+      "command": "bash tools/check.sh",
+      "exit_code": 0,
+      "log": "output/check009-final.stdout",
+      "log_sha256": "84874d272675d5772a2fa18711262c6ba4ad7b03970880358c2450ab055a8db7"
+    }
+  },
+  "screenshots": [
+    {
+      "path": "docs/screenshots/milestone-009/009-arcade.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "35c6a9106f26177bc4d2d3ee146d6c809761ada0026e82842fc4b49473a277da"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-closed.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "16d3e09ae26265535152e09141520bb6b6ffc23a3818c59971f9dc6a59d34838"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-continue.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "b2e60ad7bb522735495018e03b9fafa2d3e6e832374269b78a5650a05f4c0941"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-control-enabled.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "0986a376c5e6975aeac216a9c6a0c4ff6bef943d6d7853ddcbfd89c3f5c959d7"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-desktop.png",
+      "dimensions": [
+        1280,
+        776
+      ],
+      "sha256": "de4006ca91ad524d35f6594e118aa7149f5452e637a091f1e9ce45d34199244f"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-door.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "bf36e64af3249f39f8605dab3dfb68c7580ac3bae826c8f7b7ba7a554e38f992"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-duck.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "8ff5936493c285b37a39433023ebde086e91c035f64a9a82a3a40dcf1238edb7"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-dust-off.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "3f3672ec06a8c10efa574956832b623efc481a4a14adf6e6c4285fcc4f201ea7"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-dust.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "42e4cd0d5445d3c6b18d46b32e6fe38788d00be8ab8a461c57d5d5ef379a60df"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-eight-right.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "9e371b3b5e7f21c459c2c82a16a590bb880572b1828082c508c43f16da6e8962"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-flight.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "d5aa117fca6c9d76f7266a24354522e4064206a06651b935a4ebb8344f9a4430"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-handoff-idle.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "32eb485bc7ce78ba7b540484daa1deb18f40c937ad5d72be6278eefa5b2c3e5d"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-held-no-repeat.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "0e6a78a51a3a75f86c5e4e20c0f3fea1022b1e1c7ec5d12c6c3663c70aa73ed7"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-kick.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "a1a48c5ff1ed14994f5ccb59471f00f64126aaacf2b4e9c209894c6e50c250f1"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-landing.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "9748039bbe71158e0438a5f6fe4c92ce845b962d1103d3029e199d20f8ccc521"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-mistimed.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "6f4a4b14e2241f28295a951d262b36a0807726b7106a55dbe9113b949b3a380b"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-recovered.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "7d1b7edb01ca751418e5bb7220997f13d969dc6e47ca985dd12ed12554a6e122"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-screen-complete.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "296e3b853702923bfe36ca76660f379227b454c38bdeebb5c1aeea57e01ec4fd"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-stopped.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "87bfaedee39c2bec24c44e2da031f3ac3c2969fa326abc78b360bb2988688fbd"
+    },
+    {
+      "path": "docs/screenshots/milestone-009/009-story-menu.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "0ab9043209e721ab57bff294d11b08bbcdd1a04eb113dbf81fbd3914c35d3632"
+    }
+  ],
+  "unrelated_untracked_preserved": [
+    "assets/audio/sfx/FreeSFX.zip",
+    "assets/ui/arcade/logo.png",
+    "assets/ui/arcade/logo.png.import"
+  ]
+}

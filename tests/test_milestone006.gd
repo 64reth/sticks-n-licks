@@ -60,7 +60,7 @@ func run() -> void:
  root.add_child(game)
  game.set_process(false)
  check(game.flow.view.page=="title" and game.flow.view.visible,"Root launches to title")
- check(game.flow.view.rows.size()==4,"Title has four conventional items")
+ check(game.flow.view.rows.size()==5,"Title preserves Arcade entries and adds Story Mode")
  key(KEY_DOWN)
  check(game.flow.view.cursor==1,"Down navigates")
  key(KEY_UP)

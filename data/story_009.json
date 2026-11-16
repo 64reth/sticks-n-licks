@@ -1,0 +1,102 @@
+{
+  "tempo": 120,
+  "start_x": 100,
+  "door_x": 67,
+  "idle_beat": 15,
+  "flight_start": 4,
+  "landing_beat": 6,
+  "house": [
+    {
+      "beat": 0,
+      "frame": 0
+    },
+    {
+      "beat": 2,
+      "frame": 1
+    },
+    {
+      "beat": 3,
+      "frame": 2
+    },
+    {
+      "beat": 4,
+      "frame": 3
+    },
+    {
+      "beat": 5,
+      "frame": 2
+    },
+    {
+      "beat": 6,
+      "frame": 1
+    }
+  ],
+  "fighter": [
+    {
+      "beat": 0,
+      "frame": 0
+    },
+    {
+      "beat": 4,
+      "frame": 1
+    },
+    {
+      "beat": 4.5,
+      "frame": 2
+    },
+    {
+      "beat": 6,
+      "frame": 3
+    },
+    {
+      "beat": 7,
+      "frame": 4
+    },
+    {
+      "beat": 8,
+      "frame": 5
+    },
+    {
+      "beat": 9,
+      "frame": 6
+    },
+    {
+      "beat": 10,
+      "frame": 7
+    },
+    {
+      "beat": 11,
+      "frame": 8
+    },
+    {
+      "beat": 12,
+      "frame": 9
+    },
+    {
+      "beat": 13,
+      "frame": 10
+    },
+    {
+      "beat": 14,
+      "frame": 11
+    }
+  ],
+  "playable_right": 280,
+  "accents": [
+    {
+      "beat": 2,
+      "sound": "block",
+      "id": "door"
+    },
+    {
+      "beat": 4,
+      "sound": "hit",
+      "id": "kick"
+    },
+    {
+      "beat": 6,
+      "sound": "block",
+      "id": "land"
+    }
+  ]
+}

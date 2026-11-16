@@ -7,7 +7,7 @@ func setup(owner: Node2D) -> void:
  game=owner
  view.activated.connect(command)
  view.adjusted.connect(adjust)
-func active() -> bool:return game.mode=="menu" or game.paused or game.mode=="match_win"
+func active() -> bool:return game.mode=="menu" or game.paused or game.mode=="match_win" or (game.mode=="story" and game.story.phase=="complete")
 func open(page: String) -> void:
  stack.append(view.page)
  view.open(page)
@@ -26,7 +26,23 @@ func refresh() -> void:
  var title: String="STICKS N LICKS"
  var sub: String="RHYTHM. SPACING. ONE MORE BOUT."
  match view.page:
-  "title":rows=[item("START GAME","setup"),item("OPTIONS","options"),item("HOW TO PLAY","help"),item("QUIT GAME","quit")]
+  "title":rows=[item("START GAME","setup"),item("OPTIONS","options"),item("HOW TO PLAY","help"),item("STORY MODE","story_menu"),item("QUIT GAME","quit")]
+  "story_menu":
+   title="STICKS N LICKS: RENT DUE!"
+   sub="SCREEN 01 - OUT YUH HOUSE!"
+   rows=[item("NEW GAME","story_new"),item("CONTINUE","story_continue"),item("BACK","back")]
+   rows[1]["disabled"]=not game.story.save.valid()
+  "story_new_confirm":
+   title="START A NEW STORY?"
+   sub="REPLACE THE CURRENT STORY CHECKPOINT?"
+   rows=[item("CANCEL","back"),item("NEW GAME","story_start")]
+  "story_pause":
+   title="STORY PAUSED"
+   rows=[item("RESUME","resume"),item("STORY MENU","story_menu"),item("MAIN MENU","title")]
+  "story_end":
+   title="END OF SCREEN 01"
+   sub="MORE RENT TROUBLE TO COME..."
+   rows=[item("STORY MENU","story_menu"),item("MAIN MENU","title")]
   "setup":
    title="MATCH SETUP"
    sub="FIRST TO %d ROUND WINS" % (int(game.settings.get("match_best_of",3))/2+1)
@@ -67,6 +83,15 @@ func command(action: String) -> void:
   return
  game.audio.emit_event("menu_back" if action in ["back","tutorial_exit","title"] else "menu_confirm")
  match action:
+  "story_menu":
+   if game.mode=="story":game.return_to_title()
+   open("story_menu")
+  "story_new":
+   if game.story.save.valid():open("story_new_confirm")
+   else:game.story.start(true)
+  "story_start":game.story.start(true)
+  "story_continue":
+   if game.story.save.valid():game.story.start(false)
   "setup":
    if game.mode=="match_win":game.return_to_title()
    game.apply_preferences(true)
@@ -86,7 +111,7 @@ func command(action: String) -> void:
    game.preferences.save_values()
   "quit":game.get_tree().quit()
   "back":
-   if view.page=="pause":game.set_paused(false)
+   if view.page in ["pause","story_pause"]:game.set_paused(false)
    elif view.page=="result":game.return_to_title()
    elif not stack.is_empty():view.open(stack.pop_back())
    else:view.open("title")

@@ -58,6 +58,7 @@ func key(event: InputEventKey) -> bool:
    adjusted.emit(str(rows[cursor].key),-1 if event.keycode==KEY_LEFT else 1)
    activated.emit("nav")
  elif event.keycode==KEY_ENTER and not rows.is_empty():
+  if rows[cursor].get("disabled",false):return true
   if rows[cursor].has("key"):
    cursor=posmod(cursor+1,rows.size())
    activated.emit("nav")
@@ -95,7 +96,7 @@ func _draw() -> void:
    var x:=23+int(visual_phase>0.5)
    draw_colored_polygon(PackedVector2Array([Vector2(x,y-6),Vector2(x+4,y-3),Vector2(x,y)]),GOLD)
   var row: Dictionary=rows[index]
-  label(str(row.label),Vector2(34,y),GOLD if selected else CREAM)
+  label(str(row.label),Vector2(34,y),Color("6c7b7a") if row.get("disabled",false) else (GOLD if selected else CREAM))
   if row.has("value"):
    var value:=str(row.value)
    var extent:=FONT.get_string_size(value.to_upper(),HORIZONTAL_ALIGNMENT_LEFT,-1,8).x
