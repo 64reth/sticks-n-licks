@@ -10,22 +10,26 @@
         {
           "id": "rent",
           "text": "Find a way to pay the rent",
-          "event": "opening_complete"
+          "event": "opening_complete",
+          "hud_text": "Earn enough money to pay the rent."
         },
         {
           "id": "village",
           "text": "Head down the village road",
-          "event": "village_entered"
+          "event": "village_entered",
+          "hud_text": "Earn enough money to pay the rent."
         },
         {
           "id": "vendor",
           "text": "Talk to the roadside vendor",
-          "event": "vendor_spoken"
+          "event": "vendor_spoken",
+          "hud_text": "Talk to the roadside vendor."
         },
         {
           "id": "crate",
           "text": "Pick up the crate",
-          "event": "crate_picked"
+          "event": "crate_picked",
+          "hud_text": "Pick up the crate."
         },
         {
           "id": "delivery",
@@ -52,27 +56,32 @@
             "id": "crate_delivery",
             "currency": "BDS",
             "amount": 5
-          }
+          },
+          "hud_text": "Deliver the crate to the next vendor."
         },
         {
           "id": "stick_search",
           "text": "Find a good fighting stick",
-          "event": "cane_road_entered"
+          "event": "cane_road_entered",
+          "hud_text": "Find a good fighting stick."
         },
         {
           "id": "cane",
           "text": "Get through the cane",
-          "event": "cane_cleared"
+          "event": "cane_cleared",
+          "hud_text": "Find a good fighting stick."
         },
         {
           "id": "stick",
           "text": "Pick up a fighting stick",
-          "event": "stick_picked"
+          "event": "stick_picked",
+          "hud_text": "Pick up a fighting stick."
         },
         {
           "id": "fight",
           "text": "Win your first stick fight",
-          "event": "fight_won"
+          "event": "fight_won",
+          "hud_text": "Win your first stick fight."
         }
       ]
     }

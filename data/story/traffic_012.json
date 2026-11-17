@@ -1,0 +1,10 @@
+{
+ "roads":[{"left":80,"right":128,"from":68,"to":148,"steps":5},{"left":176,"right":224,"from":148,"to":244,"steps":6}],
+ "checkpoints":[68,148,244],
+ "lanes":[
+  {"id":1,"road":0,"x":92,"cycle":16,"offset":0,"direction":1,"warning":2,"travel":2},
+  {"id":2,"road":0,"x":116,"cycle":20,"offset":0,"direction":-1,"warning":2,"travel":2},
+  {"id":3,"road":1,"x":188,"cycle":24,"offset":0,"direction":1,"warning":2,"travel":2},
+  {"id":4,"road":1,"x":212,"cycle":28,"offset":0,"direction":-1,"warning":2,"travel":2}
+ ]
+}

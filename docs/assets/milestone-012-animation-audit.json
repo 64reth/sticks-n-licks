@@ -1,0 +1,688 @@
+{
+  "sources": [
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_01_pickup.png",
+      "sha256": "93bca3dcaa2feba9c2883172f457055f7ffed7490792115ea5911d0a49f59f26",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "layout": "irregular 7+6",
+      "frames": [
+        {
+          "index": 0,
+          "role": "upright neutral",
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/000.png",
+          "native_alpha128_bounds": [
+            315,
+            509,
+            444,
+            743
+          ],
+          "source_rect": [
+            72,
+            64,
+            228,
+            324
+          ],
+          "foot_anchor": [
+            156,
+            314
+          ],
+          "translation": [
+            300,
+            494
+          ]
+        },
+        {
+          "index": 1,
+          "role": "upright neutral selected",
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/001.png",
+          "native_alpha128_bounds": [
+            311,
+            504,
+            445,
+            743
+          ],
+          "source_rect": [
+            380,
+            60,
+            540,
+            324
+          ],
+          "foot_anchor": [
+            467,
+            314
+          ],
+          "translation": [
+            297,
+            490
+          ]
+        },
+        {
+          "index": 2,
+          "role": "upright neutral variation",
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/002.png",
+          "native_alpha128_bounds": [
+            309,
+            511,
+            446,
+            743
+          ],
+          "source_rect": [
+            684,
+            68,
+            844,
+            324
+          ],
+          "foot_anchor": [
+            771,
+            314
+          ],
+          "translation": [
+            297,
+            498
+          ]
+        },
+        {
+          "index": 3,
+          "role": "lowered anticipation",
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/003.png",
+          "native_alpha128_bounds": [
+            315,
+            522,
+            454,
+            743
+          ],
+          "source_rect": [
+            988,
+            80,
+            1152,
+            324
+          ],
+          "foot_anchor": [
+            1071,
+            314
+          ],
+          "translation": [
+            301,
+            510
+          ]
+        },
+        {
+          "index": 4,
+          "role": "turn/reaction",
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/004.png",
+          "native_alpha128_bounds": [
+            321,
+            504,
+            456,
+            743
+          ],
+          "source_rect": [
+            1308,
+            60,
+            1468,
+            324
+          ],
+          "foot_anchor": [
+            1384,
+            314
+          ],
+          "translation": [
+            308,
+            490
+          ]
+        },
+        {
+          "index": 5,
+          "role": "head gesture",
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/005.png",
+          "native_alpha128_bounds": [
+            320,
+            515,
+            467,
+            743
+          ],
+          "source_rect": [
+            1620,
+            72,
+            1792,
+            324
+          ],
+          "foot_anchor": [
+            1697,
+            314
+          ],
+          "translation": [
+            307,
+            502
+          ]
+        },
+        {
+          "index": 6,
+          "role": "eyes-closed gesture",
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/006.png",
+          "native_alpha128_bounds": [
+            315,
+            509,
+            468,
+            743
+          ],
+          "source_rect": [
+            1928,
+            64,
+            2108,
+            324
+          ],
+          "foot_anchor": [
+            2012,
+            314
+          ],
+          "translation": [
+            300,
+            494
+          ]
+        },
+        {
+          "index": 7,
+          "role": "ready stance",
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/007.png",
+          "native_alpha128_bounds": [
+            318,
+            518,
+            472,
+            744
+          ],
+          "source_rect": [
+            60,
+            424,
+            240,
+            672
+          ],
+          "foot_anchor": [
+            138,
+            661
+          ],
+          "translation": [
+            306,
+            507
+          ]
+        },
+        {
+          "index": 8,
+          "role": "run lean",
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/008.png",
+          "native_alpha128_bounds": [
+            313,
+            530,
+            485,
+            743
+          ],
+          "source_rect": [
+            356,
+            436,
+            552,
+            672
+          ],
+          "foot_anchor": [
+            441,
+            661
+          ],
+          "translation": [
+            299,
+            519
+          ]
+        },
+        {
+          "index": 9,
+          "role": "crouch/run",
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/009.png",
+          "native_alpha128_bounds": [
+            309,
+            542,
+            484,
+            744
+          ],
+          "source_rect": [
+            660,
+            444,
+            860,
+            672
+          ],
+          "foot_anchor": [
+            747,
+            661
+          ],
+          "translation": [
+            297,
+            527
+          ]
+        },
+        {
+          "index": 10,
+          "role": "run stride",
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/010.png",
+          "native_alpha128_bounds": [
+            311,
+            526,
+            523,
+            744
+          ],
+          "source_rect": [
+            972,
+            428,
+            1208,
+            672
+          ],
+          "foot_anchor": [
+            1059,
+            661
+          ],
+          "translation": [
+            297,
+            511
+          ]
+        },
+        {
+          "index": 11,
+          "role": "armed stick presentation",
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/011.png",
+          "native_alpha128_bounds": [
+            311,
+            521,
+            499,
+            744
+          ],
+          "source_rect": [
+            1316,
+            424,
+            1528,
+            672
+          ],
+          "foot_anchor": [
+            1401,
+            661
+          ],
+          "translation": [
+            299,
+            507
+          ]
+        },
+        {
+          "index": 12,
+          "role": "armed head gesture",
+          "path": "assets/characters/fighter_01/frames/milestone_002/pickup/012.png",
+          "native_alpha128_bounds": [
+            309,
+            511,
+            471,
+            744
+          ],
+          "source_rect": [
+            1636,
+            416,
+            1820,
+            672
+          ],
+          "foot_anchor": [
+            1722,
+            661
+          ],
+          "translation": [
+            298,
+            499
+          ]
+        }
+      ]
+    },
+    {
+      "path": "assets/characters/fighter_01/spritesheets/fighter_kicked_sheet.png",
+      "sha256": "c1f4e99bac63aaab92b01b213a7b852012ec001b5b6eb168826a83acefcaba4c",
+      "dimensions": [
+        1448,
+        1086
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "layout": "4 columns x 3 rows, 362x362",
+      "frames": [
+        {
+          "index": 0,
+          "role": "braced crouch selected duck",
+          "path": "assets/story/009/fighter_00.png",
+          "native_alpha128_bounds": [
+            288,
+            521,
+            491,
+            744
+          ],
+          "source_rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "foot_anchor": [
+            175,
+            327
+          ],
+          "translation": [
+            209,
+            417
+          ]
+        },
+        {
+          "index": 1,
+          "role": "startled recoil selected reaction",
+          "path": "assets/story/009/fighter_01.png",
+          "native_alpha128_bounds": [
+            255,
+            466,
+            505,
+            744
+          ],
+          "source_rect": [
+            362,
+            0,
+            724,
+            362
+          ],
+          "foot_anchor": [
+            186,
+            323
+          ],
+          "translation": [
+            198,
+            421
+          ]
+        },
+        {
+          "index": 2,
+          "role": "airborne entrance",
+          "path": "assets/story/009/fighter_02.png",
+          "native_alpha128_bounds": [
+            242,
+            480,
+            525,
+            704
+          ],
+          "source_rect": [
+            724,
+            0,
+            1086,
+            362
+          ],
+          "foot_anchor": [
+            186,
+            323
+          ],
+          "translation": [
+            198,
+            421
+          ]
+        },
+        {
+          "index": 3,
+          "role": "seated landing",
+          "path": "assets/story/009/fighter_03.png",
+          "native_alpha128_bounds": [
+            201,
+            537,
+            473,
+            744
+          ],
+          "source_rect": [
+            1086,
+            0,
+            1448,
+            362
+          ],
+          "foot_anchor": [
+            228,
+            326
+          ],
+          "translation": [
+            156,
+            418
+          ]
+        },
+        {
+          "index": 4,
+          "role": "seated alert",
+          "path": "assets/story/009/fighter_04.png",
+          "native_alpha128_bounds": [
+            267,
+            528,
+            483,
+            744
+          ],
+          "source_rect": [
+            0,
+            362,
+            362,
+            724
+          ],
+          "foot_anchor": [
+            191,
+            321
+          ],
+          "translation": [
+            193,
+            423
+          ]
+        },
+        {
+          "index": 5,
+          "role": "seated stunned",
+          "path": "assets/story/009/fighter_05.png",
+          "native_alpha128_bounds": [
+            263,
+            530,
+            486,
+            744
+          ],
+          "source_rect": [
+            362,
+            362,
+            724,
+            724
+          ],
+          "foot_anchor": [
+            187,
+            323
+          ],
+          "translation": [
+            197,
+            421
+          ]
+        },
+        {
+          "index": 6,
+          "role": "seated eyes closed",
+          "path": "assets/story/009/fighter_06.png",
+          "native_alpha128_bounds": [
+            247,
+            526,
+            490,
+            744
+          ],
+          "source_rect": [
+            724,
+            362,
+            1086,
+            724
+          ],
+          "foot_anchor": [
+            178,
+            323
+          ],
+          "translation": [
+            206,
+            421
+          ]
+        },
+        {
+          "index": 7,
+          "role": "hands/knees recovery",
+          "path": "assets/story/009/fighter_07.png",
+          "native_alpha128_bounds": [
+            274,
+            555,
+            494,
+            744
+          ],
+          "source_rect": [
+            1086,
+            362,
+            1448,
+            724
+          ],
+          "foot_anchor": [
+            153,
+            328
+          ],
+          "translation": [
+            231,
+            416
+          ]
+        },
+        {
+          "index": 8,
+          "role": "rising selected reaction",
+          "path": "assets/story/009/fighter_08.png",
+          "native_alpha128_bounds": [
+            294,
+            509,
+            509,
+            744
+          ],
+          "source_rect": [
+            0,
+            724,
+            362,
+            1086
+          ],
+          "foot_anchor": [
+            165,
+            325
+          ],
+          "translation": [
+            219,
+            419
+          ]
+        },
+        {
+          "index": 9,
+          "role": "brush off",
+          "path": "assets/story/009/fighter_09.png",
+          "native_alpha128_bounds": [
+            283,
+            458,
+            487,
+            744
+          ],
+          "source_rect": [
+            362,
+            724,
+            724,
+            1086
+          ],
+          "foot_anchor": [
+            166,
+            325
+          ],
+          "translation": [
+            218,
+            419
+          ]
+        },
+        {
+          "index": 10,
+          "role": "brush off",
+          "path": "assets/story/009/fighter_10.png",
+          "native_alpha128_bounds": [
+            281,
+            456,
+            482,
+            744
+          ],
+          "source_rect": [
+            724,
+            724,
+            1086,
+            1086
+          ],
+          "foot_anchor": [
+            180,
+            325
+          ],
+          "translation": [
+            204,
+            419
+          ]
+        },
+        {
+          "index": 11,
+          "role": "upright selected reaction",
+          "path": "assets/story/009/fighter_11.png",
+          "native_alpha128_bounds": [
+            282,
+            455,
+            462,
+            744
+          ],
+          "source_rect": [
+            1086,
+            724,
+            1448,
+            1086
+          ],
+          "foot_anchor": [
+            191,
+            325
+          ],
+          "translation": [
+            193,
+            419
+          ]
+        }
+      ]
+    }
+  ],
+  "selection": {
+    "idle": {
+      "source": "pickup",
+      "frame": 1,
+      "scale": 0.26666666666666666,
+      "cycle_beats": 8,
+      "presentation": "One authentic planted stance; upper body translates one logical pixel on inhale, lower body fixed. Waist row repeats to close the pixel seam. No scaling or invented authored frames."
+    },
+    "duck": {
+      "source": "kicked",
+      "frame": 0,
+      "scale": 0.22145328719723184,
+      "presentation": "Owner-preferred crouch, original S state and unchanged logical baseline/hurtbox."
+    },
+    "unarmed_reaction": {
+      "source": "kicked",
+      "frames": [
+        1,
+        8,
+        11
+      ],
+      "scale": 0.22145328719723184,
+      "presentation": "Assembled startled/brace/upright reaction, not a newly authored hit sheet or entire eviction sequence."
+    }
+  },
+  "source_art_modified": false,
+  "new_fighter_images_generated": false
+}

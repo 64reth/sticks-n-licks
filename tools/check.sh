@@ -30,7 +30,7 @@ if rg -n 'SCRIPT ERROR|Parse Error|Failed to load|Assertion failed' output/{impo
 if ! rg -q '51 checks, 0 failures' output/rules.stdout; then exit 1; fi
 if ! rg -q '46 checks, 0 failures' output/controls.stdout; then exit 1; fi
 if ! rg -q '3348 checks, 0 failures' output/media.stdout; then exit 1; fi
-if ! rg -q '1020 checks, 0 failures' output/launch-range.stdout; then exit 1; fi
+if ! rg -q '1034 checks, 0 failures' output/launch-range.stdout; then exit 1; fi
 if ! rg -q '676 checks, 0 failures' output/idle-movement.stdout; then exit 1; fi
 if ! rg -q '189 checks, 0 failures' output/arcade-hud.stdout; then exit 1; fi
 if ! rg -q 'DEMO: rematch reset' output/demo.stdout; then exit 1; fi
@@ -100,3 +100,8 @@ if ! rg -q 'PALM 010: [0-9]+ checks, 0 failures' output/palm010.stdout; then exi
 cat output/story011.stdout
 if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/story011.stdout; then exit 1; fi
 if ! rg -q 'STORY 011: [0-9]+ checks, 0 failures' output/story011.stdout; then exit 1; fi
+
+"$GODOT" --headless --path . --log-file output/story012.log --script tests/test_story012.gd >output/story012.stdout 2>&1
+cat output/story012.stdout
+if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/story012.stdout; then exit 1; fi
+if ! rg -q 'STORY 012: [0-9]+ checks, 0 failures' output/story012.stdout; then exit 1; fi

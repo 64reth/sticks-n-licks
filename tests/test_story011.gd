@@ -13,11 +13,16 @@ func tick(at: float) -> void:
  raw=at+game.conductor.pause_offset
  game._process(0)
 func action(name: String) -> void:
- if name=="execute" and not game.story.dialogue.active():tick(ceil((raw+.001)*2)/2)
+ if name=="execute" and not game.story.dialogue.active():
+  if game.story.context_interaction().get("id")=="vendor":
+   var at: float=game.conductor.action_time()
+   if at<=raw:at+=game.conductor.duration()*4
+   tick(at)
+  else:tick(ceil((raw+.001)*2)/2)
  game.story.submit(name,true,raw)
  game.story.submit(name,false,raw)
 func drain() -> void:
- for i in range(15):
+ for i in range(96):
   if not game.story.dialogue.active():break
   action("execute")
   tick(ceil(game.conductor.now()*4)/4+.25)
@@ -50,8 +55,8 @@ func run() -> void:
  for start in range(5):
   check(obstacle.can_start_crossing(start),"Green entry permits a full safe crossing")
   for step in range(7):check(not obstacle.traffic_active(start+step+.32),"Every approved step fits before traffic")
- check(not obstacle.can_start_crossing(5),"Late starters are clearly told to wait")
- check(obstacle.CROSS_STEPS==7,"Actual crossing step count from safe checkpoint")
+ check(not obstacle.can_start_crossing(6),"Late starters are clearly told to wait")
+ check(obstacle.CROSS_STEPS==11,"Actual two-road crossing step count (five plus six)")
  var dialog:=StoryDialogue.new()
  dialog.begin("vendor")
  check(dialog.queue.size()==7,"All seven exact vendor lines retained")
@@ -59,11 +64,11 @@ func run() -> void:
  dialog.on_subdivision()
  dialog.press(true)
  dialog.on_subdivision()
- check(dialog.queue.size()==6,"Holding F cannot skip a second line")
+ check(dialog.queue.size()==7 and dialog.is_revealed(),"Holding F cannot advance after reveal")
  dialog.press(false)
  dialog.press(true)
  dialog.on_subdivision()
- check(dialog.queue.size()==5,"Fresh F advances one line")
+ check(dialog.queue.size()==6,"Fresh F advances a revealed line")
  dialog.clear()
  check(not dialog.active() and not dialog.pending,"Dialogue clears safely")
  var clock:=RhythmConductor.new()
@@ -120,7 +125,7 @@ func run() -> void:
  tick(ceil(raw*2)/2+.5)
  check(story.screens.screen_id==3,"Crate gate to crossing")
  # Deliberate vehicle collision using the real obstacle predicate at contact, then recovery.
- walk_to(132)
+ walk_to(100)
  var cycle: float=story.obstacles.origin
  tick((cycle+15.1)*.5+game.conductor.epoch)
  story.check_obstacles(story.absolute_beat())
@@ -130,9 +135,10 @@ func run() -> void:
  check(story.phase=="recovering","Vehicle collision detected")
  check(story.inventory.item=="crate" and story.wallet.money==0,"Collision retains crate and money")
  tick((story.recovery_beat+.1)*.5+game.conductor.epoch)
- check(story.phase=="playing" and story.target_x==100,"Safe checkpoint recovery")
+ check(story.phase=="playing" and story.target_x==68,"Nearest reached safe checkpoint recovery")
  # Begin at cycle start, seven accepted taps across a twelve-beat safe window.
- walk_to(244)
+ cross_road(0)
+ cross_road(1)
  check(story.quest.completed.has("cross"),"Actual crossing completes nested objective")
  action("execute")
  drain()
@@ -215,3 +221,9 @@ func walk_to(destination: float) -> void:
   action("right" if game.story.target_x<destination else "left")
   tick(raw+.20)
 func action_hold_low(value: bool) -> void:game.story.submit("low",value,raw)
+
+func cross_road(index: int) -> void:
+ for guard in range(160):
+  tick(ceil((raw+.001)*2)/2)
+  if game.story.obstacles.can_start_road(index,game.story.world.beat()):break
+ walk_to(int(game.story.obstacles.traffic.roads[index].to))

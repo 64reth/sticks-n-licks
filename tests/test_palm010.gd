@@ -81,8 +81,9 @@ func run() -> void:
   raw=time
   game._process(0)
   if time in [1.0,2.0]:
-   game.story.submit("execute",true,raw)
-   game.story.submit("execute",false,raw)
+   for press in range(2):
+    game.story.submit("execute",true,raw)
+    game.story.submit("execute",false,raw)
   palm.sync_clock()
   check(palm.frame==int(time*2)%8,"No discontinuity through kick/landing/recovery/handoff")
  for line in range(3):

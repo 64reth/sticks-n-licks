@@ -44,3 +44,7 @@ func reward_for(step_id: String, quest_id: String="a_stick_to_share") -> Diction
  for step in steps(quest_id):
   if step.id==step_id:return step.get("reward",{})
  return {}
+
+func hud_objective(quest_id: String="a_stick_to_share") -> String:
+ var step:=active(quest_id)
+ return str(step.get("hud_text",step.get("text","Quest complete.")))

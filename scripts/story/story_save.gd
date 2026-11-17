@@ -17,6 +17,7 @@ func load_progress() -> bool:
  if parsed.get("version")!=2 or typeof(parsed.get("screen")) not in [TYPE_INT,TYPE_FLOAT] or int(parsed.screen) not in range(1,7):return false
  if not parsed.get("completed") is Array or parsed.get("item") not in ["","crate","stick"] or not parsed.get("rewards") is Array:return false
  if (parsed.get("money")!=0 and parsed.get("money")!=5) or (parsed.money==5)!=parsed.rewards.has("crate_delivery"):return false
+ if parsed.has("road_checkpoint") and (typeof(parsed.road_checkpoint) not in [TYPE_INT,TYPE_FLOAT] or (parsed.road_checkpoint!=68 and parsed.road_checkpoint!=148 and parsed.road_checkpoint!=244)):return false
  var log:=QuestLog.new()
  log.restore(parsed.completed)
  if log.completed!=parsed.completed:return false

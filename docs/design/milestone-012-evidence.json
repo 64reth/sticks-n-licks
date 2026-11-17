@@ -1,0 +1,156 @@
+{
+  "baseline": "683288926eff1e2021bb7b4aa02440f5b20d2475",
+  "movie": {
+    "path": "output/milestone-012-playtest-corrections.avi",
+    "sha256": "e759708d53fc7c9ce567fa2fc4948fd66399c42b1572a6bb466fbccd4b37b3d2",
+    "frames": 7519,
+    "fps": 60,
+    "seconds": 125.31666666666666,
+    "audio_format": [
+      1,
+      2,
+      48000,
+      192000,
+      4,
+      16
+    ],
+    "audio_bytes": 24060800,
+    "audio": {
+      "samples": 12030400,
+      "peak": 0.604766845703125,
+      "rms": 0.10992314444522466,
+      "clipped_samples": 0,
+      "nonzero_samples": 12013577
+    }
+  },
+  "production_clock_demo": {
+    "seconds": 127.166279333372,
+    "quest_complete": true,
+    "money": 5
+  },
+  "recording_demo": {
+    "quest_complete": true,
+    "money": 5,
+    "traffic_failure": true
+  },
+  "suite": {
+    "command": "bash tools/check.sh",
+    "exit_code": 0,
+    "log_sha256": "d24c5eaab1b299bd48b053540ccde84652c22aa2d14af1daa166649803fe02eb",
+    "story012_checks": 186,
+    "story009_checks": 168,
+    "palm010_checks": 353,
+    "story011_checks": 176,
+    "python_tests": 38,
+    "cpu_matches": 900
+  },
+  "screenshots": [
+    {
+      "path": "docs/screenshots/milestone-012/warning-hold.png",
+      "sha256": "b09243695432116938392a6566b9a25f55a37cc8b2ecd1903b39d07a7e22e727"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/airborne-entrance.png",
+      "sha256": "1ff9b7d1de7a8f19e0b83d003345e4fcf7cde56cc002cc3912de3785da61aa7e"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/idle-lift0.png",
+      "sha256": "892e24dd4a1e0998bce6f52e115dfcb26cf00caa5d76257cccbd8fc4239bd3ed"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/idle-lift1.png",
+      "sha256": "95c2b83d623b430d491fd43738e00a6fbd95e4941e19e3aa7724158488c008ed"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/duck-8.png",
+      "sha256": "148e5b45d545e129853b229a9ac524152c82624968acb578f6d7134cb6a5ddea"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/walk-stop.png",
+      "sha256": "17665742612df92809b35540577976861389682c8cf20fe411bb8b76dfb270ed"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/dialogue-vendor-1-page0-full.png",
+      "sha256": "2ea6f7e9d729cdc02b2300129d61f234b233614633223dbef166c6f4de1a536f"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/dialogue-vendor-1-page1-full.png",
+      "sha256": "1b1cfc72a912c46e48735fa67ca6697b4559c212d7ebb4be3a71f68a5df22c16"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/vendor-invalid.png",
+      "sha256": "84085b755ce91929ae6471af773a2d90d45ceb521bbc8ebba7b7da9212a923e4"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/lane0-vehicle.png",
+      "sha256": "dd88340b2c3bd638d18ecf309141596936bfb5f3441fdb1a3cd6d0eae16a2adf"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/lane1-vehicle.png",
+      "sha256": "22fdf96064d6cfa4e6d0218a346f64813e80b0c363051244c7c629d28350c4a7"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/lane2-vehicle.png",
+      "sha256": "0acd7c847dc3c735c41564a927401db41b9e25a0402478cdda95567d742705f1"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/lane3-vehicle.png",
+      "sha256": "907efc9ae151d67f2d28380bc7e260eb6dc2cdb101c8cf3ff312beb3a75bb010"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/central-refuge.png",
+      "sha256": "d105c88d1a2e3e4b161a85b735c6393fb90795db8e9f3f7a8486c8e1df914e73"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/traffic-recovery.png",
+      "sha256": "cbadf2fe31bcafb97c83ec509e7e799c16f79d32696c7ec69d32dafe43c6af0a"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/damage-frame0.png",
+      "sha256": "cbadf2fe31bcafb97c83ec509e7e799c16f79d32696c7ec69d32dafe43c6af0a"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/damage-frame1.png",
+      "sha256": "26c538e762aa9e87adc8ae62daa908c87a4cc49fd762fa03d15c8e71e3ae146f"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/damage-frame2.png",
+      "sha256": "97b549d50326ad2b54363be27bea34f07ec49822d4dbb3d812c5b301c98c1e64"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/paid.png",
+      "sha256": "03d35100ffe2662440d9e8897fd60dfdfc83c6efa1f0a2f548606dbcb5bdd29e"
+    },
+    {
+      "path": "docs/screenshots/milestone-012/quest-complete.png",
+      "sha256": "0af185ce58843a1be511e2c126a7a291ee3293380ba9cc8f1bb6b3325cb9ae0f"
+    }
+  ],
+  "verification_limits": [
+    "Scripted legal inputs, not physical keyboard playtesting",
+    "Audio PCM inspected and sent to system playback; subjective listening and perceptual synchronisation require owner review",
+    "Existing-art reaction is assembled from recovery poses, not a newly authored damage sheet"
+  ],
+  "idle_pixel_check": {
+    "root_scale": [
+      1,
+      1
+    ],
+    "baseline": 150,
+    "cycle_beats": 8,
+    "upper_translation_px": 1,
+    "lower_body_fixed": true,
+    "boot_silhouette_difference": false
+  },
+  "dialogue_panel": {
+    "old": [
+      304,
+      58
+    ],
+    "new": [
+      304,
+      32
+    ],
+    "area_reduction_percent": 44.8275862069
+  }
+}

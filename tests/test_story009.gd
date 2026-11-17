@@ -30,10 +30,11 @@ func run() -> void:
  check(game.audio.active=="120" and game.audio.tracks.has(game.audio.active),"Story selects existing native-tempo music key")
  var epoch: float=game.conductor.epoch
  for i in range(15):
-  advance(i*.5+.01)
+  advance(i*.5)
   if i in [1,3]:
-   story.submit("execute",true,raw)
-   story.submit("execute",false,raw)
+   for press in range(2):
+    story.submit("execute",true,raw)
+    story.submit("execute",false,raw)
   story.submit("right",true,raw)
   check(is_equal_approx(story.target_x,100),"Cinematic rejects movement")
   check(story.control.pending_move==0,"No cinematic movement queue")
@@ -47,7 +48,7 @@ func run() -> void:
   story.submit("execute",true,raw)
   story.submit("execute",false,raw)
  check(story.phase=="waiting","Recovery becomes unarmed idle before handoff")
- check(actor.pose=="character_master","Existing unarmed idle selected")
+ check(actor.pose=="story_idle","Existing unarmed idle selected")
  var position: Vector2=actor.position
  var restarts: int=game.audio.restart_count
  var scale: Vector2=actor.sprite.scale
@@ -102,7 +103,7 @@ func run() -> void:
  story.submit("low",true,11)
  check(actor.pose=="story_duck","Existing race crouch pose is usable")
  story.submit("low",false,11)
- check(actor.pose=="character_master","Duck release returns idle")
+ check(actor.pose=="story_idle","Duck release returns idle")
  var before: float=game.conductor.now()
  game.set_paused(true)
  raw+=10

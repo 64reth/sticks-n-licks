@@ -23,21 +23,31 @@ func _draw() -> void:
    var x:=roundf(world.interpolate(-40,360,32,i*9))
    draw_rect(Rect2(x,45+i*9,26,5),Color("eff0cf"))
  if screen_number==3:
-  draw_rect(Rect2(112,62,96,118),Color("37414b"))
-  for y in range(70,180,18):draw_rect(Rect2(158,y,3,9),Color("ffe2a0"))
-  var warning:=session.obstacles.traffic_warning(beat)
-  var active:=session.obstacles.traffic_active(beat)
-  draw_rect(Rect2(115,66,90,12),Color("9b433c") if warning or active else Color("245b48"))
-  var cue: String="CROSS NOW" if session.obstacles.can_start_crossing(beat) else ("KEEP GOING" if session.actor.position.x>112 and session.actor.position.x<208 and not warning and not active else "WAIT")
-  caption(cue,Vector2(128,75))
-  if active:
-   var y:=roundf(session.obstacles.vehicle_y(beat))
-   draw_rect(Rect2(138,y-30,44,30),Color("d99745"))
-   draw_rect(Rect2(145,y-25,30,9),Color("b1d8da"))
-   for wheel_y in [y-24,y-7]:
-    draw_rect(Rect2(134,wheel_y,5,7),Color("172235"))
-    draw_rect(Rect2(181,wheel_y,5,7),Color("172235"))
-  elif warning:caption("VEHICLE APPROACHING",Vector2(106,85))
+  for road in range(2):
+   var layout: Dictionary=session.obstacles.traffic.roads[road]
+   draw_rect(Rect2(float(layout.left),60,float(layout.right)-float(layout.left),120),Color("37414b"))
+   var middle: float=(float(layout.left)+float(layout.right))/2
+   for y in range(78,180,18):draw_rect(Rect2(middle,y,1,8),Color("ffe2a0"))
+   caption("ROAD "+("A" if road==0 else "B"),Vector2(float(layout.left)+3,45))
+   caption("CROSS" if session.obstacles.can_start_road(road,beat) else "WAIT",Vector2(float(layout.left)+7,32))
+  draw_rect(Rect2(140,148,28,4),Color("d6c58b"))
+  for index in range(4):
+   var lane: Dictionary=session.obstacles.traffic.lanes[index]
+   var x: float=float(lane.x)
+   var warning:=session.obstacles.lane_warning(index,beat)
+   var active:=session.obstacles.lane_active(index,beat)
+   draw_rect(Rect2(x-10,62,20,11),Color("9b433c") if warning or active else Color("245b48"))
+   caption("!" if warning else ("X" if active else "GO"),Vector2(x-(3 if warning or active else 6),71))
+   var direction: int=int(lane.direction)
+   draw_colored_polygon(PackedVector2Array([Vector2(x-3,53-direction*2),Vector2(x+3,53-direction*2),Vector2(x,53+direction*3)]),Color("ffe2a0"))
+   if active:
+    var y:=roundf(session.obstacles.lane_vehicle_y(index,beat))
+    var colors: Array[Color]=[Color("d99745"),Color("7299bf"),Color("ac735d"),Color("80a45d")]
+    draw_rect(Rect2(x-8,y-26,16,26),colors[index])
+    draw_rect(Rect2(x-6,y-(22 if direction>0 else 10),12,7),Color("b1d8da"))
+    for wheel_y in [y-22,y-6]:
+     draw_rect(Rect2(x-10,wheel_y,2,5),Color("172235"))
+     draw_rect(Rect2(x+8,wheel_y,2,5),Color("172235"))
  if screen_number in [4,5,6]:
   for i in range(18):
    var x:=i*19+int(round(sin(world.phase(8,i*.35)*TAU)*2))
@@ -48,12 +58,13 @@ func _draw() -> void:
   var warning:=session.obstacles.cane_warning(beat)
   var active:=session.obstacles.cane_active(beat)
   draw_rect(Rect2(110,148,100,2),Color("ffe2a0"))
-  caption("HOLD S: DUCK" if warning else ("LUNGE!" if active else "WATCH THE CANE"),Vector2(112,69))
+  caption("WARNING" if warning else ("LUNGE!" if active else "WATCH THE CANE"),Vector2(112,69))
+  if warning:ControlPrompt.draw(self,"p1_low","Duck",Vector2(112,49))
   if active:
    var lean:=roundf(sin(session.obstacles.road_phase(beat)*PI)*3)
    draw_rect(Rect2(119+lean,92,85,3),Color("172235"))
  if screen_number in [2,3]:
-  var x:=92 if screen_number==2 else 251
+  var x:=92 if screen_number==2 else 276
   var nod:=world.pose(2,4,1)
   draw_rect(Rect2(x-6,111+nod,12,12),Color("a86f44"))
   draw_rect(Rect2(x-8,124,16,24),Color("426f89"))
@@ -66,8 +77,6 @@ func _draw() -> void:
   crate(Vector2(142,137))
  if screen_number==6 and session.inventory.item!="stick":
   draw_line(Vector2(102,147),Vector2(129,134),Color("ebc888"),3)
-  caption("F: STICK",Vector2(97,121))
- caption("PLACEHOLDER: "+["","","VILLAGE ROAD","THE CROSSING","CANE ROAD","RUSTLING ROWS","STICK CLEARING"][screen_number],Vector2(8,174))
 func caption(value: String, at: Vector2) -> void:
  for offset in [Vector2(-1,0),Vector2(1,0),Vector2(0,-1),Vector2(0,1)]:draw_string(StoryOverlay.FONT,at+offset,value,HORIZONTAL_ALIGNMENT_LEFT,-1,8,Color("172235"))
  draw_string(StoryOverlay.FONT,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,8,Color("ffe2a0"))

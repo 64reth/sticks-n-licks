@@ -16,10 +16,14 @@
     },
     {
       "beat": 3,
-      "frame": 2
+      "frame": 1
     },
     {
       "beat": 4,
+      "frame": 2
+    },
+    {
+      "beat": 4.25,
       "frame": 3
     },
     {
