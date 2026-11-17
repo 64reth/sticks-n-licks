@@ -1,0 +1,13 @@
+{
+  "rent_target": 100,
+  "delivery_reward": 5,
+  "encounters": {
+    "first_stick_fight": {
+      "reward_id": "fight_first",
+      "reward": 20,
+      "best_of": 3,
+      "difficulty": "easy"
+    }
+  },
+  "provisional": true
+}

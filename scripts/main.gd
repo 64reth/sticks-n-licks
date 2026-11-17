@@ -255,12 +255,32 @@ func begin() -> void:
  match_progress.reset(int(settings.get("match_best_of",3)))
  _begin_round()
 
+func start_story_match(encounter: Dictionary) -> void:
+ result_handled=false
+ transition_until=INF
+ ui_held.clear()
+ flow.view.visible=false
+ match_serial+=1
+ game_mode="cpu"
+ cpu_difficulty=str(encounter.difficulty)
+ cpu.configure(cpu_difficulty,cpu_seed)
+ match_rng.seed=cpu_seed^0x534e4c
+ cpu_attempts.clear()
+ completed_exchanges.clear()
+ match_progress.reset(int(encounter.best_of))
+ selected_bpm=conductor.bpm
+ for fighter in fighters:
+  fighter.visible=true
+  fighter.set_process(false)
+ _begin_round(false)
+
 func next_round() -> void:
  if match_progress.next_round():
   round_transition_at=INF
   _begin_round(false)
 
 func _begin_round(allow_held: bool=true) -> void:
+ if story.phase=="fight":story.match_motion.clear()
  round_transition_at=INF
  pickup_reported=[false,false]
  audio.events.clear_round()
@@ -289,9 +309,9 @@ func _begin_round(allow_held: bool=true) -> void:
  step_started = [-INF,-INF]
  pose_until_by_player = [0.0, 0.0]
  last_error = [INF, INF]
- conductor.start(-1,selected_bpm)
+ if story.phase!="fight":conductor.start(-1,selected_bpm)
  anticipation_phrases = match_rng.randi_range(1,max_anticipation_phrases) if game_mode=="cpu" else randi_range(1, max_anticipation_phrases)
- cue = conductor.epoch+conductor.duration()*(anticipation_phrases*4+3)
+ cue = (conductor.phrase_start if story.phase=="fight" else conductor.epoch)+conductor.duration()*(anticipation_phrases*4+3)
  race_deadline = cue + race_timeout
  mode = "standoff"
  if game_mode=="cpu":cpu.start_round(cue)
@@ -299,8 +319,8 @@ func _begin_round(allow_held: bool=true) -> void:
  stage.speaker.anchor_time = conductor.epoch
  stage.speaker.bpm = selected_bpm
  previous_bpm = selected_bpm
- audio.music.pitch_scale=float(selected_bpm)/120.0
- audio.play_track("standoff", conductor.epoch, true)
+ if story.phase!="fight":audio.music.pitch_scale=float(selected_bpm)/120.0
+ if story.phase!="fight":audio.play_track("standoff", conductor.epoch, true)
  for player in range(fighters.size()):
   var fighter: Fighter=fighters[player]
   fighter.position=Vector2(bout.positions[player],Bout.GROUND_Y)
@@ -325,6 +345,7 @@ func _process(delta: float) -> void:
   story.advance()
   refresh()
   return
+ if story.phase=="fight" and mode not in ["standoff","race","combat"]:conductor.update(at)
  if mode in ["standoff", "race", "combat"]:
   advance_timeline(at)
  if mode == "standoff" and at >= cue:
@@ -334,7 +355,7 @@ func _process(delta: float) -> void:
    play_click(true)
   else:
    click_player.stop()
-   audio.music.stop()
+   if story.phase!="fight":audio.music.stop()
   audio.emit_event("go",race_event_key("go"))
   for player in range(2):
    if not bout.false_starts[player]:
@@ -356,12 +377,13 @@ func _process(delta: float) -> void:
      fighters[player].set_pose("stick_pickup")
     var phrase_seconds: float=conductor.duration()*4
     var next_boundary: float = conductor.epoch+ceil((at+conductor.duration()*1.5-conductor.epoch)/phrase_seconds)*phrase_seconds
-    conductor.start(next_boundary,selected_bpm)
+    if story.phase!="fight":conductor.start(next_boundary,selected_bpm)
+    else:story.fight_due=next_boundary
     phrase_resolved = false
- if mode == "pickup" and at >= conductor.epoch:
+ if mode == "pickup" and at >= (story.fight_due if story.phase=="fight" else conductor.epoch):
   mode = "combat"
   audio.music.pitch_scale=1.0
-  audio.play_track(str(selected_bpm), conductor.epoch)
+  if story.phase!="fight":audio.play_track(str(selected_bpm), conductor.epoch)
   advance_timeline(at)
  if mode=="finishing" and at>=transition_until:complete_round_transition()
  if mode=="round_win" and conductor.now()+0.000000001>=round_transition_at:next_round()
@@ -382,6 +404,8 @@ func _process(delta: float) -> void:
    fighters[player].position = Vector2(RhythmMovement.position_at(step_origins[player],target_x,step_started[player],at,step_seconds),150)
   elif mode=="combat":
    fighters[player].position = Vector2(target_x,150)
+  elif story.phase=="fight":
+   fighters[player].position=story.match_position(player,Vector2(target_x,150))
   else:
    fighters[player].position = fighters[player].position.lerp(Vector2(target_x, 150), minf(1.0, delta * 16))
   if controls[player].last_step_time != rendered_step_time[player] and absf(fighters[player].position.x-bout.positions[player])<1.0:
@@ -595,14 +619,10 @@ func resolve_exchange() -> void:
  elif status.begins_with("Clean") or bout.winner >= 0:
   fighters[defense].rhythmic_pose("hurt",0.2,70)
   fighters[defense].hit_feedback()
- if bout.winner >= 0 and story.phase=="fight":
-  story.finish_fight(bout.winner)
-  refresh()
-  return
  if bout.winner >= 0:
   match_progress.award_round(bout.winner)
   mode = "finishing"
-  audio.stop()
+  if story.phase!="fight":audio.stop()
   transition_until=conductor.now()+(0.22 if match_progress.winner>=0 else 0.35)
  refresh()
 
@@ -617,6 +637,7 @@ func complete_round_transition() -> void:
   fighters[1-winner].play_final("defeat")
   audio.music.pitch_scale=1.0
   audio.play_result(game_mode,winner)
+  if story.phase=="fight":story.finish_fight(winner)
   mode="match_win"
   flow.root("result")
  else:

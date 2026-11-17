@@ -49,6 +49,7 @@ func begin(id: String, indices: Array=[]) -> void:
  var lines: Array=definitions[id]
  for i in range(lines.size()):
   if not indices.is_empty() and not indices.has(i):continue
+  if lines[i].get("type","")!="speech":continue
   var entry: Dictionary=lines[i].duplicate()
   entry.id=id
   entry.sequence_index=i

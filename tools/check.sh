@@ -105,3 +105,8 @@ if ! rg -q 'STORY 011: [0-9]+ checks, 0 failures' output/story011.stdout; then e
 cat output/story012.stdout
 if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/story012.stdout; then exit 1; fi
 if ! rg -q 'STORY 012: [0-9]+ checks, 0 failures' output/story012.stdout; then exit 1; fi
+
+"$GODOT" --headless --path . --log-file output/story013.log --script tests/test_story013.gd >output/story013.stdout 2>&1
+cat output/story013.stdout
+if rg -n 'SCRIPT ERROR|Parse Error|Failed to load' output/story013.stdout; then exit 1; fi
+if ! rg -q 'STORY 013: [0-9]+ checks, 0 failures' output/story013.stdout; then exit 1; fi

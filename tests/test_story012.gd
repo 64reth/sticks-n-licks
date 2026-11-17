@@ -197,7 +197,7 @@ func run() -> void:
  game.return_to_title()
  story.save.data=disk.data.duplicate(true)
  story.start(false)
- check(story.actor.position==Vector2(148,150) and story.inventory.item=="crate","Continue starts safely at the reached central refuge")
+ check(story.actor.position==Vector2(36,150) and story.road_section==1 and story.inventory.item=="crate","Continue starts safely at the reached central refuge")
  check(story.obstacles.safe_waiting_area(story.actor.position.x),"Continue never spawns inside a live lane")
  var valid: Dictionary=disk.data.duplicate(true)
  disk.data["road_checkpoint"]=156
@@ -210,7 +210,7 @@ func run() -> void:
  story.save.data=disk.data.duplicate(true)
  game.return_to_title()
  story.start(false)
- check(story.actor.position.x==68,"Legacy road save moves to safe start, not former unsafe X100")
+ check(story.actor.position.x==36,"Legacy road save moves to safe start, not former unsafe X100")
  DirAccess.remove_absolute(ProjectSettings.globalize_path(disk.path))
  game.queue_free()
  await process_frame

@@ -16,6 +16,7 @@ func panel(rect: Rect2) -> void:
  draw_rect(rect,Color("172235"))
  draw_rect(rect,Color("ffe2a0"),false,1)
 func currency() -> String:return "BDS $%d" % story.wallet.money
+func rent_progress() -> String:return "RENT $%d / $%d" % [story.wallet.money,story.wallet.target()]
 func draw_inventory() -> void:
  panel(INVENTORY_RECT)
  var at:=INVENTORY_RECT.position
@@ -34,9 +35,11 @@ func draw_beats(at: Vector2, highlight_four: bool=false) -> void:
 func _draw() -> void:
  if not story:return
  if story.quest.completed.has("rent"):
-  var objective:=wrapped_lines(story.quest.hud_objective(),248)
-  for i in range(mini(2,objective.size())):text(objective[i],Vector2(8,11+i*10))
- var money:=currency()
+  var objective:=wrapped_lines(story.campaign_objective(),276)
+  for i in range(mini(2,objective.size())):text(objective[i],Vector2(8,34+i*10))
+ var money:=rent_progress()
+ draw_rect(Rect2(8,17,272,3),Color("172235"))
+ draw_rect(Rect2(8,17,roundf(272*minf(1,float(story.wallet.money)/story.wallet.target())),3),Color("ffe2a0"))
  text(money,Vector2(312-FONT.get_string_size(money,HORIZONTAL_ALIGNMENT_LEFT,-1,8).x,11))
  draw_inventory()
  if story.phase=="waiting" and not story.dialogue.active():text("READY ON THE NEXT BEAT",Vector2(8,39))
@@ -48,13 +51,16 @@ func _draw() -> void:
   draw_beats(Vector2(134,177))
   var context:=story.context_interaction()
   if not context.is_empty():
-   ControlPrompt.draw(self,str(context.action),str(context.label),Vector2(236,78) if story.screens.screen_id==3 else Vector2(70,52))
+   ControlPrompt.draw(self,str(context.action),str(context.label),Vector2(8,78) if story.screens.screen_id==3 else Vector2(70,52))
    if context.get("beat4",false):draw_beats(Vector2(93,69),true)
   if story.inventory.item=="crate":draw_rect(Rect2(story.actor.position+Vector2(10,-24),Vector2(10,10)),Color("b7834d"))
   if story.absolute_beat()<story.notification_until and not story.quest.notification.is_empty() and not story.quest.notification.begins_with("DONE:") and story.quest.notification!=str(story.quest.definition.objective):
    panel(Rect2(5,85,310,25))
    var lines:=wrapped_lines(story.quest.notification,296)
    for i in range(mini(2,lines.size())):text(lines[i],Vector2(10,95+i*10))
+ if story.absolute_beat()<story.reward_until and not story.reward_notice.is_empty():
+  panel(Rect2(8,112,304,16))
+  text(story.reward_notice,Vector2(14,123))
  if story.dialogue.active():
   panel(DIALOGUE_RECT)
   text(str(story.dialogue.line().speaker),Vector2(16,153))

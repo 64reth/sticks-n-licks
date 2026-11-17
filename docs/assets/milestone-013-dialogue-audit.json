@@ -1,0 +1,154 @@
+{
+  "approved_bajan_sha256": "59e2cc2ffeaa2d50fc02962fa0953610d172152b0160cbf0abd45efe357404a9",
+  "spoken_lines": [
+    {
+      "branch": "opening",
+      "index": 0,
+      "speaker": "WIFE",
+      "text": "Every month is de same foolishness! Where de rent money?",
+      "classification": "spoken dialogue",
+      "approval": "owner-approved Bajan text preserved exactly",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-opening-0-page0-full.png"
+    },
+    {
+      "branch": "opening",
+      "index": 1,
+      "speaker": "WIFE",
+      "text": "Yuh gine find it outside!",
+      "classification": "spoken dialogue",
+      "approval": "owner-approved Bajan text preserved exactly",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-opening-1-page0-full.png"
+    },
+    {
+      "branch": "opening",
+      "index": 2,
+      "speaker": "PROTAGONIST",
+      "text": "Wuhloss! I better find some money quick!",
+      "classification": "spoken dialogue",
+      "approval": "owner-approved Bajan text preserved exactly",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-opening-2-page0-full.png"
+    },
+    {
+      "branch": "vendor",
+      "index": 0,
+      "speaker": "VENDOR",
+      "text": "Wuh happen to you, boy? Yuh look like yuh had a rough morning!",
+      "classification": "spoken dialogue",
+      "approval": "owner-approved Bajan text preserved exactly",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-vendor-0-page0-full.png"
+    },
+    {
+      "branch": "vendor",
+      "index": 1,
+      "speaker": "PROTAGONIST",
+      "text": "Man, muh wife call me a wutless vagabond! Tell me carry muh backside and guh find de rent money outside!",
+      "classification": "spoken dialogue",
+      "approval": "owner-approved Bajan text preserved exactly",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-vendor-1-page0-full.png"
+    },
+    {
+      "branch": "vendor",
+      "index": 2,
+      "speaker": "VENDOR",
+      "text": "Cor blen! She really tell you all dat?",
+      "classification": "spoken dialogue",
+      "approval": "owner-approved Bajan text preserved exactly",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-vendor-2-page0-full.png"
+    },
+    {
+      "branch": "vendor",
+      "index": 3,
+      "speaker": "PROTAGONIST",
+      "text": "And kick me clean through de door too!",
+      "classification": "spoken dialogue",
+      "approval": "owner-approved Bajan text preserved exactly",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-vendor-3-page0-full.png"
+    },
+    {
+      "branch": "vendor",
+      "index": 4,
+      "speaker": "VENDOR",
+      "text": "Well, standing up hey en gine pay no rent. Come help me move dis crate. I gine give yuh five dollars.",
+      "classification": "spoken dialogue",
+      "approval": "owner-approved Bajan text preserved exactly",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-vendor-4-page0-full.png"
+    },
+    {
+      "branch": "vendor",
+      "index": 5,
+      "speaker": "PROTAGONIST",
+      "text": "Five dollars?! Man, I gine be sleeping outside till Christmas!",
+      "classification": "spoken dialogue",
+      "approval": "owner-approved Bajan text preserved exactly",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-vendor-5-page0-full.png"
+    },
+    {
+      "branch": "vendor",
+      "index": 6,
+      "speaker": "VENDOR",
+      "text": "Then yuh better start moving!",
+      "classification": "spoken dialogue",
+      "approval": "owner-approved Bajan text preserved exactly",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-vendor-6-page0-full.png"
+    },
+    {
+      "branch": "delivery",
+      "index": 0,
+      "speaker": "VENDOR",
+      "text": "Thank you for bringing the crate.",
+      "classification": "spoken dialogue",
+      "approval": "existing provisional English speech, technical clauses removed",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-delivery-0-page0-full.png"
+    },
+    {
+      "branch": "delivery",
+      "index": 1,
+      "speaker": "VENDOR",
+      "text": "Stick-fighting can help you earn money.",
+      "classification": "spoken dialogue",
+      "approval": "existing provisional English speech, technical clauses removed",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-delivery-1-page0-full.png"
+    },
+    {
+      "branch": "fight_intro",
+      "index": 0,
+      "speaker": "OPPONENT",
+      "text": "We can practise a stick fight here.",
+      "classification": "spoken dialogue",
+      "approval": "existing provisional English speech, technical clauses removed",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-fight_intro-0-page0-full.png"
+    },
+    {
+      "branch": "fight_lost",
+      "index": 0,
+      "speaker": "OPPONENT",
+      "text": "You can try again.",
+      "classification": "spoken dialogue",
+      "approval": "existing provisional English speech, technical clauses removed",
+      "native_capture": "docs/screenshots/milestone-013/dialogue-fight_lost-0-page0-full.png"
+    }
+  ],
+  "removed_non_speech": [
+    "fight_intro: Use the same controls as Versus. Win three exchanges to finish this encounter.",
+    "fight_lost: Your progress and money are safe.",
+    "quest_complete: completion announcement removed from speech; quest HUD notification instead",
+    "delivery: reward amount and navigation instructions moved to reward/objective channels",
+    "Opening speaker label: removed (FROM INSIDE); speaker name is WIFE, staging remains in cinematic state"
+  ],
+  "screens_without_speech": [
+    4,
+    5
+  ],
+  "runtime_entry_point": "StoryDialogue.begin filters type=speech; all calls audited in StorySession",
+  "native_verification": {
+    "recording": "output/milestone-013-rent-road-combat.avi",
+    "spoken_lines": 14,
+    "full_page_captures": 16,
+    "non_speech_lines": 0,
+    "method": "Every full page captured in native Godot and visually inspected; source and displayed speaker/text traced against audit",
+    "screens_without_speech": [
+      4,
+      5
+    ]
+  }
+}

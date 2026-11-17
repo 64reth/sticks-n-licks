@@ -38,7 +38,10 @@ var hazard_cycle: int=-1
 var quest_panel: bool=false
 var fight_due: float=INF
 var fight_result: int=-1
+var fight_music_key: String=""
+var fight_music_anchor: float=0
 var pose_samples: Dictionary={}
+var match_motion: Dictionary={}
 var opening_gate: bool=false
 var obstacle_subdivision: int=-1
 var unarmed:=UnarmedPresentation.new()
@@ -46,7 +49,10 @@ var opening_state: String="opening"
 var door_due: float=INF
 var kick_due: float=INF
 var recovery_started: float=0
-var road_checkpoint: float=68
+var road_section: int=0
+var reward_notice: String=""
+var reward_until: float=-INF
+var road_checkpoint: float=36
 var recovery_checkpoint: float=100
 func setup(owner: Node2D) -> void:
  game=owner
@@ -102,6 +108,9 @@ func start(cinematic: bool) -> void:
   wallet=StoryWallet.new()
  elif save.valid():restore_progress()
  dialogue.clear()
+ reward_notice=""
+ reward_until=-INF
+ fight_result=-1
  action_held=false
  var initial_screen: int=1 if cinematic else int(save.data.get("screen",1))
  load_screen(initial_screen)
@@ -126,8 +135,9 @@ func start(cinematic: bool) -> void:
  door_due=INF
  kick_due=INF
  dust_beat=-INF
- target_x=float(save.data.get("road_checkpoint",244 if quest.completed.has("cross") else 68)) if initial_screen==3 else float(config.start_x)
- road_checkpoint=target_x if initial_screen==3 else 68
+ road_section=int(save.data.get("road_section",1 if quest.completed.has("cross") or float(save.data.get("road_checkpoint",68))>=148 else 0))
+ target_x=292 if initial_screen==3 and quest.completed.has("cross") else (36 if initial_screen==3 else float(config.start_x))
+ road_checkpoint=target_x if initial_screen==3 else 36
  step_origin=target_x
  step_started=-INF
  actor.position=Vector2(float(config.door_x) if cinematic else target_x,Bout.GROUND_Y)
@@ -247,9 +257,9 @@ func advance() -> void:
   if relative>=float(config.idle_beat):finish_cinematic()
  elif phase=="waiting":
   if beat+0.000001>=unlock_at and not dialogue.active():
-   phase="complete" if quest.finished() else "playing"
+   phase="playing"
    if quest.notification==str(quest.definition.objective):notification_until=absolute_beat()+8
-   if quest.finished():game.flow.root("story_end")
+   if quest.finished():phase="playing"
    control.reset()
    record({"event":"control","at":now,"position":actor.position,"beat":beat})
  elif phase=="playing":
@@ -258,7 +268,17 @@ func advance() -> void:
    actor.reset_visual()
    actor.set_pose("story_duck" if bool(control.held.get("low",false)) else ("combat_idle" if inventory.item=="stick" else "story_idle"))
    actor.sprite.pause()
-   if target_x>=float(config.playable_right) and not dialogue.active():request_exit()
+   if target_x>=(292 if screens.screen_id==3 else float(config.playable_right)) and not dialogue.active():
+    if screens.screen_id==3 and road_section==0:
+     road_section=1
+     road_checkpoint=36
+     target_x=36
+     step_origin=36
+     actor.position.x=36
+     step_started=-INF
+     control.reset()
+     persist()
+    else:request_exit()
   if now-step_started<game.step_seconds:
    actor.sprite.frame=mini(1,int((now-step_started)/game.step_seconds*2))
    actor.sprite.pause()
@@ -277,7 +297,7 @@ func apply_step(beat: int, phrase_number: int, at: float) -> void:
  var direction:=control.step(beat,phrase_number)
  if direction==0 or dialogue.active():return
  var before:=target_x
- target_x=clampf(target_x+direction*Bout.STEP,Bout.MIN_X,float(config.playable_right))
+ target_x=clampf(target_x+direction*Bout.STEP,Bout.MIN_X,(292.0 if screens.screen_id==3 else float(config.playable_right)))
  if is_equal_approx(before,target_x):
   control.movement_executed=false
   control.step_feedback="REJECT screen boundary"
@@ -350,7 +370,9 @@ func load_screen(id: int) -> void:
  if screen is StoryQuestScreen:screen.session=self
  screen.bind_clock(game.conductor)
  obstacles.reset_safe(absolute_beat())
- road_checkpoint=68
+ road_checkpoint=36
+ road_section=0
+ obstacles.traffic=JSON.parse_string(FileAccess.get_file_as_string("res://data/story/traffic_013.json"))
  defenses=0
  obstacle_subdivision=-1
  hazard_cycle=-1
@@ -373,6 +395,10 @@ func enter_screen(id: int) -> void:
  persist()
 func request_exit() -> void:
  var id:=screens.screen_id
+ if id==6 and quest.finished():
+  quest.notification="More locations and the route home are upcoming."
+  notification_until=absolute_beat()+4
+  return
  var allowed:=id==1 or (id==2 and inventory.item=="crate") or (id==3 and quest.completed.has("delivery")) or (id==4 and defenses>=1) or (id==5 and defenses>=2)
  if not allowed:
   quest.notification="Finish the current objective first."
@@ -415,8 +441,10 @@ func interact(id: String) -> void:
   "delivery":
    if quest.current().get("id")=="handover" and inventory.remove("crate"):
     quest.emit_event("crate_delivered")
-    var reward:=quest.reward_for("delivery")
-    wallet.grant(str(reward.id),int(reward.amount))
+    var reward: Dictionary={"id":"crate_delivery","amount":wallet.campaign.delivery_reward}
+    if wallet.grant(str(reward.id),int(reward.amount)):
+     reward_notice="DELIVERY REWARD: BDS $%d" % int(reward.amount)
+     reward_until=absolute_beat()+16
     quest.emit_event("delivery_paid")
     persist()
     dialogue.begin("delivery")
@@ -442,9 +470,7 @@ func dialogue_completed(id: String) -> void:
  if id=="fight_intro" or id=="fight_lost":
   phase="fight_wait"
   fight_due=(floor(absolute_beat()/4)+1)*4
- if id=="quest_complete":
-  phase="complete"
-  game.flow.root("story_end")
+ if id=="quest_complete":phase="playing"
 func check_obstacles(beat: float) -> void:
  var subdivision:=int(floor(beat*16+0.000001))
  if subdivision==obstacle_subdivision:return
@@ -454,10 +480,10 @@ func check_obstacles(beat: float) -> void:
   var previous_checkpoint:=road_checkpoint
   road_checkpoint=obstacles.checkpoint_reached(actor.position.x,road_checkpoint)
   if road_checkpoint!=previous_checkpoint:persist()
-  if actor.position.x>=244 and game.game_time()-step_started>=game.step_seconds and quest.current().get("id")=="cross":
+  if road_section==1 and actor.position.x>=292 and game.game_time()-step_started>=game.step_seconds and quest.current().get("id")=="cross":
    quest.emit_event("road_crossed")
    persist()
-  if obstacles.road_collision(beat,actor.position.x):recover_collision("Traffic: back to the safe pavement.")
+  if obstacles.road_collision(beat,actor.position.x,road_section):recover_collision("Traffic: back to the safe pavement.")
  if screens.screen_id in [4,5]:
   var cycle:=int(floor((beat-obstacles.origin)/8))
   if obstacles.cane_active(beat) and actor.position.x>112 and actor.position.x<208 and cycle!=hazard_cycle:
@@ -483,40 +509,41 @@ func recover_collision(message: String) -> void:
  record({"event":"collision","screen":screens.screen_id,"beat":absolute_beat(),"item":inventory.item})
 func persist() -> void:
  if not quest.completed.has("rent"):return
- save.data={"version":2,"campaign":"rent_due","unlocked_screen":screens.screen_id,"checkpoint":"traversal","opening_complete":true,"screen":screens.screen_id,"completed":quest.completed.duplicate(),"item":inventory.item,"money":wallet.money,"rewards":wallet.rewards.duplicate()}
- if screens.screen_id==3:save.data["road_checkpoint"]=road_checkpoint
+ save.data={"version":2,"campaign":"rent_due","unlocked_screen":screens.screen_id,"checkpoint":"traversal","opening_complete":true,"screen":screens.screen_id,"completed":quest.completed.duplicate(),"item":inventory.item,"money":wallet.money,"rewards":wallet.rewards.duplicate(),"rent_target":wallet.target(),"reward_amounts":wallet.amounts.duplicate()}
+ if screens.screen_id==3:
+  save.data["road_checkpoint"]=road_checkpoint
+  save.data["road_section"]=road_section
  save.write()
 func restore_progress() -> void:
  quest.restore(save.data.get("completed",[]))
  inventory.item=str(save.data.get("item",""))
  wallet.money=int(save.data.get("money",0))
  wallet.rewards.assign(save.data.get("rewards",[]))
+ wallet.amounts=save.data.get("reward_amounts",{}).duplicate()
+ for id in wallet.rewards:
+  if not wallet.amounts.has(id):wallet.amounts[id]=wallet.reward_amount(id)
 func start_fight() -> void:
+ fight_music_key=game.audio.active
+ fight_music_anchor=game.audio.anchor
  phase="fight"
  overlay.visible=false
- game.mode="combat"
- game.game_mode="cpu"
- game.cpu.configure("easy",game.cpu_seed)
- game.cpu_difficulty="easy"
- game.bout=Bout.new()
- game.bout.stick_reach=float(game.settings.get("stick_reach",44))
- game.bout.positions.assign([138.0,182.0])
- game.bout.reactions.assign([0.0,0.0])
- game.phrase_resolved=false
- game.exchange_phrase=game.conductor.phrase
- game.selected.assign([-1,-1])
- game.pose_until_by_player.assign([-INF,-INF])
- game.movement_stun.assign(["",""])
- for i in range(2):
-  game.controls[i].reset()
-  game.fighters[i].visible=true
-  game.fighters[i].set_process(false)
-  game.fighters[i].reset_visual()
-  game.fighters[i].position=Vector2(game.bout.positions[i],150)
-  game.fighters[i].set_pose("combat_idle")
- game.impact_effect.visible=true
- game.cpu.plan_boundary(game.public_cpu_observation())
- game.refresh()
+ unarmed.visible=false
+ actor.sprite.visible=true
+ game.start_story_match(wallet.campaign.encounters.first_stick_fight)
+func campaign_objective() -> String:
+ if wallet.ready_to_pay():return "Return home and pay the rent. (Upcoming)"
+ if quest.finished():return "Find more paid work and stick fights. (Upcoming)"
+ return quest.hud_objective()
+func match_position(player: int, target: Vector2) -> Vector2:
+ # Presentation only: replace render-delta easing with a sampled musical-phase curve.
+ # Combat movement still uses the shared RhythmMovement interpolation in main.gd.
+ var token: String=game.mode+str(target)
+ if not match_motion.has(player) or match_motion[player].token!=token:
+  match_motion[player]={"token":token,"from":game.fighters[player].position,"beat":world.beat()}
+ var sample: Dictionary=match_motion[player]
+ var weight:=1-exp(-8*maxf(0,world.beat()-float(sample.beat)))
+ var point: Vector2=Vector2(sample.from).lerp(target,weight)
+ return Vector2(roundf(point.x),roundf(point.y))
 func sync_fight_poses() -> void:
  screens.current.queue_redraw()
  for i in range(2):
@@ -536,22 +563,40 @@ func sync_fight_poses() -> void:
    fighter.sprite.frame=mini(frames.get_frame_count(fighter.pose)-1,int(sample.frame)+int(maxf(0,game.conductor.now()-float(sample.start))*float(sample.speed)))
   fighter.sprite.pause()
 func finish_fight(winner: int) -> void:
+ # Called only by the existing guarded deciding-match result handler.
+ if phase!="fight" or game.match_progress.winner!=winner:return
  fight_result=winner
+ if winner==0:
+  quest.emit_event("fight_won")
+  var encounter: Dictionary=wallet.campaign.encounters.first_stick_fight
+  if wallet.grant(str(encounter.reward_id),int(encounter.reward)):
+   reward_notice="MATCH REWARD: BDS $%d" % int(encounter.reward)
+   reward_until=INF
+  persist()
+func return_from_match() -> void:
+ game.audio.play_track(fight_music_key,fight_music_anchor,true)
  game.cpu.queue.clear()
  game.mode="story"
  game.fighters[1].visible=false
+ game.impact_effect.clear()
  game.impact_effect.visible=false
+ game.ground_sticks.visible=false
  actor.reset_visual()
  actor.set_pose("combat_idle")
+ actor.position=Vector2(138,150)
  phase="playing"
  target_x=138
  step_origin=138
  step_started=-INF
- if winner==0:
-  quest.emit_event("fight_won")
-  persist()
-  dialogue.begin("quest_complete")
+ clear_inputs()
+ game.flow.view.visible=false
+ overlay.visible=true
+ if fight_result==0:
+  reward_until=absolute_beat()+12
+  quest.notification="A Stick To Share Licks complete. More paid work is upcoming."
+  notification_until=absolute_beat()+12
  else:dialogue.begin("fight_lost")
+ game.refresh()
 
 func clear_inputs() -> void:
  control.reset()
@@ -568,7 +613,7 @@ func context_interaction() -> Dictionary:
    if absf(target_x-92)<=30 and quest.current().get("id")=="vendor":return {"id":"vendor","label":"Talk - Beat 4","action":"p1_execute","beat4":true}
    if absf(target_x-142)<=28 and quest.current().get("id")=="crate":return {"id":"crate","label":"Pick up","action":"p1_execute"}
   3:
-   if target_x>=244 and quest.current().get("id")=="handover":return {"id":"delivery","label":"Deliver","action":"p1_execute"}
+   if road_section==1 and target_x>=292 and quest.current().get("id")=="handover":return {"id":"delivery","label":"Deliver","action":"p1_execute"}
   6:
    if absf(target_x-116)<=28 and inventory.item=="":return {"id":"stick","label":"Pick up","action":"p1_execute"}
    if inventory.item=="stick" and not quest.finished():return {"id":"fight_intro","label":"Talk","action":"p1_execute"}

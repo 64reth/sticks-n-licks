@@ -1,0 +1,364 @@
+{
+  "baseline": "971dd4e",
+  "engine": "Godot 4.6.2",
+  "recording": {
+    "path": "output/milestone-013-rent-road-combat.avi",
+    "sha256": "403a2bb954fc502ec746f298944eb3f56b581db4d9e31bda09ecc73ffeb05f30",
+    "frames": 17817,
+    "fps": 60,
+    "seconds": 296.95,
+    "audio_format": [
+      1,
+      2,
+      48000,
+      192000,
+      4,
+      16
+    ],
+    "audio_bytes": 57014400,
+    "audio": {
+      "samples": 28507200,
+      "peak": 0.82183837890625,
+      "rms": 0.11089949142226482,
+      "clipped_samples": 0,
+      "nonzero_samples": 28447521
+    }
+  },
+  "trace_seconds": 296.950000000059,
+  "frame_trace_agreement": true,
+  "trace_sha256": "ec2da8582862d7866b995a36cfa4d7daf9830c18e2208abfc2faf4ffc47f4738",
+  "native_log": "output/native013-proof.stdout",
+  "native_log_sha256": "5e2c770e9283683199a82b57aaf2c333a7b69da60d667b8a5567b495bb46f2b6",
+  "clock": "explicit offline injected test clock; production code remains conductor-based",
+  "native_final_money": 25,
+  "claimed_rewards": [
+    "crate_delivery",
+    "fight_first"
+  ],
+  "historical_amounts": {
+    "crate_delivery": 5,
+    "fight_first": 20
+  },
+  "rent_target": 100,
+  "rent_paid": false,
+  "music_result_events": [
+    {
+      "at": 241.900000000085,
+      "event": "match_result",
+      "game_mode": "cpu",
+      "theme": "defeat",
+      "winner": 1
+    },
+    {
+      "at": 289.900000000065,
+      "event": "match_result",
+      "game_mode": "cpu",
+      "theme": "victory",
+      "winner": 0
+    }
+  ],
+  "unique_capture_epochs": [
+    1.91666666666666
+  ],
+  "regression": {
+    "command": "bash tools/check.sh",
+    "exit_code": 0,
+    "full_log": "output/check013-final.stdout",
+    "full_log_sha256": "ca985e1532772cc5c1292c6de03a6714c80d80385c469999abd189bf6e4e0b97",
+    "cpu_matches": 900,
+    "cpu_checks": 1795853,
+    "python_tests": 41,
+    "story013_full_suite_checks": 148,
+    "postreview_story013_checks": 149,
+    "postreview_reason": "Added explicit upcoming-content response at completed slice boundary; repeated all Story and palm fixtures after review",
+    "postreview": [
+      {
+        "log": "output/story009-postreview.stdout",
+        "sha256": "54866d3e4e6f6c7ef230335b27acb0dff50bd3505f24c56c8d2041a827d5aa71",
+        "result": "STORY 009: 168 checks, 0 failures"
+      },
+      {
+        "log": "output/palm010-postreview.stdout",
+        "sha256": "564fdcb01b31c4efb311f1cd9cd67ddd3e08995fc3a0f78e93081455f4a7c6dd",
+        "result": "PALM 010: 353 checks, 0 failures"
+      },
+      {
+        "log": "output/story011-postreview.stdout",
+        "sha256": "9bcc9fccba03bd1fd80bf245c9657e86993bba5d3ad07b28e3a66fc7a9f2e509",
+        "result": "STORY 011: 168 checks, 0 failures"
+      },
+      {
+        "log": "output/story012-postreview.stdout",
+        "sha256": "71ae2ef6270af0cfc72edd37ad7ac698e11aa7d6ba5b4d0f570c5261e20c5d06",
+        "result": "STORY 012: 174 checks, 0 failures"
+      },
+      {
+        "log": "output/story013-postreview.stdout",
+        "sha256": "9ad75d17ce0a7bf73749cc7d846f651c1dea61fd41086bc7059a3d2caf5e046c",
+        "result": "STORY 013: 149 checks, 0 failures"
+      }
+    ]
+  },
+  "dialogue": {
+    "spoken_lines": 14,
+    "native_full_pages": 16,
+    "non_speech_lines": 0,
+    "all_pages_visually_inspected": true,
+    "approved_bajan_text_unchanged": true,
+    "harness": "Revealed page held through frame_post_draw before advancing"
+  },
+  "road": {
+    "sections": 2,
+    "logical_viewport": [
+      320,
+      180
+    ],
+    "fighter_height": 64,
+    "vehicle_body": [
+      64,
+      110
+    ],
+    "lane_width": 88,
+    "carriageway_width": 184,
+    "steps_per_section": 16,
+    "step_pixels": 16,
+    "step_milliseconds": 160,
+    "cycles": [
+      64,
+      80,
+      96,
+      112
+    ],
+    "combined_cycle": 6720,
+    "safe_starts": [
+      2394,
+      3500
+    ],
+    "worst_wait_beats": [
+      45,
+      45
+    ],
+    "worst_wait_seconds_at_120": 22.5
+  },
+  "preserved_core": [
+    {
+      "path": "scripts/input/combat_input.gd",
+      "sha256": "db0f08642226c41ba62cbd5446c6f64a14123d3b9bbaefeb5a63efa5d6029c9b",
+      "unchanged_from": "971dd4e"
+    },
+    {
+      "path": "scripts/input/rhythm_movement.gd",
+      "sha256": "cc57c5c6ad2d556d1ca7c39c5085e9573e62f36007e8dfa9d3612dc6c3592c83",
+      "unchanged_from": "971dd4e"
+    },
+    {
+      "path": "scripts/combat/bout.gd",
+      "sha256": "3c0631ecf12feb7a15da6e29ebe819f5821adca3af3dc705905ea9d205cab073",
+      "unchanged_from": "971dd4e"
+    },
+    {
+      "path": "scripts/combat/match_progress.gd",
+      "sha256": "cfad3019a209d9c94f1cfe75d5c2ca6b8892d76adc84c894ac061becfd74f68a",
+      "unchanged_from": "971dd4e"
+    },
+    {
+      "path": "scripts/rhythm/rhythm_conductor.gd",
+      "sha256": "a0fa34fdfc74d8e42928c456430801dc3cc6104523d9ca933a0d8d5ee9694c81",
+      "unchanged_from": "971dd4e"
+    },
+    {
+      "path": "scripts/ai/cpu_controller.gd",
+      "sha256": "6472ce23ceadab7f2028f405139a1c75b9900b2daeaf475f125f0ba8d9e500c9",
+      "unchanged_from": "971dd4e"
+    },
+    {
+      "path": "scripts/props/coconut_palm.gd",
+      "sha256": "4871ce64e8f16d2daaa06703399f9221230a7ca037d82f768a12ea6e2c34b61e",
+      "unchanged_from": "971dd4e"
+    },
+    {
+      "path": "scripts/fighters/fighter.gd",
+      "sha256": "cda3a293044856d862e48febfd22c579790df23f764da93720fbc15ad07f07ab",
+      "unchanged_from": "971dd4e"
+    },
+    {
+      "path": "data/combat/settings.json",
+      "sha256": "af6e3413e0f4e7fa4a6063ed0c437f5fbc81764ed874e9a950f0e93ceca3540b",
+      "unchanged_from": "971dd4e"
+    },
+    {
+      "path": "data/cpu.json",
+      "sha256": "5e202cafa011b99776eed7788ac15a3e1553b170713fee52d6c9dd238677c20b",
+      "unchanged_from": "971dd4e"
+    },
+    {
+      "path": "data/audio.json",
+      "sha256": "9de8e9dc66d23af9af17ba553a8cf76b1749816ff5665399845af42dd71de3da",
+      "unchanged_from": "971dd4e"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/screenshots/milestone-013/central-refuge.png",
+      "sha256": "7d7addb74afa66b76e2fadc47d41cbb35df39d16e0df18117b15273da5d9144a"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/combat-hud-match2-round2.png",
+      "sha256": "8ab808a1c6b1252b32a53057870c7004e818f16203bc73a025d760dd1ad61f2c"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/combat-hud.png",
+      "sha256": "ac89b60a7e25ff4d09e29b4378d8e8b6baf33c868e03564de1a5ba0d1d38d028"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/combat-round_win-match2-round1.png",
+      "sha256": "e87b8c50c941063983c5f75a62625cb70a1ca353eb115fefe02cb6f9dde21074"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/combat-standoff-match2-round2.png",
+      "sha256": "e6bd1430436ef5df0a76bf074b7723a5832320be6bb3c6af7cb0a860404c7d95"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/countdown-go.png",
+      "sha256": "3e2cc39a4fcb9d61389a71f117d5b3bb1bb5d4f426979c2805b2293b9ec13f84"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/damage-frame1.png",
+      "sha256": "abc3491105874ca5cd8ca2f8a20a827ad21080874b0aff04c4a2504393176e04"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-delivery-0-page0-full.png",
+      "sha256": "4cbfcf546374d30adeff2dc86dfeae9fa700456dba23593a2f25418a1dcad530"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-delivery-1-page0-full.png",
+      "sha256": "bfefc7def84d7902894ad82c54fe76a16bcaa593460a20d0afa01d5fe5be3598"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-fight_intro-0-page0-full.png",
+      "sha256": "408670896716d071673dce8327f3be0b15add4f2bde484d8fa8e4a9a27c16c97"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-fight_lost-0-page0-full.png",
+      "sha256": "9feacda9c9835a1c1dcc9cd180fdf97a5a874b2c04d839fb21d980845cfae208"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-opening-0-page0-full.png",
+      "sha256": "77150db22d89341a7885c99ee29864c98d97725e229f1c5e39a3faef17b11ec8"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-opening-1-page0-full.png",
+      "sha256": "65e1963f67fe8cacef800263ec0155e81d1acf4c486af7d50eaba4a2d7617fe7"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-opening-2-page0-full.png",
+      "sha256": "5f02a577c209d646c2687b492da099671c94ebe1d535c1d099e548a30028b38c"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-vendor-0-page0-full.png",
+      "sha256": "de048d46b7afad1e32ec6e6f310ffdd5f1eda065b3e931fe02547755a8dd8db5"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-vendor-1-page0-full.png",
+      "sha256": "de113be5335b496c639a2697783c1c00839b2648edbc0a13c2e18c07bd65056f"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-vendor-1-page1-full.png",
+      "sha256": "3e1c3db248f240b3a2bfb8dc9ed6fd18593007d2596a8ba143a0cf5ddd3ed31a"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-vendor-2-page0-full.png",
+      "sha256": "8ba7f59584beeca51d81d4dee0a924285fa7b48fafbfa554135465f629e4b153"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-vendor-3-page0-full.png",
+      "sha256": "e6012bd42670dc556194ed6d414a3fa1d5d6779df5f76df07811d9a50efd3ecd"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-vendor-4-page0-full.png",
+      "sha256": "5b4d4a793ef5573c9c8ae05b0c421669f0d3d9b77191ce5e106366a52cbedcb0"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-vendor-4-page1-full.png",
+      "sha256": "709299d1044e038c9f032af2233483358dcaf52028190f716e4be0e5ecd8784d"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-vendor-5-page0-full.png",
+      "sha256": "8a45dea35f8cdf9cc15cfe031b03add0b6de47e2ef5159e78d867bc1cef5e8d8"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/dialogue-vendor-6-page0-full.png",
+      "sha256": "7a29842b35d39a91b1a23ac353100b29809a9e709e964242d2d74f382471c778"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/lane0-vehicle.png",
+      "sha256": "468b89ea43e6280ce53c5532af210ce8709c52f6f410a06cf37660b0306c2b3a"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/lane1-vehicle.png",
+      "sha256": "ca7e53199a71107252762c9eb19bfa3dffa8014cdd87ed16a105b23b9a36988a"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/lane2-vehicle.png",
+      "sha256": "85d9f738c492730ae90f7d00c4f7cad77ab0f68aa91044b62dcf3297bfa38899"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/lane3-vehicle.png",
+      "sha256": "dfe87b949f952765bce7f3740e30061a8378cc26160e7ff68e81446147e14354"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/match-0.png",
+      "sha256": "4d70a6d6545397c61f7fec18d2b895fb44a7ac1400d415ecff2fa8272d70fca2"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/match-1.png",
+      "sha256": "26068aa5e6ed20f6ecdcd323d3ea1e82198436d85d1a905f943dfff509475125"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/reward-exploration.png",
+      "sha256": "0e53ae2647b62c47ec491ff2ac8356a34d4b93814e12e4f09a74b3e15a7bebd8"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/road-section0.png",
+      "sha256": "638c3cfc14020bb89dbdf1c16cc7ef09501ec271d0c4f22fb80fb77a121926ff"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/road-section1.png",
+      "sha256": "7d7addb74afa66b76e2fadc47d41cbb35df39d16e0df18117b15273da5d9144a"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/screen1.png",
+      "sha256": "f657e75344bf31161b36856bc8cdf8200c5b05ca95fdb4292cb5241383571dff"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/screen4.png",
+      "sha256": "345980ec2994e7a66557fda03c55276db23e737c48b6ec5556a42c0f8ae1b67c"
+    },
+    {
+      "path": "docs/screenshots/milestone-013/traffic-recovery.png",
+      "sha256": "4f36f8684ea98bda20167926feb6b63da3a5dbd659542c7db89f98069776348f"
+    }
+  ],
+  "limitations": [
+    "Provisional economy requires owner balance approval",
+    "Current content earns BDS25; further jobs/encounters and home payment are upcoming, campaign remains active",
+    "Conservative road reservation can wait 22.5 seconds",
+    "Native demonstration uses scripted legal inputs, not physical keyboard/controller playtesting",
+    "PCM inspected and system playback invoked; no subjective listening/perceptual audio-synchronisation claim",
+    "Vehicles and remaining English speech are provisional, no final artwork commissioned"
+  ],
+  "native_countdown_inspection": {
+    "actual_avi_seconds": [
+      273,
+      273.5,
+      274,
+      274.5,
+      275.42,
+      290,
+      293,
+      296
+    ],
+    "go_frame": "docs/screenshots/milestone-013/countdown-go.png",
+    "result": "Countdown, GO, 2-0 deciding result and restored exploration visually inspected in decoded native AVI frames"
+  }
+}

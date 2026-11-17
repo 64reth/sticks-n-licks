@@ -126,16 +126,13 @@ func run() -> void:
  check(story.screens.screen_id==3,"Crate gate to crossing")
  # Deliberate vehicle collision using the real obstacle predicate at contact, then recovery.
  walk_to(100)
- var cycle: float=story.obstacles.origin
- tick((cycle+15.1)*.5+game.conductor.epoch)
- story.check_obstacles(story.absolute_beat())
- if story.phase!="recovering":
-  tick((cycle+15.2)*.5+game.conductor.epoch)
-  story.check_obstacles(story.absolute_beat())
+ for guard in range(2000):
+  tick(raw+.03)
+  if story.phase=="recovering":break
  check(story.phase=="recovering","Vehicle collision detected")
  check(story.inventory.item=="crate" and story.wallet.money==0,"Collision retains crate and money")
  tick((story.recovery_beat+.1)*.5+game.conductor.epoch)
- check(story.phase=="playing" and story.target_x==68,"Nearest reached safe checkpoint recovery")
+ check(story.phase=="playing" and story.target_x==36,"Nearest reached safe checkpoint recovery")
  # Begin at cycle start, seven accepted taps across a twelve-beat safe window.
  cross_road(0)
  cross_road(1)
@@ -162,44 +159,56 @@ func run() -> void:
  drain()
  tick(ceil(raw/2)*2+2)
  check(story.inventory.item=="stick" and story.phase=="fight","Existing combat handoff")
- check(game.mode=="combat" and game.game_mode=="cpu","Production combat/CPU context")
+ check(game.mode=="standoff" and game.game_mode=="cpu","Production match countdown/CPU context")
  check(not story.overlay.visible,"Quest HUD yields to existing combat HUD")
  tick(raw+.02)
  check(not game.fighters[0].sprite.is_playing() and not game.fighters[1].sprite.is_playing(),"Story fight sprites sample conductor rather than free-run")
  check(game.bout.hits==[0,0],"No free damage or initiative reward")
- # Resolve three legal hit fixtures through the existing adapter, not a Story damage path.
+ # Resolve the full best-of-three using legal actions, including race and movement.
  game.cpu.queue.clear()
  game.game_mode="pvp"
- for n in range(8):
-  if story.quest.finished():break
-  var at: float=game.conductor.phrase_start+game.conductor.duration()*3
-  if at<=raw:at+=2
-  tick(at)
-  if game.bout.initiative==0:
-   game.submit_action(0,"high",true,raw)
+ for guard in range(300):
+  if game.mode=="match_win":break
+  if game.mode in ["standoff","race"]:
+   tick(game.cue+.01)
    game.submit_action(0,"execute",true,raw)
    game.submit_action(0,"execute",false,raw)
-   game.submit_action(0,"high",false,raw)
-  tick(at+.25)
-  game.cpu.queue.clear()
- check(story.quest.finished(),"First three-hit victory completes quest")
- check(story.wallet.money==5,"Fight awards no invented cash")
- check(game.conductor.epoch==epoch,"Six screens and combat preserve conductor epoch")
+   game.submit_action(1,"execute",true,raw+.03)
+   game.submit_action(1,"execute",false,raw+.03)
+   tick(raw+.05)
+  elif game.mode=="pickup":tick(story.fight_due)
+  elif game.mode=="combat":
+   tick(game.conductor.beat_time+game.conductor.duration())
+   if absf(game.bout.positions[1]-game.bout.positions[0])>game.bout.stick_reach:
+    game.submit_action(0,"right",true,raw)
+    game.submit_action(0,"right",false,raw)
+   if game.conductor.beat==4:
+    game.submit_action(0,"high",true,raw)
+    game.submit_action(0,"execute",true,raw)
+    game.submit_action(0,"execute",false,raw)
+    game.submit_action(0,"high",false,raw)
+    tick(raw+.25)
+  elif game.mode=="finishing":tick(game.transition_until+.001)
+  elif game.mode=="round_win":tick(game.round_transition_at+.001)
+ check(story.quest.finished() and game.match_progress.round_wins==[2,0],"Two three-hit round wins complete first match quest")
+ check(story.wallet.money==25,"Full match awards configured BDS20 after delivery")
+ check(game.conductor.epoch==epoch,"Six screens and full match preserve conductor epoch")
+ story.return_from_match()
  drain()
- check(story.phase=="complete","Quest-complete menu")
+ check(story.phase=="playing","Subquest complete returns to active campaign")
  var disk:=StorySave.new()
  disk.path="res://output/story011-save-test.json"
  disk.data=story.save.data.duplicate(true)
  disk.write()
  check(disk.load_progress(),"Version 2 complete quest save round trip")
- check(disk.data.money==5 and disk.data.rewards==["crate_delivery"],"Reward ledger saved exactly once")
+ check(disk.data.money==25 and disk.data.rewards==["crate_delivery","fight_first"],"Reward ledger saved exactly once")
  game.return_to_title()
  story.save.data=disk.data.duplicate(true)
  story.start(false)
  check(story.screens.screen_id==6 and story.inventory.item=="stick","Continue restores clearing and armed item")
- check(story.actor.pose=="combat_idle" and story.wallet.money==5,"Armed Continue does not regress to unarmed pose or repay")
+ check(story.actor.pose=="combat_idle" and story.wallet.money==25,"Armed Continue does not regress to unarmed pose or repay")
  tick(ceil(raw*2)/2+.5)
- check(story.phase=="complete","Completed quest Continue opens result")
+ check(story.phase=="playing","Completed subquest Continue keeps campaign playable")
  disk.data.item="crate"
  disk.write()
  check(not disk.load_progress(),"Inconsistent inventory save rejected")
@@ -214,7 +223,9 @@ func run() -> void:
  print("STORY 011: %d checks, %d failures" % [checks,failures])
  quit(1 if failures else 0)
 func walk_to(destination: float) -> void:
+ var section: int=game.story.road_section
  for guard in range(24):
+  if game.story.screens.screen_id==3 and game.story.road_section!=section:break
   if game.story.screens.screen_id!=1 and game.story.phase=="transition":break
   if absf(game.story.target_x-destination)<1:break
   tick(ceil((raw+.001)*2)/2)
@@ -226,4 +237,5 @@ func cross_road(index: int) -> void:
  for guard in range(160):
   tick(ceil((raw+.001)*2)/2)
   if game.story.obstacles.can_start_road(index,game.story.world.beat()):break
- walk_to(int(game.story.obstacles.traffic.roads[index].to))
+ walk_to(292)
+ if index==0:check(game.story.road_section==1 and game.story.target_x==36,"Fixed-section transition reaches central reservation")

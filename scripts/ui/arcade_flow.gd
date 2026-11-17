@@ -76,6 +76,7 @@ func refresh() -> void:
   "result":
    title=("YOU WIN!" if game.match_progress.winner==0 else "YOU LOSE!") if game.game_mode=="cpu" else ("RED WINS!" if game.match_progress.winner==0 else "BLUE WINS!")
    rows=[item("REMATCH","rematch"),item("MATCH SETUP","setup"),item("MAIN MENU","title")]
+   if game.story.phase=="fight":rows=[item("CONTINUE" if game.match_progress.winner==0 else "RETRY","story_match_return"),item("STORY MENU","story_menu")]
  view.present(title,rows,sub)
 func command(action: String) -> void:
  if action=="nav":
@@ -83,6 +84,7 @@ func command(action: String) -> void:
   return
  game.audio.emit_event("menu_back" if action in ["back","tutorial_exit","title"] else "menu_confirm")
  match action:
+  "story_match_return":game.story.return_from_match()
   "story_menu":
    if game.mode=="story" or game.story.phase=="fight":game.return_to_title()
    open("story_menu")

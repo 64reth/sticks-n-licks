@@ -16,15 +16,24 @@ func load_progress() -> bool:
   return true
  if parsed.get("version")!=2 or typeof(parsed.get("screen")) not in [TYPE_INT,TYPE_FLOAT] or int(parsed.screen) not in range(1,7):return false
  if not parsed.get("completed") is Array or parsed.get("item") not in ["","crate","stick"] or not parsed.get("rewards") is Array:return false
- if (parsed.get("money")!=0 and parsed.get("money")!=5) or (parsed.money==5)!=parsed.rewards.has("crate_delivery"):return false
- if parsed.has("road_checkpoint") and (typeof(parsed.road_checkpoint) not in [TYPE_INT,TYPE_FLOAT] or (parsed.road_checkpoint!=68 and parsed.road_checkpoint!=148 and parsed.road_checkpoint!=244)):return false
+ if parsed.has("reward_amounts") and not parsed.reward_amounts is Dictionary:return false
+ var amounts: Dictionary=parsed.get("reward_amounts",{})
+ if not amounts.is_empty() and amounts.size()!=parsed.rewards.size():return false
+ for id in amounts:
+  if not parsed.rewards.has(id):return false
+ var economy:=StoryWallet.new()
+ if typeof(parsed.get("money")) not in [TYPE_INT,TYPE_FLOAT] or parsed.money!=economy.total_for(parsed.rewards,amounts):return false
+ if parsed.has("rent_target") and parsed.rent_target!=economy.target():parsed.rent_target=economy.target()
+ if parsed.has("road_checkpoint") and (typeof(parsed.road_checkpoint) not in [TYPE_INT,TYPE_FLOAT] or float(parsed.road_checkpoint) not in [36.0,68.0,148.0,244.0,292.0]):return false
+ if parsed.has("road_section") and float(parsed.road_section) not in [0.0,1.0]:return false
  var log:=QuestLog.new()
  log.restore(parsed.completed)
  if log.completed!=parsed.completed:return false
  var expected_item: String="stick" if log.completed.has("stick") else ("crate" if log.completed.has("crate") and not log.completed.has("handover") else "")
- if parsed.item!=expected_item or (parsed.money==5)!=log.completed.has("payment"):return false
+ if parsed.item!=expected_item or parsed.rewards.has("crate_delivery")!=log.completed.has("payment"):return false
  var gates: Array[String]=["rent","village","crate","stick_search","stick_search","cane"]
  if not log.completed.has(gates[int(parsed.screen)-1]):return false
+ if parsed.rewards.has("fight_first") and not log.completed.has("fight"):return false
  data=parsed.duplicate(true)
  return true
 func valid() -> bool:return not data.is_empty()

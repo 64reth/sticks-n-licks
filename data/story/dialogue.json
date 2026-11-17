@@ -1,89 +1,97 @@
 {
   "opening": [
     {
-      "speaker": "WIFE (FROM INSIDE)",
+      "speaker": "WIFE",
       "text": "Every month is de same foolishness! Where de rent money?",
-      "placeholder": false
+      "placeholder": false,
+      "type": "speech"
     },
     {
       "speaker": "WIFE",
       "text": "Yuh gine find it outside!",
-      "placeholder": false
+      "placeholder": false,
+      "type": "speech"
     },
     {
       "speaker": "PROTAGONIST",
       "text": "Wuhloss! I better find some money quick!",
-      "placeholder": false
+      "placeholder": false,
+      "type": "speech"
     }
   ],
   "vendor": [
     {
       "speaker": "VENDOR",
       "text": "Wuh happen to you, boy? Yuh look like yuh had a rough morning!",
-      "placeholder": false
+      "placeholder": false,
+      "type": "speech"
     },
     {
       "speaker": "PROTAGONIST",
       "text": "Man, muh wife call me a wutless vagabond! Tell me carry muh backside and guh find de rent money outside!",
-      "placeholder": false
+      "placeholder": false,
+      "type": "speech"
     },
     {
       "speaker": "VENDOR",
       "text": "Cor blen! She really tell you all dat?",
-      "placeholder": false
+      "placeholder": false,
+      "type": "speech"
     },
     {
       "speaker": "PROTAGONIST",
       "text": "And kick me clean through de door too!",
-      "placeholder": false
+      "placeholder": false,
+      "type": "speech"
     },
     {
       "speaker": "VENDOR",
       "text": "Well, standing up hey en gine pay no rent. Come help me move dis crate. I gine give yuh five dollars.",
-      "placeholder": false
+      "placeholder": false,
+      "type": "speech"
     },
     {
       "speaker": "PROTAGONIST",
       "text": "Five dollars?! Man, I gine be sleeping outside till Christmas!",
-      "placeholder": false
+      "placeholder": false,
+      "type": "speech"
     },
     {
       "speaker": "VENDOR",
       "text": "Then yuh better start moving!",
-      "placeholder": false
+      "placeholder": false,
+      "type": "speech"
     }
   ],
   "delivery": [
     {
       "speaker": "VENDOR",
-      "text": "Thank you for bringing the crate. Here is BDS $5.",
-      "placeholder": true
+      "text": "Thank you for bringing the crate.",
+      "placeholder": true,
+      "type": "speech"
     },
     {
       "speaker": "VENDOR",
-      "text": "Stick-fighting can help you earn money. Follow the road to the cane fields and find a suitable stick.",
-      "placeholder": true
+      "text": "Stick-fighting can help you earn money.",
+      "placeholder": true,
+      "type": "speech"
     }
   ],
   "fight_intro": [
     {
       "speaker": "OPPONENT",
-      "text": "We can practise a stick fight here. Use the same controls as Versus. Win three exchanges to finish this encounter.",
-      "placeholder": true
+      "text": "We can practise a stick fight here.",
+      "placeholder": true,
+      "type": "speech"
     }
   ],
   "fight_lost": [
     {
       "speaker": "OPPONENT",
-      "text": "You can try again. Your progress and money are safe.",
-      "placeholder": true
+      "text": "You can try again.",
+      "placeholder": true,
+      "type": "speech"
     }
   ],
-  "quest_complete": [
-    {
-      "speaker": "PROTAGONIST",
-      "text": "The first fight is won. There is still rent to earn.",
-      "placeholder": true
-    }
-  ]
+  "quest_complete": []
 }
