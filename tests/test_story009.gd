@@ -31,11 +31,21 @@ func run() -> void:
  var epoch: float=game.conductor.epoch
  for i in range(15):
   advance(i*.5+.01)
+  if i in [1,3]:
+   story.submit("execute",true,raw)
+   story.submit("execute",false,raw)
   story.submit("right",true,raw)
   check(is_equal_approx(story.target_x,100),"Cinematic rejects movement")
   check(story.control.pending_move==0,"No cinematic movement queue")
   story.submit("right",false,raw)
  advance(7.51)
+ for line in range(3):
+  story.submit("execute",true,raw)
+  story.submit("execute",false,raw)
+ advance(7.75)
+ for line in range(3):
+  story.submit("execute",true,raw)
+  story.submit("execute",false,raw)
  check(story.phase=="waiting","Recovery becomes unarmed idle before handoff")
  check(actor.pose=="character_master","Existing unarmed idle selected")
  var position: Vector2=actor.position
@@ -113,12 +123,12 @@ func run() -> void:
   story.submit("right",true,at)
   story.submit("right",false,at+.01)
   advance(at+.20)
- check(story.phase=="complete","Exit only after final movement finishes")
+ check(story.phase=="transition","Exit queues next beat after final movement finishes")
  check(actor.position.x==float(story.config.playable_right),"Right screen boundary clamps safely")
- check(game.flow.view.page=="story_end","End of Screen 01 menu")
+ check(story.pending_screen==2,"Screen 01 now leads to village")
  game.refresh()
- check(not story.overlay.visible,"Story overlay cannot cover completion menu")
- check(story.save.valid() and story.save.data.checkpoint=="screen01_complete","Versioned checkpoint")
+ check(story.overlay.visible,"Traversal HUD remains available at screen transition")
+ check(story.save.valid() and story.save.data.version==2,"Versioned checkpoint")
  game.flow.command("story_menu")
  check(game.mode=="menu" and game.flow.view.page=="story_menu","Return to Story menu")
  check(not game.flow.view.rows[1].disabled,"Continue enabled")
@@ -157,7 +167,7 @@ func run() -> void:
   check(not disk.load_progress(),"Malformed/incompatible save rejected")
  disk.checkpoint("traversal")
  check(disk.load_progress(),"Versioned save round trip")
- check(disk.data.keys().size()==5,"Only requested save fields persisted")
+ check(disk.data.keys().size()==10,"Version 2 persists quest, inventory and wallet checkpoint")
  DirAccess.remove_absolute(ProjectSettings.globalize_path(disk.path))
  game.return_to_title()
  MenuTestInput.start(game)

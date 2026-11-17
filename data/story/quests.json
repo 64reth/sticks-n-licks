@@ -1,0 +1,80 @@
+{
+  "campaign": "rent_due",
+  "title": "Rent Due!",
+  "objective": "Earn enough money to pay the rent.",
+  "quests": [
+    {
+      "id": "a_stick_to_share",
+      "title": "A Stick To Share Licks",
+      "steps": [
+        {
+          "id": "rent",
+          "text": "Find a way to pay the rent",
+          "event": "opening_complete"
+        },
+        {
+          "id": "village",
+          "text": "Head down the village road",
+          "event": "village_entered"
+        },
+        {
+          "id": "vendor",
+          "text": "Talk to the roadside vendor",
+          "event": "vendor_spoken"
+        },
+        {
+          "id": "crate",
+          "text": "Pick up the crate",
+          "event": "crate_picked"
+        },
+        {
+          "id": "delivery",
+          "text": "Deliver the crate to the next vendor",
+          "event": "delivery_paid",
+          "children": [
+            {
+              "id": "cross",
+              "text": "Cross the road safely",
+              "event": "road_crossed"
+            },
+            {
+              "id": "handover",
+              "text": "Hand over the crate",
+              "event": "crate_delivered"
+            },
+            {
+              "id": "payment",
+              "text": "Collect your BDS $5",
+              "event": "delivery_paid"
+            }
+          ],
+          "reward": {
+            "id": "crate_delivery",
+            "currency": "BDS",
+            "amount": 5
+          }
+        },
+        {
+          "id": "stick_search",
+          "text": "Find a good fighting stick",
+          "event": "cane_road_entered"
+        },
+        {
+          "id": "cane",
+          "text": "Get through the cane",
+          "event": "cane_cleared"
+        },
+        {
+          "id": "stick",
+          "text": "Pick up a fighting stick",
+          "event": "stick_picked"
+        },
+        {
+          "id": "fight",
+          "text": "Win your first stick fight",
+          "event": "fight_won"
+        }
+      ]
+    }
+  ]
+}

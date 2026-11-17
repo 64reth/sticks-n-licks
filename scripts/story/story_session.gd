@@ -19,8 +19,33 @@ var accents: Dictionary={}
 var dust_beat: float=-INF
 var blocked: Dictionary={}
 var trace: Array[Dictionary]=[]
+var world: BeatWorld
+var quest:=QuestLog.new()
+var inventory:=StoryInventory.new()
+var wallet:=StoryWallet.new()
+var dialogue:=StoryDialogue.new()
+var obstacles:=StoryObstacles.new()
+var pending_screen: int=0
+var transition_beat: float=INF
+var notification_until: float=-INF
+var action_held: bool=false
+var interaction: Dictionary={}
+var interaction_beat: String=""
+var dialogue_beat: float=INF
+var recovery_beat: float=INF
+var defenses: int=0
+var hazard_cycle: int=-1
+var quest_panel: bool=false
+var fight_due: float=INF
+var fight_result: int=-1
+var pose_samples: Dictionary={}
+var opening_gate: bool=false
+var obstacle_subdivision: int=-1
 func setup(owner: Node2D) -> void:
  game=owner
+ world=BeatWorld.new(game.conductor)
+ dialogue.completed.connect(dialogue_completed)
+ quest.progressed.connect(func(_event):notification_until=world.beat()+4)
  z_index=-1
  config=JSON.parse_string(FileAccess.get_file_as_string("res://data/story_009.json"))
  if game.conductor.clock_override.is_valid():save.path=""
@@ -45,7 +70,7 @@ func install_art() -> void:
    var path: String=("res://assets/story/009/fighter_%02d.png" if name=="story_eviction" else "res://assets/characters/fighter_01/frames/milestone_002/race/%03d.png") % index
    frames.add_frame(name,load(path))
   actor.animation_meta[name]={"scale":64.0/289 if name=="story_eviction" else 64.0/240,"canvas":[768,768],"ground_pixel":744}
-func absolute_beat() -> float:return (game.game_time()-game.conductor.epoch)/game.conductor.duration()
+func absolute_beat() -> float:return world.beat()
 func start(cinematic: bool) -> void:
  game.intro.visible=false
  game.intro_music_pending=false
@@ -58,7 +83,17 @@ func start(cinematic: bool) -> void:
  if not game.conductor.started:
   game.conductor.start(game.conductor.now(),int(config.tempo))
   game.audio.play_track(str(int(config.tempo)),game.conductor.epoch,true)
- screens.load_screen(1).bind_clock(game.conductor)
+  game.previous_bpm=int(config.tempo)
+ if cinematic:
+  quest=QuestLog.new()
+  quest.progressed.connect(func(_event):notification_until=world.beat()+4)
+  inventory=StoryInventory.new()
+  wallet=StoryWallet.new()
+ elif save.valid():restore_progress()
+ dialogue.clear()
+ action_held=false
+ var initial_screen: int=1 if cinematic else int(save.data.get("screen",1))
+ load_screen(initial_screen)
  visible=true
  overlay.visible=true
  game.stage.visible=false
@@ -66,7 +101,8 @@ func start(cinematic: bool) -> void:
  game.ground_sticks.visible=false
  game.impact_effect.visible=false
  game.hud.visible=false
- actor.visible=true
+ actor.visible=not cinematic
+ actor.set_process(false)
  actor.reset_visual()
  actor.face(1)
  control.reset()
@@ -74,6 +110,7 @@ func start(cinematic: bool) -> void:
  trace.clear()
  origin=ceil(absolute_beat()-0.000001)
  accents.clear()
+ opening_gate=false
  dust_beat=-INF
  target_x=float(config.start_x)
  step_origin=target_x
@@ -84,11 +121,14 @@ func start(cinematic: bool) -> void:
  house.start(origin)
  recovery.start(origin)
  phase="cinematic"
- if not cinematic:finish_cinematic()
+ if cinematic:dialogue.begin("opening",[0])
+ else:finish_cinematic()
  game.refresh()
  advance()
 func deactivate() -> void:
  phase="inactive"
+ dialogue.clear()
+ game.fighters[0].visible=true
  house.stop()
  recovery.stop()
  visible=false
@@ -97,34 +137,74 @@ func deactivate() -> void:
  game.fighters[1].visible=true
  game.impact_effect.visible=true
  actor.reset_visual()
+ for fighter in game.fighters: fighter.set_process(true)
 func finish_cinematic() -> void:
  house.stop()
  recovery.stop()
  screens.current.house_frame=1
+ actor.visible=true
  actor.position=Vector2(target_x,Bout.GROUND_Y)
  actor.reset_visual()
- actor.set_pose("character_master")
+ actor.set_pose("combat_idle" if inventory.item=="stick" else "character_master")
  actor.sprite.stop()
  phase="waiting"
  control.reset()
  for c in game.controls:c.reset()
  # Always a future boundary, never the middle of recovery or the current late window.
  unlock_at=floor(absolute_beat()+0.000001)+1
- save.checkpoint("traversal")
+ quest.emit_event("opening_complete")
+ quest.notification=str(quest.definition.objective)
+ notification_until=INF
+ persist()
 func advance() -> void:
  if phase=="inactive":return
+ if game.paused:return
  var beat:=absolute_beat()
  var relative:=beat-origin
  var now: float=game.game_time()
+ if dialogue.pending and beat+0.000001>=dialogue_beat:
+  dialogue.on_subdivision()
+  control.reset()
+ if not interaction.is_empty() and beat+0.000001>=float(interaction.due):
+  var requested:=interaction.duplicate()
+  interaction.clear()
+  interact(str(requested.id))
+ if phase=="transition" and beat+0.000001>=transition_beat:
+  enter_screen(pending_screen)
+ if phase=="recovering" and beat+0.000001>=recovery_beat:
+  actor.reset_visual()
+  target_x=100
+  step_origin=100
+  step_started=-INF
+  actor.position=Vector2(100,150)
+  control.reset()
+  phase="playing"
+ if phase=="fight_wait" and beat+0.000001>=fight_due:start_fight()
+ if phase=="fight":sync_fight_poses()
+ if screens.current is StoryQuestScreen:screens.current.queue_redraw()
  if phase=="cinematic":
+  var pre_kick_dialogue: bool=dialogue.active() and dialogue.line().get("id")=="opening" and int(dialogue.line().get("sequence_index",2))<2
+  if relative>=4 and pre_kick_dialogue:opening_gate=true
+  if opening_gate:
+   origin=beat-3 if pre_kick_dialogue else ceil(beat-0.000001)-4
+   relative=beat-origin
+   house.origin=origin
+   recovery.origin=origin
+   if not pre_kick_dialogue:opening_gate=false
   var h:=house.sample(beat)
   var f:=recovery.sample(beat)
   if not h.is_empty():screens.current.house_frame=int(h.frame)
+  actor.visible=relative>=float(config.flight_start)
   actor.set_pose("story_eviction")
   actor.sprite.stop()
-  if not f.is_empty():actor.sprite.frame=int(f.frame)
+  if not f.is_empty():actor.sprite.frame=2 if relative<float(config.landing_beat) else int(f.frame)
   var progress:=clampf((relative-float(config.flight_start))/(float(config.landing_beat)-float(config.flight_start)),0,1)
   actor.position=Vector2(roundf(lerpf(float(config.door_x),target_x,progress)),roundf(Bout.GROUND_Y-sin(progress*PI)*24))
+  for trigger in [{"beat":2,"index":1},{"beat":6,"index":2}]:
+   var key: String="dialogue%d" % int(trigger.index)
+   if relative>=float(trigger.beat) and not accents.has(key):
+    accents[key]=true
+    dialogue.begin("opening",[int(trigger.index)])
   for cue in config.accents:
    if relative>=float(cue.beat) and not accents.has(cue.id):
     accents[cue.id]=true
@@ -132,33 +212,35 @@ func advance() -> void:
     game.audio.emit_event(cue.sound,"story:%s:%s" % [origin,cue.id])
   if relative>=float(config.idle_beat):finish_cinematic()
  elif phase=="waiting":
-  if beat+0.000001>=unlock_at:
-   phase="playing"
+  if beat+0.000001>=unlock_at and not dialogue.active():
+   phase="complete" if quest.finished() else "playing"
+   if quest.notification==str(quest.definition.objective):notification_until=absolute_beat()+8
+   if quest.finished():game.flow.root("story_end")
    control.reset()
    record({"event":"control","at":now,"position":actor.position,"beat":beat})
  elif phase=="playing":
   actor.position=Vector2(roundf(RhythmMovement.position_at(step_origin,target_x,step_started,now,game.step_seconds)),Bout.GROUND_Y)
   if now-step_started>=game.step_seconds:
    actor.reset_visual()
-   actor.set_pose("story_duck" if bool(control.held.get("low",false)) else "character_master")
+   actor.set_pose("story_duck" if bool(control.held.get("low",false)) else ("combat_idle" if inventory.item=="stick" else "character_master"))
    actor.sprite.stop()
-   if target_x>=float(config.playable_right):
-    phase="complete"
-    control.reset()
-    save.checkpoint("screen01_complete")
-    game.flow.root("story_end")
- screens.current.dust_age=(beat-dust_beat)*game.conductor.duration() if is_finite(dust_beat) else -1
+   if target_x>=float(config.playable_right) and not dialogue.active():request_exit()
+  if now-step_started<game.step_seconds:
+   actor.sprite.frame=mini(1,int((now-step_started)/game.step_seconds*2))
+   actor.sprite.stop()
+  if not dialogue.active():check_obstacles(beat)
+ screens.current.dust_age=(beat-dust_beat)/2 if is_finite(dust_beat) else -1
  screens.current.dust_x=float(config.start_x)
  screens.current.queue_redraw()
  overlay.queue_redraw()
 func on_beat(beat: int, phrase_number: int) -> void:
  # Catch up cinematic recovery before dispatching this boundary's movement.
  advance()
- if phase=="playing":apply_step(beat,phrase_number,game.conductor.beat_time)
+ if phase=="playing" and not dialogue.active():apply_step(beat,phrase_number,game.conductor.beat_time)
 func apply_step(beat: int, phrase_number: int, at: float) -> void:
  control.last_step_evaluated=at
  var direction:=control.step(beat,phrase_number)
- if direction==0:return
+ if direction==0 or dialogue.active():return
  var before:=target_x
  target_x=clampf(target_x+direction*Bout.STEP,Bout.MIN_X,float(config.playable_right))
  if is_equal_approx(before,target_x):
@@ -169,7 +251,7 @@ func apply_step(beat: int, phrase_number: int, at: float) -> void:
  step_started=game.game_time()
  control.last_step_time=at
  control.last_step_processed=step_started
- actor.rhythmic_pose("story_"+RhythmMovement.pose(direction,1),game.step_seconds)
+ actor.rhythmic_pose(("" if inventory.item=="stick" else "story_")+RhythmMovement.pose(direction,1),game.step_seconds)
  record({"event":"step","at":at,"target":target_x,"beat":"%d:%d" % [phrase_number,beat],"grade":control.movement_grade})
 func record(row: Dictionary) -> void:
  trace.append(row)
@@ -177,6 +259,22 @@ func record(row: Dictionary) -> void:
 func submit(action: String, pressed: bool, at: float) -> void:
  game.conductor.update(at)
  advance()
+ if action=="execute":
+  var fresh:=pressed and not action_held
+  action_held=pressed
+  dialogue.press(pressed)
+  if fresh and dialogue.active():
+   dialogue_beat=ceil(absolute_beat()*4-0.000001)/4
+   advance()
+   return
+  if fresh and phase=="playing" and not quest_panel:
+   queue_interaction(at)
+  if not pressed:dialogue.held=false
+  return
+ if dialogue.active() or quest_panel:
+  if pressed:blocked[action]=true
+  else:blocked.erase(action)
+  return
  if phase!="playing":
   if pressed:blocked[action]=true
   else:blocked.erase(action)
@@ -189,7 +287,16 @@ func submit(action: String, pressed: bool, at: float) -> void:
  advance()
 func key(event: InputEvent) -> void:
  if event is InputEventKey and event.pressed and not event.echo:
-  if event.keycode==KEY_ENTER and phase=="cinematic":finish_cinematic()
+  if event.keycode==KEY_TAB and phase=="playing" and not dialogue.active():
+   var safe_verge: bool=screens.screen_id not in [3,4,5] or target_x<=112 or target_x>=208
+   if safe_verge or quest_panel:quest_panel=not quest_panel
+   else:
+    quest.notification="Open quest details from a safe verge."
+    notification_until=absolute_beat()+2
+   control.reset()
+  if event.keycode==KEY_ENTER and phase=="cinematic":
+   dialogue.clear()
+   finish_cinematic()
   if OS.is_debug_build() and game.debug_visible:
    match event.keycode:
     KEY_F6:start(true)
@@ -202,3 +309,205 @@ func player_state() -> String:
  if phase!="playing":return phase.to_upper()
  if game.game_time()-step_started<game.step_seconds:return "MOVING"
  return "DUCKING" if bool(control.held.get("low",false)) else "IDLE"
+
+func load_screen(id: int) -> void:
+ var screen:=screens.load_screen(id)
+ if screen is StoryQuestScreen:screen.session=self
+ screen.bind_clock(game.conductor)
+ obstacles.reset_safe(absolute_beat())
+ defenses=0
+ obstacle_subdivision=-1
+ hazard_cycle=-1
+func enter_screen(id: int) -> void:
+ load_screen(id)
+ target_x=36
+ step_origin=36
+ step_started=-INF
+ actor.position=Vector2(36,150)
+ actor.visible=true
+ actor.reset_visual()
+ actor.set_pose("character_master")
+ control.reset()
+ interaction.clear()
+ phase="playing"
+ pending_screen=0
+ if id==2:quest.emit_event("village_entered")
+ if id==4:quest.emit_event("cane_road_entered")
+ if id==6:quest.emit_event("cane_cleared")
+ persist()
+func request_exit() -> void:
+ var id:=screens.screen_id
+ var allowed:=id==1 or (id==2 and inventory.item=="crate") or (id==3 and quest.completed.has("delivery")) or (id==4 and defenses>=1) or (id==5 and defenses>=2)
+ if not allowed:
+  quest.notification="Finish the current objective first."
+  notification_until=absolute_beat()+2
+  return
+ phase="transition"
+ control.reset()
+ pending_screen=id+1
+ transition_beat=floor(absolute_beat()+0.000001)+1
+func queue_interaction(at: float) -> void:
+ var target: Dictionary=game.conductor.nearest_beat(game.conductor.timestamp(at))
+ if absf(game.conductor.timestamp(at)-float(target.time))*1000>game.movement_good_ms:
+  quest.notification="MISS: press F on a beat."
+  notification_until=absolute_beat()+2
+  return
+ if interaction_beat==str(target.id):return
+ var id: String=""
+ match screens.screen_id:
+  2:
+   if absf(target_x-92)<=30 and quest.current().get("id")=="vendor":id="vendor"
+   elif absf(target_x-142)<=28 and quest.current().get("id")=="crate":id="crate"
+  3:
+   if target_x>=228 and quest.completed.has("cross"):id="delivery"
+  6:
+   if absf(target_x-116)<=28 and inventory.item=="":id="stick"
+   elif inventory.item=="stick" and not quest.finished():id="fight_intro"
+ if id.is_empty():return
+ interaction_beat=str(target.id)
+ interaction={"id":id,"due":maxf(ceil(absolute_beat()*4-0.000001)/4,absolute_beat()+maxf(0,float(target.time)-at)/game.conductor.duration())}
+ advance()
+func interact(id: String) -> void:
+ control.reset()
+ match id:
+  "vendor":dialogue.begin("vendor")
+  "crate":
+   if inventory.pickup("crate"):
+    quest.emit_event("crate_picked")
+    game.audio.emit_event("pickup","story_crate")
+    persist()
+  "delivery":
+   if quest.current().get("id")=="handover" and inventory.remove("crate"):
+    quest.emit_event("crate_delivered")
+    var reward:=quest.reward_for("delivery")
+    wallet.grant(str(reward.id),int(reward.amount))
+    quest.emit_event("delivery_paid")
+    persist()
+    dialogue.begin("delivery")
+  "stick":
+   if quest.current().get("id")=="stick" and inventory.pickup("stick"):
+    quest.emit_event("stick_picked")
+    actor.set_pose("combat_idle")
+    persist()
+    dialogue.begin("fight_intro")
+  "fight_intro":dialogue.begin("fight_intro")
+func dialogue_completed(id: String) -> void:
+ control.reset()
+ if id=="vendor":
+  quest.emit_event("vendor_spoken")
+  persist()
+ if id=="fight_intro" or id=="fight_lost":
+  phase="fight_wait"
+  fight_due=(floor(absolute_beat()/4)+1)*4
+ if id=="quest_complete":
+  phase="complete"
+  game.flow.root("story_end")
+func check_obstacles(beat: float) -> void:
+ var subdivision:=int(floor(beat*16+0.000001))
+ if subdivision==obstacle_subdivision:return
+ obstacle_subdivision=subdivision
+ beat=float(subdivision)/16
+ if screens.screen_id==3:
+  if actor.position.x>=212 and game.game_time()-step_started>=game.step_seconds and quest.current().get("id")=="cross":
+   quest.emit_event("road_crossed")
+   persist()
+  if obstacles.road_collision(beat,actor.position.x):recover_collision("Traffic: back to the safe pavement.")
+ if screens.screen_id in [4,5]:
+  var cycle:=int(floor((beat-obstacles.origin)/8))
+  if obstacles.cane_active(beat) and actor.position.x>112 and actor.position.x<208 and cycle!=hazard_cycle:
+   hazard_cycle=cycle
+   if bool(control.held.get("low",false)):
+    defenses+=1
+    quest.notification="DODGED %d/%d" % [defenses,1 if screens.screen_id==4 else 2]
+    notification_until=beat+2
+   else:recover_collision("Watch the warning, then hold S to duck.")
+func recover_collision(message: String) -> void:
+ phase="recovering"
+ control.reset()
+ actor.reset_visual()
+ actor.set_pose("hurt")
+ actor.sprite.stop()
+ recovery_beat=ceil(absolute_beat())+1
+ obstacles.reset_safe(recovery_beat)
+ hazard_cycle=-1
+ quest.notification=message
+ notification_until=recovery_beat+2
+ record({"event":"collision","screen":screens.screen_id,"beat":absolute_beat(),"item":inventory.item})
+func persist() -> void:
+ if not quest.completed.has("rent"):return
+ save.data={"version":2,"campaign":"rent_due","unlocked_screen":screens.screen_id,"checkpoint":"traversal","opening_complete":true,"screen":screens.screen_id,"completed":quest.completed.duplicate(),"item":inventory.item,"money":wallet.money,"rewards":wallet.rewards.duplicate()}
+ save.write()
+func restore_progress() -> void:
+ quest.restore(save.data.get("completed",[]))
+ inventory.item=str(save.data.get("item",""))
+ wallet.money=int(save.data.get("money",0))
+ wallet.rewards.assign(save.data.get("rewards",[]))
+func start_fight() -> void:
+ phase="fight"
+ overlay.visible=false
+ game.mode="combat"
+ game.game_mode="cpu"
+ game.cpu.configure("easy",game.cpu_seed)
+ game.cpu_difficulty="easy"
+ game.bout=Bout.new()
+ game.bout.stick_reach=float(game.settings.get("stick_reach",44))
+ game.bout.positions.assign([138.0,182.0])
+ game.bout.reactions.assign([0.0,0.0])
+ game.phrase_resolved=false
+ game.exchange_phrase=game.conductor.phrase
+ game.selected.assign([-1,-1])
+ game.pose_until_by_player.assign([-INF,-INF])
+ game.movement_stun.assign(["",""])
+ for i in range(2):
+  game.controls[i].reset()
+  game.fighters[i].visible=true
+  game.fighters[i].set_process(false)
+  game.fighters[i].reset_visual()
+  game.fighters[i].position=Vector2(game.bout.positions[i],150)
+  game.fighters[i].set_pose("combat_idle")
+ game.impact_effect.visible=true
+ game.cpu.plan_boundary(game.public_cpu_observation())
+ game.refresh()
+func sync_fight_poses() -> void:
+ screens.current.queue_redraw()
+ for i in range(2):
+  var fighter: Fighter=game.fighters[i]
+  var frames: SpriteFrames=fighter.sprite.sprite_frames
+  fighter.sprite.modulate=Color.WHITE
+  if not game.completed_exchanges.is_empty():
+   var event: Dictionary=game.completed_exchanges.back()
+   if int(event.get("defender",-1))==i and event.get("kind")=="HIT" and game.conductor.now()-float(event.time)<.2:fighter.sprite.modulate=Color(1,.45,.45)
+  var token: String=fighter.pose+str(fighter.visual_until)
+  if frames.get_animation_loop(fighter.pose):
+   fighter.sprite.frame=world.pose(frames.get_frame_count(fighter.pose),4,i*2)
+  else:
+   if not pose_samples.has(i) or pose_samples[i].token!=token:
+    pose_samples[i]={"token":token,"start":game.conductor.now(),"frame":fighter.sprite.frame,"speed":frames.get_animation_speed(fighter.pose)*fighter.sprite.speed_scale}
+   var sample: Dictionary=pose_samples[i]
+   fighter.sprite.frame=mini(frames.get_frame_count(fighter.pose)-1,int(sample.frame)+int(maxf(0,game.conductor.now()-float(sample.start))*float(sample.speed)))
+  fighter.sprite.stop()
+func finish_fight(winner: int) -> void:
+ fight_result=winner
+ game.cpu.queue.clear()
+ game.mode="story"
+ game.fighters[1].visible=false
+ game.impact_effect.visible=false
+ actor.reset_visual()
+ actor.set_pose("combat_idle")
+ phase="playing"
+ target_x=138
+ step_origin=138
+ step_started=-INF
+ if winner==0:
+  quest.emit_event("fight_won")
+  persist()
+  dialogue.begin("quest_complete")
+ else:dialogue.begin("fight_lost")
+
+func clear_inputs() -> void:
+ control.reset()
+ blocked.clear()
+ action_held=false
+ interaction.clear()
+ dialogue.pending=false
+ dialogue.held=false

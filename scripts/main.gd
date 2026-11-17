@@ -392,6 +392,7 @@ func _process(delta: float) -> void:
    fighters[player].request_pose("combat_idle",0,0)
   if mode == "combat" and at > pose_until_by_player[player]:
    fighters[player].request_pose("combat_idle",0,0)
+ if story.phase=="fight":story.sync_fight_poses()
  combat_debug.visible = debug_visible
  combat_debug.queue_redraw()
  refresh()
@@ -455,7 +456,7 @@ func advance_timeline(at: float) -> void:
  advancing_timeline=false
 
 func game_time() -> float:
- if mode == "combat" and not conductor.clock_override.is_valid() and audio.tracks.has(audio.active) and audio.music.playing:
+ if mode == "combat" and story.phase!="fight" and not conductor.clock_override.is_valid() and audio.tracks.has(audio.active) and audio.music.playing:
   return audio.anchor + maxf(0.0, audio.audio_time())
  return conductor.now()
 
@@ -594,6 +595,10 @@ func resolve_exchange() -> void:
  elif status.begins_with("Clean") or bout.winner >= 0:
   fighters[defense].rhythmic_pose("hurt",0.2,70)
   fighters[defense].hit_feedback()
+ if bout.winner >= 0 and story.phase=="fight":
+  story.finish_fight(bout.winner)
+  refresh()
+  return
  if bout.winner >= 0:
   match_progress.award_round(bout.winner)
   mode = "finishing"
@@ -653,11 +658,9 @@ func set_paused(value: bool) -> void:
  audio.events.set_paused(value)
  for fighter in fighters: fighter.process_mode=Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
  for control in controls:control.reset()
- if mode=="story":
-  story.control.reset()
-  story.blocked.clear()
+ if mode=="story" or story.phase=="fight":story.clear_inputs()
  bout.movements=[0,0]
- if value:flow.root("story_pause" if mode=="story" else "pause")
+ if value:flow.root("story_pause" if mode=="story" or story.phase=="fight" else "pause")
  refresh()
 
 func return_to_title() -> void:

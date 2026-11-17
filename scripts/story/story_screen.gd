@@ -10,6 +10,8 @@ func _ready() -> void:
 func bind_clock(clock: RhythmConductor) -> void:
  $CoconutPalm.bind_clock(clock)
 func _draw() -> void:
+ # Masonry backing closes the transparent foundation gap without moving/resizing art.
+ draw_rect(Rect2(0,146,82,5),Color("9f7854"))
  if not house_frames.is_empty():draw_texture_rect(house_frames[house_frame],Rect2(-384*.27,150-744*.27,768*.27,768*.27),false)
  if dust_age>=0 and dust_age<1:
   for i in range(9):

@@ -80,8 +80,15 @@ func run() -> void:
  for time in [1.0,2.0,3.0,7.5,8.0,8.5]:
   raw=time
   game._process(0)
+  if time in [1.0,2.0]:
+   game.story.submit("execute",true,raw)
+   game.story.submit("execute",false,raw)
   palm.sync_clock()
   check(palm.frame==int(time*2)%8,"No discontinuity through kick/landing/recovery/handoff")
+ for line in range(3):
+  game.story.submit("execute",true,raw)
+  game.story.submit("execute",false,raw)
+ game.story.advance()
  check(game.story.phase=="playing" and game.conductor.epoch==epoch,"Handoff preserves conductor")
  game.story.submit("right",true,8.5)
  game.story.submit("right",false,8.51)

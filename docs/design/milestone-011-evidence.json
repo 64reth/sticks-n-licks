@@ -1,0 +1,1431 @@
+{
+  "baseline": "da10d9168e8f9fa8461f2c5ca4eac7894c75d9b0",
+  "branch": "development",
+  "world_rule": "All animated/reactive Story elements sample the existing authoritative conductor; no independent production world timers.",
+  "preserved_rules_and_component": {
+    "scripts/input/combat_input.gd": {
+      "sha256": "db0f08642226c41ba62cbd5446c6f64a14123d3b9bbaefeb5a63efa5d6029c9b",
+      "unchanged": true
+    },
+    "scripts/input/rhythm_movement.gd": {
+      "sha256": "cc57c5c6ad2d556d1ca7c39c5085e9573e62f36007e8dfa9d3612dc6c3592c83",
+      "unchanged": true
+    },
+    "scripts/combat/bout.gd": {
+      "sha256": "3c0631ecf12feb7a15da6e29ebe819f5821adca3af3dc705905ea9d205cab073",
+      "unchanged": true
+    },
+    "scripts/rhythm/rhythm_conductor.gd": {
+      "sha256": "a0fa34fdfc74d8e42928c456430801dc3cc6104523d9ca933a0d8d5ee9694c81",
+      "unchanged": true
+    },
+    "scripts/ai/cpu_controller.gd": {
+      "sha256": "6472ce23ceadab7f2028f405139a1c75b9900b2daeaf475f125f0ba8d9e500c9",
+      "unchanged": true
+    },
+    "scripts/props/coconut_palm.gd": {
+      "sha256": "4871ce64e8f16d2daaa06703399f9221230a7ca037d82f768a12ea6e2c34b61e",
+      "unchanged": true
+    },
+    "data/combat/settings.json": {
+      "sha256": "af6e3413e0f4e7fa4a6063ed0c437f5fbc81764ed874e9a950f0e93ceca3540b",
+      "unchanged": true
+    },
+    "data/cpu.json": {
+      "sha256": "5e202cafa011b99776eed7788ac15a3e1553b170713fee52d6c9dd238677c20b",
+      "unchanged": true
+    },
+    "data/audio.json": {
+      "sha256": "9de8e9dc66d23af9af17ba553a8cf76b1749816ff5665399845af42dd71de3da",
+      "unchanged": true
+    }
+  },
+  "font_extension": {
+    "glyph": "$",
+    "changed_pixel_bounds": [
+      24,
+      0,
+      29,
+      6
+    ],
+    "other_glyphs_and_metrics_preserved": true
+  },
+  "movie": {
+    "path": "output/milestone-011-story-vertical-slice.avi",
+    "sha256": "5b13a4d415d4f8e37ff45d0d13900f3aba86c8d4b941d24deee8e50aed7da6a6",
+    "frames": 5599,
+    "fps": 60,
+    "seconds": 93.31666666666666,
+    "audio_format": [
+      1,
+      2,
+      48000,
+      192000,
+      4,
+      16
+    ],
+    "audio_bytes": 17916800,
+    "audio": {
+      "samples": 8958400,
+      "peak": 0.659393310546875,
+      "rms": 0.10972709548653485,
+      "clipped_samples": 0,
+      "nonzero_samples": 8945543
+    }
+  },
+  "movie_run": {
+    "captures": [
+      {
+        "beat": 0.0,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-opening-0",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "quest": [],
+        "screen": 1
+      },
+      {
+        "beat": 3.03333333333332,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-opening-1",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "quest": [],
+        "screen": 1
+      },
+      {
+        "beat": 6.0,
+        "epoch": 1.91666666666666,
+        "id": "airborne-entrance",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "quest": [],
+        "screen": 1
+      },
+      {
+        "beat": 8.0,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-opening-2",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "quest": [],
+        "screen": 1
+      },
+      {
+        "beat": 10.0333333333333,
+        "epoch": 1.91666666666666,
+        "id": "landing",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "quest": [],
+        "screen": 1
+      },
+      {
+        "beat": 18.0000000000002,
+        "epoch": 1.91666666666666,
+        "id": "screen1",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent"
+        ],
+        "screen": 1
+      },
+      {
+        "beat": 30.0000000000006,
+        "epoch": 1.91666666666666,
+        "id": "screen2",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 32.2666666666672,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-vendor-0",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 35.5000000000003,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-vendor-1",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 40.7666666666667,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-vendor-2",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 43.0,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-vendor-3",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 45.0333333333331,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-vendor-4",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 50.2666666666662,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-vendor-5",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 53.4999999999993,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-vendor-6",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 69.0,
+        "epoch": 1.91666666666666,
+        "id": "screen3",
+        "item": "crate",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate"
+        ],
+        "screen": 3
+      },
+      {
+        "beat": 81.0,
+        "epoch": 1.91666666666666,
+        "id": "traffic-warning",
+        "item": "crate",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate"
+        ],
+        "screen": 3
+      },
+      {
+        "beat": 83.6333333333309,
+        "epoch": 1.91666666666666,
+        "id": "traffic-recovery",
+        "item": "crate",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "recovering",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate"
+        ],
+        "screen": 3
+      },
+      {
+        "beat": 93.2666666666637,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-delivery-0",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery"
+        ],
+        "screen": 3
+      },
+      {
+        "beat": 96.4999999999969,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-delivery-1",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery"
+        ],
+        "screen": 3
+      },
+      {
+        "beat": 101.766666666663,
+        "epoch": 1.91666666666666,
+        "id": "paid",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery"
+        ],
+        "screen": 3
+      },
+      {
+        "beat": 105.0,
+        "epoch": 1.91666666666666,
+        "id": "screen4",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search"
+        ],
+        "screen": 4
+      },
+      {
+        "beat": 111.0,
+        "epoch": 1.91666666666666,
+        "id": "duck-screen4",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search"
+        ],
+        "screen": 4
+      },
+      {
+        "beat": 121.0,
+        "epoch": 1.91666666666666,
+        "id": "screen5",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search"
+        ],
+        "screen": 5
+      },
+      {
+        "beat": 135.0,
+        "epoch": 1.91666666666666,
+        "id": "duck-screen5",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search"
+        ],
+        "screen": 5
+      },
+      {
+        "beat": 144.0,
+        "epoch": 1.91666666666666,
+        "id": "screen6",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search",
+          "cane"
+        ],
+        "screen": 6
+      },
+      {
+        "beat": 147.266666666661,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-fight_intro-0",
+        "item": "stick",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search",
+          "cane",
+          "stick"
+        ],
+        "screen": 6
+      },
+      {
+        "beat": 156.0,
+        "epoch": 1.91666666666666,
+        "id": "first-fight",
+        "item": "stick",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "fight",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search",
+          "cane",
+          "stick"
+        ],
+        "screen": 6
+      },
+      {
+        "beat": 175.499999999992,
+        "epoch": 1.91666666666666,
+        "id": "dialogue-quest_complete-0",
+        "item": "stick",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search",
+          "cane",
+          "stick",
+          "fight"
+        ],
+        "screen": 6
+      },
+      {
+        "beat": 178.766666666659,
+        "epoch": 1.91666666666666,
+        "id": "quest-complete",
+        "item": "stick",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "complete",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search",
+          "cane",
+          "stick",
+          "fight"
+        ],
+        "screen": 6
+      }
+    ],
+    "clock": "offline injected",
+    "exchanges": [
+      {
+        "attack_region": "[P: (147.0, 92.0), S: (35.0, 12.0)]",
+        "attacker": 0,
+        "defender": 1,
+        "distance": 44.0,
+        "height": 0,
+        "hurt_region": "[P: (173.0, 86.0), S: (18.0, 64.0)]",
+        "impact_time": 81.4166666666667,
+        "kind": "HIT",
+        "overlap": true,
+        "phrase": 39,
+        "reason": "",
+        "round": 1,
+        "stick_reach": 44.0,
+        "time": 81.6666666666633
+      },
+      {
+        "attack_region": "[P: (147.0, 92.0), S: (35.0, 12.0)]",
+        "attacker": 0,
+        "defender": 1,
+        "distance": 44.0,
+        "height": 0,
+        "hurt_region": "[P: (173.0, 86.0), S: (18.0, 64.0)]",
+        "impact_time": 83.4166666666667,
+        "kind": "WHIFF",
+        "overlap": true,
+        "phrase": 40,
+        "reason": "timing",
+        "round": 1,
+        "stick_reach": 44.0,
+        "time": 83.6666666666632
+      },
+      {
+        "attack_region": "[P: (138.0, 92.0), S: (35.0, 12.0)]",
+        "attacker": 1,
+        "defender": 0,
+        "distance": 44.0,
+        "height": 0,
+        "hurt_region": "[P: (129.0, 86.0), S: (18.0, 64.0)]",
+        "impact_time": 85.4166666666667,
+        "kind": "PARRY",
+        "overlap": true,
+        "phrase": 41,
+        "reason": "",
+        "round": 1,
+        "stick_reach": 44.0,
+        "time": 85.6666666666631
+      },
+      {
+        "attack_region": "[P: (147.0, 92.0), S: (35.0, 12.0)]",
+        "attacker": 0,
+        "defender": 1,
+        "distance": 44.0,
+        "height": 0,
+        "hurt_region": "[P: (173.0, 86.0), S: (18.0, 64.0)]",
+        "impact_time": 87.4166666666667,
+        "kind": "HIT",
+        "overlap": true,
+        "phrase": 42,
+        "reason": "",
+        "round": 1,
+        "stick_reach": 44.0,
+        "time": 87.666666666663
+      },
+      {
+        "attack_region": "[P: (141.0, 92.0), S: (35.0, 12.0)]",
+        "attacker": 0,
+        "defender": 1,
+        "distance": 40.0,
+        "height": 0,
+        "hurt_region": "[P: (163.0, 86.0), S: (18.0, 64.0)]",
+        "impact_time": 89.4166666666667,
+        "kind": "HIT",
+        "overlap": true,
+        "phrase": 43,
+        "reason": "",
+        "round": 1,
+        "stick_reach": 44.0,
+        "time": 89.6666666666629
+      }
+    ],
+    "money": 5,
+    "quest_complete": true,
+    "seconds": 93.3166666666627,
+    "traffic_failure": true
+  },
+  "production_clock_run": {
+    "captures": [
+      {
+        "beat": 0.0,
+        "epoch": 5.006078,
+        "id": "dialogue-opening-0",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "quest": [],
+        "screen": 1
+      },
+      {
+        "beat": 3.266262,
+        "epoch": 5.006078,
+        "id": "dialogue-opening-1",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "quest": [],
+        "screen": 1
+      },
+      {
+        "beat": 6.000778,
+        "epoch": 5.006078,
+        "id": "airborne-entrance",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "quest": [],
+        "screen": 1
+      },
+      {
+        "beat": 8.001622,
+        "epoch": 5.006078,
+        "id": "dialogue-opening-2",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "quest": [],
+        "screen": 1
+      },
+      {
+        "beat": 10.251602,
+        "epoch": 5.006078,
+        "id": "landing",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "cinematic",
+        "quest": [],
+        "screen": 1
+      },
+      {
+        "beat": 18.016142,
+        "epoch": 5.006078,
+        "id": "screen1",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent"
+        ],
+        "screen": 1
+      },
+      {
+        "beat": 30.003306,
+        "epoch": 5.006078,
+        "id": "screen2",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 32.265882,
+        "epoch": 5.006078,
+        "id": "dialogue-vendor-0",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 35.5158,
+        "epoch": 5.006078,
+        "id": "dialogue-vendor-1",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 41.001614,
+        "epoch": 5.006078,
+        "id": "dialogue-vendor-2",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 43.268206,
+        "epoch": 5.006078,
+        "id": "dialogue-vendor-3",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 45.517884,
+        "epoch": 5.006078,
+        "id": "dialogue-vendor-4",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 50.751444,
+        "epoch": 5.006078,
+        "id": "dialogue-vendor-5",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 54.001104,
+        "epoch": 5.006078,
+        "id": "dialogue-vendor-6",
+        "item": "",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village"
+        ],
+        "screen": 2
+      },
+      {
+        "beat": 70.002256,
+        "epoch": 5.006078,
+        "id": "screen3",
+        "item": "crate",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate"
+        ],
+        "screen": 3
+      },
+      {
+        "beat": 85.642662,
+        "epoch": 5.006078,
+        "id": "traffic-recovery",
+        "item": "crate",
+        "money": 0,
+        "music_restarts": 2,
+        "phase": "recovering",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate"
+        ],
+        "screen": 3
+      },
+      {
+        "beat": 95.251106,
+        "epoch": 5.006078,
+        "id": "dialogue-delivery-0",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery"
+        ],
+        "screen": 3
+      },
+      {
+        "beat": 98.525594,
+        "epoch": 5.006078,
+        "id": "dialogue-delivery-1",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery"
+        ],
+        "screen": 3
+      },
+      {
+        "beat": 103.758988,
+        "epoch": 5.006078,
+        "id": "paid",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery"
+        ],
+        "screen": 3
+      },
+      {
+        "beat": 107.017658,
+        "epoch": 5.006078,
+        "id": "screen4",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search"
+        ],
+        "screen": 4
+      },
+      {
+        "beat": 114.000608,
+        "epoch": 5.006078,
+        "id": "duck-screen4",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search"
+        ],
+        "screen": 4
+      },
+      {
+        "beat": 123.017224,
+        "epoch": 5.006078,
+        "id": "screen5",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search"
+        ],
+        "screen": 5
+      },
+      {
+        "beat": 138.016406,
+        "epoch": 5.006078,
+        "id": "duck-screen5",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search"
+        ],
+        "screen": 5
+      },
+      {
+        "beat": 147.017152,
+        "epoch": 5.006078,
+        "id": "screen6",
+        "item": "",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search",
+          "cane"
+        ],
+        "screen": 6
+      },
+      {
+        "beat": 150.25491,
+        "epoch": 5.006078,
+        "id": "dialogue-fight_intro-0",
+        "item": "stick",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search",
+          "cane",
+          "stick"
+        ],
+        "screen": 6
+      },
+      {
+        "beat": 160.021026,
+        "epoch": 5.006078,
+        "id": "first-fight",
+        "item": "stick",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "fight",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search",
+          "cane",
+          "stick"
+        ],
+        "screen": 6
+      },
+      {
+        "beat": 179.485264,
+        "epoch": 5.006078,
+        "id": "dialogue-quest_complete-0",
+        "item": "stick",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "playing",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search",
+          "cane",
+          "stick",
+          "fight"
+        ],
+        "screen": 6
+      },
+      {
+        "beat": 182.506856,
+        "epoch": 5.006078,
+        "id": "quest-complete",
+        "item": "stick",
+        "money": 5,
+        "music_restarts": 2,
+        "phase": "complete",
+        "quest": [
+          "rent",
+          "village",
+          "vendor",
+          "crate",
+          "cross",
+          "handover",
+          "payment",
+          "delivery",
+          "stick_search",
+          "cane",
+          "stick",
+          "fight"
+        ],
+        "screen": 6
+      }
+    ],
+    "clock": "production",
+    "exchanges": [
+      {
+        "attack_region": "[P: (147.0, 92.0), S: (35.0, 12.0)]",
+        "attacker": 0,
+        "defender": 1,
+        "distance": 44.0,
+        "height": 0,
+        "hurt_region": "[P: (173.0, 86.0), S: (18.0, 64.0)]",
+        "impact_time": 86.506078,
+        "kind": "HIT",
+        "overlap": true,
+        "phrase": 40,
+        "reason": "",
+        "round": 1,
+        "stick_reach": 44.0,
+        "time": 86.748218
+      },
+      {
+        "attack_region": "[P: (147.0, 92.0), S: (35.0, 12.0)]",
+        "attacker": 0,
+        "defender": 1,
+        "distance": 44.0,
+        "height": 0,
+        "hurt_region": "[P: (173.0, 86.0), S: (18.0, 64.0)]",
+        "impact_time": 88.506078,
+        "kind": "WHIFF",
+        "overlap": true,
+        "phrase": 41,
+        "reason": "timing",
+        "round": 1,
+        "stick_reach": 44.0,
+        "time": 88.747545
+      },
+      {
+        "attack_region": "[P: (138.0, 92.0), S: (35.0, 12.0)]",
+        "attacker": 1,
+        "defender": 0,
+        "distance": 44.0,
+        "height": 0,
+        "hurt_region": "[P: (129.0, 86.0), S: (18.0, 64.0)]",
+        "impact_time": 90.506078,
+        "kind": "PARRY",
+        "overlap": true,
+        "phrase": 42,
+        "reason": "",
+        "round": 1,
+        "stick_reach": 44.0,
+        "time": 90.75668
+      },
+      {
+        "attack_region": "[P: (147.0, 92.0), S: (35.0, 12.0)]",
+        "attacker": 0,
+        "defender": 1,
+        "distance": 44.0,
+        "height": 0,
+        "hurt_region": "[P: (173.0, 86.0), S: (18.0, 64.0)]",
+        "impact_time": 92.506078,
+        "kind": "HIT",
+        "overlap": true,
+        "phrase": 43,
+        "reason": "",
+        "round": 1,
+        "stick_reach": 44.0,
+        "time": 92.756668
+      },
+      {
+        "attack_region": "[P: (141.0, 92.0), S: (35.0, 12.0)]",
+        "attacker": 0,
+        "defender": 1,
+        "distance": 40.0,
+        "height": 0,
+        "hurt_region": "[P: (163.0, 86.0), S: (18.0, 64.0)]",
+        "impact_time": 94.506078,
+        "kind": "HIT",
+        "overlap": true,
+        "phrase": 44,
+        "reason": "",
+        "round": 1,
+        "stick_reach": 44.0,
+        "time": 94.748271
+      }
+    ],
+    "money": 5,
+    "quest_complete": true,
+    "seconds": 95.1724190000218,
+    "traffic_failure": true
+  },
+  "verification": "Actual native viewport/window captures and decoded AVI frames inspected. Scripted legal input; not physical keyboard playtesting.",
+  "audio_review": "Final captured 48kHz stereo PCM played through local device (afplay exit 0); zero clipped samples. Subjective balance and perceptual synchronisation remain owner review.",
+  "tests": {
+    "complete_suite": {
+      "command": "bash tools/check.sh",
+      "exit_code": 0,
+      "log": "output/check011-delivery.stdout",
+      "log_sha256": "e831305a3544fb185d5e95ba8df26af3fa6b255826253db527e101bb9c0dafdb"
+    },
+    "story009": 168,
+    "palm010": 353,
+    "story011": 176,
+    "python": 36,
+    "cpu_matches": 900,
+    "cpu_checks": 1795853
+  },
+  "screenshots": [
+    {
+      "path": "docs/screenshots/milestone-011/011-airborne-entrance.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "c65078832cbe6864e18671f693aa33239c7fa8f2ab9d73aa277bec53bca5c921"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-desktop.png",
+      "dimensions": [
+        1280,
+        776
+      ],
+      "sha256": "e2742d7a6f61034b5ef54df6fda3fa312ca200939793f87437bee07d633f70e8"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-dialogue-delivery-0.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "07f3306c5b885a9cc7152858f561d2831f9aeb54e89a4754e7d669d9f4309e8c"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-dialogue-delivery-1.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "b590c1d13d10f73831ac681e6c5ccae007884973cf9229bccc583aa916891d79"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-dialogue-opening-0.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "75f53bc73dbb9e7f01d3b2caebadd4614b87657d7b8fda9fab9e6dfbbbfc1e97"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-dialogue-opening-1.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "db714c0e3be0c75197a74352987c08d7d146a06bc885c4899a8772f96e0d641e"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-dialogue-opening-2.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "da6b566eadc0c6f303f0e4deb8ddaaeea1a27b31b0bcaecb403f3ed61ac36d80"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-dialogue-vendor-1.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "d78b1a847d55df58e84eac5af944d9a3d0f9a7aaf4d73e5075d0f50fbc66617b"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-dialogue-vendor-4.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "5404a081e3e43e9714600c693b637423a8b39b69fb92c6c96548a6f16f3a813c"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-duck-screen4.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "bf4b824d3287229f181b3b9d4c1f9a526924bfb7f40736fa156ae5caed741d6c"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-duck-screen5.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "0f6220d9c45993ec1426a8770f8831728dd0bf884c5bb6158cd4375842a98da4"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-first-fight.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "01ca1703eb8ddfa7b41436b8af2a9cac9ac584dcdf3ff95e0c1dffc1361edd73"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-landing.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "e52b52cc05f78f4e0a9f050606d4ae39a4de5495ab78520c671911c247795efc"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-paid.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "4769bba9049a70f6bb914ba3e1f8a0c208a5385bde216212dfdce9342550ba85"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-quest-complete.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "05f21ca7c38fcc9b8e1633394f75c9b8849456845e94f3ac6f46c06544270c7c"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-screen1.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "b0b78973ac06d35aa8230a99329567e1aa4ff090e50a146251efd47f60a99f6c"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-screen2.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "c09d3195c2b24ae60724ea3f17f05fba9bfe105a499240689eabc752716a70c0"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-screen3.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "e2cd556914132e531ec89de3da47c18f2d4ab2a6033350c20b0021423fdd3a7c"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-screen4.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "52915f8958defb3e75863ba093bb0607a538bdbc1c25c9f9731a3ab3a92a82c9"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-screen5.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "3c251e3b4313b158e4ac2a70d7dd44e072b718e8859f6426fae4f798d3eaeb73"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-screen6.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "3f058524160f47dfc77b80da9c45fca4147d77e0f592972f15a5f465e352f5d8"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-traffic-recovery.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "a073d2b5a8a58ec8784a112dacd575d03265a684986b6fba26344328cc6f4f98"
+    },
+    {
+      "path": "docs/screenshots/milestone-011/011-traffic-warning.png",
+      "dimensions": [
+        320,
+        180
+      ],
+      "sha256": "7c37e15340818c2346639f70c1ccb25ae57a9527374a784b40b1a4dc0f31eb33"
+    }
+  ],
+  "remaining_review": [
+    "Physical keyboard feel/focus and pacing",
+    "Placeholder art and NPC/vehicle/cane presentation",
+    "Missing genuine unarmed breathing cycle",
+    "Subjective audio balance/perceptual synchronisation"
+  ],
+  "unrelated_untracked_preserved": [
+    "assets/audio/sfx/FreeSFX.zip",
+    "assets/ui/arcade/logo.png",
+    "assets/ui/arcade/logo.png.import"
+  ]
+}

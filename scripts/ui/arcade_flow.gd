@@ -40,8 +40,8 @@ func refresh() -> void:
    title="STORY PAUSED"
    rows=[item("RESUME","resume"),item("STORY MENU","story_menu"),item("MAIN MENU","title")]
   "story_end":
-   title="END OF SCREEN 01"
-   sub="MORE RENT TROUBLE TO COME..."
+   title="QUEST COMPLETE" if game.story.quest.finished() else "END OF SCREEN 01"
+   sub="A STICK TO SHARE LICKS" if game.story.quest.finished() else "MORE RENT TROUBLE TO COME..."
    rows=[item("STORY MENU","story_menu"),item("MAIN MENU","title")]
   "setup":
    title="MATCH SETUP"
@@ -84,7 +84,7 @@ func command(action: String) -> void:
  game.audio.emit_event("menu_back" if action in ["back","tutorial_exit","title"] else "menu_confirm")
  match action:
   "story_menu":
-   if game.mode=="story":game.return_to_title()
+   if game.mode=="story" or game.story.phase=="fight":game.return_to_title()
    open("story_menu")
   "story_new":
    if game.story.save.valid():open("story_new_confirm")
